@@ -32,4 +32,10 @@ enum MagicLiteral {
         static let genreTitleFont: CGFloat = 18
         static let buttonSpcing: CGFloat = 12
     }
+    
+    enum RelatedToMovieIntroduceCell {
+        static let posterTitleFont: CGFloat = 14
+        static let spcing: CGFloat = 12
+        static let posterImageCornerRadius: CGFloat = 10
+    }
 }
