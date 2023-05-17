@@ -38,7 +38,7 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
        let sortStack = UIStackView()
         sortStack.axis = .horizontal
         sortStack.alignment = .leading
-        sortStack.spacing = MagicLiteral.RelatedToHeaderView.buttonSpcing
+        sortStack.spacing = MagicNumber.Attributes.spcing
         sortStack.distribution = .equalSpacing
         return sortStack
     }()
@@ -46,9 +46,9 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
     private let sortedByMovieRelease: UIButton = {
         let sortedByMovieRelease = UIButton()
         
-        sortedByMovieRelease.setTitle(MagicLiteral.RelatedToHeaderView.movieRealeseTitle,
+        sortedByMovieRelease.setTitle(MagicLiteral.Title.movieRealese,
                                       for: .normal)
-        sortedByMovieRelease.titleLabel?.font = .boldSystemFont(ofSize: MagicLiteral.RelatedToHeaderView.sortOfTypeFont)
+        sortedByMovieRelease.titleLabel?.font = .boldSystemFont(ofSize: MagicNumber.Attributes.fontSize)
         sortedByMovieRelease.tintColor = .white
         
         //TODO: - push했을 때 pink 컬러로 변환되도록 설정
@@ -58,9 +58,9 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
 
     private let sortedByTicketing: UIButton = {
         let sortedByTicketing = UIButton()
-        sortedByTicketing.setTitle(MagicLiteral.RelatedToHeaderView.ticketingTitle,
+        sortedByTicketing.setTitle(MagicLiteral.Title.ticketing,
                                    for: .normal)
-        sortedByTicketing.titleLabel?.font = .boldSystemFont(ofSize: MagicLiteral.RelatedToHeaderView.sortOfTypeFont)
+        sortedByTicketing.titleLabel?.font = .boldSystemFont(ofSize: MagicNumber.Attributes.fontSize)
         sortedByTicketing.tintColor = .white
         
         return sortedByTicketing
@@ -69,8 +69,8 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
     private let genreTitle: UILabel = {
        let genreTitle = UILabel()
         
-        genreTitle.text = MagicLiteral.RelatedToHeaderView.genreTitle
-        genreTitle.font = .boldSystemFont(ofSize: MagicLiteral.RelatedToHeaderView.genreTitleFont)
+        genreTitle.text = MagicLiteral.Title.genre
+        genreTitle.font = .boldSystemFont(ofSize: MagicNumber.Attributes.genreTitleFont)
         return genreTitle
     }()
 }

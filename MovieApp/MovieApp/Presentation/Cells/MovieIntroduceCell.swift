@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieIntroduceCell: UICollectionViewCell {
+final class MovieIntroduceCell: UICollectionViewCell, Gettable {
     
     //MARK: - Initializer
     
@@ -44,20 +44,25 @@ final class MovieIntroduceCell: UICollectionViewCell {
         let posterStack = UIStackView()
         posterStack.axis = .vertical
         posterStack.alignment = .center
-        posterStack.spacing = MagicLiteral.RelatedToMovieIntroduceCell.spcing
+        posterStack.spacing = MagicNumber.Attributes.spcing
         posterStack.distribution = .equalSpacing
         return posterStack
     }()
     
     private let posterImage: UIImageView = {
         let posterImage = UIImageView()
-        posterImage.layer.cornerRadius = MagicLiteral.RelatedToMovieIntroduceCell.posterImageCornerRadius
+        posterImage.frame = CGRect(origin: CGPoint(x: MagicNumber.zero,
+                                                   y: MagicNumber.zero),
+                                   size: CGSize(width: MagicNumber.Size.introducePosterWidth,
+                                                height: MagicNumber.Size.introducePosterHeight))
+        
+        posterImage.layer.cornerRadius = MagicNumber.Attributes.imageCornerRadius
         return posterImage
     }()
     
     private let posterName: UILabel = {
        let posterName = UILabel()
-        posterName.font = .systemFont(ofSize: MagicLiteral.RelatedToMovieIntroduceCell.posterTitleFont)
+        posterName.font = .systemFont(ofSize: MagicNumber.Attributes.fontSize)
         return posterName
     }()
 }
