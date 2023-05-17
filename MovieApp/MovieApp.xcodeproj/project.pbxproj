@@ -43,6 +43,7 @@
 		5B3F1C602A148CCA0062BE99 /* HTTPErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C5F2A148CCA0062BE99 /* HTTPErrorType.swift */; };
 		5B3F1C622A148CD80062BE99 /* URLComponentsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C612A148CD80062BE99 /* URLComponentsError.swift */; };
 		5B3F1C642A148DB60062BE99 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C632A148DB60062BE99 /* APIEndpoint.swift */; };
+		5B3F1C662A148DE40062BE99 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C652A148DE40062BE99 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		5B3F1C5F2A148CCA0062BE99 /* HTTPErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPErrorType.swift; sourceTree = "<group>"; };
 		5B3F1C612A148CD80062BE99 /* URLComponentsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsError.swift; sourceTree = "<group>"; };
 		5B3F1C632A148DB60062BE99 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		5B3F1C652A148DE40062BE99 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3F1C632A148DB60062BE99 /* APIEndpoint.swift */,
+				5B3F1C652A148DE40062BE99 /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				5B3F1BED2A146EAC0062BE99 /* AppDelegate.swift in Sources */,
 				5B3F1C3A2A148AFF0062BE99 /* BoxOffice.swift in Sources */,
 				5B3F1C2C2A1488B30062BE99 /* Show.swift in Sources */,
+				5B3F1C662A148DE40062BE99 /* NetworkService.swift in Sources */,
 				5B3F1BEF2A146EAC0062BE99 /* SceneDelegate.swift in Sources */,
 				5B3F1C3C2A148B0B0062BE99 /* BoxOfficeResult.swift in Sources */,
 			);
