@@ -11,6 +11,7 @@ enum MagicLiteral {
     static let navigationTitle = "야곰 시네마 🐻‍❄️"
     static let hambergImageName = "Hamberger"
     static let ticketImageName = "Ticket"
+    static let mapImageName = "map"
     
     static let zero = "0"
     static let newMovie = "신작"

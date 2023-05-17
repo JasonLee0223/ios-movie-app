@@ -56,7 +56,7 @@ extension HomeViewController {
         
         let map: UIBarButtonItem = {
             let map = UIBarButtonItem()
-            map.image = UIImage(systemName: "map")
+            map.image = UIImage(systemName: MagicLiteral.mapImageName)
             map.tintColor = .white
             return map
         }()
