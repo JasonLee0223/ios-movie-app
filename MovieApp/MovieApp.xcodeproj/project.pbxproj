@@ -51,6 +51,7 @@
 		5B3F1C742A14C8730062BE99 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C732A14C8730062BE99 /* HomeHeaderView.swift */; };
 		5B3F1C762A14C8DD0062BE99 /* MovieIntroduceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C752A14C8DD0062BE99 /* MovieIntroduceCell.swift */; };
 		5B3F1C782A14C9010062BE99 /* MovieGenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C772A14C9010062BE99 /* MovieGenreCell.swift */; };
+		5B3F1C7A2A14EC540062BE99 /* MagicNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C792A14EC540062BE99 /* MagicNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		5B3F1C732A14C8730062BE99 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		5B3F1C752A14C8DD0062BE99 /* MovieIntroduceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieIntroduceCell.swift; sourceTree = "<group>"; };
 		5B3F1C772A14C9010062BE99 /* MovieGenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenreCell.swift; sourceTree = "<group>"; };
+		5B3F1C792A14EC540062BE99 /* MagicNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3F1C6D2A1497A00062BE99 /* MagicLiteral.swift */,
+				5B3F1C792A14EC540062BE99 /* MagicNumber.swift */,
 				5B3F1C6A2A1497700062BE99 /* Interface */,
 				5B3F1C6F2A1497F50062BE99 /* Helper */,
 			);
@@ -572,6 +575,7 @@
 				5B3F1BED2A146EAC0062BE99 /* AppDelegate.swift in Sources */,
 				5B3F1C3A2A148AFF0062BE99 /* BoxOffice.swift in Sources */,
 				5B3F1C2C2A1488B30062BE99 /* Show.swift in Sources */,
+				5B3F1C7A2A14EC540062BE99 /* MagicNumber.swift in Sources */,
 				5B3F1C662A148DE40062BE99 /* NetworkService.swift in Sources */,
 				5B3F1BEF2A146EAC0062BE99 /* SceneDelegate.swift in Sources */,
 				5B3F1C3C2A148B0B0062BE99 /* BoxOfficeResult.swift in Sources */,
