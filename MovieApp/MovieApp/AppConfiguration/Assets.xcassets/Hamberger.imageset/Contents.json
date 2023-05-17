@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Hamberger.svg",
+      "filename" : "Hamberger.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Hamberger_2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Hamberger_3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
