@@ -42,6 +42,7 @@
 		5B3F1C5E2A148CBB0062BE99 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C5D2A148CBB0062BE99 /* NetworkError.swift */; };
 		5B3F1C602A148CCA0062BE99 /* HTTPErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C5F2A148CCA0062BE99 /* HTTPErrorType.swift */; };
 		5B3F1C622A148CD80062BE99 /* URLComponentsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C612A148CD80062BE99 /* URLComponentsError.swift */; };
+		5B3F1C642A148DB60062BE99 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C632A148DB60062BE99 /* APIEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		5B3F1C5D2A148CBB0062BE99 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5B3F1C5F2A148CCA0062BE99 /* HTTPErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPErrorType.swift; sourceTree = "<group>"; };
 		5B3F1C612A148CD80062BE99 /* URLComponentsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsError.swift; sourceTree = "<group>"; };
+		5B3F1C632A148DB60062BE99 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 		5B3F1C232A14775A0062BE99 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				5B3F1C632A148DB60062BE99 /* APIEndpoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				5B3F1C4F2A148BA20062BE99 /* Staff.swift in Sources */,
 				5B3F1BF12A146EAC0062BE99 /* ViewController.swift in Sources */,
 				5B3F1C552A148C0F0062BE99 /* MovieDetailInformation.swift in Sources */,
+				5B3F1C642A148DB60062BE99 /* APIEndpoint.swift in Sources */,
 				5B3F1C5B2A148C970062BE99 /* Endpoint.swift in Sources */,
 				5B3F1C452A148B810062BE99 /* Company.swift in Sources */,
 				5B3F1C492A148B8E0062BE99 /* Genre.swift in Sources */,
