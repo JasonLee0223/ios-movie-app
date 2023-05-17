@@ -52,6 +52,7 @@
 		5B3F1C762A14C8DD0062BE99 /* MovieIntroduceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C752A14C8DD0062BE99 /* MovieIntroduceCell.swift */; };
 		5B3F1C782A14C9010062BE99 /* MovieGenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C772A14C9010062BE99 /* MovieGenreCell.swift */; };
 		5B3F1C7A2A14EC540062BE99 /* MagicNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C792A14EC540062BE99 /* MagicNumber.swift */; };
+		5B3F1C7D2A14EE140062BE99 /* HomeViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C7C2A14EE140062BE99 /* HomeViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		5B3F1C752A14C8DD0062BE99 /* MovieIntroduceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieIntroduceCell.swift; sourceTree = "<group>"; };
 		5B3F1C772A14C9010062BE99 /* MovieGenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenreCell.swift; sourceTree = "<group>"; };
 		5B3F1C792A14EC540062BE99 /* MagicNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicNumber.swift; sourceTree = "<group>"; };
+		5B3F1C7C2A14EE140062BE99 /* HomeViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3F1BF02A146EAC0062BE99 /* HomeViewController.swift */,
+				5B3F1C7B2A14EE040062BE99 /* CellLayout */,
 				5B3F1C722A14C82F0062BE99 /* Cells */,
 				5B3F1C1C2A1472EE0062BE99 /* View */,
 			);
@@ -404,6 +407,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		5B3F1C7B2A14EE040062BE99 /* CellLayout */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C7C2A14EE140062BE99 /* HomeViewLayout.swift */,
+			);
+			path = CellLayout;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -568,6 +579,7 @@
 				5B3F1C642A148DB60062BE99 /* APIEndpoint.swift in Sources */,
 				5B3F1C5B2A148C970062BE99 /* Endpoint.swift in Sources */,
 				5B3F1C452A148B810062BE99 /* Company.swift in Sources */,
+				5B3F1C7D2A14EE140062BE99 /* HomeViewLayout.swift in Sources */,
 				5B3F1C492A148B8E0062BE99 /* Genre.swift in Sources */,
 				5B3F1C742A14C8730062BE99 /* HomeHeaderView.swift in Sources */,
 				5B3F1C532A148C040062BE99 /* MovieInfoResult.swift in Sources */,
