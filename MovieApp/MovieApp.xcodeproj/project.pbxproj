@@ -20,6 +20,7 @@
 		5B3F1C2C2A1488B30062BE99 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C2B2A1488B30062BE99 /* Show.swift */; };
 		5B3F1C2E2A1488D80062BE99 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C2D2A1488D80062BE99 /* Movie.swift */; };
 		5B3F1C302A14890E0062BE99 /* APIMagicLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C2F2A14890E0062BE99 /* APIMagicLiteral.swift */; };
+		5B3F1C342A1489710062BE99 /* BoxOfficeQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C332A1489710062BE99 /* BoxOfficeQueryParameters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		5B3F1C2B2A1488B30062BE99 /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		5B3F1C2D2A1488D80062BE99 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		5B3F1C2F2A14890E0062BE99 /* APIMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMagicLiteral.swift; sourceTree = "<group>"; };
+		5B3F1C332A1489710062BE99 /* BoxOfficeQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeQueryParameters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,8 @@
 		5B3F1C222A14774D0062BE99 /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
+				5B3F1C312A14894D0062BE99 /* Request */,
+				5B3F1C322A1489540062BE99 /* Response */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -235,6 +239,21 @@
 			children = (
 			);
 			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		5B3F1C312A14894D0062BE99 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C332A1489710062BE99 /* BoxOfficeQueryParameters.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		5B3F1C322A1489540062BE99 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3F1C342A1489710062BE99 /* BoxOfficeQueryParameters.swift in Sources */,
 				5B3F1C302A14890E0062BE99 /* APIMagicLiteral.swift in Sources */,
 				5B3F1C2A2A1488930062BE99 /* Basic.swift in Sources */,
 				5B3F1C2E2A1488D80062BE99 /* Movie.swift in Sources */,
