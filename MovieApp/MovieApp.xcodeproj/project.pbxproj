@@ -16,6 +16,7 @@
 		5B3F1C042A146EAE0062BE99 /* MovieAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C032A146EAE0062BE99 /* MovieAppTests.swift */; };
 		5B3F1C0E2A146EAE0062BE99 /* MovieAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C0D2A146EAE0062BE99 /* MovieAppUITests.swift */; };
 		5B3F1C102A146EAE0062BE99 /* MovieAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C0F2A146EAE0062BE99 /* MovieAppUITestsLaunchTests.swift */; };
+		5B3F1C2A2A1488930062BE99 /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C292A1488930062BE99 /* Basic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		5B3F1C0D2A146EAE0062BE99 /* MovieAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppUITests.swift; sourceTree = "<group>"; };
 		5B3F1C0F2A146EAE0062BE99 /* MovieAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5B3F1C282A1477DE0062BE99 /* BoxOffice+APIKEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BoxOffice+APIKEY.xcconfig"; sourceTree = "<group>"; };
+		5B3F1C292A1488930062BE99 /* Basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 		5B3F1C262A1477920062BE99 /* Query */ = {
 			isa = PBXGroup;
 			children = (
+				5B3F1C292A1488930062BE99 /* Basic.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3F1C2A2A1488930062BE99 /* Basic.swift in Sources */,
 				5B3F1BF12A146EAC0062BE99 /* ViewController.swift in Sources */,
 				5B3F1BED2A146EAC0062BE99 /* AppDelegate.swift in Sources */,
 				5B3F1BEF2A146EAC0062BE99 /* SceneDelegate.swift in Sources */,
