@@ -12,16 +12,20 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureUI()
+        configureOfUI()
+        configureHierarchy()
     }
+    
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
 }
 
+//MARK: - Configure of UI Components
 extension HomeViewController {
     
     private func configureOfUI() {
         configureOfNavigationBar()
         configureOfSuperView()
+        configureOfCollectionView()
     }
     
     private func configureOfSuperView() {
@@ -60,9 +64,28 @@ extension HomeViewController {
         self.navigationItem.leftBarButtonItem = .init(customView: title)
         self.navigationItem.rightBarButtonItems = [hamberg, map, ticket]
     }
+    
     private func configureOfCollectionView() {
         collectionView.isScrollEnabled = true
         collectionView.clipsToBounds = false
         collectionView.backgroundColor = .systemBackground
+    }
+}
+
+//MARK: - Configure of Layout
+extension HomeViewController {
+    
+    private func configureHierarchy() {
+        let safeArea = self.view.safeAreaLayoutGuide
+        
+        self.view.addSubview(collectionView)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+        ])
     }
 }
