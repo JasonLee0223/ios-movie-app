@@ -24,4 +24,11 @@ enum MagicNumber {
         static let genrePosterWidth: CGFloat = 104
         static let genrePosterHeight: CGFloat = 104
     }
+    
+    enum RelatedToLayout {
+        static let introduceCellItemFractionalWidthFraction: CGFloat = 1.0 / 10.0
+        static let GenreCellItemFractionalWidthFraction: CGFloat = 1.0 / 13.0
+        static let fractionalDefaultFraction: CGFloat = 1.0
+        static let itemInset: CGFloat = 0
+    }
 }
