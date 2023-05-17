@@ -8,10 +8,6 @@
 import Foundation
 
 enum MagicLiteral {
-    static let navigationTitle = "야곰 시네마 🐻‍❄️"
-    static let hambergImageName = "Hamberger"
-    static let ticketImageName = "Ticket"
-    static let mapImageName = "map"
     
     static let zero = "0"
     static let newMovie = "신작"
@@ -20,4 +16,18 @@ enum MagicLiteral {
     static let dateFormat = "yyyy-MM-dd"
     static let todayAudience = "오늘 "
     static let totalAudience = " / 총 "
+    
+    enum RelatedToNavigationController {
+        static let navigationTitle = "야곰 시네마 🐻‍❄️"
+        static let hambergImageName = "Hamberger"
+        static let ticketImageName = "Ticket"
+        static let mapImageName = "map"
+    }
+
+    enum RelatedToHeaderView {
+        static let movieRealeseTitle = "영화 개봉순"
+        static let ticketingTitle = "예매율순"
+        static let sortOfTypeFont: CGFloat = 14
+        static let genreTitleFont: CGFloat = 18
+    }
 }
