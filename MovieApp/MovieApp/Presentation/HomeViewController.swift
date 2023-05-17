@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
         
         configureUI()
     }
+    private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
 }
 
 extension HomeViewController {
@@ -58,5 +59,10 @@ extension HomeViewController {
         
         self.navigationItem.leftBarButtonItem = .init(customView: title)
         self.navigationItem.rightBarButtonItems = [hamberg, map, ticket]
+    }
+    private func configureOfCollectionView() {
+        collectionView.isScrollEnabled = true
+        collectionView.clipsToBounds = false
+        collectionView.backgroundColor = .systemBackground
     }
 }
