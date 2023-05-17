@@ -7,13 +7,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        configureOfSuperView()
     }
 
 
 }
 
+extension HomeViewController {
+    private func configureOfSuperView() {
+        self.view.backgroundColor = .black
+    }
+}
