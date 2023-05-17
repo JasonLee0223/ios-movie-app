@@ -9,7 +9,6 @@ import Foundation
 
 enum MagicLiteral {
     
-    static let zero = "0"
     static let newMovie = "신작"
     static let upTriangle = "arrowtriangle.up.fill"
     static let downTriangle = "arrowtriangle.down.fill"
@@ -24,18 +23,28 @@ enum MagicLiteral {
         static let mapImageName = "map"
     }
 
-    enum RelatedToHeaderView {
-        static let movieRealeseTitle = "영화 개봉순"
-        static let ticketingTitle = "예매율순"
-        static let genreTitle = "장르별 영화"
-        static let sortOfTypeFont: CGFloat = 14
+    enum Title {
+        static let movieRealese = "영화 개봉순"
+        static let ticketing = "예매율순"
+        static let genre = "장르별 영화"
+    }
+}
+
+enum MagicNumber {
+    static let zero: CGFloat = 0
+    
+    enum Attributes {
         static let genreTitleFont: CGFloat = 18
-        static let buttonSpcing: CGFloat = 12
+        static let spcing: CGFloat = 12
+        static let fontSize: CGFloat = 14
+        static let imageCornerRadius: CGFloat = 10
     }
     
-    enum RelatedToMovieIntroduceCell {
-        static let posterTitleFont: CGFloat = 14
-        static let spcing: CGFloat = 12
-        static let posterImageCornerRadius: CGFloat = 10
+    enum Size {
+        static let introducePosterWidth: CGFloat = 140
+        static let introducePosterHeight: CGFloat = 198
+        
+        static let genrePosterWidth: CGFloat = 104
+        static let genrePosterHeight: CGFloat = 104
     }
 }
