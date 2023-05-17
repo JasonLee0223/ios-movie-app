@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -16,8 +16,8 @@ class HomeViewController: UIViewController {
         configureOfNavigationBar()
         configureOfSuperView()
     }
-
-
+    
+    
 }
 
 extension HomeViewController {
@@ -33,7 +33,28 @@ extension HomeViewController {
             title.tintColor = .white
             return title
         }()
-        self.navigationItem.leftBarButtonItem = .init(customView: title)
         
+        //TODO: - Button에 대한 Action이 필요하면 UIImageView를 클로저 형태로 변경
+        let hamberg: UIBarButtonItem = {
+            let hambergImageView = UIImageView(image: UIImage(named: "Hamberger"))
+            let hamberg = UIBarButtonItem(customView: hambergImageView)
+            return hamberg
+        }()
+        
+        let ticket: UIBarButtonItem = {
+            let ticketImageView = UIImageView(image: UIImage(named: "Ticket"))
+            let ticket = UIBarButtonItem(customView: ticketImageView)
+            return ticket
+        }()
+        
+        let map: UIBarButtonItem = {
+            let map = UIBarButtonItem()
+            map.image = UIImage(systemName: "map")
+            map.tintColor = .white
+            return map
+        }()
+        
+        self.navigationItem.leftBarButtonItem = .init(customView: title)
+        self.navigationItem.rightBarButtonItems = [hamberg, map, ticket]
     }
 }
