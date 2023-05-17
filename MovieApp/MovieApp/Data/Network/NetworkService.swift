@@ -21,9 +21,8 @@ final class NetworkService {
     func loadData() {
         
         Task {
-//            let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
-//            let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: yesterdayDate)
-            let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: "20230516")
+            let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
+            let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: yesterdayDate)
             let swapResult = try await request(with: APIEndPoint.receiveBoxOffice(with: boxOfficeQueryParameters)).boxOfficeResult.dailyBoxOfficeList
             swap(to: swapResult)
             NotificationCenter.default.post(name: .loadedBoxOfficeData, object: networkResult)
