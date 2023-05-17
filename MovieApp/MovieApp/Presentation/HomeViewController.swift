@@ -35,7 +35,7 @@ extension HomeViewController {
     private func configureOfNavigationBar() {
         let title: UIButton = {
             let title = UIButton()
-            title.setTitle(MagicLiteral.navigationTitle, for: .normal)
+            title.setTitle(MagicLiteral.RelatedToNavigationController.navigationTitle, for: .normal)
             title.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
             title.tintColor = .white
             return title
@@ -43,20 +43,22 @@ extension HomeViewController {
         
         //TODO: - Button에 대한 Action이 필요하면 UIImageView를 클로저 형태로 변경
         let hamberg: UIBarButtonItem = {
-            let hambergImageView = UIImageView(image: UIImage(named: MagicLiteral.hambergImageName))
+            let hambergImage = UIImage(named: MagicLiteral.RelatedToNavigationController.hambergImageName)
+            let hambergImageView = UIImageView(image: hambergImage)
             let hamberg = UIBarButtonItem(customView: hambergImageView)
             return hamberg
         }()
         
         let ticket: UIBarButtonItem = {
-            let ticketImageView = UIImageView(image: UIImage(named: MagicLiteral.ticketImageName))
+            let ticketImage = UIImage(named: MagicLiteral.RelatedToNavigationController.ticketImageName)
+            let ticketImageView = UIImageView(image: ticketImage)
             let ticket = UIBarButtonItem(customView: ticketImageView)
             return ticket
         }()
         
         let map: UIBarButtonItem = {
             let map = UIBarButtonItem()
-            map.image = UIImage(systemName: MagicLiteral.mapImageName)
+            map.image = UIImage(systemName: MagicLiteral.RelatedToNavigationController.mapImageName)
             map.tintColor = .white
             return map
         }()
