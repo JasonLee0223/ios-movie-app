@@ -30,5 +30,6 @@ enum MagicLiteral {
         static let genreTitle = "장르별 영화"
         static let sortOfTypeFont: CGFloat = 14
         static let genreTitleFont: CGFloat = 18
+        static let buttonSpcing: CGFloat = 12
     }
 }
