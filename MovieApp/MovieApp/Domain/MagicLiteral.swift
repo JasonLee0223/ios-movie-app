@@ -27,6 +27,7 @@ enum MagicLiteral {
     enum RelatedToHeaderView {
         static let movieRealeseTitle = "영화 개봉순"
         static let ticketingTitle = "예매율순"
+        static let genreTitle = "장르별 영화"
         static let sortOfTypeFont: CGFloat = 14
         static let genreTitleFont: CGFloat = 18
     }
