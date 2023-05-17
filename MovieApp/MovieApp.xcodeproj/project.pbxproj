@@ -47,6 +47,7 @@
 		5B3F1C692A1495100062BE99 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5B3F1C682A1495100062BE99 /* Alamofire */; };
 		5B3F1C6C2A14977D0062BE99 /* Gettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C6B2A14977D0062BE99 /* Gettable.swift */; };
 		5B3F1C6E2A1497A00062BE99 /* MagicLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C6D2A1497A00062BE99 /* MagicLiteral.swift */; };
+		5B3F1C712A1498200062BE99 /* Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C702A1498200062BE99 /* Getter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		5B3F1C652A148DE40062BE99 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5B3F1C6B2A14977D0062BE99 /* Gettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gettable.swift; sourceTree = "<group>"; };
 		5B3F1C6D2A1497A00062BE99 /* MagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicLiteral.swift; sourceTree = "<group>"; };
+		5B3F1C702A1498200062BE99 /* Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Getter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,8 +224,6 @@
 			children = (
 				5B3F1BF02A146EAC0062BE99 /* ViewController.swift */,
 				5B3F1C1C2A1472EE0062BE99 /* View */,
-				5B3F1C6A2A1497700062BE99 /* Interface */,
-				5B3F1C6D2A1497A00062BE99 /* MagicLiteral.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -231,6 +231,9 @@
 		5B3F1C202A14772A0062BE99 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				5B3F1C6D2A1497A00062BE99 /* MagicLiteral.swift */,
+				5B3F1C6A2A1497700062BE99 /* Interface */,
+				5B3F1C6F2A1497F50062BE99 /* Helper */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -371,6 +374,14 @@
 				5B3F1C6B2A14977D0062BE99 /* Gettable.swift */,
 			);
 			path = Interface;
+			sourceTree = "<group>";
+		};
+		5B3F1C6F2A1497F50062BE99 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C702A1498200062BE99 /* Getter.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -530,6 +541,7 @@
 				5B3F1C4F2A148BA20062BE99 /* Staff.swift in Sources */,
 				5B3F1C6C2A14977D0062BE99 /* Gettable.swift in Sources */,
 				5B3F1BF12A146EAC0062BE99 /* ViewController.swift in Sources */,
+				5B3F1C712A1498200062BE99 /* Getter.swift in Sources */,
 				5B3F1C552A148C0F0062BE99 /* MovieDetailInformation.swift in Sources */,
 				5B3F1C642A148DB60062BE99 /* APIEndpoint.swift in Sources */,
 				5B3F1C5B2A148C970062BE99 /* Endpoint.swift in Sources */,
