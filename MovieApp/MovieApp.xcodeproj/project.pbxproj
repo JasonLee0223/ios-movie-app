@@ -49,6 +49,7 @@
 		5B3F1C092A146EAE0062BE99 /* MovieAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3F1C0D2A146EAE0062BE99 /* MovieAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppUITests.swift; sourceTree = "<group>"; };
 		5B3F1C0F2A146EAE0062BE99 /* MovieAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5B3F1C282A1477DE0062BE99 /* BoxOffice+APIKEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BoxOffice+APIKEY.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +141,7 @@
 			children = (
 				5B3F1BF52A146EAE0062BE99 /* Assets.xcassets */,
 				5B3F1BFA2A146EAE0062BE99 /* Info.plist */,
+				5B3F1C282A1477DE0062BE99 /* BoxOffice+APIKEY.xcconfig */,
 			);
 			path = AppConfiguration;
 			sourceTree = "<group>";
