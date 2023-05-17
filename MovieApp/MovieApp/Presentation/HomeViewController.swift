@@ -11,16 +11,18 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        configureUI()
+    }
+}
+
+extension HomeViewController {
+    
+    private func configureOfUI() {
         configureOfNavigationBar()
         configureOfSuperView()
     }
     
-    
-}
-
-extension HomeViewController {
     private func configureOfSuperView() {
         self.view.backgroundColor = .black
     }
