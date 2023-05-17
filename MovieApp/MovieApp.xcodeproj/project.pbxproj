@@ -100,6 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				5B3F1C1F2A14731D0062BE99 /* Presentation */,
+				5B3F1C202A14772A0062BE99 /* Domain */,
+				5B3F1C212A1477330062BE99 /* Data */,
+				5B3F1C242A14777C0062BE99 /* Infrastructure */,
 				5B3F1C1E2A1473120062BE99 /* AppEnvironment */,
 				5B3F1C1D2A1472FB0062BE99 /* AppConfiguration */,
 			);
@@ -157,6 +160,67 @@
 				5B3F1C1C2A1472EE0062BE99 /* View */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		5B3F1C202A14772A0062BE99 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		5B3F1C212A1477330062BE99 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C222A14774D0062BE99 /* DataStructure */,
+				5B3F1C232A14775A0062BE99 /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		5B3F1C222A14774D0062BE99 /* DataStructure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataStructure;
+			sourceTree = "<group>";
+		};
+		5B3F1C232A14775A0062BE99 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5B3F1C242A14777C0062BE99 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C252A1477890062BE99 /* Network */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		5B3F1C252A1477890062BE99 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C262A1477920062BE99 /* Query */,
+				5B3F1C272A1477970062BE99 /* Endpoint */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5B3F1C262A1477920062BE99 /* Query */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Query;
+			sourceTree = "<group>";
+		};
+		5B3F1C272A1477970062BE99 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
