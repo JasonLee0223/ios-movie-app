@@ -37,7 +37,7 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
     private let sortStack: UIStackView = {
        let sortStack = UIStackView()
         sortStack.axis = .horizontal
-        sortStack.alignment = .firstBaseline
+        sortStack.alignment = .leading
         sortStack.spacing = MagicLiteral.RelatedToHeaderView.buttonSpcing
         sortStack.distribution = .equalSpacing
         return sortStack
