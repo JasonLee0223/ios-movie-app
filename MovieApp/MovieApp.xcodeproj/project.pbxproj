@@ -53,6 +53,7 @@
 		5B3F1C782A14C9010062BE99 /* MovieGenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C772A14C9010062BE99 /* MovieGenreCell.swift */; };
 		5B3F1C7A2A14EC540062BE99 /* MagicNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C792A14EC540062BE99 /* MagicNumber.swift */; };
 		5B3F1C7D2A14EE140062BE99 /* HomeViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C7C2A14EE140062BE99 /* HomeViewLayout.swift */; };
+		5B3F1C7F2A15DC480062BE99 /* HomeViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		5B3F1C772A14C9010062BE99 /* MovieGenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenreCell.swift; sourceTree = "<group>"; };
 		5B3F1C792A14EC540062BE99 /* MagicNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicNumber.swift; sourceTree = "<group>"; };
 		5B3F1C7C2A14EE140062BE99 /* HomeViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewLayout.swift; sourceTree = "<group>"; };
+		5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3F1BF02A146EAC0062BE99 /* HomeViewController.swift */,
+				5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */,
 				5B3F1C7B2A14EE040062BE99 /* CellLayout */,
 				5B3F1C722A14C82F0062BE99 /* Cells */,
 				5B3F1C1C2A1472EE0062BE99 /* View */,
@@ -570,6 +573,7 @@
 				5B3F1C572A148C600062BE99 /* Requestable.swift in Sources */,
 				5B3F1C4D2A148B9B0062BE99 /* ShowType.swift in Sources */,
 				5B3F1C6E2A1497A00062BE99 /* MagicLiteral.swift in Sources */,
+				5B3F1C7F2A15DC480062BE99 /* HomeViewDataSource.swift in Sources */,
 				5B3F1C2E2A1488D80062BE99 /* Movie.swift in Sources */,
 				5B3F1C4F2A148BA20062BE99 /* Staff.swift in Sources */,
 				5B3F1C6C2A14977D0062BE99 /* Gettable.swift in Sources */,
