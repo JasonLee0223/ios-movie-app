@@ -79,6 +79,7 @@ struct HomeViewLayout {
             widthDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.genreWidth),
             heightDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.genreHeight)
         )
+        
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
@@ -89,12 +90,14 @@ struct HomeViewLayout {
             widthDimension:.fractionalWidth(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction),
             heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction)
         )
+        
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.genreWidth),
             heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.GroupSize.genreHeight)
         )
+        
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: groupSize,
             subitems: [item]
@@ -104,7 +107,7 @@ struct HomeViewLayout {
             leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.genreLeadingOrTrailing,
             bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.genreBottom,
             trailing: MagicNumber.RelatedToCompositionalLayout.ContentInset.genreLeadingOrTrailing
-        )
+         )
         
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]
