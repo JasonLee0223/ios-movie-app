@@ -13,12 +13,14 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .darkGray
         configureOfLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureOfLayout()
+        self.backgroundColor = .darkGray
     }
     
     //MARK: - Method
@@ -33,9 +35,26 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
     //MARK: - Private Method
     
     private func configureOfLayout() {
-        self.addSubview(posterStack)
+        let safeArea = self.contentView.safeAreaLayoutGuide
+        self.contentView.addSubview(posterStack)
         posterStack.addArrangedSubview(posterImage)
         posterStack.addArrangedSubview(posterName)
+        
+        posterStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            posterStack.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            posterStack.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            posterStack.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            posterStack.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+        ])
+        
+        posterImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            posterImage.topAnchor.constraint(equalTo: posterStack.topAnchor),
+            posterImage.leadingAnchor.constraint(equalTo: posterStack.leadingAnchor),
+            posterImage.trailingAnchor.constraint(equalTo: posterStack.trailingAnchor),
+            posterImage.bottomAnchor.constraint(equalTo: posterName.bottomAnchor, constant: -26),
+        ])
     }
     
     //MARK: - Private Property
@@ -43,25 +62,23 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
     private let posterStack: UIStackView = {
         let posterStack = UIStackView()
         posterStack.axis = .vertical
-        posterStack.alignment = .center
-        posterStack.spacing = MagicNumber.Attributes.spcing
-        posterStack.distribution = .equalSpacing
+        posterStack.alignment = .fill
+        posterStack.spacing = 12
+        posterStack.distribution = .fill
+        posterStack.backgroundColor = .yellow
         return posterStack
     }()
     
     private let posterImage: UIImageView = {
         let posterImage = UIImageView()
-        posterImage.frame = CGRect(origin: CGPoint(x: MagicNumber.zero,
-                                                   y: MagicNumber.zero),
-                                   size: CGSize(width: MagicNumber.Size.introducePosterWidth,
-                                                height: MagicNumber.Size.introducePosterHeight))
-        
-        posterImage.layer.cornerRadius = MagicNumber.Attributes.imageCornerRadius
+        posterImage.contentMode = .scaleToFill
+        posterImage.backgroundColor = .magenta
         return posterImage
     }()
     
     private let posterName: UILabel = {
        let posterName = UILabel()
+        //TODO: - Noto Sans KR font로 변경
         posterName.font = .systemFont(ofSize: MagicNumber.Attributes.fontSize)
         return posterName
     }()
