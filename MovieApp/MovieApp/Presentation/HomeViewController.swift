@@ -17,6 +17,8 @@ class HomeViewController: UIViewController {
     }
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    private var dataSource = HomeViewDataSource()
+    
 }
 
 //MARK: - Configure of UI Components
@@ -71,6 +73,14 @@ extension HomeViewController {
         collectionView.isScrollEnabled = true
         collectionView.clipsToBounds = false
         collectionView.backgroundColor = .systemBackground
+        collectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
+        collectionView.dataSource = dataSource
+        
+        collectionView.register(HomeHeaderView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: HomeHeaderView.identifier)
+        collectionView.register(MovieIntroduceCell.self, forCellWithReuseIdentifier: MovieIntroduceCell.identifier)
+        collectionView.register(MovieGenreCell.self, forCellWithReuseIdentifier: MovieGenreCell.identifier)
     }
 }
 
@@ -89,5 +99,11 @@ extension HomeViewController {
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
+    }
+    
+    private func configureOfCollectionViewCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        UICollectionViewCompositionalLayout { (sectionIndex: Int, _) -> NSCollectionLayoutSection? in
+            return HomeViewLayout(sectionIndex: sectionIndex).create()
+        }
     }
 }
