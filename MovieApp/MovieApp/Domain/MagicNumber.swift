@@ -13,7 +13,7 @@ enum MagicNumber {
     
     enum HeaderView {
         static let sortStackTopAnchorConstraint: CGFloat = 24
-        static let genreTitleTopAnchorConstraint: CGFloat = 38
+        static let genreTitleTopAnchorConstraint: CGFloat = 28
         static let leadingConstraint: CGFloat = 20
     }
     
@@ -24,7 +24,7 @@ enum MagicNumber {
     
     enum Attributes {
         static let navigationBarButtonFont: CGFloat = 25
-        static let genreTitleFont: CGFloat = 18
+        static let genreTitleFont: CGFloat = 23
         static let spcing: CGFloat = 12
         static let fontSize: CGFloat = 14
         static let imageCornerRadius: CGFloat = 10
