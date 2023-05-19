@@ -78,7 +78,7 @@ extension HomeViewController {
     private func configureOfCollectionView() {
         collectionView.isScrollEnabled = true
         collectionView.clipsToBounds = false
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .black
         collectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
         collectionView.dataSource = dataSource
         

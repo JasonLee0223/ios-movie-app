@@ -12,7 +12,6 @@ final class MovieGenreCell: UICollectionViewCell, Gettable {
     //MARK: - Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .green
         configureOfLayout()
     }
     
@@ -92,16 +91,17 @@ final class MovieGenreCell: UICollectionViewCell, Gettable {
     
     private let genrePosterImage: UIImageView = {
        let genrePosterImage = UIImageView()
-        genrePosterImage.backgroundColor = .blue
+        genrePosterImage.clipsToBounds = true
+        genrePosterImage.layer.cornerRadius = MagicNumber.cornerRadius
         return genrePosterImage
     }()
     
     private let genreTypeName: UILabel = {
         let genreTypeName = UILabel()
-        genreTypeName.backgroundColor = .brown
         genreTypeName.font = .systemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
+        genreTypeName.textColor = .white
         return genreTypeName
     }()
 }

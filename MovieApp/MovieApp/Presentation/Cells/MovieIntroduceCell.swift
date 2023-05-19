@@ -13,14 +13,12 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .darkGray
         configureOfLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureOfLayout()
-        self.backgroundColor = .darkGray
     }
     
     //MARK: - Method
@@ -81,14 +79,14 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
         posterStack.axis = .vertical
         posterStack.alignment = .fill
         posterStack.distribution = .fill
-        posterStack.backgroundColor = .yellow
         return posterStack
     }()
     
     private let posterImage: UIImageView = {
         let posterImage = UIImageView()
-        posterImage.contentMode = .scaleToFill
-        posterImage.backgroundColor = .magenta
+        posterImage.contentMode = .scaleAspectFill
+        posterImage.clipsToBounds = true
+        posterImage.layer.cornerRadius = MagicNumber.cornerRadius
         return posterImage
     }()
     
@@ -98,6 +96,7 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
         posterName.font = .systemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
+        posterName.textColor = .white
         return posterName
     }()
 }

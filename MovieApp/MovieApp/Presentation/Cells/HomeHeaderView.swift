@@ -13,12 +13,10 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemGray3
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        backgroundColor = .systemGray3
     }
     
     //MARK: - Method
@@ -97,6 +95,8 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
     private let sortedByTicketing: UIButton = {
         let sortedByTicketing = UIButton()
         
+        sortedByTicketing.layer.borderColor = UIColor.systemGray5.cgColor
+        sortedByTicketing.layer.borderWidth = 0.5
         sortedByTicketing.layer.cornerRadius = MagicNumber.cornerRadius
         sortedByTicketing.setTitle(
             MagicLiteral.Title.ticketing,
@@ -105,8 +105,7 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         sortedByTicketing.titleLabel?.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
-        sortedByTicketing.tintColor = .white
-        sortedByTicketing.backgroundColor = .systemPink
+        sortedByTicketing.tintColor = UIColor.white
         return sortedByTicketing
     }()
     
@@ -117,7 +116,7 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         genreTitle.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.genreTitleFont
         )
-        genreTitle.backgroundColor = .yellow
+        genreTitle.textColor = UIColor.white
         return genreTitle
     }()
 }
