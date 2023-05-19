@@ -12,6 +12,7 @@ final class MovieGenreCell: UICollectionViewCell, Gettable {
     //MARK: - Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .green
         configureOfLayout()
     }
     
@@ -31,9 +32,31 @@ final class MovieGenreCell: UICollectionViewCell, Gettable {
     
     //MARK: - Private Method
     private func configureOfLayout() {
-        self.addSubview(genreStack)
+        self.contentView.addSubview(genreStack)
         genreStack.addArrangedSubview(genrePosterImage)
         genreStack.addArrangedSubview(genreTypeName)
+        
+        genreStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            genreStack.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            genreStack.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            genreStack.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            genreStack.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+        ])
+
+        genrePosterImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            genrePosterImage.topAnchor.constraint(equalTo: genreStack.topAnchor),
+            genrePosterImage.leadingAnchor.constraint(equalTo: genreStack.leadingAnchor),
+            genrePosterImage.trailingAnchor.constraint(equalTo: genreStack.trailingAnchor),
+            genrePosterImage.bottomAnchor.constraint(equalTo: genreTypeName.bottomAnchor, constant: -26)
+        ])
+//
+        genreTypeName.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+//            genreTypeName.topAnchor.constraint(equalTo: genrePosterImage.bottomAnchor),
+            genreTypeName.widthAnchor.constraint(equalTo: genrePosterImage.widthAnchor, multiplier: 1/2)
+        ])
     }
     
     //MARK: - Private Property
@@ -42,23 +65,19 @@ final class MovieGenreCell: UICollectionViewCell, Gettable {
         let genreStack = UIStackView()
         genreStack.axis = .vertical
         genreStack.alignment = .center
-        genreStack.spacing = MagicNumber.Attributes.spcing
-        genreStack.distribution = .equalSpacing
+        genreStack.distribution = .fill
         return genreStack
     }()
     
     private let genrePosterImage: UIImageView = {
        let genrePosterImage = UIImageView()
-        genrePosterImage.frame = CGRect(origin: CGPoint(x: MagicNumber.zero,
-                                                        y: MagicNumber.zero),
-                                        size: CGSize(width: MagicNumber.Size.genrePosterWidth,
-                                                     height: MagicNumber.Size.genrePosterHeight))
-        genrePosterImage.layer.cornerRadius = MagicNumber.Attributes.imageCornerRadius
+        genrePosterImage.backgroundColor = .blue
         return genrePosterImage
     }()
     
     private let genreTypeName: UILabel = {
         let genreTypeName = UILabel()
+        genreTypeName.backgroundColor = .brown
         genreTypeName.font = .systemFont(ofSize: MagicNumber.Attributes.fontSize)
         return genreTypeName
     }()
