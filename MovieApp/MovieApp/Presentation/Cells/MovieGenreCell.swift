@@ -32,30 +32,51 @@ final class MovieGenreCell: UICollectionViewCell, Gettable {
     
     //MARK: - Private Method
     private func configureOfLayout() {
+        let safeArea = self.safeAreaLayoutGuide
+        
         self.contentView.addSubview(genreStack)
         genreStack.addArrangedSubview(genrePosterImage)
         genreStack.addArrangedSubview(genreTypeName)
         
         genreStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            genreStack.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            genreStack.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            genreStack.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            genreStack.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+            genreStack.topAnchor.constraint(
+                equalTo: safeArea.topAnchor
+            ),
+            genreStack.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor
+            ),
+            genreStack.trailingAnchor.constraint(
+                equalTo: safeArea.trailingAnchor
+            ),
+            genreStack.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
+            )
         ])
 
         genrePosterImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            genrePosterImage.topAnchor.constraint(equalTo: genreStack.topAnchor),
-            genrePosterImage.leadingAnchor.constraint(equalTo: genreStack.leadingAnchor),
-            genrePosterImage.trailingAnchor.constraint(equalTo: genreStack.trailingAnchor),
-            genrePosterImage.bottomAnchor.constraint(equalTo: genreTypeName.bottomAnchor, constant: -26)
+            genrePosterImage.topAnchor.constraint(
+                equalTo: genreStack.topAnchor
+            ),
+            genrePosterImage.leadingAnchor.constraint(
+                equalTo: genreStack.leadingAnchor
+            ),
+            genrePosterImage.trailingAnchor.constraint(
+                equalTo: genreStack.trailingAnchor
+            ),
+            genrePosterImage.bottomAnchor.constraint(
+                equalTo: genreTypeName.bottomAnchor,
+                constant: MagicNumber.Cell.bottomAnchorConstraint
+            )
         ])
-//
+
         genreTypeName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            genreTypeName.topAnchor.constraint(equalTo: genrePosterImage.bottomAnchor),
-            genreTypeName.widthAnchor.constraint(equalTo: genrePosterImage.widthAnchor, multiplier: 1/2)
+            genreTypeName.widthAnchor.constraint(
+                equalTo: genrePosterImage.widthAnchor,
+                multiplier: MagicNumber.Cell.multiplierOfLabel
+            )
         ])
     }
     
@@ -78,7 +99,9 @@ final class MovieGenreCell: UICollectionViewCell, Gettable {
     private let genreTypeName: UILabel = {
         let genreTypeName = UILabel()
         genreTypeName.backgroundColor = .brown
-        genreTypeName.font = .systemFont(ofSize: MagicNumber.Attributes.fontSize)
+        genreTypeName.font = .systemFont(
+            ofSize: MagicNumber.Attributes.fontSize
+        )
         return genreTypeName
     }()
 }

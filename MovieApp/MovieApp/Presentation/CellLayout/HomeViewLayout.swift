@@ -33,8 +33,8 @@ struct HomeViewLayout {
     func createIntroduceCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
-            widthDimension: .estimated(191),
-            heightDimension: .estimated(64)
+            widthDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.introduceWidth),
+            heightDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.introduceHeight)
         )
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
@@ -44,22 +44,27 @@ struct HomeViewLayout {
         )
         
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+            widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction),
+            heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction)
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0 / 2.3),
-            heightDimension: .fractionalHeight(1.0 / 2.6)
+            widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceWidth),
+            heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceHeight)
         )
         
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: groupSize,
             subitems: [item]
         )
-        group.contentInsets = .init(top: 0, leading: 20, bottom: 40, trailing: 0)
+        group.contentInsets = .init(
+            top: MagicNumber.zero,
+            leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceLeading,
+            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceBottom,
+            trailing: MagicNumber.zero
+        )
         
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]
@@ -71,8 +76,8 @@ struct HomeViewLayout {
     func createGenreCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
-            widthDimension: .estimated(127),
-            heightDimension: .estimated(56)
+            widthDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.genreWidth),
+            heightDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.genreHeight)
         )
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
@@ -81,31 +86,29 @@ struct HomeViewLayout {
         )
         
         let itemSize = NSCollectionLayoutSize(
-            widthDimension:.fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+            widthDimension:.fractionalWidth(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction),
+            heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0 / 3.0),
-            heightDimension: .fractionalHeight(1.0 / 5.5)
-//            heightDimension: .fractionalHeight(1.0 / 1.5)
+            widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.genreWidth),
+            heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.GroupSize.genreHeight)
         )
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: groupSize,
             subitems: [item]
         )
-        group.contentInsets = .init(top: 0, leading: 10, bottom: 24, trailing: 10)
+        group.contentInsets = .init(
+            top: MagicNumber.zero,
+            leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.genreLeadingOrTrailing,
+            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.genreBottom,
+            trailing: MagicNumber.RelatedToCompositionalLayout.ContentInset.genreLeadingOrTrailing
+        )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(
-            top: MagicNumber.RelatedToLayout.itemInset,
-            leading: MagicNumber.RelatedToLayout.itemInset,
-            bottom: MagicNumber.RelatedToLayout.itemInset,
-            trailing: MagicNumber.RelatedToLayout.itemInset
-        )
         section.boundarySupplementaryItems = [header]
-        section.orthogonalScrollingBehavior = .continuous
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         
         return section
     }

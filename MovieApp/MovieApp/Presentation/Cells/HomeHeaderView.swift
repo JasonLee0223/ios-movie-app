@@ -23,25 +23,45 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
     
     //MARK: - Method
     func configureOfSortStackLayout() {
+        let safeArea = self.safeAreaLayoutGuide
+        
         self.addSubview(sortStack)
         sortStack.addArrangedSubview(sortedByMovieRelease)
         sortStack.addArrangedSubview(sortedByTicketing)
         
         sortStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            sortStack.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
-            sortStack.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 24),
-            sortStack.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+            sortStack.centerYAnchor.constraint(
+                equalTo: safeArea.centerYAnchor
+            ),
+            sortStack.topAnchor.constraint(
+                equalTo: safeArea.topAnchor,
+                constant: MagicNumber.HeaderView.sortStackTopAnchorConstraint
+            ),
+            sortStack.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor,
+                constant: MagicNumber.HeaderView.leadingConstraint
+            )
         ])
     }
     
     func configureOfGenreLayout() {
+        let safeArea = self.safeAreaLayoutGuide
+        
         self.addSubview(genreTitle)
         genreTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            genreTitle.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
-            genreTitle.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 38),
-            genreTitle.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+            genreTitle.centerYAnchor.constraint(
+                equalTo: safeArea.centerYAnchor
+            ),
+            genreTitle.topAnchor.constraint(
+                equalTo: safeArea.topAnchor,
+                constant: MagicNumber.HeaderView.genreTitleTopAnchorConstraint
+            ),
+            genreTitle.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor,
+                constant: MagicNumber.HeaderView.leadingConstraint
+            )
         ])
     }
     
@@ -59,10 +79,12 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
     private let sortedByMovieRelease: UIButton = {
         let sortedByMovieRelease = UIButton()
         
-        sortedByMovieRelease.layer.cornerRadius = 10
+        sortedByMovieRelease.layer.cornerRadius = MagicNumber.cornerRadius
         sortedByMovieRelease.setTitle(MagicLiteral.Title.movieRealese,
                                       for: .normal)
-        sortedByMovieRelease.titleLabel?.font = .boldSystemFont(ofSize: MagicNumber.Attributes.fontSize)
+        sortedByMovieRelease.titleLabel?.font = .boldSystemFont(
+            ofSize: MagicNumber.Attributes.fontSize
+        )
         sortedByMovieRelease.tintColor = .white
         
         //TODO: - push했을 때 pink 컬러로 변환되도록 설정
@@ -75,10 +97,14 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
     private let sortedByTicketing: UIButton = {
         let sortedByTicketing = UIButton()
         
-        sortedByTicketing.layer.cornerRadius = 10
-        sortedByTicketing.setTitle(MagicLiteral.Title.ticketing,
-                                   for: .normal)
-        sortedByTicketing.titleLabel?.font = .boldSystemFont(ofSize: MagicNumber.Attributes.fontSize)
+        sortedByTicketing.layer.cornerRadius = MagicNumber.cornerRadius
+        sortedByTicketing.setTitle(
+            MagicLiteral.Title.ticketing,
+            for: .normal
+        )
+        sortedByTicketing.titleLabel?.font = .boldSystemFont(
+            ofSize: MagicNumber.Attributes.fontSize
+        )
         sortedByTicketing.tintColor = .white
         sortedByTicketing.backgroundColor = .systemPink
         return sortedByTicketing
@@ -88,7 +114,9 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
        let genreTitle = UILabel()
         
         genreTitle.text = MagicLiteral.Title.genre
-        genreTitle.font = .boldSystemFont(ofSize: MagicNumber.Attributes.genreTitleFont)
+        genreTitle.font = .boldSystemFont(
+            ofSize: MagicNumber.Attributes.genreTitleFont
+        )
         genreTitle.backgroundColor = .yellow
         return genreTitle
     }()

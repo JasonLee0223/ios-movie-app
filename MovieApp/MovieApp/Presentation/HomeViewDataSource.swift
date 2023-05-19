@@ -25,10 +25,15 @@ enum HomeSection {
 
 final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     
-    var mockData: [HomeSection] = [ .introduce([HomeSection.IntroduceItem].init(repeating: HomeSection.IntroduceItem(posterImage: UIImage(named: "Suzume")!,
-                                                                                                                     posterName: "포스터 이름"), count: 10)),
-                                    .Genre([HomeSection.GenreItem].init(repeating: HomeSection.GenreItem(genreImage: UIImage(named: "Suzume")!,
-                                                                                                         genreName: "장르 이름"), count: 13))
+    var mockData: [HomeSection] = [
+        .introduce([HomeSection.IntroduceItem].init(
+        repeating: HomeSection.IntroduceItem(posterImage: UIImage(named: "Suzume")!,
+                                             posterName: "포스터 이름"),
+        count: MagicNumber.RelatedToDataSource.numberOfPosterCount)),
+        .Genre([HomeSection.GenreItem].init(
+            repeating: HomeSection.GenreItem(genreImage: UIImage(named: "Suzume")!,
+                                             genreName: "장르 이름"),
+            count: MagicNumber.RelatedToDataSource.numberOfGenreCount))
     ]
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -37,8 +37,14 @@ extension HomeViewController {
     private func configureOfNavigationBar() {
         let title: UIButton = {
             let title = UIButton()
-            title.setTitle(MagicLiteral.RelatedToNavigationController.navigationTitle, for: .normal)
-            title.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+            title.setTitle(
+                MagicLiteral.RelatedToNavigationController.navigationTitle,
+                for: .normal
+            )
+            title.titleLabel?.font = UIFont.systemFont(
+                ofSize: MagicNumber.Attributes.navigationBarButtonFont,
+                weight: .bold
+            )
             title.tintColor = .white
             return title
         }()

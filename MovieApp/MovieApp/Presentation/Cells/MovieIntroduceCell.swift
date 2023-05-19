@@ -42,18 +42,35 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
         
         posterStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            posterStack.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            posterStack.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            posterStack.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            posterStack.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            posterStack.topAnchor.constraint(
+                equalTo: safeArea.topAnchor
+            ),
+            posterStack.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor
+            ),
+            posterStack.trailingAnchor.constraint(
+                equalTo: safeArea.trailingAnchor
+            ),
+            posterStack.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
+            )
         ])
         
         posterImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            posterImage.topAnchor.constraint(equalTo: posterStack.topAnchor),
-            posterImage.leadingAnchor.constraint(equalTo: posterStack.leadingAnchor),
-            posterImage.trailingAnchor.constraint(equalTo: posterStack.trailingAnchor),
-            posterImage.bottomAnchor.constraint(equalTo: posterName.bottomAnchor, constant: -26),
+            posterImage.topAnchor.constraint(
+                equalTo: posterStack.topAnchor
+            ),
+            posterImage.leadingAnchor.constraint(
+                equalTo: posterStack.leadingAnchor
+            ),
+            posterImage.trailingAnchor.constraint(
+                equalTo: posterStack.trailingAnchor
+            ),
+            posterImage.bottomAnchor.constraint(
+                equalTo: posterName.bottomAnchor,
+                constant: MagicNumber.Cell.bottomAnchorConstraint
+            ),
         ])
     }
     
@@ -63,7 +80,6 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
         let posterStack = UIStackView()
         posterStack.axis = .vertical
         posterStack.alignment = .fill
-        posterStack.spacing = 12
         posterStack.distribution = .fill
         posterStack.backgroundColor = .yellow
         return posterStack
@@ -79,7 +95,9 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
     private let posterName: UILabel = {
        let posterName = UILabel()
         //TODO: - Noto Sans KR font로 변경
-        posterName.font = .systemFont(ofSize: MagicNumber.Attributes.fontSize)
+        posterName.font = .systemFont(
+            ofSize: MagicNumber.Attributes.fontSize
+        )
         return posterName
     }()
 }
