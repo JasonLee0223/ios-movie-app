@@ -10,7 +10,7 @@ import Foundation
 protocol Requestable {
     var baseURL: String { get }
     var firstPath: String { get }
-    var secondPath: String { get }
+    var secondPath: String? { get }
     var method: HTTPMethodType { get }
     var queryParameters: Encodable? { get }
 }
@@ -26,7 +26,7 @@ extension Requestable {
     }
 
     func url() throws -> URL {
-        let fullPath = "\(baseURL)\(firstPath)\(secondPath)\(KOFICBasic.format)"
+        let fullPath = "\(baseURL)\(firstPath)\(secondPath ?? "")\(KOFICBasic.format)"
 
         guard var urlComponents = URLComponents(string: fullPath) else {
             throw URLComponentsError.invalidComponent
