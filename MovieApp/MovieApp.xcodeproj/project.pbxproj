@@ -19,7 +19,7 @@
 		5B3F1C2A2A1488930062BE99 /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C292A1488930062BE99 /* Basic.swift */; };
 		5B3F1C2C2A1488B30062BE99 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C2B2A1488B30062BE99 /* Show.swift */; };
 		5B3F1C2E2A1488D80062BE99 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C2D2A1488D80062BE99 /* Movie.swift */; };
-		5B3F1C302A14890E0062BE99 /* APIMagicLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C2F2A14890E0062BE99 /* APIMagicLiteral.swift */; };
+		5B3F1C302A14890E0062BE99 /* KOFICAPIMagicLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C2F2A14890E0062BE99 /* KOFICAPIMagicLiteral.swift */; };
 		5B3F1C342A1489710062BE99 /* BoxOfficeQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C332A1489710062BE99 /* BoxOfficeQueryParameters.swift */; };
 		5B3F1C362A1489A10062BE99 /* MovieDetailQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C352A1489A10062BE99 /* MovieDetailQueryParameters.swift */; };
 		5B3F1C3A2A148AFF0062BE99 /* BoxOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C392A148AFF0062BE99 /* BoxOffice.swift */; };
@@ -94,7 +94,7 @@
 		5B3F1C292A1488930062BE99 /* Basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
 		5B3F1C2B2A1488B30062BE99 /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		5B3F1C2D2A1488D80062BE99 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		5B3F1C2F2A14890E0062BE99 /* APIMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMagicLiteral.swift; sourceTree = "<group>"; };
+		5B3F1C2F2A14890E0062BE99 /* KOFICAPIMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KOFICAPIMagicLiteral.swift; sourceTree = "<group>"; };
 		5B3F1C332A1489710062BE99 /* BoxOfficeQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeQueryParameters.swift; sourceTree = "<group>"; };
 		5B3F1C352A1489A10062BE99 /* MovieDetailQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailQueryParameters.swift; sourceTree = "<group>"; };
 		5B3F1C392A148AFF0062BE99 /* BoxOffice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOffice.swift; sourceTree = "<group>"; };
@@ -131,6 +131,7 @@
 		5B98C61C2A174001004C099F /* DailyBoxOffice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBoxOffice.swift; sourceTree = "<group>"; };
 		5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBPopular.swift; sourceTree = "<group>"; };
 		5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularQueryParameters.swift; sourceTree = "<group>"; };
+		5BED9EF22A18C72800C66386 /* TVDB+APIKEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TVDB+APIKEY.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +225,7 @@
 				5B3F1BF52A146EAE0062BE99 /* Assets.xcassets */,
 				5B3F1BFA2A146EAE0062BE99 /* Info.plist */,
 				5B3F1C282A1477DE0062BE99 /* BoxOffice+APIKEY.xcconfig */,
+				5BED9EF22A18C72800C66386 /* TVDB+APIKEY.xcconfig */,
 			);
 			path = AppConfiguration;
 			sourceTree = "<group>";
@@ -308,10 +310,7 @@
 		5B3F1C262A1477920062BE99 /* Query */ = {
 			isa = PBXGroup;
 			children = (
-				5B3F1C292A1488930062BE99 /* Basic.swift */,
-				5B3F1C2B2A1488B30062BE99 /* Show.swift */,
-				5B3F1C2D2A1488D80062BE99 /* Movie.swift */,
-				5B3F1C2F2A14890E0062BE99 /* APIMagicLiteral.swift */,
+				5B9FA2F52A18C8C40045BE35 /* KOFIC */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -432,6 +431,17 @@
 				5B3F1C792A14EC540062BE99 /* MagicNumber.swift */,
 			);
 			path = RawValues;
+			sourceTree = "<group>";
+		};
+		5B9FA2F52A18C8C40045BE35 /* KOFIC */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C292A1488930062BE99 /* Basic.swift */,
+				5B3F1C2B2A1488B30062BE99 /* Show.swift */,
+				5B3F1C2D2A1488D80062BE99 /* Movie.swift */,
+				5B3F1C2F2A14890E0062BE99 /* KOFICAPIMagicLiteral.swift */,
+			);
+			path = KOFIC;
 			sourceTree = "<group>";
 		};
 		5BED9EEB2A18C32E00C66386 /* TVDBPopular */ = {
@@ -598,7 +608,7 @@
 			files = (
 				5BED9EF12A18C6BD00C66386 /* PopularQueryParameters.swift in Sources */,
 				5B3F1C342A1489710062BE99 /* BoxOfficeQueryParameters.swift in Sources */,
-				5B3F1C302A14890E0062BE99 /* APIMagicLiteral.swift in Sources */,
+				5B3F1C302A14890E0062BE99 /* KOFICAPIMagicLiteral.swift in Sources */,
 				5B3F1C602A148CCA0062BE99 /* HTTPErrorType.swift in Sources */,
 				5B3F1C762A14C8DD0062BE99 /* MovieIntroduceCell.swift in Sources */,
 				5B3F1C4B2A148B950062BE99 /* Nation.swift in Sources */,
