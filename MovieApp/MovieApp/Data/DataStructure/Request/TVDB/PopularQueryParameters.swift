@@ -8,5 +8,6 @@
 import Foundation
 
 struct PopularQueryParameters: Encodable {
-    
+    let key = TVDBAPIMagicLiteral.key
+    let language = TVDBAPIMagicLiteral.language
 }
