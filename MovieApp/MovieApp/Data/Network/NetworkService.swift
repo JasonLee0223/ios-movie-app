@@ -23,7 +23,7 @@ final class NetworkService {
             let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
             let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: yesterdayDate)
             let swapResult = try await request(
-                with: APIEndPoint.receiveBoxOffice(
+                with: KOFICAPIEndPoint.receiveBoxOffice(
                     with: boxOfficeQueryParameters)
             ).boxOfficeResult.dailyBoxOfficeList
             
@@ -38,7 +38,7 @@ final class NetworkService {
             Task {
                 let movieDetailQueryParameters = MovieDetailQueryParameters(movieCode: movieCode)
                 let networkResult = try await request(
-                    with: APIEndPoint.receiveMovieDetailInformation(
+                    with: KOFICAPIEndPoint.receiveMovieDetailInformation(
                         with: movieDetailQueryParameters)
                 ).movieInfoResult.movieInfo
                 print("======== 전송완료 =========")

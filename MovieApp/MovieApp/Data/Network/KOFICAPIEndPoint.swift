@@ -1,5 +1,5 @@
 //
-//  APIEndpoint.swift
+//  KOFICAPIEndPoint.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/05/17.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct APIEndPoint {
+struct KOFICAPIEndPoint {
 
     static func receiveBoxOffice(with boxOfficeRequestDTO: BoxOfficeQueryParameters) -> EndPoint<BoxOffice> {
         return EndPoint(baseURL: KOFICBasic.baseURL,
