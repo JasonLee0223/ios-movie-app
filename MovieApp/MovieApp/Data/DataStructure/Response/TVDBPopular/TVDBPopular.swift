@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - TVDBPopular
 
-struct TVDBPopular {
+struct TVDBPopular: Decodable {
     let page: Int
     let results: [Result]
     let totalPages, totalResults: Int
@@ -17,7 +17,7 @@ struct TVDBPopular {
 
 // MARK: - Result
 
-internal struct Result {
+internal struct Result: Decodable {
     let movieID: Int
     let movieKoreaTitle: String
     let movieOriginTitle: String
