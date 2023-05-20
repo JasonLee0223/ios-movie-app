@@ -26,7 +26,7 @@ extension Requestable {
     }
 
     func url() throws -> URL {
-        let fullPath = "\(baseURL)\(firstPath)\(secondPath)\(Basic.format)"
+        let fullPath = "\(baseURL)\(firstPath)\(secondPath)\(KOFICBasic.format)"
 
         guard var urlComponents = URLComponents(string: fullPath) else {
             throw URLComponentsError.invalidComponent

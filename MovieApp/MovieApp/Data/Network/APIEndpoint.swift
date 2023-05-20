@@ -10,14 +10,14 @@ import Foundation
 struct APIEndPoint {
 
     static func receiveBoxOffice(with boxOfficeRequestDTO: BoxOfficeQueryParameters) -> EndPoint<BoxOffice> {
-        return EndPoint(baseURL: Basic.baseURL,
+        return EndPoint(baseURL: KOFICBasic.baseURL,
                         firstPath: Show.boxOffice,
                         secondPath: Show.searchDailyList,
                         queryParameters: boxOfficeRequestDTO)
     }
 
     static func receiveMovieDetailInformation(with movieDetailRequestDTO: MovieDetailQueryParameters) -> EndPoint<MovieDetailInformation> {
-        return EndPoint(baseURL: Basic.baseURL,
+        return EndPoint(baseURL: KOFICBasic.baseURL,
                         firstPath: Movie.category,
                         secondPath: Movie.searchMovieInfo,
                         queryParameters: movieDetailRequestDTO)
