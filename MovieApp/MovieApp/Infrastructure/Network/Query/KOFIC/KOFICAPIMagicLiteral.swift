@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum APIMagicLiteral {
+enum KOFICAPIMagicLiteral {
     static let key = getAPIKEY()
     static let targetQuery = "targetDt"
     static let movieCode = "movieCd"
