@@ -56,6 +56,7 @@
 		5B3F1C7F2A15DC480062BE99 /* HomeViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */; };
 		5B98C61D2A174001004C099F /* DailyBoxOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B98C61C2A174001004C099F /* DailyBoxOffice.swift */; };
 		5BED9EED2A18C36200C66386 /* TVDBPopular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */; };
+		5BED9EF12A18C6BD00C66386 /* PopularQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewDataSource.swift; sourceTree = "<group>"; };
 		5B98C61C2A174001004C099F /* DailyBoxOffice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBoxOffice.swift; sourceTree = "<group>"; };
 		5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBPopular.swift; sourceTree = "<group>"; };
+		5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularQueryParameters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +329,7 @@
 		5B3F1C312A14894D0062BE99 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				5BED9EEF2A18C69300C66386 /* TVDB */,
 				5BED9EEE2A18C64700C66386 /* KOFIC */,
 			);
 			path = Request;
@@ -446,6 +449,14 @@
 				5B3F1C352A1489A10062BE99 /* MovieDetailQueryParameters.swift */,
 			);
 			path = KOFIC;
+			sourceTree = "<group>";
+		};
+		5BED9EEF2A18C69300C66386 /* TVDB */ = {
+			isa = PBXGroup;
+			children = (
+				5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */,
+			);
+			path = TVDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -585,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BED9EF12A18C6BD00C66386 /* PopularQueryParameters.swift in Sources */,
 				5B3F1C342A1489710062BE99 /* BoxOfficeQueryParameters.swift in Sources */,
 				5B3F1C302A14890E0062BE99 /* APIMagicLiteral.swift in Sources */,
 				5B3F1C602A148CCA0062BE99 /* HTTPErrorType.swift in Sources */,
