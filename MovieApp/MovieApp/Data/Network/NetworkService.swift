@@ -13,27 +13,42 @@ final class NetworkService {
     
     init() {
         self.session = URLSession(configuration: .default)
-        self.networkResult = [DailyBoxOfficeList]()
     }
     
     //MARK: - Method
     
-    func loadData() {
+    func loadDailyBoxOfficeData(completion: @escaping ([DailyBoxOfficeList]) -> Void) {
         
         Task {
             let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
             let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: yesterdayDate)
-            let swapResult = try await request(with: APIEndPoint.receiveBoxOffice(with: boxOfficeQueryParameters)).boxOfficeResult.dailyBoxOfficeList
-            swap(to: swapResult)
-            NotificationCenter.default.post(name: .loadedBoxOfficeData, object: networkResult)
+            let swapResult = try await request(
+                with: APIEndPoint.receiveBoxOffice(
+                    with: boxOfficeQueryParameters)
+            ).boxOfficeResult.dailyBoxOfficeList
+            
+            completion(swapResult)
+        }
+    }
+    
+    func loadMovieDetailData(movieCodeGroup: [String], completion: @escaping (MovieInfo) -> Void) {
+        
+        movieCodeGroup.forEach { movieCode in
+            
+            Task {
+                let movieDetailQueryParameters = MovieDetailQueryParameters(movieCode: movieCode)
+                let networkResult = try await request(
+                    with: APIEndPoint.receiveMovieDetailInformation(
+                        with: movieDetailQueryParameters)
+                ).movieInfoResult.movieInfo
+                print("======== 전송완료 =========")
+                print(networkResult)
+                completion(networkResult)
+            }
         }
     }
     
     //MARK: - Private Method
-    
-    private func swap(to newResult: [DailyBoxOfficeList]) {
-        networkResult = newResult
-    }
 
     private func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
 
@@ -80,7 +95,6 @@ final class NetworkService {
     //MARK: - Private Property
 
     private let session: URLSession
-    private var networkResult: [DailyBoxOfficeList]
 }
 
 //MARK: - Use by extending Notification.Name

@@ -12,13 +12,29 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureOfUI()
-        configureHierarchy()
+//        configureOfUI()
+//        configureHierarchy()
+        test()
     }
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var dataSource = HomeViewDataSource()
     
+    
+    func test() {
+        let networkService = NetworkService()
+        var movieInfoGroup = [MovieInfo]()
+        
+        networkService.loadDailyBoxOfficeData { dailyBoxOfficeListStorage in
+            
+            let movieCodegroup = dailyBoxOfficeListStorage.map{$0.movieCode}
+            
+            networkService.loadMovieDetailData(movieCodeGroup: movieCodegroup) { movieInfo in
+                movieInfoGroup.append(movieInfo)
+            }
+//            print(movieInfoGroup)
+        }
+    }
 }
 
 //MARK: - Configure of UI Components
