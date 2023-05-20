@@ -8,6 +8,8 @@
 	<false/>
 	<key>BoxOfficeAPIKEY</key>
 	<string>$(BOXOFFICE_APIKEY)</string>
+	<key>TVDBAPIKEY</key>
+	<string>$(TVDB_APIKEY)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
