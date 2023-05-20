@@ -327,8 +327,7 @@
 		5B3F1C312A14894D0062BE99 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				5B3F1C332A1489710062BE99 /* BoxOfficeQueryParameters.swift */,
-				5B3F1C352A1489A10062BE99 /* MovieDetailQueryParameters.swift */,
+				5BED9EEE2A18C64700C66386 /* KOFIC */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -438,6 +437,15 @@
 				5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */,
 			);
 			path = TVDBPopular;
+			sourceTree = "<group>";
+		};
+		5BED9EEE2A18C64700C66386 /* KOFIC */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C332A1489710062BE99 /* BoxOfficeQueryParameters.swift */,
+				5B3F1C352A1489A10062BE99 /* MovieDetailQueryParameters.swift */,
+			);
+			path = KOFIC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
