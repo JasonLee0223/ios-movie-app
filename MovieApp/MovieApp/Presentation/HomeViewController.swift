@@ -12,27 +12,59 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        configureOfUI()
-//        configureHierarchy()
-        test()
+        configureOfUI()
+        configureHierarchy()
+        
+        //        test()
+        TVDBTest { imageURLStorage in
+            print(imageURLStorage)
+        }
     }
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var dataSource = HomeViewDataSource()
     
+    let networkService = NetworkService()
+    
+    func TVDBTest(completion: @escaping ([URL]) -> Void) {
+        Task {
+            
+            var imageURLGroup = [URL]()
+            
+            self.networkService.loadTrendingMovieListData { resultStorage in
+                
+                let moviePosterPathGroup = resultStorage.map{ $0.movieImageURL }
+                
+                if let makeImgaeURL = try? moviePosterPathGroup.map({ posterImagePath in
+                    let imageURLPath = "\(TVDBBasic.imageURL)\(posterImagePath)"
+                    
+                    guard let imageURL = URL(string: imageURLPath) else {
+                        throw URLComponentsError.invalidComponent
+                    }
+                    return imageURL
+                }) {
+                    imageURLGroup = makeImgaeURL
+                    completion(imageURLGroup)
+                }
+            }
+        }
+        //MARK: - 위 내용까지 imageURL 받아와서 디버깅으로 이미지까지 확인 완료
+    }
     
     func test() {
-        let networkService = NetworkService()
+        
         var movieInfoGroup = [MovieInfo]()
         
         networkService.loadDailyBoxOfficeData { dailyBoxOfficeListStorage in
             
             let movieCodegroup = dailyBoxOfficeListStorage.map{$0.movieCode}
             
-            networkService.loadMovieDetailData(movieCodeGroup: movieCodegroup) { movieInfo in
+            self.networkService.loadMovieDetailData(movieCodeGroup: movieCodegroup) { movieInfo in
                 movieInfoGroup.append(movieInfo)
+                print(movieInfo)
+                //MARK: - 여기까지 MovieDetail 가져오는 로직 성공
             }
-//            print(movieInfoGroup)
+            
         }
     }
 }
@@ -129,3 +161,23 @@ extension HomeViewController {
         }
     }
 }
+
+
+
+//let aaa = moviePosterPathGroup.map { posterImagePath in
+//    let makeImagePath = "\(TVDBBasic.imageURL)\(posterImagePath)"
+//
+//    guard let url = URL(string: makeImagePath) else {
+//        return
+//    }
+//
+//    var image : UIImage?
+//
+//    DispatchQueue.global().async {
+//        if let data = try? Data(contentsOf: url) {
+//            DispatchQueue.main.async {
+//                image = UIImage(data: data)
+//            }
+//        }
+//    }
+//}

@@ -42,7 +42,7 @@
 		5B3F1C5E2A148CBB0062BE99 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C5D2A148CBB0062BE99 /* NetworkError.swift */; };
 		5B3F1C602A148CCA0062BE99 /* HTTPErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C5F2A148CCA0062BE99 /* HTTPErrorType.swift */; };
 		5B3F1C622A148CD80062BE99 /* URLComponentsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C612A148CD80062BE99 /* URLComponentsError.swift */; };
-		5B3F1C642A148DB60062BE99 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C632A148DB60062BE99 /* APIEndpoint.swift */; };
+		5B3F1C642A148DB60062BE99 /* KOFICAPIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C632A148DB60062BE99 /* KOFICAPIEndPoint.swift */; };
 		5B3F1C662A148DE40062BE99 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C652A148DE40062BE99 /* NetworkService.swift */; };
 		5B3F1C692A1495100062BE99 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5B3F1C682A1495100062BE99 /* Alamofire */; };
 		5B3F1C6C2A14977D0062BE99 /* Gettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C6B2A14977D0062BE99 /* Gettable.swift */; };
@@ -57,6 +57,7 @@
 		5B98C61D2A174001004C099F /* DailyBoxOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B98C61C2A174001004C099F /* DailyBoxOffice.swift */; };
 		5B9FA2F82A18D8D10045BE35 /* TBDBBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2F72A18D8D10045BE35 /* TBDBBasic.swift */; };
 		5B9FA2FA2A18DB150045BE35 /* TVDBAPIMagicLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */; };
+		5B9FA2FC2A18DCF50045BE35 /* TVDBAPIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */; };
 		5BED9EED2A18C36200C66386 /* TVDBPopular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */; };
 		5BED9EF12A18C6BD00C66386 /* PopularQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */; };
 /* End PBXBuildFile section */
@@ -92,7 +93,7 @@
 		5B3F1C092A146EAE0062BE99 /* MovieAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3F1C0D2A146EAE0062BE99 /* MovieAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppUITests.swift; sourceTree = "<group>"; };
 		5B3F1C0F2A146EAE0062BE99 /* MovieAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5B3F1C282A1477DE0062BE99 /* BoxOffice+APIKEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BoxOffice+APIKEY.xcconfig"; sourceTree = "<group>"; };
+		5B3F1C282A1477DE0062BE99 /* APIKEYS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIKEYS.xcconfig; sourceTree = "<group>"; };
 		5B3F1C292A1488930062BE99 /* KOFICBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KOFICBasic.swift; sourceTree = "<group>"; };
 		5B3F1C2B2A1488B30062BE99 /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		5B3F1C2D2A1488D80062BE99 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -119,7 +120,7 @@
 		5B3F1C5D2A148CBB0062BE99 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5B3F1C5F2A148CCA0062BE99 /* HTTPErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPErrorType.swift; sourceTree = "<group>"; };
 		5B3F1C612A148CD80062BE99 /* URLComponentsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsError.swift; sourceTree = "<group>"; };
-		5B3F1C632A148DB60062BE99 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		5B3F1C632A148DB60062BE99 /* KOFICAPIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KOFICAPIEndPoint.swift; sourceTree = "<group>"; };
 		5B3F1C652A148DE40062BE99 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5B3F1C6B2A14977D0062BE99 /* Gettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gettable.swift; sourceTree = "<group>"; };
 		5B3F1C6D2A1497A00062BE99 /* MagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicLiteral.swift; sourceTree = "<group>"; };
@@ -133,9 +134,9 @@
 		5B98C61C2A174001004C099F /* DailyBoxOffice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBoxOffice.swift; sourceTree = "<group>"; };
 		5B9FA2F72A18D8D10045BE35 /* TBDBBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBDBBasic.swift; sourceTree = "<group>"; };
 		5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIMagicLiteral.swift; sourceTree = "<group>"; };
+		5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIEndPoint.swift; sourceTree = "<group>"; };
 		5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBPopular.swift; sourceTree = "<group>"; };
 		5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularQueryParameters.swift; sourceTree = "<group>"; };
-		5BED9EF22A18C72800C66386 /* TVDB+APIKEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TVDB+APIKEY.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,8 +229,7 @@
 			children = (
 				5B3F1BF52A146EAE0062BE99 /* Assets.xcassets */,
 				5B3F1BFA2A146EAE0062BE99 /* Info.plist */,
-				5B3F1C282A1477DE0062BE99 /* BoxOffice+APIKEY.xcconfig */,
-				5BED9EF22A18C72800C66386 /* TVDB+APIKEY.xcconfig */,
+				5B3F1C282A1477DE0062BE99 /* APIKEYS.xcconfig */,
 			);
 			path = AppConfiguration;
 			sourceTree = "<group>";
@@ -287,7 +287,8 @@
 		5B3F1C232A14775A0062BE99 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5B3F1C632A148DB60062BE99 /* APIEndpoint.swift */,
+				5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */,
+				5B3F1C632A148DB60062BE99 /* KOFICAPIEndPoint.swift */,
 				5B3F1C652A148DE40062BE99 /* NetworkService.swift */,
 			);
 			path = Network;
@@ -646,9 +647,10 @@
 				5B3F1BF12A146EAC0062BE99 /* HomeViewController.swift in Sources */,
 				5B3F1C712A1498200062BE99 /* Getter.swift in Sources */,
 				5B3F1C552A148C0F0062BE99 /* MovieDetailInformation.swift in Sources */,
-				5B3F1C642A148DB60062BE99 /* APIEndpoint.swift in Sources */,
+				5B3F1C642A148DB60062BE99 /* KOFICAPIEndPoint.swift in Sources */,
 				5B3F1C5B2A148C970062BE99 /* Endpoint.swift in Sources */,
 				5B3F1C452A148B810062BE99 /* Company.swift in Sources */,
+				5B9FA2FC2A18DCF50045BE35 /* TVDBAPIEndPoint.swift in Sources */,
 				5B3F1C7D2A14EE140062BE99 /* HomeViewLayout.swift in Sources */,
 				5B3F1C492A148B8E0062BE99 /* Genre.swift in Sources */,
 				5B3F1C742A14C8730062BE99 /* HomeHeaderView.swift in Sources */,
@@ -836,7 +838,7 @@
 		};
 		5B3F1C142A146EAE0062BE99 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B3F1C282A1477DE0062BE99 /* BoxOffice+APIKEY.xcconfig */;
+			baseConfigurationReference = 5B3F1C282A1477DE0062BE99 /* APIKEYS.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -865,7 +867,7 @@
 		};
 		5B3F1C152A146EAE0062BE99 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B3F1C282A1477DE0062BE99 /* BoxOffice+APIKEY.xcconfig */;
+			baseConfigurationReference = 5B3F1C282A1477DE0062BE99 /* APIKEYS.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
