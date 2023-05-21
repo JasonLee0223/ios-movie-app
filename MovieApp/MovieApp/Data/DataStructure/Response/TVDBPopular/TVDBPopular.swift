@@ -12,7 +12,15 @@ import Foundation
 struct TVDBPopular: Decodable {
     let page: Int
     let results: [Result]
-    let totalPages, totalResults: Int
+    let totalPages: Int
+    let totalResults: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case page
+        case results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
 }
 
 // MARK: - Result
@@ -25,14 +33,14 @@ internal struct Result: Decodable {
     let movieImageURL: String
     let releaseDate: String
     let voteAverage: Double
-    
+
     enum CodingKeys: String, CodingKey {
         case movieID = "id"
         case movieKoreaTitle = "title"
-        case movieOriginTitle = "originalTitle"
+        case movieOriginTitle = "original_title"
         case overview
-        case movieImageURL = "posterPath"
-        case releaseDate
-        case voteAverage
+        case movieImageURL = "poster_path"
+        case releaseDate = "release_date"
+        case voteAverage = "vote_average"
     }
 }
