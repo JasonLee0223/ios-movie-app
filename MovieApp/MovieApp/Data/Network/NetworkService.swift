@@ -51,9 +51,7 @@ final class NetworkService {
 
     private func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
         
-        guard let urlRequest = try decide(toType: endPoint) else {
-            throw NetworkError.urlRequest
-        }
+        let urlRequest = try endPoint.receiveURLRequest(by: endPoint)
         
         let (data, response) = try await session.data(for: urlRequest)
 
@@ -64,18 +62,6 @@ final class NetworkService {
         let decodedData: R = try self.decode(with: data)
 
         return decodedData
-    }
-    
-    private func decide<E: RequestAndResponsable>(toType endPoint: E) throws -> URLRequest? {
-        if endPoint is EndPoint<TVDBPopular> {
-            return try endPoint.receiveURLRequestOfTVDB()
-        }
-        
-        if endPoint is EndPoint<BoxOffice> ||
-           endPoint is EndPoint<MovieDetailInformation> {
-            return try endPoint.receiveURLRequest()
-        }
-        return nil
     }
 
     private func verify(with HTTPResponse: HTTPURLResponse) throws {

@@ -17,44 +17,56 @@ protocol Requestable {
 
 extension Requestable {
 
-    func receiveURLRequest() throws -> URLRequest {
-        let url = try url()
+    func receiveURLRequest<E: RequestAndResponsable>(by endPoint: E) throws -> URLRequest {
+        
+        guard let fullPath = try decide(toType: endPoint) else {
+            throw URLComponentsError.invalidComponent
+        }
+        
+        let url = try makeURL(by: fullPath)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
 
         return urlRequest
     }
-
-    func KOFICMakeURL() throws -> URL {
-        let fullPath = "\(baseURL)\(firstPath)\(secondPath ?? "")\(KOFICBasic.format)"
-
-        guard var urlComponents = URLComponents(string: fullPath) else {
-            throw URLComponentsError.invalidComponent
-        }
-
+    
+    private func makeURL(by fullPath: String) throws -> URL {
+        
+        var urlComponents = try verify(by: fullPath)
+        
         var urlQueryItems = [URLQueryItem]()
-
+        
         if let queryParameters = try queryParameters?.toDictionary() {
-            let sortedQueryParameters = queryParameters.sorted { (first, second) in
-                return first.key < second.key
-            }
-
-            sortedQueryParameters.forEach {
+            queryParameters.forEach {
                 urlQueryItems.append(URLQueryItem(name: $0.key, value: "\($0.value)"))
             }
         }
-
-        guard !urlQueryItems.isEmpty else {
-            throw URLComponentsError.invalidComponent
-        }
-
         urlComponents.queryItems = urlQueryItems
 
         guard let url = urlComponents.url else {
             throw URLComponentsError.invalidComponent
         }
-
+        
         return url
+    }
+    
+    private func verify(by fullPath: String) throws -> URLComponents {
+        guard let urlComponents = URLComponents(string: fullPath) else {
+            throw URLComponentsError.invalidComponent
+        }
+        return urlComponents
+    }
+    
+    private func decide<E: RequestAndResponsable>(toType endPoint: E) throws -> String? {
+        if endPoint is EndPoint<TVDBPopular> {
+            return "\(baseURL)\(firstPath)"
+        }
+        
+        if endPoint is EndPoint<BoxOffice> ||
+           endPoint is EndPoint<MovieDetailInformation> {
+            return "\(baseURL)\(firstPath)\(secondPath ?? "")\(KOFICBasic.format)"
+        }
+        return nil
     }
 }
 
