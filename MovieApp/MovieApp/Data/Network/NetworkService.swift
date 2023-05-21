@@ -41,8 +41,7 @@ final class NetworkService {
                     with: KOFICAPIEndPoint.receiveMovieDetailInformation(
                         with: movieDetailQueryParameters)
                 ).movieInfoResult.movieInfo
-                print("======== 전송완료 =========")
-                print(networkResult)
+                
                 completion(networkResult)
             }
         }
@@ -51,8 +50,11 @@ final class NetworkService {
     //MARK: - Private Method
 
     private func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
-
-        let urlRequest = try endPoint.receiveURLRequest()
+        
+        guard let urlRequest = try decide(toType: endPoint) else {
+            throw NetworkError.urlRequest
+        }
+        
         let (data, response) = try await session.data(for: urlRequest)
 
         if let identifiedResponse = response as? HTTPURLResponse, !(200...299).contains(identifiedResponse.statusCode) {
@@ -62,6 +64,18 @@ final class NetworkService {
         let decodedData: R = try self.decode(with: data)
 
         return decodedData
+    }
+    
+    private func decide<E: RequestAndResponsable>(toType endPoint: E) throws -> URLRequest? {
+        if endPoint is EndPoint<TVDBPopular> {
+            return try endPoint.receiveURLRequestOfTVDB()
+        }
+        
+        if endPoint is EndPoint<BoxOffice> ||
+           endPoint is EndPoint<MovieDetailInformation> {
+            return try endPoint.receiveURLRequest()
+        }
+        return nil
     }
 
     private func verify(with HTTPResponse: HTTPURLResponse) throws {
