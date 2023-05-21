@@ -47,6 +47,19 @@ final class NetworkService {
         }
     }
     
+    func loadTrendingMovieListData(completion: @escaping ([Result]) -> Void) {
+        
+        Task {
+            let popularMovieListQueryParameters = PopularQueryParameters()
+            let networkResult = try await request(
+                with: TVDBAPIEndPoint.receiveWeakTrendingList(
+                    with: popularMovieListQueryParameters)
+            ).results
+            
+            completion(networkResult)
+        }
+    }
+    
     //MARK: - Private Method
 
     private func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
