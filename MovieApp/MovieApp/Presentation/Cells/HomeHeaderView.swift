@@ -29,9 +29,6 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         
         sortStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            sortStack.centerYAnchor.constraint(
-                equalTo: safeArea.centerYAnchor
-            ),
             sortStack.topAnchor.constraint(
                 equalTo: safeArea.topAnchor,
                 constant: MagicNumber.HeaderView.sortStackTopAnchorConstraint
@@ -39,6 +36,9 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
             sortStack.leadingAnchor.constraint(
                 equalTo: safeArea.leadingAnchor,
                 constant: MagicNumber.HeaderView.leadingConstraint
+            ),
+            sortStack.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
             )
         ])
     }
@@ -49,9 +49,6 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         self.addSubview(genreTitle)
         genreTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            genreTitle.centerYAnchor.constraint(
-                equalTo: safeArea.centerYAnchor
-            ),
             genreTitle.topAnchor.constraint(
                 equalTo: safeArea.topAnchor,
                 constant: MagicNumber.HeaderView.genreTitleTopAnchorConstraint
@@ -59,6 +56,9 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
             genreTitle.leadingAnchor.constraint(
                 equalTo: safeArea.leadingAnchor,
                 constant: MagicNumber.HeaderView.leadingConstraint
+            ),
+            genreTitle.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
             )
         ])
     }

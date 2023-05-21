@@ -33,8 +33,8 @@ struct HomeViewLayout {
     func createIntroduceCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
-            widthDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.introduceWidth),
-            heightDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.introduceHeight)
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(0.1)
         )
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
@@ -55,19 +55,31 @@ struct HomeViewLayout {
             heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceHeight)
         )
         
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
-        group.contentInsets = .init(
+        let group: NSCollectionLayoutGroup?
+        if #available(iOS 16.0, *) {
+            group = NSCollectionLayoutGroup.vertical(
+                layoutSize: groupSize,
+                repeatingSubitem: item,
+                count: 2
+            )
+        } else {
+            group = NSCollectionLayoutGroup.vertical(
+                layoutSize: groupSize,
+                subitem: item,
+                count: 2
+            )
+        }
+        
+        group?.contentInsets = .init(
             top: MagicNumber.zero,
             leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceLeading,
             bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceBottom,
             trailing: MagicNumber.zero
         )
         
-        let section = NSCollectionLayoutSection(group: group)
+        let section = NSCollectionLayoutSection(group: group ?? NSCollectionLayoutGroup(layoutSize: groupSize))
         section.boundarySupplementaryItems = [header]
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 130, trailing: 0)
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         
         return section
@@ -76,8 +88,8 @@ struct HomeViewLayout {
     func createGenreCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
-            widthDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.genreWidth),
-            heightDimension: .estimated(MagicNumber.RelatedToCompositionalLayout.Header.genreHeight)
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(0.1)
         )
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
