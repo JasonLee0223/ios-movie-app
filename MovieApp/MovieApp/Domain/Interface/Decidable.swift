@@ -23,7 +23,7 @@ extension Decidable {
         case .new:
             return MagicLiteral.newMovie
         case .old :
-            guard rankVariation == MagicLiteral.zero else {
+            guard rankVariation == "0" else {
                 return rankVariation
             }
             return returnValue
