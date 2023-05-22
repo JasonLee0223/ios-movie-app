@@ -8,5 +8,9 @@
 import Foundation
 
 struct KoreaMovieListImageQueryParameters: Encodable {
-    let query = KakaoMagicLiteral.query
+    let query: String
+    
+    enum CodingKeys: String, CodingKey {
+        case query = "query"
+    }
 }
