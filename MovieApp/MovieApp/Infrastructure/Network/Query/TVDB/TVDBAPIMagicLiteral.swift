@@ -11,7 +11,7 @@ enum TVDBAPIMagicLiteral {
     static let key = getOpenAPIKEY()
     static let language = "ko-KR"
     
-    static func getOpenAPIKEY() -> String {
+    private static func getOpenAPIKEY() -> String {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "TVDBAPIKEY") as? String else {
             return ""
         }

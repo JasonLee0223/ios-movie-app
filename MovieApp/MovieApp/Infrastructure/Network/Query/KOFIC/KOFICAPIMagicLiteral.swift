@@ -12,7 +12,7 @@ enum KOFICAPIMagicLiteral {
     static let targetQuery = "targetDt"
     static let movieCode = "movieCd"
     
-    static func getAPIKEY() -> String {
+    private static func getAPIKEY() -> String {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "BoxOfficeAPIKEY") as? String else {
             return ""
         }
