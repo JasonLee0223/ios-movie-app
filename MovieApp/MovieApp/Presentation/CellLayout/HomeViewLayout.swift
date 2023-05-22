@@ -30,7 +30,7 @@ struct HomeViewLayout {
         }
     }
     
-    func createIntroduceCellCompositionalLayout() -> NSCollectionLayoutSection? {
+    private func createIntroduceCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -85,7 +85,7 @@ struct HomeViewLayout {
         return section
     }
     
-    func createGenreCellCompositionalLayout() -> NSCollectionLayoutSection? {
+    private func createGenreCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -126,11 +126,5 @@ struct HomeViewLayout {
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         
         return section
-    }
-    
-    func createKoreaMovieListLayout() -> UICollectionViewLayout {
-        let configure = UICollectionLayoutListConfiguration(appearance: .plain)
-        let layout = UICollectionViewCompositionalLayout.list(using: configure)
-        return layout
     }
 }
