@@ -8,11 +8,16 @@
 import Foundation
 
 
-struct MoviePosterImage {
+struct MoviePosterImage: Decodable {
     let documents: [Document]
 }
 
-struct Document {
+struct Document: Decodable {
     let imageURL: String
     let thumbnailURL: String
+    
+    enum CodingKeys: String, CodingKey {
+        case imageURL = "image_url"
+        case thumbnailURL = "thumbnail_url"
+    }
 }
