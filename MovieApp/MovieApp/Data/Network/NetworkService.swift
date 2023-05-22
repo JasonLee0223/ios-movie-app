@@ -60,6 +60,22 @@ final class NetworkService {
         }
     }
     
+    func loadMoviePosterImage(movieNameGroup: [String], completion: @escaping (Document) -> Void) {
+        
+        movieNameGroup.forEach { movieName in
+            
+            Task {
+                let moviePosterImageParameters = KoreaMovieListImageQueryParameters(query: movieName)
+                var networkResult = try await request(
+                    with: KakaoEndPoint.receiveMoviePosterImage(
+                        with: moviePosterImageParameters)
+                ).documents
+                
+                completion(networkResult.removeFirst())
+            }
+        }
+    }
+    
     //MARK: - Private Method
 
     private func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
