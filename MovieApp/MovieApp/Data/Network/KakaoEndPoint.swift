@@ -12,7 +12,7 @@ struct KakaoEndPoint {
     static func receiveMoviePosterImage(with kakaoImageRequestDTO: KoreaMovieListImageQueryParameters) -> EndPoint<MoviePosterImage> {
         return EndPoint(baseURL: KakaoBasic.baseURL,
                         firstPath: KakaoBasic.image,
-                        queryParameters: KakaoBasic.query,
+                        queryParameters: kakaoImageRequestDTO,
                         headers: KakaoBasic.headers
         )
     }
