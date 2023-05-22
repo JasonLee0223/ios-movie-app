@@ -17,19 +17,22 @@ final class EndPoint<R>: RequestAndResponsable {
     var secondPath: String?
     var method: HTTPMethodType
     var queryParameters: Encodable?
+    var headers: [String : String]?
 
     init (
         baseURL: String,
         firstPath: String,
         secondPath: String? = nil,
         method: HTTPMethodType = .get,
-        queryParameters: Encodable? = nil
+        queryParameters: Encodable? = nil,
+        headers: [String : String]? = nil
     ) {
         self.baseURL = baseURL
         self.firstPath = firstPath
         self.secondPath = secondPath
         self.method = method
         self.queryParameters = queryParameters
+        self.headers = headers
     }
 }
 

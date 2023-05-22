@@ -13,6 +13,7 @@ protocol Requestable {
     var secondPath: String? { get }
     var method: HTTPMethodType { get }
     var queryParameters: Encodable? { get }
+    var headers: [String: String]? { get }
 }
 
 extension Requestable {
