@@ -79,7 +79,7 @@ struct HomeViewLayout {
         
         let section = NSCollectionLayoutSection(group: group ?? NSCollectionLayoutGroup(layoutSize: groupSize))
         section.boundarySupplementaryItems = [header]
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 130, trailing: 0)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 150, trailing: 0)
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         
         return section
