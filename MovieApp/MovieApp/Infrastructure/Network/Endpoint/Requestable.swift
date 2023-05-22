@@ -26,7 +26,12 @@ extension Requestable {
         
         let url = try makeURL(by: fullPath)
         var urlRequest = URLRequest(url: url)
+        
         urlRequest.httpMethod = method.rawValue
+        
+        headers?.forEach({ (key: String, value: String) in
+            urlRequest.setValue(value, forHTTPHeaderField: key)
+        })
 
         return urlRequest
     }
