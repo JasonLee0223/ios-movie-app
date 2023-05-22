@@ -61,7 +61,7 @@
 		5BCE289B2A1B367E0076F189 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289A2A1B367E0076F189 /* KakaoSDK */; };
 		5BCE289D2A1B367E0076F189 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289C2A1B367E0076F189 /* KakaoSDKAuth */; };
 		5BCE28A02A1B3BDB0076F189 /* KakaoBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE289F2A1B3BDB0076F189 /* KakaoBasic.swift */; };
-		5BCE28A32A1B3CF30076F189 /* KoreanMovieListImageQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE28A22A1B3CF30076F189 /* KoreanMovieListImageQueryParameters.swift */; };
+		5BCE28A32A1B3CF30076F189 /* KoreaMovieListImageQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE28A22A1B3CF30076F189 /* KoreaMovieListImageQueryParameters.swift */; };
 		5BCE28A52A1B3E020076F189 /* KakaoMagicLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE28A42A1B3E020076F189 /* KakaoMagicLiteral.swift */; };
 		5BED9EED2A18C36200C66386 /* TVDBPopular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */; };
 		5BED9EF12A18C6BD00C66386 /* PopularQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */; };
@@ -140,7 +140,7 @@
 		5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIMagicLiteral.swift; sourceTree = "<group>"; };
 		5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIEndPoint.swift; sourceTree = "<group>"; };
 		5BCE289F2A1B3BDB0076F189 /* KakaoBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoBasic.swift; sourceTree = "<group>"; };
-		5BCE28A22A1B3CF30076F189 /* KoreanMovieListImageQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanMovieListImageQueryParameters.swift; sourceTree = "<group>"; };
+		5BCE28A22A1B3CF30076F189 /* KoreaMovieListImageQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreaMovieListImageQueryParameters.swift; sourceTree = "<group>"; };
 		5BCE28A42A1B3E020076F189 /* KakaoMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoMagicLiteral.swift; sourceTree = "<group>"; };
 		5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBPopular.swift; sourceTree = "<group>"; };
 		5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularQueryParameters.swift; sourceTree = "<group>"; };
@@ -483,7 +483,7 @@
 		5BCE28A12A1B3CC10076F189 /* Kakao */ = {
 			isa = PBXGroup;
 			children = (
-				5BCE28A22A1B3CF30076F189 /* KoreanMovieListImageQueryParameters.swift */,
+				5BCE28A22A1B3CF30076F189 /* KoreaMovieListImageQueryParameters.swift */,
 			);
 			path = Kakao;
 			sourceTree = "<group>";
@@ -683,7 +683,7 @@
 				5B3F1C552A148C0F0062BE99 /* MovieDetailInformation.swift in Sources */,
 				5B3F1C642A148DB60062BE99 /* KOFICAPIEndPoint.swift in Sources */,
 				5B3F1C5B2A148C970062BE99 /* Endpoint.swift in Sources */,
-				5BCE28A32A1B3CF30076F189 /* KoreanMovieListImageQueryParameters.swift in Sources */,
+				5BCE28A32A1B3CF30076F189 /* KoreaMovieListImageQueryParameters.swift in Sources */,
 				5B3F1C452A148B810062BE99 /* Company.swift in Sources */,
 				5B9FA2FC2A18DCF50045BE35 /* TVDBAPIEndPoint.swift in Sources */,
 				5B3F1C7D2A14EE140062BE99 /* HomeViewLayout.swift in Sources */,
