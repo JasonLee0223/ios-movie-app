@@ -150,8 +150,12 @@ extension HomeViewController {
         collectionView.register(HomeHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: HomeHeaderView.identifier)
-        collectionView.register(MovieIntroduceCell.self, forCellWithReuseIdentifier: MovieIntroduceCell.identifier)
-        collectionView.register(MovieGenreCell.self, forCellWithReuseIdentifier: MovieGenreCell.identifier)
+        
+        collectionView.register(MovieIntroduceCell.self,
+                                forCellWithReuseIdentifier: MovieIntroduceCell.identifier)
+        
+        collectionView.register(MovieGenreCell.self,
+                                forCellWithReuseIdentifier: MovieGenreCell.identifier)
     }
 }
 
