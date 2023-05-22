@@ -8,7 +8,8 @@
 import Foundation
 
 enum KakaoMagicLiteral {
-    static let baseURL: String = "https://dapi.kakao.com/v2/search/image"
+    static let baseURL: String = "https://dapi.kakao.com/v2/search"
+    static let image: String = "/image"
     static let query: String = "query"
     static let authorization: String = "Authorization"
     static let kakaoRESTAPIKey: String = "KakaoAK \(kakaoApiKey)"
