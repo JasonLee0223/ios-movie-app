@@ -17,10 +17,12 @@ internal struct Rank: Hashable {
     let openDate: String
     let rank: String
     let rankOldAndNew: RankOldAndNew
+    let rankVariation: String
 }
 
 internal struct MovieSummaryInformation: Hashable {
     let movieName: String
+    let audienceCount: String
     let audienceAccumulated: String
 }
 
