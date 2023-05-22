@@ -7,12 +7,11 @@
 
 import Foundation
 
-// MARK: - Welcome4
+
 struct MoviePosterImage {
     let documents: [Document]
 }
 
-// MARK: - Document
 struct Document {
     let imageURL: String
     let thumbnailURL: String
