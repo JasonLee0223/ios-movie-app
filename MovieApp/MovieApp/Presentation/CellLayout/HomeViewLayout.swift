@@ -127,4 +127,10 @@ struct HomeViewLayout {
         
         return section
     }
+    
+    func createKoreaMovieListLayout() -> UICollectionViewLayout {
+        let configure = UICollectionLayoutListConfiguration(appearance: .plain)
+        let layout = UICollectionViewCompositionalLayout.list(using: configure)
+        return layout
+    }
 }
