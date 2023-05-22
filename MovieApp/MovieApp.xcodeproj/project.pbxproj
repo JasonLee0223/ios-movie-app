@@ -60,6 +60,7 @@
 		5B9FA2FC2A18DCF50045BE35 /* TVDBAPIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */; };
 		5BCE289B2A1B367E0076F189 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289A2A1B367E0076F189 /* KakaoSDK */; };
 		5BCE289D2A1B367E0076F189 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289C2A1B367E0076F189 /* KakaoSDKAuth */; };
+		5BCE28A02A1B3BDB0076F189 /* KakaoBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE289F2A1B3BDB0076F189 /* KakaoBasic.swift */; };
 		5BED9EED2A18C36200C66386 /* TVDBPopular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */; };
 		5BED9EF12A18C6BD00C66386 /* PopularQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */; };
 /* End PBXBuildFile section */
@@ -136,6 +137,7 @@
 		5B9FA2F72A18D8D10045BE35 /* TBDBBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBDBBasic.swift; sourceTree = "<group>"; };
 		5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIMagicLiteral.swift; sourceTree = "<group>"; };
 		5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIEndPoint.swift; sourceTree = "<group>"; };
+		5BCE289F2A1B3BDB0076F189 /* KakaoBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoBasic.swift; sourceTree = "<group>"; };
 		5BED9EEC2A18C36200C66386 /* TVDBPopular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBPopular.swift; sourceTree = "<group>"; };
 		5BED9EF02A18C6BD00C66386 /* PopularQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularQueryParameters.swift; sourceTree = "<group>"; };
 		5BF21BA22A1A07A0006B0EA4 /* APIKEYS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIKEYS.xcconfig; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 		5B3F1C262A1477920062BE99 /* Query */ = {
 			isa = PBXGroup;
 			children = (
+				5BCE289E2A1B3BC80076F189 /* KaKao */,
 				5B9FA2F62A18D8C00045BE35 /* TVDB */,
 				5B9FA2F52A18C8C40045BE35 /* KOFIC */,
 			);
@@ -461,6 +464,14 @@
 				5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */,
 			);
 			path = TVDB;
+			sourceTree = "<group>";
+		};
+		5BCE289E2A1B3BC80076F189 /* KaKao */ = {
+			isa = PBXGroup;
+			children = (
+				5BCE289F2A1B3BDB0076F189 /* KakaoBasic.swift */,
+			);
+			path = KaKao;
 			sourceTree = "<group>";
 		};
 		5BED9EEB2A18C32E00C66386 /* TVDBPopular */ = {
@@ -647,6 +658,7 @@
 				5B3F1C572A148C600062BE99 /* Requestable.swift in Sources */,
 				5B3F1C4D2A148B9B0062BE99 /* ShowType.swift in Sources */,
 				5B3F1C6E2A1497A00062BE99 /* MagicLiteral.swift in Sources */,
+				5BCE28A02A1B3BDB0076F189 /* KakaoBasic.swift in Sources */,
 				5B3F1C7F2A15DC480062BE99 /* HomeViewDataSource.swift in Sources */,
 				5B3F1C2E2A1488D80062BE99 /* Movie.swift in Sources */,
 				5B3F1C4F2A148BA20062BE99 /* Staff.swift in Sources */,
