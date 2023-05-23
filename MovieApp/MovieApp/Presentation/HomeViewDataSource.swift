@@ -18,7 +18,6 @@ enum HomeSection {
     
     struct GenreItem {
         let genreImage: UIImage
-        let genreName: String
     }
 }
 
@@ -31,8 +30,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
                                              posterName: "포스터 이름"),
         count: MagicNumber.RelatedToDataSource.numberOfPosterCount)),
         .Genre([HomeSection.GenreItem].init(
-            repeating: HomeSection.GenreItem(genreImage: UIImage(named: "Suzume")!,
-                                             genreName: "장르 이름"),
+            repeating: HomeSection.GenreItem(genreImage: UIImage(named: "Suzume")!),
             count: MagicNumber.RelatedToDataSource.numberOfGenreCount))
     ]
     
@@ -71,7 +69,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             case .IntroducePosterSection:
                 headerView.configureOfSortStackLayout()
             case .GenrePosterSection:
-                headerView.configureOfGenreLayout()
+                headerView.configureOfStillCutLayout()
             }
             return headerView
             
@@ -101,14 +99,13 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             
         case let .Genre(items):
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MovieGenreCell.identifier,
-                for: indexPath) as? MovieGenreCell else {
+                withReuseIdentifier: MovieStillCutCell.identifier,
+                for: indexPath) as? MovieStillCutCell else {
                 return UICollectionViewCell()
             }
             
             let item = items[indexPath.item]
             cell.setGenrePoster(with: item.genreImage)
-            cell.setGenreType(with: item.genreName)
             return  cell
         }
     }
