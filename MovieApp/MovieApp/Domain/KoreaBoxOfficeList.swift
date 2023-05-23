@@ -1,5 +1,5 @@
 //
-//  DailyBoxOffice.swift
+//  KoreaBoxOfficeList.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/05/19.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct DailyBoxOffice: Hashable {
+struct KoreaBoxOfficeList: Hashable {
     let identifier = UUID()
-    let movieSummaryInformation: MovieSummaryInformation
+    let openDate: String
     let rank: Rank
+    let movieSummaryInformation: MovieSummaryInformation
 }
 
 internal struct Rank: Hashable {
-    let openDate: String
     let rank: String
     let rankOldAndNew: RankOldAndNew
     let rankVariation: String
@@ -25,4 +25,3 @@ internal struct MovieSummaryInformation: Hashable {
     let audienceCount: String
     let audienceAccumulated: String
 }
-
