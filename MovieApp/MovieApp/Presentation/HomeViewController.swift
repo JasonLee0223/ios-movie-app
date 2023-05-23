@@ -14,76 +14,10 @@ class HomeViewController: UIViewController {
         
         configureOfUI()
         configureHierarchy()
-        
-        kakaoPosterImageTest { url in
-            print("완료")
-        }
-//                test()
-//        TVDBTest { imageURLStorage in
-//            print(imageURLStorage)
-//        }
     }
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var dataSource = HomeViewDataSource()
-    
-    let networkService = NetworkService()
-    
-    func kakaoPosterImageTest(completion: @escaping (URL) -> Void) {
-        
-        let mockData = ["분노의 질주: 라이드 오어 다이", "스즈메의 문단속", "슬픔의 삼각형", "가디언즈 오브 갤럭시: Volume 3",
-         "극장판 짱구는 못말려: 동물소환 닌자 배꼽수비대", "더 퍼스트 슬램덩크", "슈퍼 마리오 브라더스",
-         "문재인입니다", "드림", "존 윅 4"]
-        
-        networkService.loadMoviePosterImage(movieNameGroup: mockData) { document in
-            guard let imageURL = URL(string:document.imageURL) else {
-                return
-            }
-            completion(imageURL)
-        }
-    }
-    
-    func TVDBTest(completion: @escaping ([URL]) -> Void) {
-        Task {
-            
-            var imageURLGroup = [URL]()
-            
-            self.networkService.loadTrendingMovieListData { resultStorage in
-                
-                let moviePosterPathGroup = resultStorage.map{ $0.movieImageURL }
-                
-                if let makeImgaeURL = try? moviePosterPathGroup.map({ posterImagePath in
-                    let imageURLPath = "\(TVDBBasic.imageURL)\(posterImagePath)"
-                    
-                    guard let imageURL = URL(string: imageURLPath) else {
-                        throw URLComponentsError.invalidComponent
-                    }
-                    return imageURL
-                }) {
-                    imageURLGroup = makeImgaeURL
-                    completion(imageURLGroup)
-                }
-            }
-        }
-        //MARK: - 위 내용까지 imageURL 받아와서 디버깅으로 이미지까지 확인 완료
-    }
-    
-    func test() {
-        
-        var movieInfoGroup = [MovieInfo]()
-        
-        networkService.loadDailyBoxOfficeData { dailyBoxOfficeListStorage in
-            
-            let movieCodegroup = dailyBoxOfficeListStorage.map{$0.movieCode}
-            
-            self.networkService.loadMovieDetailData(movieCodeGroup: movieCodegroup) { movieInfo in
-                movieInfoGroup.append(movieInfo)
-                print(movieInfo)
-                //MARK: - 여기까지 MovieDetail 가져오는 로직 성공
-            }
-            
-        }
-    }
 }
 
 //MARK: - Configure of UI Components
