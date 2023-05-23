@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0C81342A1CD044004BF2D6 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C81332A1CD044004BF2D6 /* Observable.swift */; };
 		5B3F1BED2A146EAC0062BE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1BEC2A146EAC0062BE99 /* AppDelegate.swift */; };
 		5B3F1BEF2A146EAC0062BE99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1BEE2A146EAC0062BE99 /* SceneDelegate.swift */; };
 		5B3F1BF12A146EAC0062BE99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1BF02A146EAC0062BE99 /* HomeViewController.swift */; };
@@ -67,6 +68,8 @@
 		5BC16D682A1B5F3400B7F3BA /* SummaryInfromationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC16D672A1B5F3400B7F3BA /* SummaryInfromationView.swift */; };
 		5BC16D6A2A1C90D200B7F3BA /* TrendMovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC16D692A1C90D200B7F3BA /* TrendMovieList.swift */; };
 		5BC16D6C2A1C913700B7F3BA /* StillCut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC16D6B2A1C913700B7F3BA /* StillCut.swift */; };
+		5BC16D6F2A1C923000B7F3BA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC16D6E2A1C923000B7F3BA /* ViewModel.swift */; };
+		5BC16D712A1CA37E00B7F3BA /* SectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC16D702A1CA37E00B7F3BA /* SectionList.swift */; };
 		5BCE289B2A1B367E0076F189 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289A2A1B367E0076F189 /* KakaoSDK */; };
 		5BCE289D2A1B367E0076F189 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289C2A1B367E0076F189 /* KakaoSDKAuth */; };
 		5BCE28A02A1B3BDB0076F189 /* KakaoBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE289F2A1B3BDB0076F189 /* KakaoBasic.swift */; };
@@ -96,6 +99,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B0C81332A1CD044004BF2D6 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		5B3F1BE92A146EAC0062BE99 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3F1BEC2A146EAC0062BE99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B3F1BEE2A146EAC0062BE99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 		5BC16D672A1B5F3400B7F3BA /* SummaryInfromationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInfromationView.swift; sourceTree = "<group>"; };
 		5BC16D692A1C90D200B7F3BA /* TrendMovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendMovieList.swift; sourceTree = "<group>"; };
 		5BC16D6B2A1C913700B7F3BA /* StillCut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillCut.swift; sourceTree = "<group>"; };
+		5BC16D6E2A1C923000B7F3BA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		5BC16D702A1CA37E00B7F3BA /* SectionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionList.swift; sourceTree = "<group>"; };
 		5BCE289F2A1B3BDB0076F189 /* KakaoBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoBasic.swift; sourceTree = "<group>"; };
 		5BCE28A22A1B3CF30076F189 /* KoreaMovieListImageQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreaMovieListImageQueryParameters.swift; sourceTree = "<group>"; };
 		5BCE28A42A1B3E020076F189 /* KakaoMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoMagicLiteral.swift; sourceTree = "<group>"; };
@@ -284,6 +290,7 @@
 				5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */,
 				5B3F1C7B2A14EE040062BE99 /* CellLayout */,
 				5B3F1C722A14C82F0062BE99 /* Cells */,
+				5BC16D6D2A1C922100B7F3BA /* ViewModel */,
 				5B3F1C1C2A1472EE0062BE99 /* View */,
 			);
 			path = Presentation;
@@ -470,6 +477,7 @@
 		5B3F1C7B2A14EE040062BE99 /* CellLayout */ = {
 			isa = PBXGroup;
 			children = (
+				5BC16D702A1CA37E00B7F3BA /* SectionList.swift */,
 				5B3F1C7C2A14EE140062BE99 /* HomeViewLayout.swift */,
 			);
 			path = CellLayout;
@@ -502,6 +510,15 @@
 				5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */,
 			);
 			path = TVDB;
+			sourceTree = "<group>";
+		};
+		5BC16D6D2A1C922100B7F3BA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B0C81332A1CD044004BF2D6 /* Observable.swift */,
+				5BC16D6E2A1C923000B7F3BA /* ViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5BCE289E2A1B3BC80076F189 /* KaKao */ = {
@@ -710,8 +727,10 @@
 				5BC16D5E2A1B5D6400B7F3BA /* Selector.swift in Sources */,
 				5B3F1C782A14C9010062BE99 /* MovieStillCutCell.swift in Sources */,
 				5B3F1C5E2A148CBB0062BE99 /* NetworkError.swift in Sources */,
+				5BC16D6F2A1C923000B7F3BA /* ViewModel.swift in Sources */,
 				5BCE28AA2A1B41FD0076F189 /* KakaoEndPoint.swift in Sources */,
 				5BC16D682A1B5F3400B7F3BA /* SummaryInfromationView.swift in Sources */,
+				5BC16D712A1CA37E00B7F3BA /* SectionList.swift in Sources */,
 				5B3F1C622A148CD80062BE99 /* URLComponentsError.swift in Sources */,
 				5B3F1C472A148B880062BE99 /* Director.swift in Sources */,
 				5BC16D642A1B5E2200B7F3BA /* Convertible.swift in Sources */,
@@ -723,6 +742,7 @@
 				5BC16D622A1B5E0600B7F3BA /* Decidable.swift in Sources */,
 				5B3F1C6E2A1497A00062BE99 /* MagicLiteral.swift in Sources */,
 				5BCE28A02A1B3BDB0076F189 /* KakaoBasic.swift in Sources */,
+				5B0C81342A1CD044004BF2D6 /* Observable.swift in Sources */,
 				5B3F1C7F2A15DC480062BE99 /* HomeViewDataSource.swift in Sources */,
 				5B3F1C2E2A1488D80062BE99 /* Movie.swift in Sources */,
 				5BCE28A82A1B41830076F189 /* MoviePosterImage.swift in Sources */,
