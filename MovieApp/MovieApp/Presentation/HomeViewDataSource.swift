@@ -65,7 +65,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     ]
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return mockData.count
+        return HomeSection.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
