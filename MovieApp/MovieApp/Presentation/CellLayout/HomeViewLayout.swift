@@ -7,12 +7,6 @@
 
 import UIKit
 
-enum CellList: Int, CaseIterable {
-    case IntroducePosterSection = 0
-    case stillCutSection
-    case koreaMovieListSection
-}
-
 struct HomeViewLayout {
     
     private let sectionIndex: Int
