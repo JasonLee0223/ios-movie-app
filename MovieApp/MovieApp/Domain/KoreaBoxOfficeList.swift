@@ -7,20 +7,20 @@
 
 import Foundation
 
-struct KoreaBoxOfficeList: Hashable {
+struct KoreaBoxOfficeList: Hashable, BusinessModel {
     let identifier = UUID()
     let openDate: String
     let rank: Rank
     let movieSummaryInformation: MovieSummaryInformation
 }
 
-internal struct Rank: Hashable {
+internal struct Rank: Hashable, BusinessModel {
     let rank: String
     let rankOldAndNew: RankOldAndNew
     let rankVariation: String
 }
 
-internal struct MovieSummaryInformation: Hashable {
+internal struct MovieSummaryInformation: Hashable, BusinessModel {
     let movieName: String
     let audienceCount: String
     let audienceAccumulated: String

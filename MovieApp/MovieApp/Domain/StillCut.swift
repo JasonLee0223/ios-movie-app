@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct StillCut {
+struct StillCut: BusinessModel {
     let genreImagePath: String
 }

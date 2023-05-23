@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct TrendMovieList {
+protocol BusinessModel {}
+
+struct TrendMovieList: BusinessModel {
     let posterImagePath: String
     let posterName: String
 }
