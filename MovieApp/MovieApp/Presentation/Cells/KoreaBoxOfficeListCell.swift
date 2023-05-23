@@ -26,7 +26,7 @@ final class KoreaBoxOfficeListCell: UICollectionViewListCell, Convertible, Getta
         configureOfAllUIComponents()
     }
     
-    func configureOfCellRegistration(with dailyBoxOffice: DailyBoxOffice) {
+    func configureOfCellRegistration(with dailyBoxOffice: KoreaBoxOfficeList) {
             
         let audienceCount = converter.convertToNumberFormatter(
             dailyBoxOffice.movieSummaryInformation.audienceCount,
