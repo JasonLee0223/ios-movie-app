@@ -10,6 +10,7 @@ import UIKit
 enum CellList: Int, CaseIterable {
     case IntroducePosterSection = 0
     case GenrePosterSection
+//    case koreaMovieListSection
 }
 
 struct HomeViewLayout {
@@ -27,6 +28,8 @@ struct HomeViewLayout {
             return createIntroduceCellCompositionalLayout()
         case .GenrePosterSection:
             return createGenreCellCompositionalLayout()
+//        case .koreaMovieListSection:
+//            return create()
         }
     }
     
@@ -106,11 +109,11 @@ struct HomeViewLayout {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.genreWidth),
-            heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.GroupSize.genreHeight)
+            widthDimension: .fractionalWidth(1.0 / 3.0),
+            heightDimension: .fractionalWidth(0.35)
         )
         
-        let group = NSCollectionLayoutGroup.horizontal(
+        let group = NSCollectionLayoutGroup.vertical(
             layoutSize: groupSize,
             subitems: [item]
         )
@@ -127,4 +130,9 @@ struct HomeViewLayout {
         
         return section
     }
+    
+//    private func createKoreaMovieListCellCompositionalLayout() -> NSCollectionLayoutSection? {
+//
+//        return NSCollectionLayoutSection(group: NSCollectionLayoutGroup)
+//    }
 }
