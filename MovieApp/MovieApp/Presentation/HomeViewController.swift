@@ -81,18 +81,26 @@ extension HomeViewController {
         collectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
         collectionView.dataSource = dataSource
         
-        collectionView.register(HomeHeaderView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: HomeHeaderView.identifier)
+        collectionView.register(
+            HomeHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HomeHeaderView.reuseIdentifier
+        )
         
-        collectionView.register(MovieIntroduceCell.self,
-                                forCellWithReuseIdentifier: MovieIntroduceCell.identifier)
+        collectionView.register(
+            MovieIntroduceCell.self,
+            forCellWithReuseIdentifier: MovieIntroduceCell.reuseIdentifier
+        )
         
-        collectionView.register(MovieStillCutCell.self,
-                                forCellWithReuseIdentifier: MovieStillCutCell.identifier)
+        collectionView.register(
+            MovieStillCutCell.self,
+            forCellWithReuseIdentifier: MovieStillCutCell.reuseIdentifier
+        )
         
-        collectionView.register(KoreaBoxOfficeListCell.self,
-                                forCellWithReuseIdentifier: KoreaBoxOfficeListCell.identifier)
+        collectionView.register(
+            KoreaBoxOfficeListCell.self,
+            forCellWithReuseIdentifier: KoreaBoxOfficeListCell.reuseIdentifier
+        )
     }
 }
 

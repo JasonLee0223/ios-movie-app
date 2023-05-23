@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HomeHeaderView: UICollectionReusableView, Gettable {
+final class HomeHeaderView: UICollectionReusableView, ReusableCell {
     
     //MARK: - Initializer
     

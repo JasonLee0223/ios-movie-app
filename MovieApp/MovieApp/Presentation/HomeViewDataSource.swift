@@ -32,7 +32,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
         case UICollectionView.elementKindSectionHeader:
             guard let headerView = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
-                withReuseIdentifier: HomeHeaderView.identifier,
+                withReuseIdentifier: HomeHeaderView.reuseIdentifier,
                 for: indexPath) as? HomeHeaderView else {
                 return UICollectionReusableView()
             }
@@ -63,7 +63,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             
         case .trendMoviePosterSection:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MovieIntroduceCell.identifier,
+                withReuseIdentifier: MovieIntroduceCell.reuseIdentifier,
                 for: indexPath) as? MovieIntroduceCell else {
                 return UICollectionViewCell()
             }
@@ -93,7 +93,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             
         case .stillCutSection:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MovieStillCutCell.identifier,
+                withReuseIdentifier: MovieStillCutCell.reuseIdentifier,
                 for: indexPath) as? MovieStillCutCell else {
                 return UICollectionViewCell()
             }
@@ -104,7 +104,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             
         case .koreaMovieListSection:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: KoreaBoxOfficeListCell.identifier,
+                withReuseIdentifier: KoreaBoxOfficeListCell.reuseIdentifier,
                 for: indexPath) as? KoreaBoxOfficeListCell else {
                 return UICollectionViewCell()
             }

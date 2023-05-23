@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieStillCutCell: UICollectionViewCell, Gettable {
+final class MovieStillCutCell: UICollectionViewCell, ReusableCell {
     
     //MARK: - Initializer
     override init(frame: CGRect) {

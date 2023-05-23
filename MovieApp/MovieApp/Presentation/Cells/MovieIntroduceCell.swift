@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieIntroduceCell: UICollectionViewCell, Gettable {
+final class MovieIntroduceCell: UICollectionViewCell, ReusableCell {
     
     //MARK: - Initializer
     
