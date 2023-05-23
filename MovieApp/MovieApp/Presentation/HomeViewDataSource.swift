@@ -7,80 +7,22 @@
 
 import UIKit
 
-enum HomeSection {
-    case introduce([IntroduceItem])
-    case Genre([GenreItem])
-    case KoreaBoxOffice([KoreaBoxOfficeItem])
-    
-    struct IntroduceItem {
-        let posterImage: UIImage
-        let posterName: String
-    }
-    
-    struct GenreItem {
-        let genreImage: UIImage
-    }
-    
-    struct KoreaBoxOfficeItem {
-        let openDate: String
-        let rank: String
-        let rankOldAndNew: RankOldAndNew
-        let rankVariation: String
-    
-        let movieName: String
-        let audienceCount: String
-        let audienceAccumulated: String
-    }
-}
-
-
 final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     
-    var mockData: [HomeSection] = [
-        .introduce([HomeSection.IntroduceItem].init(
-        repeating: HomeSection.IntroduceItem(
-            posterImage: UIImage(named: "Suzume")!,
-            posterName: "포스터 이름"),
-        count: MagicNumber.RelatedToDataSource.numberOfPosterCount)
-        ),
-        
-        .Genre([HomeSection.GenreItem].init(
-            repeating: HomeSection.GenreItem(
-                genreImage: UIImage(named: "Suzume")!
-            ),
-            count: MagicNumber.RelatedToDataSource.numberOfGenreCount)
-        ),
-        
-        .KoreaBoxOffice([HomeSection.KoreaBoxOfficeItem].init(
-        repeating: HomeSection.KoreaBoxOfficeItem(
-            openDate: "2023-05-22",
-            rank: "1",
-            rankOldAndNew: .new,
-            rankVariation: "123456789",
-            movieName: "영화 제목",
-            audienceCount: "1234512345",
-            audienceAccumulated: "1000000000"),
-        count: 10)
-        )
-    ]
+    override init() {
+        self.viewModel = ViewModel()
+    }
     
+    //MARK: - Number Of Section and Item
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return HomeSection.allCases.count
+        return SectionList.allCases.count
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        
-        switch mockData[section] {
-        case let .introduce(items):
-            return items.count
-        case let .Genre(items):
-            return items.count
-        case let .KoreaBoxOffice(items):
-            return items.count
-        }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.countItem(section: section)
     }
     
+    //MARK: - HeaderView
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
@@ -95,10 +37,10 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             
-            let sectionType = CellList.allCases[indexPath.section]
+            let sectionType = SectionList.allCases[indexPath.section]
             
             switch sectionType {
-            case .IntroducePosterSection:
+            case .trendMoviePosterSection:
                 headerView.configureOfSortStackLayout()
             case .stillCutSection:
                 headerView.configureOfStillCutLayout()
@@ -113,53 +55,76 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
         }
     }
     
-    
+    //MARK: - ColletionViewCell
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch mockData[indexPath.section] {
+        switch SectionList(rawValue: indexPath.section) {
             
-        case let .introduce(items):
+        case .trendMoviePosterSection:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: MovieIntroduceCell.identifier,
                 for: indexPath) as? MovieIntroduceCell else {
                 return UICollectionViewCell()
             }
             
-            let item = items[indexPath.item]
-            cell.setPoster(with: item.posterImage)
-            cell.setPoster(with: item.posterName)
+            viewModel.loadTrendOfWeekMovieListFromTVDB { trendMovieListStorage in
+                
+                trendMovieListStorage.forEach { trendMovieList in
+                    
+                    self.viewModel.fetchImage(imagePath: trendMovieList.posterImagePath) { imageData in
+                        
+                        DispatchQueue.main.async {
+                            guard let image = UIImage(data: imageData) else {
+                                return
+                            }
+                            cell.setPoster(with: image)
+                            cell.setPoster(with: trendMovieList.posterName)
+                        }
+                    }
+                }
+            }
+            
+            DispatchQueue.main.async {
+                collectionView.reloadData()
+            }
+            
             return cell
             
-        case let .Genre(items):
+        case .stillCutSection:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: MovieStillCutCell.identifier,
                 for: indexPath) as? MovieStillCutCell else {
                 return UICollectionViewCell()
             }
             
-            let item = items[indexPath.item]
-            cell.setGenrePoster(with: item.genreImage)
+//            let item = items[indexPath.item]
+//            cell.setGenrePoster(with: item.genreImage)
             return  cell
             
-        case let .KoreaBoxOffice(items):
+        case .koreaMovieListSection:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: KoreaBoxOfficeListCell.identifier,
                 for: indexPath) as? KoreaBoxOfficeListCell else {
                 return UICollectionViewCell()
             }
             
-            let item = items[indexPath.item]
-            cell.rankView.setRank(by: item.rank)
-            cell.rankView.setRankVariation(by: item.rankVariation)
-            cell.rankView.setRankVariation(by: UIColor.black)
-            
-            cell.rankView.setRankImage(by: UIImage(named: "Suzume"))
-            cell.rankView.setRankImage(by: UIColor.black)
-            
-            cell.summaryInformationView.setMovieName(by: item.movieName)
-            cell.summaryInformationView.setAudienceCount(by: item.audienceCount)
+//            let item = items[indexPath.item]
+//            cell.rankView.setRank(by: item.rank)
+//            cell.rankView.setRankVariation(by: item.rankVariation)
+//            cell.rankView.setRankVariation(by: UIColor.black)
+//
+//            cell.rankView.setRankImage(by: UIImage(named: "Suzume"))
+//            cell.rankView.setRankImage(by: UIColor.black)
+//
+//            cell.summaryInformationView.setMovieName(by: item.movieName)
+//            cell.summaryInformationView.setAudienceCount(by: item.audienceCount)
             return  cell
+        case .none:
+            print("해당 Section의 Cell을 찾을 수 없음")
+            return UICollectionViewCell()
         }
     }
+    
+    private let viewModel: ViewModel
 }
