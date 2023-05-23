@@ -8,15 +8,10 @@
 import Foundation
 
 protocol Gettable {
-    static var identifier: String { get }
     static var receiveCurrentDate: String { get }
 }
 
 extension Gettable {
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     static var receiveCurrentDate: String {
         
         guard let date = Calendar.current.date(byAdding: .day, value: -1, to: Date()) else {

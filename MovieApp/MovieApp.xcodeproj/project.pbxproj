@@ -55,6 +55,7 @@
 		5B3F1C7A2A14EC540062BE99 /* MagicNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C792A14EC540062BE99 /* MagicNumber.swift */; };
 		5B3F1C7D2A14EE140062BE99 /* HomeViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C7C2A14EE140062BE99 /* HomeViewLayout.swift */; };
 		5B3F1C7F2A15DC480062BE99 /* HomeViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */; };
+		5B591BD12A1D052C0079CAC0 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B591BD02A1D052C0079CAC0 /* ReusableCell.swift */; };
 		5B98C61D2A174001004C099F /* KoreaBoxOfficeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */; };
 		5B9FA2F82A18D8D10045BE35 /* TBDBBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2F72A18D8D10045BE35 /* TBDBBasic.swift */; };
 		5B9FA2FA2A18DB150045BE35 /* TVDBAPIMagicLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */; };
@@ -150,6 +151,7 @@
 		5B3F1C792A14EC540062BE99 /* MagicNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicNumber.swift; sourceTree = "<group>"; };
 		5B3F1C7C2A14EE140062BE99 /* HomeViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewLayout.swift; sourceTree = "<group>"; };
 		5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewDataSource.swift; sourceTree = "<group>"; };
+		5B591BD02A1D052C0079CAC0 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 		5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreaBoxOfficeList.swift; sourceTree = "<group>"; };
 		5B9FA2F72A18D8D10045BE35 /* TBDBBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBDBBasic.swift; sourceTree = "<group>"; };
 		5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIMagicLiteral.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				5B3F1C6B2A14977D0062BE99 /* Gettable.swift */,
 				5BC16D612A1B5E0600B7F3BA /* Decidable.swift */,
 				5BC16D632A1B5E2200B7F3BA /* Convertible.swift */,
+				5B591BD02A1D052C0079CAC0 /* ReusableCell.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				5B3F1C6E2A1497A00062BE99 /* MagicLiteral.swift in Sources */,
 				5BCE28A02A1B3BDB0076F189 /* KakaoBasic.swift in Sources */,
 				5B0C81342A1CD044004BF2D6 /* Observable.swift in Sources */,
+				5B591BD12A1D052C0079CAC0 /* ReusableCell.swift in Sources */,
 				5B3F1C7F2A15DC480062BE99 /* HomeViewDataSource.swift in Sources */,
 				5B3F1C2E2A1488D80062BE99 /* Movie.swift in Sources */,
 				5BCE28A82A1B41830076F189 /* MoviePosterImage.swift in Sources */,
