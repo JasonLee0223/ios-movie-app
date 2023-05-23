@@ -43,7 +43,7 @@ enum MagicNumber {
         
         enum GroupSize {
             static let introduceWidth: CGFloat = 1.0 / 2.3
-            static let introduceHeight: CGFloat = 1.0 / 2.6
+            static let introduceHeight: CGFloat = 1.0 / 2.0
             
             static let genreWidth: CGFloat = 1.0 / 3.0
             static let genreHeight: CGFloat = 1.0 / 5.5
@@ -58,7 +58,7 @@ enum MagicNumber {
         }
         
         enum ContentInset {
-            static let introduceLeading: CGFloat = 20
+            static let introduceLeading: CGFloat = 10
             static let introduceBottom: CGFloat = 40
             
             static let genreLeadingOrTrailing: CGFloat = 10

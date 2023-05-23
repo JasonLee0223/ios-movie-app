@@ -30,12 +30,13 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         sortStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             sortStack.topAnchor.constraint(
-                equalTo: safeArea.topAnchor,
-                constant: MagicNumber.HeaderView.sortStackTopAnchorConstraint
+                equalTo: safeArea.topAnchor
             ),
             sortStack.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor,
-                constant: MagicNumber.HeaderView.leadingConstraint
+                equalTo: safeArea.leadingAnchor
+            ),
+            sortStack.trailingAnchor.constraint(
+                equalTo: safeArea.trailingAnchor
             ),
             sortStack.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
@@ -50,14 +51,33 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         stillCutTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stillCutTitle.topAnchor.constraint(
-                equalTo: safeArea.topAnchor,
-                constant: MagicNumber.HeaderView.genreTitleTopAnchorConstraint
+                equalTo: safeArea.topAnchor
             ),
             stillCutTitle.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor,
-                constant: MagicNumber.HeaderView.leadingConstraint
+                equalTo: safeArea.leadingAnchor
+            ),
+            stillCutTitle.trailingAnchor.constraint(
+                equalTo: safeArea.trailingAnchor
             ),
             stillCutTitle.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
+            )
+        ])
+    }
+    
+    func configureOfKoreaMovieLayout() {
+        let safeArea = self.safeAreaLayoutGuide
+        
+        self.addSubview(koreaMovieListTitle)
+        koreaMovieListTitle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            koreaMovieListTitle.topAnchor.constraint(
+                equalTo: safeArea.topAnchor
+            ),
+            koreaMovieListTitle.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor
+            ),
+            koreaMovieListTitle.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
             )
         ])
@@ -118,5 +138,16 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         )
         stillCutTitle.textColor = UIColor.white
         return stillCutTitle
+    }()
+    
+    private let koreaMovieListTitle: UILabel = {
+        let koreaMovieListTitle = UILabel()
+        
+        koreaMovieListTitle.text = "한국 박스오피스 영화 순위"
+        koreaMovieListTitle.font = .boldSystemFont(
+            ofSize: MagicNumber.Attributes.genreTitleFont
+        )
+        koreaMovieListTitle.textColor = UIColor.white
+        return koreaMovieListTitle
     }()
 }

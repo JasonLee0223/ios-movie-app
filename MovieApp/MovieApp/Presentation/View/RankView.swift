@@ -47,28 +47,25 @@ final class RankView: UIStackView {
 
     private var information: UIStackView = {
         let information = UIStackView()
-
         return information
     }()
 
     private let rank: UILabel = {
         let rankLabel = UILabel()
         rankLabel.font = UIFont.systemFont(ofSize: 30)
-        rankLabel.textColor = .black
-
+        rankLabel.textColor = .white
         return rankLabel
     }()
 
     private let rankEmoji: UIImageView = {
         let rankEmoji = UIImageView()
-
         return rankEmoji
     }()
 
     private let rankVariation: UILabel = {
         let rankVariationLabel = UILabel()
         rankVariationLabel.font = UIFont.systemFont(ofSize: 15)
-
+        rankVariationLabel.textColor = UIColor.white
         return rankVariationLabel
     }()
 }

@@ -60,8 +60,7 @@ final class MovieStillCutCell: UICollectionViewCell, Gettable {
                 equalTo: stillCutStack.trailingAnchor
             ),
             stillCutImage.bottomAnchor.constraint(
-                equalTo: stillCutStack.bottomAnchor,
-                constant: MagicNumber.Cell.bottomAnchorConstraint
+                equalTo: stillCutStack.bottomAnchor
             )
         ])
     }
@@ -78,6 +77,7 @@ final class MovieStillCutCell: UICollectionViewCell, Gettable {
     
     private let stillCutImage: UIImageView = {
        let genrePosterImage = UIImageView()
+        genrePosterImage.contentMode = .scaleToFill
         genrePosterImage.clipsToBounds = true
         genrePosterImage.layer.cornerRadius = MagicNumber.cornerRadius
         return genrePosterImage

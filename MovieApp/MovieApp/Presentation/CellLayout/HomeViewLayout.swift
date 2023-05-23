@@ -9,8 +9,8 @@ import UIKit
 
 enum CellList: Int, CaseIterable {
     case IntroducePosterSection = 0
-    case GenrePosterSection
-//    case koreaMovieListSection
+    case stillCutSection
+    case koreaMovieListSection
 }
 
 struct HomeViewLayout {
@@ -26,10 +26,10 @@ struct HomeViewLayout {
         switch index {
         case .IntroducePosterSection:
             return createIntroduceCellCompositionalLayout()
-        case .GenrePosterSection:
-            return createGenreCellCompositionalLayout()
-//        case .koreaMovieListSection:
-//            return create()
+        case .stillCutSection:
+            return createstillCutCellCompositionalLayout()
+        case .koreaMovieListSection:
+            return createKoreaMovieListCellCompositionalLayout()
         }
     }
     
@@ -37,7 +37,7 @@ struct HomeViewLayout {
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(0.1)
+            heightDimension: .fractionalWidth(0.1)
         )
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
@@ -52,6 +52,7 @@ struct HomeViewLayout {
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 0, leading: 0, bottom: 20, trailing: 0)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceWidth),
@@ -76,19 +77,19 @@ struct HomeViewLayout {
         group?.contentInsets = .init(
             top: MagicNumber.zero,
             leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceLeading,
-            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceBottom,
+            bottom: MagicNumber.zero,
             trailing: MagicNumber.zero
         )
         
         let section = NSCollectionLayoutSection(group: group ?? NSCollectionLayoutGroup(layoutSize: groupSize))
         section.boundarySupplementaryItems = [header]
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 150, trailing: 0)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 230, trailing: 0)
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         
         return section
     }
     
-    private func createGenreCellCompositionalLayout() -> NSCollectionLayoutSection? {
+    private func createstillCutCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -131,8 +132,41 @@ struct HomeViewLayout {
         return section
     }
     
-//    private func createKoreaMovieListCellCompositionalLayout() -> NSCollectionLayoutSection? {
-//
-//        return NSCollectionLayoutSection(group: NSCollectionLayoutGroup)
-//    }
+    private func createKoreaMovieListCellCompositionalLayout() -> NSCollectionLayoutSection? {
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(0.1)
+        )
+        
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(0.2)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 5, leading: 0, bottom: 5, trailing: 0)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [header]
+        section.orthogonalScrollingBehavior = .continuous
+        
+        return section
+    }
 }

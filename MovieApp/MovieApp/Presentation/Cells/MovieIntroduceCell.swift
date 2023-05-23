@@ -66,9 +66,8 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
                 equalTo: posterStack.trailingAnchor
             ),
             posterImage.bottomAnchor.constraint(
-                equalTo: posterName.bottomAnchor,
-                constant: MagicNumber.Cell.bottomAnchorConstraint
-            ),
+                equalTo: posterName.bottomAnchor, constant: -26
+            )
         ])
     }
     
@@ -84,7 +83,7 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
     
     private let posterImage: UIImageView = {
         let posterImage = UIImageView()
-        posterImage.contentMode = .scaleAspectFill
+        posterImage.contentMode = .scaleToFill
         posterImage.clipsToBounds = true
         posterImage.layer.cornerRadius = MagicNumber.cornerRadius
         return posterImage

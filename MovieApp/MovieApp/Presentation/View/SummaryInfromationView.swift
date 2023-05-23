@@ -41,14 +41,14 @@ final class SummaryInformationView: UIStackView {
     private let movieName: UILabel = {
         let movieName = UILabel()
         movieName.font = .systemFont(ofSize: 20)
-        movieName.textColor = .black
+        movieName.textColor = UIColor.white
         return movieName
     }()
 
     private let audienceCount: UILabel = {
         let audienceCount = UILabel()
         audienceCount.font = .systemFont(ofSize: 15)
-        audienceCount.textColor = .black
+        audienceCount.textColor = UIColor.white
         return audienceCount
     }()
 }

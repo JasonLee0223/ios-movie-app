@@ -10,6 +10,7 @@ import UIKit
 enum HomeSection {
     case introduce([IntroduceItem])
     case Genre([GenreItem])
+    case KoreaBoxOffice([KoreaBoxOfficeItem])
     
     struct IntroduceItem {
         let posterImage: UIImage
@@ -19,6 +20,17 @@ enum HomeSection {
     struct GenreItem {
         let genreImage: UIImage
     }
+    
+    struct KoreaBoxOfficeItem {
+        let openDate: String
+        let rank: String
+        let rankOldAndNew: RankOldAndNew
+        let rankVariation: String
+    
+        let movieName: String
+        let audienceCount: String
+        let audienceAccumulated: String
+    }
 }
 
 
@@ -26,12 +38,30 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     
     var mockData: [HomeSection] = [
         .introduce([HomeSection.IntroduceItem].init(
-        repeating: HomeSection.IntroduceItem(posterImage: UIImage(named: "Suzume")!,
-                                             posterName: "포스터 이름"),
-        count: MagicNumber.RelatedToDataSource.numberOfPosterCount)),
+        repeating: HomeSection.IntroduceItem(
+            posterImage: UIImage(named: "Suzume")!,
+            posterName: "포스터 이름"),
+        count: MagicNumber.RelatedToDataSource.numberOfPosterCount)
+        ),
+        
         .Genre([HomeSection.GenreItem].init(
-            repeating: HomeSection.GenreItem(genreImage: UIImage(named: "Suzume")!),
-            count: MagicNumber.RelatedToDataSource.numberOfGenreCount))
+            repeating: HomeSection.GenreItem(
+                genreImage: UIImage(named: "Suzume")!
+            ),
+            count: MagicNumber.RelatedToDataSource.numberOfGenreCount)
+        ),
+        
+        .KoreaBoxOffice([HomeSection.KoreaBoxOfficeItem].init(
+        repeating: HomeSection.KoreaBoxOfficeItem(
+            openDate: "2023-05-22",
+            rank: "1",
+            rankOldAndNew: .new,
+            rankVariation: "123456789",
+            movieName: "영화 제목",
+            audienceCount: "1234512345",
+            audienceAccumulated: "1000000000"),
+        count: 10)
+        )
     ]
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -45,6 +75,8 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
         case let .introduce(items):
             return items.count
         case let .Genre(items):
+            return items.count
+        case let .KoreaBoxOffice(items):
             return items.count
         }
     }
@@ -68,8 +100,10 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             switch sectionType {
             case .IntroducePosterSection:
                 headerView.configureOfSortStackLayout()
-            case .GenrePosterSection:
+            case .stillCutSection:
                 headerView.configureOfStillCutLayout()
+            case .koreaMovieListSection:
+                headerView.configureOfKoreaMovieLayout()
             }
             return headerView
             
@@ -106,6 +140,25 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             
             let item = items[indexPath.item]
             cell.setGenrePoster(with: item.genreImage)
+            return  cell
+            
+        case let .KoreaBoxOffice(items):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: KoreaBoxOfficeListCell.identifier,
+                for: indexPath) as? KoreaBoxOfficeListCell else {
+                return UICollectionViewCell()
+            }
+            
+            let item = items[indexPath.item]
+            cell.rankView.setRank(by: item.rank)
+            cell.rankView.setRankVariation(by: item.rankVariation)
+            cell.rankView.setRankVariation(by: UIColor.black)
+            
+            cell.rankView.setRankImage(by: UIImage(named: "Suzume"))
+            cell.rankView.setRankImage(by: UIColor.black)
+            
+            cell.summaryInformationView.setMovieName(by: item.movieName)
+            cell.summaryInformationView.setAudienceCount(by: item.audienceCount)
             return  cell
         }
     }

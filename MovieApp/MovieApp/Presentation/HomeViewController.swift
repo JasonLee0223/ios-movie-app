@@ -154,8 +154,11 @@ extension HomeViewController {
         collectionView.register(MovieIntroduceCell.self,
                                 forCellWithReuseIdentifier: MovieIntroduceCell.identifier)
         
-        collectionView.register(MovieGenreCell.self,
-                                forCellWithReuseIdentifier: MovieGenreCell.identifier)
+        collectionView.register(MovieStillCutCell.self,
+                                forCellWithReuseIdentifier: MovieStillCutCell.identifier)
+        
+        collectionView.register(KoreaBoxOfficeListCell.self,
+                                forCellWithReuseIdentifier: KoreaBoxOfficeListCell.identifier)
     }
 }
 
