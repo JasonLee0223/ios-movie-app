@@ -43,21 +43,21 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         ])
     }
     
-    func configureOfGenreLayout() {
+    func configureOfStillCutLayout() {
         let safeArea = self.safeAreaLayoutGuide
         
-        self.addSubview(genreTitle)
-        genreTitle.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(stillCutTitle)
+        stillCutTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            genreTitle.topAnchor.constraint(
+            stillCutTitle.topAnchor.constraint(
                 equalTo: safeArea.topAnchor,
                 constant: MagicNumber.HeaderView.genreTitleTopAnchorConstraint
             ),
-            genreTitle.leadingAnchor.constraint(
+            stillCutTitle.leadingAnchor.constraint(
                 equalTo: safeArea.leadingAnchor,
                 constant: MagicNumber.HeaderView.leadingConstraint
             ),
-            genreTitle.bottomAnchor.constraint(
+            stillCutTitle.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
             )
         ])
@@ -109,14 +109,14 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         return sortedByTicketing
     }()
     
-    private let genreTitle: UILabel = {
-       let genreTitle = UILabel()
+    private let stillCutTitle: UILabel = {
+       let stillCutTitle = UILabel()
         
-        genreTitle.text = MagicLiteral.Title.genre
-        genreTitle.font = .boldSystemFont(
+        stillCutTitle.text = MagicLiteral.Title.stillCut
+        stillCutTitle.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.genreTitleFont
         )
-        genreTitle.textColor = UIColor.white
-        return genreTitle
+        stillCutTitle.textColor = UIColor.white
+        return stillCutTitle
     }()
 }
