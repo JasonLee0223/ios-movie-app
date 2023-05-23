@@ -101,10 +101,12 @@ final class KoreaBoxOfficeListCell: UICollectionViewListCell, Convertible, Getta
             rankView.topAnchor.constraint(equalTo: contentStackView.topAnchor),
             rankView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor),
             rankView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
-            rankView.widthAnchor.constraint(equalTo: contentStackView.widthAnchor, multiplier: 0.2),
+            rankView.widthAnchor.constraint(equalTo: contentStackView.widthAnchor,
+                                            multiplier: MagicNumber.Cell.widthAnchorMultiplier),
 
             summaryInformationView.topAnchor.constraint(equalTo: contentStackView.topAnchor),
-            summaryInformationView.leadingAnchor.constraint(equalTo: rankView.trailingAnchor, constant: 15),
+            summaryInformationView.leadingAnchor.constraint(equalTo: rankView.trailingAnchor,
+                                                            constant: MagicNumber.Cell.leadingAnchorConstraint),
             summaryInformationView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor),
             summaryInformationView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor)
         ])

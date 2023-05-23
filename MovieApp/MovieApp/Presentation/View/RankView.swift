@@ -52,7 +52,7 @@ final class RankView: UIStackView {
 
     private let rank: UILabel = {
         let rankLabel = UILabel()
-        rankLabel.font = UIFont.systemFont(ofSize: 30)
+        rankLabel.font = .boldSystemFont(ofSize: MagicNumber.Attributes.fontSize)
         rankLabel.textColor = .white
         return rankLabel
     }()
@@ -64,7 +64,7 @@ final class RankView: UIStackView {
 
     private let rankVariation: UILabel = {
         let rankVariationLabel = UILabel()
-        rankVariationLabel.font = UIFont.systemFont(ofSize: 15)
+        rankVariationLabel.font = .systemFont(ofSize: MagicNumber.Attributes.fontSize)
         rankVariationLabel.textColor = UIColor.white
         return rankVariationLabel
     }()

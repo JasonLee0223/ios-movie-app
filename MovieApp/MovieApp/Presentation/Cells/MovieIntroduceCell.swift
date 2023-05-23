@@ -66,7 +66,8 @@ final class MovieIntroduceCell: UICollectionViewCell, Gettable {
                 equalTo: posterStack.trailingAnchor
             ),
             posterImage.bottomAnchor.constraint(
-                equalTo: posterName.bottomAnchor, constant: -26
+                equalTo: posterName.bottomAnchor,
+                constant: MagicNumber.Cell.bottomAnchorConstraint
             )
         ])
     }

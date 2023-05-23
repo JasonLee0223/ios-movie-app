@@ -116,7 +116,7 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         let sortedByTicketing = UIButton()
         
         sortedByTicketing.layer.borderColor = UIColor.systemGray5.cgColor
-        sortedByTicketing.layer.borderWidth = 0.5
+        sortedByTicketing.layer.borderWidth = MagicNumber.borderWidth
         sortedByTicketing.layer.cornerRadius = MagicNumber.cornerRadius
         sortedByTicketing.setTitle(
             MagicLiteral.Title.ticketing,
@@ -134,7 +134,7 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
         
         stillCutTitle.text = MagicLiteral.Title.stillCut
         stillCutTitle.font = .boldSystemFont(
-            ofSize: MagicNumber.Attributes.genreTitleFont
+            ofSize: MagicNumber.Attributes.headerTitleFont
         )
         stillCutTitle.textColor = UIColor.white
         return stillCutTitle
@@ -143,9 +143,9 @@ final class HomeHeaderView: UICollectionReusableView, Gettable {
     private let koreaMovieListTitle: UILabel = {
         let koreaMovieListTitle = UILabel()
         
-        koreaMovieListTitle.text = "한국 박스오피스 영화 순위"
+        koreaMovieListTitle.text = MagicLiteral.Title.koreaBoxOfficeMovieList
         koreaMovieListTitle.font = .boldSystemFont(
-            ofSize: MagicNumber.Attributes.genreTitleFont
+            ofSize: MagicNumber.Attributes.headerTitleFont
         )
         koreaMovieListTitle.textColor = UIColor.white
         return koreaMovieListTitle

@@ -27,5 +27,6 @@ enum MagicLiteral {
         static let movieRealese = "영화 개봉순"
         static let ticketing = "예매율순"
         static let stillCut = "영화 스틸 컷"
+        static let koreaBoxOfficeMovieList = "한국 박스오피스 영화 순위"
     }
 }

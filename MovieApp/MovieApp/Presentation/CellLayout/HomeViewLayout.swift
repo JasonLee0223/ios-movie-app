@@ -36,8 +36,8 @@ struct HomeViewLayout {
     private func createIntroduceCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(0.1)
+            widthDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalWidth),
+            heightDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalHeight)
         )
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
@@ -52,7 +52,12 @@ struct HomeViewLayout {
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 0, leading: 0, bottom: 20, trailing: 0)
+        item.contentInsets = .init(
+            top: MagicNumber.zero,
+            leading: MagicNumber.zero,
+            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceWidthConstraint,
+            trailing: MagicNumber.zero
+        )
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceWidth),
@@ -83,8 +88,13 @@ struct HomeViewLayout {
         
         let section = NSCollectionLayoutSection(group: group ?? NSCollectionLayoutGroup(layoutSize: groupSize))
         section.boundarySupplementaryItems = [header]
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 230, trailing: 0)
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.contentInsets = .init(
+            top: MagicNumber.zero,
+            leading: MagicNumber.zero,
+            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.sectionBottomConstraint,
+            trailing: MagicNumber.zero
+        )
         
         return section
     }
@@ -92,8 +102,12 @@ struct HomeViewLayout {
     private func createstillCutCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(0.1)
+            widthDimension: .fractionalWidth(
+                MagicNumber.HeaderView.fractionalWidth
+            ),
+            heightDimension: .fractionalHeight(
+                MagicNumber.HeaderView.fractionalHeight
+            )
         )
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
@@ -103,15 +117,23 @@ struct HomeViewLayout {
         )
         
         let itemSize = NSCollectionLayoutSize(
-            widthDimension:.fractionalWidth(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction),
-            heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction)
+            widthDimension:.fractionalWidth(
+                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
+            ),
+            heightDimension: .fractionalHeight(
+                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
+            )
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0 / 3.0),
-            heightDimension: .fractionalWidth(0.35)
+            widthDimension: .fractionalWidth(
+                MagicNumber.RelatedToCompositionalLayout.GroupSize.stillCutWidth
+            ),
+            heightDimension: .fractionalWidth(
+                MagicNumber.RelatedToCompositionalLayout.GroupSize.stillCutHeight
+            )
         )
         
         let group = NSCollectionLayoutGroup.vertical(
@@ -120,9 +142,9 @@ struct HomeViewLayout {
         )
         group.contentInsets = .init(
             top: MagicNumber.zero,
-            leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.genreLeadingOrTrailing,
-            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.genreBottom,
-            trailing: MagicNumber.RelatedToCompositionalLayout.ContentInset.genreLeadingOrTrailing
+            leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.stillCutLeadingOrTrailing,
+            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.stillCutBottom,
+            trailing: MagicNumber.RelatedToCompositionalLayout.ContentInset.stillCutLeadingOrTrailing
          )
         
         let section = NSCollectionLayoutSection(group: group)
@@ -135,8 +157,8 @@ struct HomeViewLayout {
     private func createKoreaMovieListCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(0.1)
+            widthDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalWidth),
+            heightDimension: .fractionalHeight(MagicNumber.HeaderView.fractionalHeight)
         )
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
@@ -146,16 +168,29 @@ struct HomeViewLayout {
         )
 
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(0.2)
+            widthDimension: .fractionalWidth(
+                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
+            ),
+            heightDimension: .fractionalWidth(
+                MagicNumber.RelatedToCompositionalLayout.ItemSize.koreaMovieListHeight
+            )
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 5, leading: 0, bottom: 5, trailing: 0)
+        item.contentInsets = .init(
+            top: MagicNumber.RelatedToCompositionalLayout.ContentInset.koreaMovieListTopOrBottom,
+            leading: MagicNumber.zero,
+            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.koreaMovieListTopOrBottom,
+            trailing: MagicNumber.zero
+        )
         
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+            widthDimension: .fractionalWidth(
+                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
+            ),
+            heightDimension: .fractionalHeight(
+                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
+            )
         )
         
         let group = NSCollectionLayoutGroup.vertical(
