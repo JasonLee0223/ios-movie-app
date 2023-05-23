@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Box<T> {
+final class Observable<T> {
     
     typealias Listener = (T) -> Void
     
