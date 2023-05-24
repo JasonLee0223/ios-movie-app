@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SectionViewModel<M: BusinessModel> {
+struct SectionViewModel<M> {
     var type: SectionList
     var products: [M]
 }

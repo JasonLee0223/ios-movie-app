@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Observable<T: BusinessModel> {
+final class Observable<T> {
     
     typealias Listener = (T) -> Void
     
