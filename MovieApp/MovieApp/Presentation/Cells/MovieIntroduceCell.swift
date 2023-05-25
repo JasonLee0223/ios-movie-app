@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieIntroduceCell: UICollectionViewCell, ReusableCell {
+final class MovieIntroduceCell: UICollectionViewCell, ConfigurableCell {
     
     //MARK: - Initializer
     
@@ -19,6 +19,15 @@ final class MovieIntroduceCell: UICollectionViewCell, ReusableCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureOfLayout()
+    }
+    
+    func configure(_ item: TrendMovieList, at indexPath: IndexPath) {
+        guard let movieImage = UIImage(data: item.posterImage) else {
+            return
+        }
+        
+        setPoster(with: item.posterName)
+        setPoster(with: movieImage)
     }
     
     //MARK: - Method
