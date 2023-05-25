@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     }
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    private var trendMovieListDiffableDataSource: UICollectionViewDiffableDataSource<SectionList, TrendMovie>!
+    private var diffableDataSource: UICollectionViewDiffableDataSource<SectionList, BusinessModelWrapper>!
 }
 
 //MARK: - Configure of UI Components
