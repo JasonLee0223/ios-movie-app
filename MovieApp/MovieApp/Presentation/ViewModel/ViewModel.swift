@@ -7,9 +7,18 @@
 
 import Foundation
 
+// VC (옵저빙 해야 하는 애들, bind해야하는 애들) -> ViewModel (알아서 업뎃한다...)
+
 struct SectionViewModel {
     var type: SectionList
     var items: [BusinessModelWrapper]
+    
+    var isOn: Observable<Bool> = Observable(false)
+}
+
+let viewModel = SectionViewModel()
+viewModel.isOn.bind {
+    
 }
 
 final class ViewModel {

@@ -12,8 +12,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureOfUI()
-        configureHierarchy()
+//        configureOfUI()
+//        configureHierarchy()
+        
     }
     
     private let viewModel = ViewModel()
@@ -110,6 +111,45 @@ extension HomeViewController {
 //MARK: - Configure of DiffableDataSource
 extension HomeViewController {
     
+    private func homeSnapShot() -> NSDiffableDataSourceSnapshot<SectionList, BusinessModelWrapper>{
+        
+        //TODO: - SnapShot 업데이트 및 ViewModel로부터 데이터 받아오기
+        
+        viewModel.sectionStorage.forEach { (key: SectionList, value: Observable<SectionViewModel>) in
+            
+            var snapshot = NSDiffableDataSourceSnapshot<SectionList, BusinessModelWrapper>()
+            
+            SectionList.allCases.forEach { sectionList in
+                
+                guard let sectionType = viewModel.sectionStorage[sectionList] else { return }
+                sectionType.bind { value in
+                    self.collectionView.reloadSections(IndexSet(integer: sectionList.index))
+                    
+                    value?.items.forEach({ businessModelWrapper in
+                        switch businessModelWrapper {
+                        case .trendMovie(TrendMovie):
+                            snapshot.appendSections([.trendMoviePosterSection])
+                            snapshot.appendItems([TrendMovie])
+                            return snapshot
+                            
+                        case .stillCut(StillCut):
+                            snapshot.appendSections([.stillCutSection])
+                            snapshot.appendItems([StillCut])
+                            return snapshot
+                            
+                        case .koreaBoxOfficeList(KoreaBoxOfficeList):
+                            snapshot.appendSections([.koreaMovieListSection])
+                            snapshot.appendItems([KoreaBoxOfficeList])
+                            return snapshot
+                        }
+                    })
+                    
+                }
+            }
+            
+        }
+    }
+    
     private func configureOfDiffableDataSource() {
         
         let trendCellRegistration = UICollectionView.CellRegistration<MovieIntroduceCell, TrendMovie> {
@@ -173,11 +213,18 @@ extension HomeViewController {
             }
         }
         
-        //TODO: - SnapShot 업데이트 및 ViewModel로부터 데이터 받아오기
-        var snapshot = NSDiffableDataSourceSnapshot<SectionList, BusinessModelWrapper>()
-        snapshot.appendSections([.koreaMovieListSection, .stillCutSection, .trendMoviePosterSection])
-        snapshot.appendItems([])
-        
-        diffableDataSource.apply(snapshot)
+        let snapShot = homeSnapShot()
+        diffableDataSource?.apply(snapShot)
     }
 }
+
+//viewModel.loadKoreaBoxOfficeMovieList { movieInfo, stillCut, koreaBoxOfficeList in
+//    print("=========== [MovieInfo] ===========")
+//    print(movieInfo)
+//
+//    print("=========== [StillCut] ===========")
+//    print(stillCut)
+//
+//    print("=========== [KoreaBoxOfficeList] ===========")
+//    print(koreaBoxOfficeList)
+//}
