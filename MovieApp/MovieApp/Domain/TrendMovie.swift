@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TrendMovie {
+struct TrendMovie: Hashable {
     let posterImage: Data
     let posterName: String
 }
