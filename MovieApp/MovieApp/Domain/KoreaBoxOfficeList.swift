@@ -7,21 +7,37 @@
 
 import Foundation
 
-struct KoreaBoxOfficeList: Hashable {
+struct KoreaBoxOfficeList: BusinessModel {
     let identifier = UUID()
     let openDate: String
     let rank: Rank
     let movieSummaryInformation: MovieSummaryInformation
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
 }
 
-internal struct Rank: Hashable {
+internal struct Rank: BusinessModel {
+    var identifier: UUID
+    
     let rank: String
     let rankOldAndNew: RankOldAndNew
     let rankVariation: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
 }
 
-internal struct MovieSummaryInformation: Hashable {
+internal struct MovieSummaryInformation: BusinessModel {
+    var identifier: UUID
+    
     let movieName: String
     let audienceCount: String
     let audienceAccumulated: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
 }

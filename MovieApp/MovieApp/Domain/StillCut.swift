@@ -7,6 +7,12 @@
 
 import Foundation
 
-struct StillCut {
+struct StillCut: BusinessModel {
+    var identifier: UUID
+    
     let genreImagePath: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
 }

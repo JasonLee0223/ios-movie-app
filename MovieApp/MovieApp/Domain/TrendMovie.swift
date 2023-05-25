@@ -7,7 +7,17 @@
 
 import Foundation
 
-struct TrendMovie: Hashable {
+protocol BusinessModel: Hashable {
+    var identifier: UUID { get }
+}
+
+struct TrendMovie: BusinessModel {
+    var identifier: UUID
+    
     let posterImage: Data
     let posterName: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
 }
