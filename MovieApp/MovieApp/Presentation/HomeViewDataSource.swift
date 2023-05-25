@@ -68,22 +68,22 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            viewModel.loadTrendOfWeekMovieListFromTVDB { trendMovieListStorage in
-                
-                trendMovieListStorage.forEach { trendMovieList in
-                    
-                    self.viewModel.fetchImage(imagePath: trendMovieList.posterImagePath) { imageData in
-                        
-                        DispatchQueue.main.async {
-                            guard let image = UIImage(data: imageData) else {
-                                return
-                            }
-                            cell.setPoster(with: image)
-                            cell.setPoster(with: trendMovieList.posterName)
-                        }
-                    }
-                }
-            }
+//            viewModel.loadTrendOfWeekMovieListFromTVDB { trendMovieListStorage in
+//                
+//                trendMovieListStorage.forEach { trendMovieList in
+//                    
+//                    self.viewModel.fetchImage(imagePath: trendMovieList.posterImagePath) { imageData in
+//                        
+//                        DispatchQueue.main.async {
+//                            guard let image = UIImage(data: imageData) else {
+//                                return
+//                            }
+//                            cell.setPoster(with: image)
+//                            cell.setPoster(with: trendMovieList.posterName)
+//                        }
+//                    }
+//                }
+//            }
             
             DispatchQueue.main.async {
                 collectionView.reloadData()

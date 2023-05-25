@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     }
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    private var dataSource = HomeViewDataSource()
+    private var trendMovieListDiffableDataSource: UICollectionViewDiffableDataSource<SectionList, KoreaBoxOfficeList>!
 }
 
 //MARK: - Configure of UI Components
@@ -79,28 +79,6 @@ extension HomeViewController {
         collectionView.clipsToBounds = false
         collectionView.backgroundColor = .black
         collectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
-        collectionView.dataSource = dataSource
-        
-        collectionView.register(
-            HomeHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: HomeHeaderView.reuseIdentifier
-        )
-        
-        collectionView.register(
-            MovieIntroduceCell.self,
-            forCellWithReuseIdentifier: MovieIntroduceCell.reuseIdentifier
-        )
-        
-        collectionView.register(
-            MovieStillCutCell.self,
-            forCellWithReuseIdentifier: MovieStillCutCell.reuseIdentifier
-        )
-        
-        collectionView.register(
-            KoreaBoxOfficeListCell.self,
-            forCellWithReuseIdentifier: KoreaBoxOfficeListCell.reuseIdentifier
-        )
     }
 }
 
@@ -128,22 +106,10 @@ extension HomeViewController {
     }
 }
 
-
-
-//let aaa = moviePosterPathGroup.map { posterImagePath in
-//    let makeImagePath = "\(TVDBBasic.imageURL)\(posterImagePath)"
-//
-//    guard let url = URL(string: makeImagePath) else {
-//        return
-//    }
-//
-//    var image : UIImage?
-//
-//    DispatchQueue.global().async {
-//        if let data = try? Data(contentsOf: url) {
-//            DispatchQueue.main.async {
-//                image = UIImage(data: data)
-//            }
-//        }
-//    }
-//}
+//MARK: - Configure of DiffableDataSource
+extension HomeViewController {
+    
+    private func configureOfDiffableDataSource() {
+        
+    }
+}
