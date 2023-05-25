@@ -14,12 +14,12 @@ struct SectionViewModel<M> {
 
 final class ViewModel {
     
-    var sectionStorage: [SectionList: Observable<TrendMovieList>]
+//    var sectionStorage: [SectionList: Observable<TrendMovieList>]
     
     init() {
         self.networkService = NetworkService()
         
-        self.sectionStorage = [.trendMoviePosterSection: Observable<TrendMovieList>(TrendMovieList(posterImagePath: "", posterName: ""))]
+//        self.sectionStorage = [.trendMoviePosterSection: Observable<TrendMovieList>(TrendMovieList(posterImagePath: "", posterName: ""))]
         
     }
     
@@ -48,11 +48,14 @@ final class ViewModel {
         Task {
             self.networkService.loadTrendingMovieListData { resultStorage in
                 
-                let makeTrendMovieList = resultStorage.map { result in
-                    TrendMovieList(posterImagePath: result.movieImageURL,
-                                   posterName: result.movieKoreaTitle)
+                var trendMovieList: [TrendMovieList] = []
+                
+                for result in resultStorage {
+                    self.fetchImage(imagePath: result.movieImageURL) { data in
+                        trendMovieList.append(TrendMovieList(posterImage: data, posterName: result.movieKoreaTitle))
+                    }
                 }
-                completion(makeTrendMovieList)
+                completion(trendMovieList)
             }
         }
     }
