@@ -7,43 +7,29 @@
 
 import Foundation
 
-struct SectionViewModel<M> {
+struct SectionViewModel {
     var type: SectionList
-    var products: [M]
+    var items: [BusinessModelWrapper]
 }
 
 final class ViewModel {
     
-//    var sectionStorage: [SectionList: Observable<TrendMovieList>]
+    var sectionStorage: [SectionList: Observable<SectionViewModel>]
     
     init() {
         self.networkService = NetworkService()
         
-//        self.sectionStorage = [.trendMoviePosterSection: Observable<TrendMovieList>(TrendMovieList(posterImagePath: "", posterName: ""))]
-        
+        self.sectionStorage = [.trendMoviePosterSection: Observable<SectionViewModel>(),
+                               .stillCutSection: Observable<SectionViewModel>(),
+                               .koreaMovieListSection: Observable<SectionViewModel>()
+                            ]
     }
     
-    func countItem(section: Int) -> Int {
-        
-        let targetType = SectionList.allCases[section]          // sectionName = trendMoviePosterSection
-        
-        switch targetType {
-        case .trendMoviePosterSection:
-            
-//            sectionStorage
-            
-            
-//            print(count)
-//            return count
-            return 20
-        case .stillCutSection:
-            return 20
-        case .koreaMovieListSection:
-            return 20
-        }
-        
-    }
-    
+    private let networkService: NetworkService
+}
+
+//MARK: - Use at TMDB
+extension ViewModel {
     func loadTrendOfWeekMovieListFromTVDB(completion: @escaping ([TrendMovie]) -> Void) {
         Task {
             self.networkService.loadTrendingMovieListData { resultStorage in
@@ -52,7 +38,7 @@ final class ViewModel {
                 
                 for result in resultStorage {
                     self.fetchImage(imagePath: result.movieImageURL) { data in
-                        trendMovieList.append(TrendMovie(posterImage: data, posterName: result.movieKoreaTitle))
+                        trendMovieList.append(TrendMovie(identifier: UUID(), posterImage: data, posterName: result.movieKoreaTitle))
                     }
                 }
                 completion(trendMovieList)
@@ -74,52 +60,85 @@ final class ViewModel {
             completion(imageData)
         }
     }
+}
+
+//MARK: - Use at KoreaMovie
+extension ViewModel {
     
-    func kakaoPosterImageTest(completion: @escaping (URL) -> Void) {
+    func kakaoPosterImageTest(movieName: [String], completion: @escaping (Data) -> Void) {
         
-        let mockData = ["분노의 질주: 라이드 오어 다이", "스즈메의 문단속", "슬픔의 삼각형", "가디언즈 오브 갤럭시: Volume 3",
-         "극장판 짱구는 못말려: 동물소환 닌자 배꼽수비대", "더 퍼스트 슬램덩크", "슈퍼 마리오 브라더스",
-         "문재인입니다", "드림", "존 윅 4"]
-        
-        networkService.loadMoviePosterImage(movieNameGroup: mockData) { document in
+        networkService.loadMoviePosterImage(movieNameGroup: movieName) { document in
             guard let imageURL = URL(string:document.imageURL) else {
                 return
             }
-            completion(imageURL)
+            
+            guard let imageData = try? Data(contentsOf: imageURL) else {
+                return
+            }
+            completion(imageData)
         }
     }
+}
+
+//MARK: - Use at Kakao
+extension ViewModel {
     
-    func test() {
+    func loadKoreaBoxOfficeMovieList(completion: @escaping ([MovieInfo], [StillCut], [KoreaBoxOfficeList]) -> Void) {
         
         var movieInfoGroup = [MovieInfo]()
+        var stillCutGroup = [StillCut]()
+        var koreaBoxOfficeGroup = [KoreaBoxOfficeList]()
         
         networkService.loadDailyBoxOfficeData { dailyBoxOfficeListStorage in
             
-            let movieCodegroup = dailyBoxOfficeListStorage.map{$0.movieCode}
+            let movieCodeGroup = dailyBoxOfficeListStorage.map{ $0.movieCode }
+            let movieNameGroup = dailyBoxOfficeListStorage.map{ $0.movieName }
             
-            self.networkService.loadMovieDetailData(movieCodeGroup: movieCodegroup) { movieInfo in
-                movieInfoGroup.append(movieInfo)
-                print(movieInfo)
-                //MARK: - 여기까지 MovieDetail 가져오는 로직 성공
+            let koreaBoxOfficeListGroup = dailyBoxOfficeListStorage.map { dailyBoxOfficeList in
+                KoreaBoxOfficeList(
+                    identifier: UUID(), openDate: dailyBoxOfficeList.openDate,
+                    rank: Rank(
+                        identifier: UUID(),
+                        rank: dailyBoxOfficeList.rank,
+                        rankOldAndNew: dailyBoxOfficeList.rankOldAndNew,
+                        rankVariation: dailyBoxOfficeList.rankVariation
+                    ),
+                    movieSummaryInformation: MovieSummaryInformation(
+                        identifier: UUID(),
+                        movieName: dailyBoxOfficeList.movieName,
+                        audienceCount: dailyBoxOfficeList.audienceCount,
+                        audienceAccumulated: dailyBoxOfficeList.audienceAccumulate
+                    )
+                )
             }
             
+            self.kakaoPosterImageTest(movieName: movieNameGroup) { data in
+                stillCutGroup.append(.init(identifier: UUID(), genreImagePath: data))
+            }
+            
+            self.networkService.loadMovieDetailData(movieCodeGroup: movieCodeGroup) { movieInfo in
+                movieInfoGroup.append(movieInfo)
+            }
+            koreaBoxOfficeGroup = koreaBoxOfficeListGroup
+        }
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
+            completion(movieInfoGroup, stillCutGroup, koreaBoxOfficeGroup)
         }
     }
-    
-    private let networkService: NetworkService
 }
 
-//MARK: - ImageURL
-//    let moviePosterPathGroup = resultStorage.map{ $0.movieImageURL }
-//
-//    if let makeImgaeURL = try? moviePosterPathGroup.map({ posterImagePath in
-//        let imageURLPath = "\(TVDBBasic.imageURL)\(posterImagePath)"
-//
-//        guard let imageURL = URL(string: imageURLPath) else {
-//            throw URLComponentsError.invalidComponent
-//        }
-//        return imageURL
-//    }) {
-//        imageURLGroup = makeImgaeURL
-//        completion(imageURLGroup)
-//    }
+//MARK: - Count Method
+extension ViewModel {
+    
+    func countSection() -> Int {
+        return self.sectionStorage.count
+    }
+    
+    func countItem(section: Int) -> Int {
+        let targetType = SectionList.allCases[section]
+        
+        guard let items = sectionStorage[targetType]?.value?.items else { return 0 }
+        return items.count
+    }
+}
