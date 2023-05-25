@@ -10,7 +10,7 @@ import Foundation
 struct StillCut: BusinessModel {
     var identifier: UUID
     
-    let genreImagePath: String
+    let genreImagePath: Data
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
