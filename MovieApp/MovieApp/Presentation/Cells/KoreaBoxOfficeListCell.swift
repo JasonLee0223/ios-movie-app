@@ -7,8 +7,7 @@
 
 import UIKit
 
-final class KoreaBoxOfficeListCell: UICollectionViewListCell,
-                                        Convertible, ReusableCell, ConfigurableCell {
+final class KoreaBoxOfficeListCell: UICollectionViewListCell, Convertible, ConfigurableCell {
     
     //MARK: - Property
 

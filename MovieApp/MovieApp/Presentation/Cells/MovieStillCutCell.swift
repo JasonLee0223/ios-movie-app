@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieStillCutCell: UICollectionViewCell, ReusableCell {
+final class MovieStillCutCell: UICollectionViewCell, ConfigurableCell {
     
     //MARK: - Initializer
     override init(frame: CGRect) {
@@ -21,6 +21,12 @@ final class MovieStillCutCell: UICollectionViewCell, ReusableCell {
     }
     
     //MARK: - Method
+    func configure(_ item: StillCut, at indexPath: IndexPath) {
+        let imagePath = item.genreImagePath
+        
+//        setGenrePoster(with: <#T##UIImage#>)
+    }
+    
     func setGenrePoster(with image: UIImage) {
         stillCutImage.image = image
     }

@@ -21,6 +21,8 @@ final class MovieIntroduceCell: UICollectionViewCell, ConfigurableCell {
         configureOfLayout()
     }
     
+    //MARK: - Public Method
+    
     func configure(_ item: TrendMovie, at indexPath: IndexPath) {
         guard let movieImage = UIImage(data: item.posterImage) else {
             return
@@ -30,16 +32,49 @@ final class MovieIntroduceCell: UICollectionViewCell, ConfigurableCell {
         setPoster(with: movieImage)
     }
     
-    //MARK: - Method
-    func setPoster(with image: UIImage) {
+    //MARK: - Private Property
+    
+    private let posterStack: UIStackView = {
+        let posterStack = UIStackView()
+        posterStack.axis = .vertical
+        posterStack.alignment = .fill
+        posterStack.distribution = .fill
+        return posterStack
+    }()
+    
+    private let posterImage: UIImageView = {
+        let posterImage = UIImageView()
+        posterImage.contentMode = .scaleToFill
+        posterImage.clipsToBounds = true
+        posterImage.layer.cornerRadius = MagicNumber.cornerRadius
+        return posterImage
+    }()
+    
+    private let posterName: UILabel = {
+       let posterName = UILabel()
+        //TODO: - Noto Sans KR font로 변경
+        posterName.font = .systemFont(
+            ofSize: MagicNumber.Attributes.fontSize
+        )
+        posterName.textColor = .white
+        return posterName
+    }()
+}
+
+//MARK: - Private Method
+extension MovieIntroduceCell {
+    
+    private func setPoster(with image: UIImage) {
         posterImage.image = image
     }
     
-    func setPoster(with name: String) {
+    private func setPoster(with name: String) {
         posterName.text = name
     }
-    
-    //MARK: - Private Method
+}
+
+//MARK: - Configure of Layout
+extension MovieIntroduceCell {
     
     private func configureOfLayout() {
         let safeArea = self.contentView.safeAreaLayoutGuide
@@ -80,32 +115,4 @@ final class MovieIntroduceCell: UICollectionViewCell, ConfigurableCell {
             )
         ])
     }
-    
-    //MARK: - Private Property
-    
-    private let posterStack: UIStackView = {
-        let posterStack = UIStackView()
-        posterStack.axis = .vertical
-        posterStack.alignment = .fill
-        posterStack.distribution = .fill
-        return posterStack
-    }()
-    
-    private let posterImage: UIImageView = {
-        let posterImage = UIImageView()
-        posterImage.contentMode = .scaleToFill
-        posterImage.clipsToBounds = true
-        posterImage.layer.cornerRadius = MagicNumber.cornerRadius
-        return posterImage
-    }()
-    
-    private let posterName: UILabel = {
-       let posterName = UILabel()
-        //TODO: - Noto Sans KR font로 변경
-        posterName.font = .systemFont(
-            ofSize: MagicNumber.Attributes.fontSize
-        )
-        posterName.textColor = .white
-        return posterName
-    }()
 }
