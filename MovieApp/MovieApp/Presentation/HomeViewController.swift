@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
         configureHierarchy()
     }
     
+    private let viewModel = ViewModel()
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var diffableDataSource: UICollectionViewDiffableDataSource<SectionList, BusinessModelWrapper>?
 }
