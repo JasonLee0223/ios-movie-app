@@ -8,6 +8,6 @@
 import Foundation
 
 struct TrendMovieList {
-    let posterImagePath: String
+    let posterImage: Data
     let posterName: String
 }
