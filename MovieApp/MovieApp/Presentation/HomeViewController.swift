@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     }
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    private var trendMovieListDiffableDataSource: UICollectionViewDiffableDataSource<SectionList, KoreaBoxOfficeList>!
+    private var trendMovieListDiffableDataSource: UICollectionViewDiffableDataSource<SectionList, TrendMovie>!
 }
 
 //MARK: - Configure of UI Components
@@ -110,6 +110,20 @@ extension HomeViewController {
 extension HomeViewController {
     
     private func configureOfDiffableDataSource() {
+        
+        let trendCellRegistration = UICollectionView.CellRegistration<MovieIntroduceCell, TrendMovie> {
+            (cell, indexPath, trendMovie) in
+            cell.configure(trendMovie, at: indexPath)
+        }
+        
+        trendMovieListDiffableDataSource = UICollectionViewDiffableDataSource<SectionList, TrendMovie>(
+            collectionView: collectionView, cellProvider: {
+                (collectionView, indexPath, trendMovie) in
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: trendCellRegistration, for: indexPath, item: trendMovie
+                )
+            }
+        )
         
     }
 }
