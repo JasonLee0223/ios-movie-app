@@ -8,7 +8,7 @@
 import Foundation
 
 struct KoreaBoxOfficeList: BusinessModel {
-    let identifier = UUID()
+    let identifier: UUID
     let openDate: String
     let rank: Rank
     let movieSummaryInformation: MovieSummaryInformation
