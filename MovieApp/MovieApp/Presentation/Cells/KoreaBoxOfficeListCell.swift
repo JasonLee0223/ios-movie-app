@@ -7,7 +7,8 @@
 
 import UIKit
 
-final class KoreaBoxOfficeListCell: UICollectionViewListCell, Convertible, ReusableCell {
+final class KoreaBoxOfficeListCell: UICollectionViewListCell,
+                                        Convertible, ReusableCell, ConfigurableCell {
     
     //MARK: - Property
 
@@ -26,7 +27,19 @@ final class KoreaBoxOfficeListCell: UICollectionViewListCell, Convertible, Reusa
         configureOfAllUIComponents()
     }
     
-    func configureOfCellRegistration(with dailyBoxOffice: KoreaBoxOfficeList) {
+    //MARK: - Public Method
+    func configure(_ item: KoreaBoxOfficeList, at indexPath: IndexPath) {
+        configureOfCellRegistration(with: item)
+    }
+    
+    //MARK: - Private Property
+    private let selector = Selector()
+    private let converter = Converter()
+}
+
+//MARK: - Private Method
+extension KoreaBoxOfficeListCell {
+    private func configureOfCellRegistration(with dailyBoxOffice: KoreaBoxOfficeList) {
             
         let audienceCount = converter.convertToNumberFormatter(
             dailyBoxOffice.movieSummaryInformation.audienceCount,
@@ -72,7 +85,10 @@ final class KoreaBoxOfficeListCell: UICollectionViewListCell, Convertible, Reusa
         
         accessories = [.disclosureIndicator()]
     }
-    
+}
+
+//MARK: - Configure of Layout
+extension KoreaBoxOfficeListCell {
     private func configureOfAllUIComponents() {
 
         let contentStackView = UIStackView()
@@ -111,8 +127,4 @@ final class KoreaBoxOfficeListCell: UICollectionViewListCell, Convertible, Reusa
             summaryInformationView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor)
         ])
     }
-    
-    //MARK: - Private Property
-    private let selector = Selector()
-    private let converter = Converter()
 }
