@@ -44,15 +44,15 @@ final class ViewModel {
         
     }
     
-    func loadTrendOfWeekMovieListFromTVDB(completion: @escaping ([TrendMovieList]) -> Void) {
+    func loadTrendOfWeekMovieListFromTVDB(completion: @escaping ([TrendMovie]) -> Void) {
         Task {
             self.networkService.loadTrendingMovieListData { resultStorage in
                 
-                var trendMovieList: [TrendMovieList] = []
+                var trendMovieList: [TrendMovie] = []
                 
                 for result in resultStorage {
                     self.fetchImage(imagePath: result.movieImageURL) { data in
-                        trendMovieList.append(TrendMovieList(posterImage: data, posterName: result.movieKoreaTitle))
+                        trendMovieList.append(TrendMovie(posterImage: data, posterName: result.movieKoreaTitle))
                     }
                 }
                 completion(trendMovieList)

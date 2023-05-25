@@ -21,7 +21,7 @@ final class MovieIntroduceCell: UICollectionViewCell, ConfigurableCell {
         configureOfLayout()
     }
     
-    func configure(_ item: TrendMovieList, at indexPath: IndexPath) {
+    func configure(_ item: TrendMovie, at indexPath: IndexPath) {
         guard let movieImage = UIImage(data: item.posterImage) else {
             return
         }
