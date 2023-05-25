@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     }
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    private var diffableDataSource: UICollectionViewDiffableDataSource<SectionList, BusinessModelWrapper>!
+    private var diffableDataSource: UICollectionViewDiffableDataSource<SectionList, BusinessModelWrapper>?
 }
 
 //MARK: - Configure of UI Components
@@ -145,7 +145,7 @@ extension HomeViewController {
             }
         }
         
-        diffableDataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
+        diffableDataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) in
             switch kind {
             case UICollectionView.elementKindSectionHeader:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(
