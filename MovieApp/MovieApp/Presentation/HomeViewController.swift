@@ -116,14 +116,67 @@ extension HomeViewController {
             cell.configure(trendMovie, at: indexPath)
         }
         
-        trendMovieListDiffableDataSource = UICollectionViewDiffableDataSource<SectionList, TrendMovie>(
-            collectionView: collectionView, cellProvider: {
-                (collectionView, indexPath, trendMovie) in
+        let stillCusRegistration = UICollectionView.CellRegistration<MovieStillCutCell, StillCut> {
+            (cell, indexPath, stillCut) in
+            
+            cell.configure(stillCut, at: indexPath)
+        }
+        
+        let koreaBoxOfficeListCellRegistration = UICollectionView.CellRegistration<KoreaBoxOfficeListCell, KoreaBoxOfficeList> {
+            (cell, indexPath, koreaBoxOfficeList) in
+            cell.configure(koreaBoxOfficeList, at: indexPath)
+        }
+        
+        diffableDataSource = UICollectionViewDiffableDataSource<SectionList, BusinessModelWrapper>(collectionView: collectionView) {
+            (collectionView, indexPath, businessModelWrapper) in
+            switch businessModelWrapper {
+            case let .trendMovie(trendMovieItem):
                 return collectionView.dequeueConfiguredReusableCell(
-                    using: trendCellRegistration, for: indexPath, item: trendMovie
+                    using: trendCellRegistration, for: indexPath, item: trendMovieItem
+                )
+            case let .stillCut(stillCutItem):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: stillCusRegistration, for: indexPath, item: stillCutItem
+                )
+            case let .koreaBoxOfficeList(koreaBoxOfficeListItem):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: koreaBoxOfficeListCellRegistration, for: indexPath, item: koreaBoxOfficeListItem
                 )
             }
-        )
+        }
         
+        diffableDataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: HomeHeaderView.reuseIdentifier,
+                    for: indexPath
+                ) as? HomeHeaderView else {
+                    return UICollectionReusableView()
+                }
+                
+                let sectionType = SectionList.allCases[indexPath.section]
+                
+                switch sectionType {
+                case .trendMoviePosterSection:
+                    headerView.configureOfSortStackLayout()
+                case .stillCutSection:
+                    headerView.configureOfStillCutLayout()
+                case .koreaMovieListSection:
+                    headerView.configureOfKoreaMovieLayout()
+                }
+                return headerView
+            default:
+                assert(false, "Invalid UICollectionReusableView")
+            }
+        }
+        
+        //TODO: - SnapShot 업데이트 및 ViewModel로부터 데이터 받아오기
+        var snapshot = NSDiffableDataSourceSnapshot<SectionList, BusinessModelWrapper>()
+        snapshot.appendSections([.koreaMovieListSection, .stillCutSection, .trendMoviePosterSection])
+        snapshot.appendItems([])
+        
+        diffableDataSource.apply(snapshot)
     }
 }
