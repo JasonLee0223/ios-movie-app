@@ -298,6 +298,7 @@
 			children = (
 				5B3F1BF02A146EAC0062BE99 /* HomeViewController.swift */,
 				5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */,
+				5B9D270B2A20AF7200E9C9C0 /* SupplementaryView */,
 				5B3F1C7B2A14EE040062BE99 /* CellLayout */,
 				5B3F1C722A14C82F0062BE99 /* Cells */,
 				5BC16D6D2A1C922100B7F3BA /* ViewModel */,
@@ -477,7 +478,6 @@
 			isa = PBXGroup;
 			children = (
 				5B591BD22A1D064B0079CAC0 /* Interface */,
-				5B3F1C732A14C8730062BE99 /* HomeHeaderView.swift */,
 				5B3F1C752A14C8DD0062BE99 /* TrendMovieListCell.swift */,
 				5B3F1C772A14C9010062BE99 /* MovieStillCutCell.swift */,
 				5BC16D5B2A1B5D3200B7F3BA /* KoreaBoxOfficeListCell.swift */,
@@ -529,6 +529,14 @@
 				5B9D27092A20ADCA00E9C9C0 /* DataLoadError.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		5B9D270B2A20AF7200E9C9C0 /* SupplementaryView */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C732A14C8730062BE99 /* HomeHeaderView.swift */,
+			);
+			path = SupplementaryView;
 			sourceTree = "<group>";
 		};
 		5B9FA2F52A18C8C40045BE35 /* KOFIC */ = {
