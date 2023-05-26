@@ -93,9 +93,47 @@ extension ViewModel {
     }
 }
 
-//MARK: - [privaet] Use at Kakao
+//MARK: - [private] Use at KOFIC
 extension ViewModel {
     
+    /// KOFIC
+    private func loadKoreaBoxOfficeMovieList() async throws -> [KoreaBoxOfficeList] {
+        let dailyBoxOfficeListGroup = try await networkService.loadDailyBoxOfficeMovieListData()
+        
+        let koreaBoxOfficeMovieListGroup = dailyBoxOfficeListGroup.map { dailyBoxOfficeList in
+            KoreaBoxOfficeList(
+                identifier: UUID(),
+                openDate: dailyBoxOfficeList.openDate,
+                rank: Rank(
+                    identifier: UUID(),
+                    rank: dailyBoxOfficeList.rank,
+                    rankOldAndNew: dailyBoxOfficeList.rankOldAndNew,
+                    rankVariation: dailyBoxOfficeList.rankVariation
+                ),
+                movieSummaryInformation: MovieSummaryInformation(
+                    identifier: UUID(),
+                    movieName: dailyBoxOfficeList.movieName,
+                    audienceCount: dailyBoxOfficeList.audienceCount,
+                    audienceAccumulated: dailyBoxOfficeList.audienceAccumulate
+                )
+            )
+        }
+        
+        return koreaBoxOfficeMovieListGroup
+    }
+    
+    private func loadMovieNameGroup() async throws -> [String] {
+        return try await networkService.loadDailyBoxOfficeMovieListData().map{ $0.movieName }
+    }
+    
+    private func loadMovieDetailInformation() async throws -> [MovieInfo] {
+        let dailyBoxOfficeListGroup = try await networkService.loadDailyBoxOfficeMovieListData()
+        let movieCodeGroup = dailyBoxOfficeListGroup.map{ $0.movieCode }
+        let movieDetailList = try await networkService.loadMovieDetailData(movieCodeGroup: movieCodeGroup)
+        return movieDetailList
+    }
+    
+    /// Origin Method
     private func loadKoreaBoxOfficeMovieList(completion: @escaping ([MovieInfo], [StillCut], [KoreaBoxOfficeList]) -> Void) {
         
         var movieInfoGroup = [MovieInfo]()
