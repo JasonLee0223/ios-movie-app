@@ -19,7 +19,8 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.countItem(section: section)
+//        viewModel.countItem(section: section)
+        return 0
     }
     
     //MARK: - HeaderView
@@ -69,11 +70,11 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             }
             
 //            viewModel.loadTrendOfWeekMovieListFromTVDB { trendMovieListStorage in
-//                
+//
 //                trendMovieListStorage.forEach { trendMovieList in
-//                    
+//
 //                    self.viewModel.fetchImage(imagePath: trendMovieList.posterImagePath) { imageData in
-//                        
+//
 //                        DispatchQueue.main.async {
 //                            guard let image = UIImage(data: imageData) else {
 //                                return
