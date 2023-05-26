@@ -26,33 +26,36 @@ final class ViewModel {
 //MARK: - Public Method
 extension ViewModel {
     
-    func fetchHomeCollectionViewSectionItems(completion: @escaping ([BusinessModelWrapper]) -> Void) {
+    func fetchHomeCollectionViewSectionItemsRelated(be section: SectionList, completion: @escaping ([BusinessModelWrapper]) -> Void) {
         /// Notice: Need HomeCollectionView Data
         /// 1. Array of TrendMovie
         /// 2. Array of StillCut
         /// 3. Array of KoreaBoxOfficeList
         
-        Task {
-            let businessModelToTrendMovie = try await loadTrendOfWeekMovieListFromTMDB().map { trendMovie in
-                BusinessModelWrapper.trendMovie(trendMovie)
+        switch section {
+        case .trendMoviePosterSection:
+            Task {
+                let businessModelToTrendMovie = try await loadTrendOfWeekMovieListFromTMDB().map { trendMovie in
+                    BusinessModelWrapper.trendMovie(trendMovie)
+                }
+                completion(businessModelToTrendMovie)
             }
-            completion(businessModelToTrendMovie)
-        }
-        
-        Task {
-            let stillCutPosterImageData = try await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
-            let businessModelToStillCut = stillCutPosterImageData.map { data in
-                BusinessModelWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
+        case .stillCutSection:
+            Task {
+                let stillCutPosterImageData = try await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
+                let businessModelToStillCut = stillCutPosterImageData.map { data in
+                    BusinessModelWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
+                }
+                completion(businessModelToStillCut)
             }
-            completion(businessModelToStillCut)
-        }
-        
-        Task {
-            let koreaBoxOfficeMovieList = try await loadKoreaBoxOfficeMovieList()
-            let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
-                BusinessModelWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
+        case .koreaMovieListSection:
+            Task {
+                let koreaBoxOfficeMovieList = try await loadKoreaBoxOfficeMovieList()
+                let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
+                    BusinessModelWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
+                }
+                completion(businessModelToKoreaBoxOfficeMovieList)
             }
-            completion(businessModelToKoreaBoxOfficeMovieList)
         }
     }
     
