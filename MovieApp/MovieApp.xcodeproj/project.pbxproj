@@ -62,6 +62,7 @@
 		5B9D27062A1F545C00E9C9C0 /* BusinessModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D27052A1F545C00E9C9C0 /* BusinessModelWrapper.swift */; };
 		5B9D270A2A20ADCA00E9C9C0 /* DataLoadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D27092A20ADCA00E9C9C0 /* DataLoadError.swift */; };
 		5B9D270D2A20AFF100E9C9C0 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D270C2A20AFF100E9C9C0 /* Section.swift */; };
+		5B9D270F2A20C18200E9C9C0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D270E2A20C18200E9C9C0 /* Error.swift */; };
 		5B9FA2F82A18D8D10045BE35 /* TBDBBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2F72A18D8D10045BE35 /* TBDBBasic.swift */; };
 		5B9FA2FA2A18DB150045BE35 /* TVDBAPIMagicLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */; };
 		5B9FA2FC2A18DCF50045BE35 /* TVDBAPIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */; };
@@ -163,6 +164,7 @@
 		5B9D27052A1F545C00E9C9C0 /* BusinessModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModelWrapper.swift; sourceTree = "<group>"; };
 		5B9D27092A20ADCA00E9C9C0 /* DataLoadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadError.swift; sourceTree = "<group>"; };
 		5B9D270C2A20AFF100E9C9C0 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		5B9D270E2A20C18200E9C9C0 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		5B9FA2F72A18D8D10045BE35 /* TBDBBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBDBBasic.swift; sourceTree = "<group>"; };
 		5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIMagicLiteral.swift; sourceTree = "<group>"; };
 		5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIEndPoint.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 				5B9D270C2A20AFF100E9C9C0 /* Section.swift */,
 				5B0C81332A1CD044004BF2D6 /* Observable.swift */,
 				5BC16D6E2A1C923000B7F3BA /* ViewModel.swift */,
+				5B9D270E2A20C18200E9C9C0 /* Error.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				5B9FA2F82A18D8D10045BE35 /* TBDBBasic.swift in Sources */,
 				5B3F1BEF2A146EAC0062BE99 /* SceneDelegate.swift in Sources */,
 				5B98C61D2A174001004C099F /* KoreaBoxOfficeList.swift in Sources */,
+				5B9D270F2A20C18200E9C9C0 /* Error.swift in Sources */,
 				5B3F1C3C2A148B0B0062BE99 /* BoxOfficeResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
