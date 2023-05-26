@@ -59,8 +59,37 @@ extension ViewModel {
     }
 }
 
-//MARK: - [privaet] Use at TMDB
+//MARK: - [private] Use at TMDB
 extension ViewModel {
+    /// Top Method
+    private func loadTrendOfWeekMovieListFromTMDB() async throws -> [TrendMovie] {
+        let networkResult = try await self.networkService.loadTrendMovieList()
+        
+        var trendMovieListGroup = [TrendMovie]()
+        
+        for result in networkResult {
+            let imageData = try await fetchImage(imagePath: result.movieImageURL)
+            let trendMovie = TrendMovie(identifier: UUID(), posterImage: imageData, posterName: result.movieKoreaTitle)
+            trendMovieListGroup.append(trendMovie)
+        }
+        return trendMovieListGroup
+    }
+    /// Bottom Method
+    private func fetchImage(imagePath: String) async throws -> Data {
+        
+        let imageURLPath = "\(TVDBBasic.imageURL)\(imagePath)"
+        
+        guard let imageURL = URL(string: imageURLPath) else {
+            throw ViewModelInError.failOfMakeURL
+        }
+            
+        guard let imageData = try? Data(contentsOf: imageURL) else {
+            throw ViewModelInError.failOfMakeData
+        }
+        
+        return imageData
+    }
+    
     private func loadTrendOfWeekMovieListFromTVDB(completion: @escaping ([TrendMovie]) -> Void) {
         Task {
             self.networkService.loadTrendingMovieListData { resultStorage in
