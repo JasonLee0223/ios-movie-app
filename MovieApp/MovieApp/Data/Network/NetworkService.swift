@@ -100,13 +100,21 @@ final class NetworkService {
 
         switch HTTPResponse.statusCode {
         case (300...399):
-            throw HTTPErrorType.redirectionMessages(HTTPResponse.statusCode, HTTPResponse.debugDescription)
+            throw HTTPErrorType.redirectionMessages(
+                HTTPResponse.statusCode, HTTPResponse.debugDescription
+            )
         case (400...499):
-            throw HTTPErrorType.clientErrorResponses(HTTPResponse.statusCode, HTTPResponse.debugDescription)
+            throw HTTPErrorType.clientErrorResponses(
+                HTTPResponse.statusCode, HTTPResponse.debugDescription
+            )
         case (500...599):
-            throw HTTPErrorType.serverErrorResponses(HTTPResponse.statusCode, HTTPResponse.debugDescription)
+            throw HTTPErrorType.serverErrorResponses(
+                HTTPResponse.statusCode, HTTPResponse.debugDescription
+            )
         default:
-            throw HTTPErrorType.networkFailError(HTTPResponse.statusCode)
+            throw HTTPErrorType.networkFailError(
+                HTTPResponse.statusCode
+            )
         }
     }
 
