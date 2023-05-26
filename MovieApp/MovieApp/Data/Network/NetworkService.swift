@@ -23,7 +23,42 @@ final class NetworkService {
 //MARK: - [Public Method] Use of CompletionHandler
 extension NetworkService {
     
+    /// TrendMovieList
+    func loadTrendMovieList() async throws -> [Result] {
+        let popularMovieListQueryParameters = PopularQueryParameters()
+        
+        
+        guard let networkResult = try? await request(
+            with: TVDBAPIEndPoint.receiveWeakTrendingList(
+                with: popularMovieListQueryParameters)
+        ).results else {
+            throw DataLoadError.failOfTrendMovieListData
+        }
+        return networkResult
+    }
     
+    /// StillCut
+    func loadStillCut(movieNameGroup: [String]) async throws -> [Document] {
+        let moviePosterImageParametersGroup = movieNameGroup.map { movieName in
+            KoreaMovieListImageQueryParameters(query: movieName)
+        }
+        
+        var networkResult = [Document]()
+        
+        for moviePosterImageParameters in moviePosterImageParametersGroup {
+            
+            do {
+                var result = try await request(
+                with: KakaoEndPoint.receiveMoviePosterImage(
+                    with: moviePosterImageParameters)).documents
+                let bestResult = result.removeFirst()
+                networkResult.append(bestResult)
+            } catch {
+                throw DataLoadError.failOfStillCutData
+            }
+        }
+        return networkResult
+    }
     
     /// KoreaBoxOfficeMovieList
     func loadKoreaBoxOfficeMovieListData() async throws -> [DailyBoxOfficeList] {
@@ -67,6 +102,7 @@ extension NetworkService {
 //MARK: - [Public Method] Use of CompletionHandler
 extension NetworkService {
     
+    /// TrendMovieList
     func loadTrendingMovieListData(completion: @escaping ([Result]) -> Void) {
         
         Task {
@@ -80,6 +116,7 @@ extension NetworkService {
         }
     }
     
+    /// StillCut
     func loadMoviePosterImage(movieNameGroup: [String], completion: @escaping (Document) -> Void) {
         
         movieNameGroup.forEach { movieName in
