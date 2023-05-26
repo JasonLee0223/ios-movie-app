@@ -7,6 +7,18 @@
 
 import Foundation
 
+enum DataLoadError: LocalizedError {
+    case failOfkoreaBoxOfficeMovieListData
+    case failOfMovieDetailInfromationData
+    
+    var errorDescription: String? {
+        switch self {
+        case .failOfkoreaBoxOfficeMovieListData: return "❌ Fail Of KoreaBoxOfficeMovieListData"
+        case .failOfMovieDetailInfromationData: return "❌ Fail Of MovieDetailInfromationData"
+        }
+    }
+}
+
 final class NetworkService {
 
     //MARK: - Initializer
