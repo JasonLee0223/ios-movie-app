@@ -138,7 +138,7 @@ extension HomeViewController {
                 let section = Section(type: sectionList, items: bindModels)
                 
                 print("✅ 현재 Section 확인중...")
-                print(section)
+                print(section.items.isEmpty)
                 
                 // 섹션 추가
                 snapshot.appendSections([section])
@@ -170,8 +170,8 @@ extension HomeViewController {
         ) {
             (headerView, elementKind, indexPath) in
             
-            SectionList.allCases.forEach { sectionList in
-                switch sectionList {
+            if let sectionType = self.diffableDataSource?.sectionIdentifier(for: indexPath.section) {
+                switch sectionType.type {
                 case .trendMoviePosterSection:
                     headerView.configureOfSortStackLayout()
                 case .stillCutSection:
