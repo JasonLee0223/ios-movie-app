@@ -121,28 +121,6 @@ extension HomeViewController {
             
             SectionList.allCases.forEach { sectionList in
                 
-                guard let sectionType = viewModel.sectionStorage[sectionList] else { return }
-                sectionType.bind { value in
-                    self.collectionView.reloadSections(IndexSet(integer: sectionList.index))
-                    
-                    value?.items.forEach({ businessModelWrapper in
-                        switch businessModelWrapper {
-                        case .trendMovie(TrendMovie):
-                            snapshot.appendSections([.trendMoviePosterSection])
-                            snapshot.appendItems([TrendMovie])
-                            return snapshot
-                            
-                        case .stillCut(StillCut):
-                            snapshot.appendSections([.stillCutSection])
-                            snapshot.appendItems([StillCut])
-                            return snapshot
-                            
-                        case .koreaBoxOfficeList(KoreaBoxOfficeList):
-                            snapshot.appendSections([.koreaMovieListSection])
-                            snapshot.appendItems([KoreaBoxOfficeList])
-                            return snapshot
-                        }
-                    })
                     
                 }
             }
@@ -186,45 +164,5 @@ extension HomeViewController {
             }
         }
         
-        diffableDataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) in
-            switch kind {
-            case UICollectionView.elementKindSectionHeader:
-                guard let headerView = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: HomeHeaderView.reuseIdentifier,
-                    for: indexPath
-                ) as? HomeHeaderView else {
-                    return UICollectionReusableView()
-                }
-                
-                let sectionType = SectionList.allCases[indexPath.section]
-                
-                switch sectionType {
-                case .trendMoviePosterSection:
-                    headerView.configureOfSortStackLayout()
-                case .stillCutSection:
-                    headerView.configureOfStillCutLayout()
-                case .koreaMovieListSection:
-                    headerView.configureOfKoreaMovieLayout()
-                }
-                return headerView
-            default:
-                assert(false, "Invalid UICollectionReusableView")
-            }
-        }
-        
-        let snapShot = homeSnapShot()
-        diffableDataSource?.apply(snapShot)
     }
 }
-
-//viewModel.loadKoreaBoxOfficeMovieList { movieInfo, stillCut, koreaBoxOfficeList in
-//    print("=========== [MovieInfo] ===========")
-//    print(movieInfo)
-//
-//    print("=========== [StillCut] ===========")
-//    print(stillCut)
-//
-//    print("=========== [KoreaBoxOfficeList] ===========")
-//    print(koreaBoxOfficeList)
-//}
