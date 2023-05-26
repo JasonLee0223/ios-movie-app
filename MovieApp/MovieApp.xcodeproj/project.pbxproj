@@ -339,9 +339,8 @@
 		5B3F1C232A14775A0062BE99 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5BCE28A92A1B41FD0076F189 /* KakaoEndPoint.swift */,
-				5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */,
-				5B3F1C632A148DB60062BE99 /* KOFICAPIEndPoint.swift */,
+				5B9D27082A20AD9700E9C9C0 /* Error */,
+				5B9D27072A20AD8700E9C9C0 /* APIEndponit */,
 				5B3F1C652A148DE40062BE99 /* NetworkService.swift */,
 			);
 			path = Network;
@@ -510,6 +509,23 @@
 				5B3F1C792A14EC540062BE99 /* MagicNumber.swift */,
 			);
 			path = RawValues;
+			sourceTree = "<group>";
+		};
+		5B9D27072A20AD8700E9C9C0 /* APIEndponit */ = {
+			isa = PBXGroup;
+			children = (
+				5BCE28A92A1B41FD0076F189 /* KakaoEndPoint.swift */,
+				5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */,
+				5B3F1C632A148DB60062BE99 /* KOFICAPIEndPoint.swift */,
+			);
+			path = APIEndponit;
+			sourceTree = "<group>";
+		};
+		5B9D27082A20AD9700E9C9C0 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		5B9FA2F52A18C8C40045BE35 /* KOFIC */ = {
