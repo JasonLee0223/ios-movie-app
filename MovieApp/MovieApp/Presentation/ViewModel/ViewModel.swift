@@ -141,8 +141,27 @@ extension ViewModel {
     }
 }
 
-//MARK: - [private] Use at KoreaMovie
+//MARK: - [private] Use at Kakao
 extension ViewModel {
+    
+    private func kakaoPosterImageTest(movieNameGroup: [String]) async throws -> [Data] {
+        
+        let networkResult = try await networkService.loadStillCut(movieNameGroup: movieNameGroup)
+        
+        var imageDataStorage = [Data]()
+        
+        for result in networkResult {
+            guard let imageURL = URL(string:result.imageURL) else {
+                throw ViewModelInError.failOfMakeURL
+            }
+            
+            guard let imageData = try? Data(contentsOf: imageURL) else {
+                throw ViewModelInError.failOfMakeData
+            }
+            imageDataStorage.append(imageData)
+        }
+        return imageDataStorage
+    }
     
     private func kakaoPosterImageTest(movieName: [String], completion: @escaping (Data) -> Void) {
         
