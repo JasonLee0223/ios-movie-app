@@ -15,6 +15,8 @@ class HomeViewController: UIViewController {
         configureOfUI()
         configureHierarchy()
         configureOfDiffableDataSource()
+        
+        homeSnapShot()
     }
     
     private let viewModel = ViewModel()
@@ -111,60 +113,39 @@ extension HomeViewController {
 //MARK: - Configure of DiffableDataSource
 extension HomeViewController {
     
-    private func homeSnapShot() -> NSDiffableDataSourceSnapshot<Section, BusinessModelWrapper> {
-        
+    private func homeSnapShot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, BusinessModelWrapper>()
         
-        viewModel.sectionStorage.forEach { (key: SectionList, value: Observable<BusinessModelWrapper>) in
+        SectionList.allCases.forEach { sectionList in
+            viewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
             
-            //TODO: - DataBinding
+            let bindModel = viewModel.sectionStorage[sectionList]
             
-            viewModel.fetchHomeCollectionViewSectionItemsRelated(be: key) { businessModelWrapperGroup in
+            bindModel?.bind(listener: { businessModelWrapper in
                 
-//                print("✅ Current BusinessModel Data in ViewModel Section")
-//                print("\(businessModelWrapperGroup)")
-//                print("")
+                print("✅ 현재 Value 확인중...")
                 
-                DispatchQueue.main.async {
-//                    print("✅ Current BusinessModel Data in Task Section")
-//                    print("\(businessModelWrapperGroup)")
-//                    print("")
-                    
-                    print("✅ 현재 SectionList의 위치")
-                    print("\(key), keyRawValue = \(key.rawValue)")                                              // trendMoviePosterSection, keyRawValue = 0
-                    if let section = self.diffableDataSource?.sectionIdentifier(for: key.rawValue) {
-                        print("✅ 현재 Section의 위치")
-                        print("\(section.type)")
-                        
-                        switch key {
-                        case .trendMoviePosterSection:
-                            snapshot.appendSections([section])
-                            snapshot.appendItems(businessModelWrapperGroup, toSection: section)
-                            snapshot.reloadItems(businessModelWrapperGroup)
-                            snapshot.reloadSections([section])
-                            self.diffableDataSource?.apply(snapshot)
-                            
-                        case .stillCutSection:
-                            snapshot.appendSections([section])
-                            snapshot.appendItems(businessModelWrapperGroup, toSection: section)
-                            snapshot.reloadItems(businessModelWrapperGroup)
-                            snapshot.reloadSections([section])
-                            self.diffableDataSource?.apply(snapshot)
-                            
-                        case .koreaMovieListSection:
-                            snapshot.appendSections([section])
-                            snapshot.appendItems(businessModelWrapperGroup, toSection: section)
-                            snapshot.reloadItems(businessModelWrapperGroup)
-                            snapshot.reloadSections([section])
-                            self.diffableDataSource?.apply(snapshot)
-                        }
-                    }
-                    print("-----------------------------------------------------------------")
+                guard let bindModels = businessModelWrapper else {
+                    print("bindModels Unwrapping Fail...")
+                    return
                 }
-            }
-            
+                print(bindModels)
+                print("-------------------------------------------------------")
+                
+                print("✅ 현재 SectionList의 위치")
+                print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
+                
+                let section = Section(type: sectionList, items: bindModels)
+                
+                print("✅ 현재 Section 확인중...")
+                print(section)
+                
+                // 섹션 추가
+                snapshot.appendSections([section])
+                snapshot.appendItems(bindModels)
+                self.diffableDataSource?.apply(snapshot)
+            })
         }
-        return snapshot
     }
     
     private func configureOfDiffableDataSource() {
@@ -184,12 +165,13 @@ extension HomeViewController {
             cell.configure(koreaBoxOfficeList, at: indexPath)
         }
         
-        let headerRegistration = UICollectionView.SupplementaryRegistration<HomeHeaderView>(elementKind: HomeHeaderView.reuseIdentifier) {
+        let headerRegistration = UICollectionView.SupplementaryRegistration<HomeHeaderView>(
+            elementKind: UICollectionView.elementKindSectionHeader
+        ) {
             (headerView, elementKind, indexPath) in
             
-            if let section = self.diffableDataSource?.sectionIdentifier(for: indexPath.section) {
-                print("호출 위치 headerRegistration = \(section)")
-                switch section.type {
+            SectionList.allCases.forEach { sectionList in
+                switch sectionList {
                 case .trendMoviePosterSection:
                     headerView.configureOfSortStackLayout()
                 case .stillCutSection:
@@ -199,6 +181,7 @@ extension HomeViewController {
                 }
             }
         }
+
         
         diffableDataSource = UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>(collectionView: collectionView)
         { (collectionView, indexPath, businessModelWrapper) in
@@ -223,7 +206,6 @@ extension HomeViewController {
             return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
         }
         
-        diffableDataSource?.apply(homeSnapShot())
     }
     
 }
