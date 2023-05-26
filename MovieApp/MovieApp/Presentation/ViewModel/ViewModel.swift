@@ -7,39 +7,61 @@
 
 import Foundation
 
-// VC (옵저빙 해야 하는 애들, bind해야하는 애들) -> ViewModel (알아서 업뎃한다...)
-
-struct SectionViewModel {
-    var type: SectionList
-    var items: [BusinessModelWrapper]
-    
-    var isOn: Observable<Bool> = Observable(false)
-}
-
-let viewModel = SectionViewModel()
-viewModel.isOn.bind {
-    
-}
-
 final class ViewModel {
     
-    var sectionStorage: [SectionList: Observable<SectionViewModel>]
+    var sectionStorage: [SectionList: Observable<BusinessModelWrapper>]
     
     init() {
         self.networkService = NetworkService()
         
-        self.sectionStorage = [.trendMoviePosterSection: Observable<SectionViewModel>(),
-                               .stillCutSection: Observable<SectionViewModel>(),
-                               .koreaMovieListSection: Observable<SectionViewModel>()
+        self.sectionStorage = [.trendMoviePosterSection: Observable<BusinessModelWrapper>(),
+                               .stillCutSection: Observable<BusinessModelWrapper>(),
+                               .koreaMovieListSection: Observable<BusinessModelWrapper>()
                             ]
     }
     
     private let networkService: NetworkService
 }
 
-//MARK: - Use at TMDB
+//MARK: - Public Method
 extension ViewModel {
-    func loadTrendOfWeekMovieListFromTVDB(completion: @escaping ([TrendMovie]) -> Void) {
+    func fetchAllBusinessModel(completion: @escaping ([BusinessModelWrapper]) -> Void) {
+        
+        loadTrendOfWeekMovieListFromTVDB { trendMovieGroup in
+            
+            let trendMovieListConvertedToBusinessModel = trendMovieGroup.map { trendMovie in
+                BusinessModelWrapper.trendMovie(trendMovie)
+            }
+            print("현재 trendMovieListConvertedToBusinessModel")
+            print("\(trendMovieListConvertedToBusinessModel)")
+            completion(trendMovieListConvertedToBusinessModel)
+        }
+        
+        loadKoreaBoxOfficeMovieList { movieInfoGroup, stillCutGroup, koreaBoxOfficeListGroup in
+            //TODO: - 추후 MovieDetailInfo로 사용할 타입 Mapping
+//            let movieInfoGroupConvertedToBusinessModel = movieInfoGroup.map { movieInfo in
+//                BusinessModelWrapper.movieInfo
+//            }
+            let stillCutConvertedToBusinessModel = stillCutGroup.map { stillCut in
+                BusinessModelWrapper.stillCut(stillCut)
+            }
+            print("현재 stillCutConvertedToBusinessModel")
+            print("\(stillCutConvertedToBusinessModel)")
+            completion(stillCutConvertedToBusinessModel)
+            
+            let koreaBoxOfficeListConvertedToBusinessModel = koreaBoxOfficeListGroup.map { koreaBoxOfficeList in
+                BusinessModelWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
+            }
+            print("현재 koreaBoxOfficeListConvertedToBusinessModel")
+            print("\(koreaBoxOfficeListConvertedToBusinessModel)")
+            completion(koreaBoxOfficeListConvertedToBusinessModel)
+        }
+    }
+}
+
+//MARK: - [privaet] Use at TMDB
+extension ViewModel {
+    private func loadTrendOfWeekMovieListFromTVDB(completion: @escaping ([TrendMovie]) -> Void) {
         Task {
             self.networkService.loadTrendingMovieListData { resultStorage in
                 
@@ -55,7 +77,7 @@ extension ViewModel {
         }
     }
     
-    func fetchImage(imagePath: String, completion: @escaping (Data) -> Void) {
+    private func fetchImage(imagePath: String, completion: @escaping (Data) -> Void) {
         
         DispatchQueue.global().async {
             let imageURLPath = "\(TVDBBasic.imageURL)\(imagePath)"
@@ -71,28 +93,10 @@ extension ViewModel {
     }
 }
 
-//MARK: - Use at KoreaMovie
+//MARK: - [privaet] Use at Kakao
 extension ViewModel {
     
-    func kakaoPosterImageTest(movieName: [String], completion: @escaping (Data) -> Void) {
-        
-        networkService.loadMoviePosterImage(movieNameGroup: movieName) { document in
-            guard let imageURL = URL(string:document.imageURL) else {
-                return
-            }
-            
-            guard let imageData = try? Data(contentsOf: imageURL) else {
-                return
-            }
-            completion(imageData)
-        }
-    }
-}
-
-//MARK: - Use at Kakao
-extension ViewModel {
-    
-    func loadKoreaBoxOfficeMovieList(completion: @escaping ([MovieInfo], [StillCut], [KoreaBoxOfficeList]) -> Void) {
+    private func loadKoreaBoxOfficeMovieList(completion: @escaping ([MovieInfo], [StillCut], [KoreaBoxOfficeList]) -> Void) {
         
         var movieInfoGroup = [MovieInfo]()
         var stillCutGroup = [StillCut]()
@@ -137,17 +141,20 @@ extension ViewModel {
     }
 }
 
-//MARK: - Count Method
+//MARK: - [private] Use at KoreaMovie
 extension ViewModel {
     
-    func countSection() -> Int {
-        return self.sectionStorage.count
-    }
-    
-    func countItem(section: Int) -> Int {
-        let targetType = SectionList.allCases[section]
+    private func kakaoPosterImageTest(movieName: [String], completion: @escaping (Data) -> Void) {
         
-        guard let items = sectionStorage[targetType]?.value?.items else { return 0 }
-        return items.count
+        networkService.loadMoviePosterImage(movieNameGroup: movieName) { document in
+            guard let imageURL = URL(string:document.imageURL) else {
+                return
+            }
+            
+            guard let imageData = try? Data(contentsOf: imageURL) else {
+                return
+            }
+            completion(imageData)
+        }
     }
 }
