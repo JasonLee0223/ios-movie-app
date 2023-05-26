@@ -20,7 +20,7 @@ final class MovieStillCutCell: UICollectionViewCell, ConfigurableCell {
         configureOfLayout()
     }
     
-    //MARK: - Method
+    //MARK: - Public Method
     func configure(_ item: StillCut, at indexPath: IndexPath) {
         let imageData = item.genreImagePath
         guard let image = UIImage(data: imageData) else { return }
@@ -28,11 +28,36 @@ final class MovieStillCutCell: UICollectionViewCell, ConfigurableCell {
         setGenrePoster(with: image)
     }
     
-    func setGenrePoster(with image: UIImage) {
+    //MARK: - Private Property
+    
+    private let stillCutStack: UIStackView = {
+        let genreStack = UIStackView()
+        genreStack.axis = .vertical
+        genreStack.alignment = .center
+        genreStack.distribution = .fill
+        return genreStack
+    }()
+    
+    private let stillCutImage: UIImageView = {
+       let genrePosterImage = UIImageView()
+        genrePosterImage.contentMode = .scaleToFill
+        genrePosterImage.clipsToBounds = true
+        genrePosterImage.layer.cornerRadius = MagicNumber.cornerRadius
+        return genrePosterImage
+    }()
+}
+
+//MARK: - Private Method
+extension MovieStillCutCell {
+    
+    private func setGenrePoster(with image: UIImage) {
         stillCutImage.image = image
     }
+}
+
+//MARK: - Configure of Layout
+extension MovieStillCutCell {
     
-    //MARK: - Private Method
     private func configureOfLayout() {
         let safeArea = self.safeAreaLayoutGuide
         
@@ -71,22 +96,4 @@ final class MovieStillCutCell: UICollectionViewCell, ConfigurableCell {
             )
         ])
     }
-    
-    //MARK: - Private Property
-    
-    private let stillCutStack: UIStackView = {
-        let genreStack = UIStackView()
-        genreStack.axis = .vertical
-        genreStack.alignment = .center
-        genreStack.distribution = .fill
-        return genreStack
-    }()
-    
-    private let stillCutImage: UIImageView = {
-       let genrePosterImage = UIImageView()
-        genrePosterImage.contentMode = .scaleToFill
-        genrePosterImage.clipsToBounds = true
-        genrePosterImage.layer.cornerRadius = MagicNumber.cornerRadius
-        return genrePosterImage
-    }()
 }
