@@ -123,22 +123,22 @@ extension HomeViewController {
             
             bindModel?.bind(listener: { businessModelWrapper in
                 
-                print("✅ 현재 Value 확인중...")
+//                print("✅ 현재 Value 확인중...")
                 
                 guard let bindModels = businessModelWrapper else {
                     print("bindModels Unwrapping Fail...")
                     return
                 }
-                print(bindModels)
-                print("-------------------------------------------------------")
-                
-                print("✅ 현재 SectionList의 위치")
-                print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
+//                print(bindModels)
+//                print("-------------------------------------------------------")
+//
+//                print("✅ 현재 SectionList의 위치")
+//                print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
                 
                 let section = Section(type: sectionList, items: bindModels)
                 
-                print("✅ 현재 Section 확인중...")
-                print(section.items.isEmpty)
+//                print("✅ 현재 Section 확인중...")
+//                print(section.items.isEmpty)
                 
                 // 섹션 추가
                 snapshot.appendSections([section])
@@ -171,6 +171,10 @@ extension HomeViewController {
             (headerView, elementKind, indexPath) in
             
             if let sectionType = self.diffableDataSource?.sectionIdentifier(for: indexPath.section) {
+                
+                print("✅ [In HeaderRegistration] 현재 Section 확인중...")
+                print(sectionType.type)
+                
                 switch sectionType.type {
                 case .trendMoviePosterSection:
                     headerView.configureOfSortStackLayout()
