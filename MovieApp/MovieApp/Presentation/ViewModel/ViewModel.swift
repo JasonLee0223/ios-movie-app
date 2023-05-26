@@ -26,7 +26,7 @@ final class ViewModel {
 //MARK: - Public Method
 extension ViewModel {
     
-    func fetchHomeCollectionViewSectionItemsRelated(be section: SectionList, completion: @escaping ([BusinessModelWrapper]) -> Void) {
+    func fetchHomeCollectionViewSectionItemsRelated(be section: SectionList) {
         /// Notice: Need HomeCollectionView Data
         /// 1. Array of TrendMovie
         /// 2. Array of StillCut
@@ -38,7 +38,7 @@ extension ViewModel {
                 let businessModelToTrendMovie = try await loadTrendOfWeekMovieListFromTMDB().map { trendMovie in
                     BusinessModelWrapper.trendMovie(trendMovie)
                 }
-                completion(businessModelToTrendMovie)
+                self.sectionStorage[section]?.value = businessModelToTrendMovie
             }
         case .stillCutSection:
             Task {
@@ -46,7 +46,7 @@ extension ViewModel {
                 let businessModelToStillCut = stillCutPosterImageData.map { data in
                     BusinessModelWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
                 }
-                completion(businessModelToStillCut)
+                self.sectionStorage[section]?.value = businessModelToStillCut
             }
         case .koreaMovieListSection:
             Task {
@@ -54,7 +54,7 @@ extension ViewModel {
                 let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
                     BusinessModelWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
                 }
-                completion(businessModelToKoreaBoxOfficeMovieList)
+                self.sectionStorage[section]?.value = businessModelToKoreaBoxOfficeMovieList
             }
         }
     }
