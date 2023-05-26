@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct MoviePosterImage: Decodable {
     let documents: [Document]
 }
