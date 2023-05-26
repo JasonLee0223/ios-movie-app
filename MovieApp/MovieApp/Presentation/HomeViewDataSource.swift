@@ -64,8 +64,8 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             
         case .trendMoviePosterSection:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MovieIntroduceCell.reuseIdentifier,
-                for: indexPath) as? MovieIntroduceCell else {
+                withReuseIdentifier: TrendMovieListCell.reuseIdentifier,
+                for: indexPath) as? TrendMovieListCell else {
                 return UICollectionViewCell()
             }
             

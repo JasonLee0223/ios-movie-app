@@ -1,5 +1,5 @@
 //
-//  MovieIntroduceCell.swift
+//  TrendMovieListCell.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/05/17.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieIntroduceCell: UICollectionViewCell, ConfigurableCell {
+final class TrendMovieListCell: UICollectionViewCell, ConfigurableCell {
     
     //MARK: - Initializer
     
@@ -62,7 +62,7 @@ final class MovieIntroduceCell: UICollectionViewCell, ConfigurableCell {
 }
 
 //MARK: - Private Method
-extension MovieIntroduceCell {
+extension TrendMovieListCell {
     
     private func setPoster(with image: UIImage) {
         posterImage.image = image
@@ -74,7 +74,7 @@ extension MovieIntroduceCell {
 }
 
 //MARK: - Configure of Layout
-extension MovieIntroduceCell {
+extension TrendMovieListCell {
     
     private func configureOfLayout() {
         let safeArea = self.contentView.safeAreaLayoutGuide

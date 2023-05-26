@@ -142,7 +142,7 @@ extension HomeViewController {
     
     private func configureOfDiffableDataSource() {
         
-        let trendCellRegistration = UICollectionView.CellRegistration<MovieIntroduceCell, TrendMovie> {
+        let trendCellRegistration = UICollectionView.CellRegistration<TrendMovieListCell, TrendMovie> {
             (cell, indexPath, trendMovie) in
             cell.configure(trendMovie, at: indexPath)
         }
