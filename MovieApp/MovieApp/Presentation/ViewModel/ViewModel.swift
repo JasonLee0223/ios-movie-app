@@ -25,6 +25,37 @@ final class ViewModel {
 
 //MARK: - Public Method
 extension ViewModel {
+    
+    func fetchHomeCollectionViewSectionItems(completion: @escaping ([BusinessModelWrapper]) -> Void) {
+        /// Notice: Need HomeCollectionView Data
+        /// 1. Array of TrendMovie
+        /// 2. Array of StillCut
+        /// 3. Array of KoreaBoxOfficeList
+        
+        Task {
+            let businessModelToTrendMovie = try await loadTrendOfWeekMovieListFromTMDB().map { trendMovie in
+                BusinessModelWrapper.trendMovie(trendMovie)
+            }
+            completion(businessModelToTrendMovie)
+        }
+        
+        Task {
+            let stillCutPosterImageData = try await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
+            let businessModelToStillCut = stillCutPosterImageData.map { data in
+                BusinessModelWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
+            }
+            completion(businessModelToStillCut)
+        }
+        
+        Task {
+            let koreaBoxOfficeMovieList = try await loadKoreaBoxOfficeMovieList()
+            let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
+                BusinessModelWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
+            }
+            completion(businessModelToKoreaBoxOfficeMovieList)
+        }
+    }
+    
     func fetchAllBusinessModel(completion: @escaping ([BusinessModelWrapper]) -> Void) {
         
         loadTrendOfWeekMovieListFromTVDB { trendMovieGroup in
