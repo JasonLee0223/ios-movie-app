@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SectionList: Int, CaseIterable {
+enum SectionList: Int, CaseIterable, Hashable {
     case trendMoviePosterSection = 0
     case stillCutSection
     case koreaMovieListSection
