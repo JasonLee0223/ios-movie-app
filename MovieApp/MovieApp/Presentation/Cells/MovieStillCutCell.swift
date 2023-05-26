@@ -22,9 +22,10 @@ final class MovieStillCutCell: UICollectionViewCell, ConfigurableCell {
     
     //MARK: - Method
     func configure(_ item: StillCut, at indexPath: IndexPath) {
-        let imagePath = item.genreImagePath
+        let imageData = item.genreImagePath
+        guard let image = UIImage(data: imageData) else { return }
         
-//        setGenrePoster(with: <#T##UIImage#>)
+        setGenrePoster(with: image)
     }
     
     func setGenrePoster(with image: UIImage) {
