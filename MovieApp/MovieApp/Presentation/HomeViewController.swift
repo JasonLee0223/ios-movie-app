@@ -14,12 +14,16 @@ class HomeViewController: UIViewController {
         
 //        configureOfUI()
 //        configureHierarchy()
+//        configureOfDiffableDataSource()
         
+        viewModel.fetchAllBusinessModel { businessModelWrapper in
+            print(businessModelWrapper)
+        }
     }
     
     private let viewModel = ViewModel()
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    private var diffableDataSource: UICollectionViewDiffableDataSource<SectionList, BusinessModelWrapper>?
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>?
 }
 
 //MARK: - Configure of UI Components
@@ -111,21 +115,29 @@ extension HomeViewController {
 //MARK: - Configure of DiffableDataSource
 extension HomeViewController {
     
-    private func homeSnapShot() -> NSDiffableDataSourceSnapshot<SectionList, BusinessModelWrapper>{
+    private func homeSnapShot() -> NSDiffableDataSourceSnapshot<Section, BusinessModelWrapper> {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, BusinessModelWrapper>()
         
-        //TODO: - SnapShot 업데이트 및 ViewModel로부터 데이터 받아오기
-        
-        viewModel.sectionStorage.forEach { (key: SectionList, value: Observable<SectionViewModel>) in
+        viewModel.sectionStorage.forEach { (key: SectionList, value: Observable<BusinessModelWrapper>) in
             
-            var snapshot = NSDiffableDataSourceSnapshot<SectionList, BusinessModelWrapper>()
-            
-            SectionList.allCases.forEach { sectionList in
+            self.viewModel.fetchAllBusinessModel { businessModelWrapperGroup in
+                //TODO: - DataBinding
+//                businessModelWrapperGroup.forEach { businessModelWrapper in
+//                    value.bind { <#BusinessModelWrapper?#> in
+//                        <#code#>
+//                    }
+//                }
                 
-                    
+                DispatchQueue.global().asyncAfter(deadline: .now() + 10) {
+                    snapshot.appendSections([Section(type: key, items: businessModelWrapperGroup)])
+                    snapshot.appendItems(businessModelWrapperGroup)
+                    snapshot.reloadSections([Section(type: key, items: businessModelWrapperGroup)])
+                    self.diffableDataSource?.apply(snapshot)
                 }
             }
-            
         }
+        
+        return snapshot
     }
     
     private func configureOfDiffableDataSource() {
@@ -137,7 +149,6 @@ extension HomeViewController {
         
         let stillCusRegistration = UICollectionView.CellRegistration<MovieStillCutCell, StillCut> {
             (cell, indexPath, stillCut) in
-            
             cell.configure(stillCut, at: indexPath)
         }
         
@@ -146,8 +157,29 @@ extension HomeViewController {
             cell.configure(koreaBoxOfficeList, at: indexPath)
         }
         
-        diffableDataSource = UICollectionViewDiffableDataSource<SectionList, BusinessModelWrapper>(collectionView: collectionView) {
-            (collectionView, indexPath, businessModelWrapper) in
+        let headerRegistration = UICollectionView.SupplementaryRegistration<HomeHeaderView>(
+            elementKind: HomeHeaderView.reuseIdentifier
+        ) { (headerView, elementKind, indexPath) in
+            
+            let sectionType = SectionList.allCases[indexPath.section]
+            
+            switch sectionType {
+            case .trendMoviePosterSection:
+                headerView.configureOfSortStackLayout()
+            case .stillCutSection:
+                headerView.configureOfStillCutLayout()
+            case .koreaMovieListSection:
+                headerView.configureOfKoreaMovieLayout()
+            }
+        }
+        
+        diffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
+            return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
+        }
+        
+        diffableDataSource = UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>(collectionView: collectionView)
+        { (collectionView, indexPath, businessModelWrapper) in
+            
             switch businessModelWrapper {
             case let .trendMovie(trendMovieItem):
                 return collectionView.dequeueConfiguredReusableCell(
@@ -164,5 +196,6 @@ extension HomeViewController {
             }
         }
         
+        diffableDataSource?.apply(homeSnapShot())
     }
 }
