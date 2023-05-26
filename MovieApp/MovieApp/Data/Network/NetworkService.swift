@@ -61,7 +61,7 @@ extension NetworkService {
     }
     
     /// KoreaBoxOfficeMovieList
-    func loadKoreaBoxOfficeMovieListData() async throws -> [DailyBoxOfficeList] {
+    func loadDailyBoxOfficeMovieListData() async throws -> [DailyBoxOfficeList] {
         let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
         let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: yesterdayDate)
         
