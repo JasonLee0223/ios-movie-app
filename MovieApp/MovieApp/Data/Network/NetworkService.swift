@@ -27,28 +27,57 @@ final class NetworkService {
         self.session = URLSession(configuration: .default)
     }
     
-    //MARK: - Method
+    //MARK: - Private Property
+
+    private let session: URLSession
+}
+
+//MARK: - [Public Method] Use of CompletionHandler
+extension NetworkService {
     
-    func loadDailyBoxOfficeData(completion: @escaping ([DailyBoxOfficeList]) -> Void) {
+    
+    
+    /// KoreaBoxOfficeMovieList
+    func loadKoreaBoxOfficeMovieListData() async throws -> [DailyBoxOfficeList] {
+        let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
+        let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: yesterdayDate)
         
+        guard let networkResult = try? await request(
+            with: KOFICAPIEndPoint.receiveBoxOffice(
+                with: boxOfficeQueryParameters)
+        ).boxOfficeResult.dailyBoxOfficeList else {
+            throw DataLoadError.failOfkoreaBoxOfficeMovieListData
         }
+        
+        return networkResult
     }
     
-    func loadMovieDetailData(movieCodeGroup: [String], completion: @escaping (MovieInfo) -> Void) {
+    func loadMovieDetailData(movieCodeGroup: [String]) async throws -> [MovieInfo] {
         
-        movieCodeGroup.forEach { movieCode in
+        let movieDetailQueryParametersGroup = movieCodeGroup.map { movieCode in
+            MovieDetailQueryParameters(movieCode: movieCode)
+        }
+        
+        var networkResult = [MovieInfo]()
+        for movieDetailQueryParameters in movieDetailQueryParametersGroup {
             
-            Task {
-                let movieDetailQueryParameters = MovieDetailQueryParameters(movieCode: movieCode)
-                let networkResult = try await request(
+            do {
+                let result = try await request(
                     with: KOFICAPIEndPoint.receiveMovieDetailInformation(
-                        with: movieDetailQueryParameters)
+                    with: movieDetailQueryParameters)
                 ).movieInfoResult.movieInfo
-                
-                completion(networkResult)
+                networkResult.append(result)
+            } catch {
+                throw DataLoadError.failOfMovieDetailInfromationData
             }
         }
+            
+        return networkResult
     }
+}
+
+//MARK: - [Public Method] Use of CompletionHandler
+extension NetworkService {
     
     func loadTrendingMovieListData(completion: @escaping ([Result]) -> Void) {
         
@@ -79,8 +108,41 @@ final class NetworkService {
         }
     }
     
-    //MARK: - Private Method
+    /// KoreaBoxOfficeMovieList
+    func loadDailyBoxOfficeData(completion: @escaping ([DailyBoxOfficeList]) -> Void) {
+        
+        Task {
+            let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
+            let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: yesterdayDate)
+            let swapResult = try await request(
+                with: KOFICAPIEndPoint.receiveBoxOffice(
+                    with: boxOfficeQueryParameters)
+            ).boxOfficeResult.dailyBoxOfficeList
+            
+            completion(swapResult)
+        }
+    }
+    
+    func loadMovieDetailData(movieCodeGroup: [String], completion: @escaping (MovieInfo) -> Void) {
+        
+        movieCodeGroup.forEach { movieCode in
+            
+            Task {
+                let movieDetailQueryParameters = MovieDetailQueryParameters(movieCode: movieCode)
+                let networkResult = try await request(
+                    with: KOFICAPIEndPoint.receiveMovieDetailInformation(
+                        with: movieDetailQueryParameters)
+                ).movieInfoResult.movieInfo
+                
+                completion(networkResult)
+            }
+        }
+    }
+}
 
+//MARK: - Private Method
+extension NetworkService {
+    
     private func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
         
         let urlRequest = try endPoint.receiveURLRequest(by: endPoint)
