@@ -31,15 +31,6 @@ final class NetworkService {
     
     func loadDailyBoxOfficeData(completion: @escaping ([DailyBoxOfficeList]) -> Void) {
         
-        Task {
-            let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
-            let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: yesterdayDate)
-            let swapResult = try await request(
-                with: KOFICAPIEndPoint.receiveBoxOffice(
-                    with: boxOfficeQueryParameters)
-            ).boxOfficeResult.dailyBoxOfficeList
-            
-            completion(swapResult)
         }
     }
     
@@ -132,13 +123,4 @@ final class NetworkService {
 
         return decode
     }
-    
-    //MARK: - Private Property
-
-    private let session: URLSession
-}
-
-//MARK: - Use by extending Notification.Name
-extension Notification.Name {
-    static let loadedBoxOfficeData = Notification.Name("loadedBoxOfficeData")
 }
