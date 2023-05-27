@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
     }
     
     private let viewModel = ViewModel()
+    private var delegate = HomeViewDelegate()
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>?
 }
@@ -31,6 +32,7 @@ extension HomeViewController {
         configureOfNavigationBar()
         configureOfSuperView()
         configureOfCollectionView()
+        configureColletionViewDelegate()
     }
     
     private func configureOfSuperView() {
@@ -83,6 +85,12 @@ extension HomeViewController {
         collectionView.clipsToBounds = false
         collectionView.backgroundColor = .black
         collectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
+    }
+    
+    private func configureColletionViewDelegate() {
+        Task {
+            collectionView.delegate = delegate
+        }
     }
 }
 
