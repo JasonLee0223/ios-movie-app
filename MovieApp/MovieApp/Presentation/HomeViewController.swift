@@ -117,23 +117,26 @@ extension HomeViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, BusinessModelWrapper>()
         
         SectionList.allCases.forEach { sectionList in
+            
+            //MARK: - TaskGroupTest
+//            Task {
+//                await viewModel.testTaskGroup(section: sectionList)
+//            }
+            
+            //MARK: - fetchAll
             viewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
             
             let bindModel = viewModel.sectionStorage[sectionList]
             
             bindModel?.bind(listener: { businessModelWrapper in
                 
-//                print("✅ 현재 Value 확인중...")
-                
                 guard let bindModels = businessModelWrapper else {
                     print("bindModels Unwrapping Fail...")
                     return
                 }
-//                print(bindModels)
-//                print("-------------------------------------------------------")
-//
-//                print("✅ 현재 SectionList의 위치")
-//                print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
+                
+                print("✅ 현재 SectionList의 위치")
+                print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
                 
                 let section = Section(type: sectionList, items: bindModels)
                 
@@ -170,11 +173,12 @@ extension HomeViewController {
         ) {
             (headerView, elementKind, indexPath) in
             
-            if let sectionType = self.diffableDataSource?.sectionIdentifier(for: indexPath.section) {
-                
+            if let sectionType = self.diffableDataSource?.sectionIdentifier(
+                for: indexPath.section) {
+
                 print("✅ [In HeaderRegistration] 현재 Section 확인중...")
                 print(sectionType.type)
-                
+
                 switch sectionType.type {
                 case .trendMoviePosterSection:
                     headerView.configureOfSortStackLayout()
