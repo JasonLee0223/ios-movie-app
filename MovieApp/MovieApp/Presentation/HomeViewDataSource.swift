@@ -11,6 +11,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     
     override init() {
         self.viewModel = ViewModel()
+        super.init()
     }
     
     //MARK: - Number Of Section and Item
