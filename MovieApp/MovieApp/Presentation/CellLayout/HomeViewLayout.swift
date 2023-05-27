@@ -74,7 +74,7 @@ struct HomeViewLayout {
         }
         
         group?.contentInsets = .init(
-            top: MagicNumber.zero,
+            top: 20,
             leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceLeading,
             bottom: MagicNumber.zero,
             trailing: MagicNumber.zero

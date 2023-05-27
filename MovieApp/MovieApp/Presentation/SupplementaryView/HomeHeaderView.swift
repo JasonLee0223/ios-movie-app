@@ -35,11 +35,15 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
             sortStack.leadingAnchor.constraint(
                 equalTo: safeArea.leadingAnchor
             ),
-            sortStack.trailingAnchor.constraint(
-                equalTo: safeArea.trailingAnchor
-            ),
+//            sortStack.trailingAnchor.constraint(
+//                equalTo: safeArea.trailingAnchor
+//            ),
             sortStack.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
+            ),
+            sortStack.widthAnchor.constraint(
+                equalTo: safeArea.widthAnchor,
+                multiplier: 0.5
             )
         ])
     }
