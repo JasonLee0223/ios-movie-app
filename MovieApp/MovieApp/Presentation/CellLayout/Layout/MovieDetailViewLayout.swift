@@ -27,6 +27,7 @@ struct MovieDetailViewLayout {
         }
     }
     
+    //MARK: - Private Property
     private let sectionIndex: Int
 }
 

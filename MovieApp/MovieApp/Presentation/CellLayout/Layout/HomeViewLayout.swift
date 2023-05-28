@@ -9,12 +9,13 @@ import UIKit
 
 struct HomeViewLayout {
     
-    private let sectionIndex: Int
+    //MARK: - Initializer
     
     init(sectionIndex: Int) {
         self.sectionIndex = sectionIndex
     }
     
+    //MARK: - [Public Method] Configure of Layout
     func create() -> NSCollectionLayoutSection? {
         let index = HomeSectionList.allCases[sectionIndex]
         switch index {
@@ -26,6 +27,13 @@ struct HomeViewLayout {
             return createKoreaMovieListCellCompositionalLayout()
         }
     }
+    
+    //MARK: - Private Property
+    private let sectionIndex: Int
+}
+
+//MARK: - [Private Method] Configure of Section Layout
+extension HomeViewLayout {
     
     private func createIntroduceCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
