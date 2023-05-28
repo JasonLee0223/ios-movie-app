@@ -80,6 +80,7 @@
 		5BCAA1112A23219A00189C9D /* MovieDetailViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCAA1102A23219A00189C9D /* MovieDetailViewLayout.swift */; };
 		5BCAA1142A23245400189C9D /* MovieDetailInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCAA1132A23245400189C9D /* MovieDetailInformationCell.swift */; };
 		5BCAA1542A23549200189C9D /* MovieDetailInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCAA1532A23549200189C9D /* MovieDetailInformationView.swift */; };
+		5BCAA1562A2354DD00189C9D /* MovieSummaryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCAA1552A2354DD00189C9D /* MovieSummaryInfo.swift */; };
 		5BCE289B2A1B367E0076F189 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289A2A1B367E0076F189 /* KakaoSDK */; };
 		5BCE289D2A1B367E0076F189 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289C2A1B367E0076F189 /* KakaoSDKAuth */; };
 		5BCE28A02A1B3BDB0076F189 /* KakaoBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE289F2A1B3BDB0076F189 /* KakaoBasic.swift */; };
@@ -186,6 +187,7 @@
 		5BCAA1102A23219A00189C9D /* MovieDetailViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewLayout.swift; sourceTree = "<group>"; };
 		5BCAA1132A23245400189C9D /* MovieDetailInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailInformationCell.swift; sourceTree = "<group>"; };
 		5BCAA1532A23549200189C9D /* MovieDetailInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailInformationView.swift; sourceTree = "<group>"; };
+		5BCAA1552A2354DD00189C9D /* MovieSummaryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSummaryInfo.swift; sourceTree = "<group>"; };
 		5BCE289F2A1B3BDB0076F189 /* KakaoBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoBasic.swift; sourceTree = "<group>"; };
 		5BCE28A22A1B3CF30076F189 /* KoreaMovieListImageQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreaMovieListImageQueryParameters.swift; sourceTree = "<group>"; };
 		5BCE28A42A1B3E020076F189 /* KakaoMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoMagicLiteral.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				5BCAA1152A23257300189C9D /* Storyboard */,
 				5BCAA1162A23257E00189C9D /* Home */,
 				5BCAA1532A23549200189C9D /* MovieDetailInformationView.swift */,
+				5BCAA1552A2354DD00189C9D /* MovieSummaryInfo.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -862,6 +865,7 @@
 				5BED9EED2A18C36200C66386 /* TVDBPopular.swift in Sources */,
 				5BCAA1112A23219A00189C9D /* MovieDetailViewLayout.swift in Sources */,
 				5B3F1BED2A146EAC0062BE99 /* AppDelegate.swift in Sources */,
+				5BCAA1562A2354DD00189C9D /* MovieSummaryInfo.swift in Sources */,
 				5BC16D5C2A1B5D3200B7F3BA /* KoreaBoxOfficeListCell.swift in Sources */,
 				5B3F1C3A2A148AFF0062BE99 /* BoxOffice.swift in Sources */,
 				5B3F1C2C2A1488B30062BE99 /* Show.swift in Sources */,
