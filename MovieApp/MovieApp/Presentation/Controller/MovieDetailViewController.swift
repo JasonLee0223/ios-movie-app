@@ -13,6 +13,7 @@ final class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         
         configureOfUI()
+        configureOfDetailDiffableDataSource()
     }
     
     var movieDetailData: BusinessModelWrapper?
@@ -20,6 +21,8 @@ final class MovieDetailViewController: UIViewController {
     private let movieDetailCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()
     )
+    
+    private let detailDiffableDataSource: UICollectionViewDiffableDataSource<DetailSectionList, MovieInfo>?
 }
 
 //MARK: - [Private Method] Configure of UI Components
@@ -69,4 +72,53 @@ extension MovieDetailViewController {
         }
     }
     
+}
+
+//MARK: - [Private Method]
+extension MovieDetailViewController {
+    
+    private func configureOfDetailDiffableDataSource() {
+        let movieDetailInformationRegistration = UICollectionView.CellRegistration<MovieDetailInformationCell, MovieInfo> {
+            (cell, indexPath, movieInfo) in
+            
+            cell.configure(movieInfo, at: indexPath)
+        }
+        
+        let moiveOfficialsRegistration = UICollectionView.CellRegistration<MovieOfficialsCell, MovieInfo> {
+            (cell, indexPath, moiveInfo) in
+            
+            // MockData to test
+            let mockData = ["스즈메", "문단속", "스즈메", "문단속", "스즈메", "문단속", "스즈메", "문단속",]
+            
+            cell.configure(mockData, at: indexPath)
+        }
+        
+        let koreaBoxOfficeListCellRegistration = UICollectionView.CellRegistration<KoreaBoxOfficeListCell, MovieInfo> {
+            (cell, indexPath, movieInfo) in
+            
+            //TODO: - Core Graphic을 사용한 관객수 그래프화 or Label로 보여주기
+        }
+        
+        let headerRegistration = UICollectionView.SupplementaryRegistration<DetailHeaderView>(
+            elementKind: UICollectionView.elementKindSectionHeader
+        ) {
+            (headerView, elementKind, indexPath) in
+            
+            let sectionType = DetailSectionList.allCases[indexPath.section]
+            
+            switch sectionType {
+            case .movieDetailInformationSection:
+                return
+            case .movieOfficialsSection:
+                return headerView.configureOfMovieOfficialsLayout()
+            case .audienceCountSection:
+                return headerView.configureOfaudienceCountLayout()
+            }
+        }
+        
+        detailDiffableDataSource = UICollectionViewDiffableDataSource<DetailSectionList, MovieInfo>(collectionView: movieDetailCollectionView) {
+            (collectionView, indexPath, businessModelWrapper) in
+            
+        }
+    }
 }
