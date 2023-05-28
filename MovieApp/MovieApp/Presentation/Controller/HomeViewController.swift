@@ -182,10 +182,10 @@ extension HomeViewController {
             
             if let sectionType = self.diffableDataSource?.sectionIdentifier(
                 for: indexPath.section) {
-
+                
                 print("✅ [In HeaderRegistration] 현재 Section 확인중...")
                 print(sectionType.type)
-
+                
                 switch sectionType.type {
                 case .trendMoviePosterSection:
                     headerView.configureOfSortStackLayout()
@@ -196,7 +196,6 @@ extension HomeViewController {
                 }
             }
         }
-
         
         diffableDataSource = UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>(collectionView: homeCollectionView)
         { (collectionView, indexPath, businessModelWrapper) in
@@ -228,7 +227,8 @@ extension HomeViewController {
 //MARK: - Configure of Delegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("나 눌렸어!")
+        print("✅ Current Home ViewController❗️")
+        print(#function)
         
         guard let businessModelWrapper = diffableDataSource?.itemIdentifier(
             for: indexPath) else {
