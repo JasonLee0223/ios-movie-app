@@ -12,12 +12,38 @@ final class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureOfmovieDetailCollectionView()
-        configureHierarchy()
-        print("나 왔어!")
+        configureOfUI()
     }
     
-    private let movieDetailCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private let movieDetailCollectionView = UICollectionView(
+        frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()
+    )
+}
+
+//MARK: - [Private Methdo] Configure of UI Components
+extension MovieDetailViewController {
+    
+    private func configureOfUI() {
+        print("✅ Current Movie Detail ViewController ❗️")
+        
+        configureOfSuperView()
+        configureOfmovieDetailCollectionView()
+        configureHierarchy()
+    }
+    
+    private func configureOfSuperView() {
+        self.view.backgroundColor = .systemGray
+    }
+    
+    private func configureOfmovieDetailCollectionView() {
+        movieDetailCollectionView.isScrollEnabled = true
+        movieDetailCollectionView.clipsToBounds = false
+        movieDetailCollectionView.backgroundColor = .black
+    }
+}
+
+//MARK: - [Private Methdo] Configure of Layout
+extension MovieDetailViewController {
     
     private func configureHierarchy() {
         let safeArea = self.view.safeAreaLayoutGuide
@@ -33,9 +59,10 @@ final class MovieDetailViewController: UIViewController {
         ])
     }
     
-    private func configureOfmovieDetailCollectionView() {
-        movieDetailCollectionView.isScrollEnabled = true
-        movieDetailCollectionView.clipsToBounds = false
-        movieDetailCollectionView.backgroundColor = .black
+    private func configureOfCollectionViewCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        UICollectionViewCompositionalLayout { (sectionIndex: Int, _) -> NSCollectionLayoutSection? in
+            return MovieDetailViewLayout(sectionIndex: sectionIndex).create()
+        }
     }
+    
 }
