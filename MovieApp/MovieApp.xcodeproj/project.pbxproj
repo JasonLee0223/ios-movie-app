@@ -487,9 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				5B591BD22A1D064B0079CAC0 /* Interface */,
-				5B3F1C752A14C8DD0062BE99 /* TrendMovieListCell.swift */,
-				5B3F1C772A14C9010062BE99 /* MovieStillCutCell.swift */,
-				5BC16D5B2A1B5D3200B7F3BA /* KoreaBoxOfficeListCell.swift */,
+				5BCAA1122A23241200189C9D /* Home */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -578,6 +576,16 @@
 				5B9D270E2A20C18200E9C9C0 /* Error.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5BCAA1122A23241200189C9D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C752A14C8DD0062BE99 /* TrendMovieListCell.swift */,
+				5B3F1C772A14C9010062BE99 /* MovieStillCutCell.swift */,
+				5BC16D5B2A1B5D3200B7F3BA /* KoreaBoxOfficeListCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		5BCE289E2A1B3BC80076F189 /* KaKao */ = {
