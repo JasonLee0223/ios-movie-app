@@ -9,7 +9,7 @@ import Foundation
 
 final class ViewModel {
     
-    var sectionStorage: [SectionList: Observable<BusinessModelWrapper>]
+    var sectionStorage: [HomeSectionList: Observable<BusinessModelWrapper>]
     
     init() {
         self.networkService = NetworkService()
@@ -39,7 +39,7 @@ final class ViewModel {
 //MARK: - Public Method
 extension ViewModel {
     
-    func testTaskGroup(section: SectionList) async {
+    func testTaskGroup(section: HomeSectionList) async {
         await withTaskGroup(of: [BusinessModelWrapper].self) { taskGroup in
             
             taskGroup.addTask { [self] in
@@ -78,7 +78,7 @@ extension ViewModel {
         }
     }
     
-    func fetchHomeCollectionViewSectionItemsRelated(be section: SectionList) {
+    func fetchHomeCollectionViewSectionItemsRelated(be section: HomeSectionList) {
         /// Notice: Need HomeCollectionView Data
         /// 1. Array of TrendMovie
         /// 2. Array of StillCut

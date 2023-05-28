@@ -8,6 +8,6 @@
 import Foundation
 
 struct Section: Hashable {
-    var type: SectionList
+    var type: HomeSectionList
     var items: [BusinessModelWrapper]
 }

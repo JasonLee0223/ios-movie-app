@@ -123,7 +123,7 @@ extension HomeViewController {
     private func homeSnapShot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, BusinessModelWrapper>()
         
-        SectionList.allCases.forEach { sectionList in
+        HomeSectionList.allCases.forEach { sectionList in
             
             //MARK: - TaskGroupTest
 //            Task {

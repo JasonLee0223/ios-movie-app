@@ -16,7 +16,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     
     //MARK: - Number Of Section and Item
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return SectionList.allCases.count
+        return HomeSectionList.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -39,7 +39,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             
-            let sectionType = SectionList.allCases[indexPath.section]
+            let sectionType = HomeSectionList.allCases[indexPath.section]
             
             switch sectionType {
             case .trendMoviePosterSection:
@@ -61,7 +61,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch SectionList(rawValue: indexPath.section) {
+        switch HomeSectionList(rawValue: indexPath.section) {
             
         case .trendMoviePosterSection:
             guard let cell = collectionView.dequeueReusableCell(
