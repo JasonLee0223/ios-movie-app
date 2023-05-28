@@ -26,17 +26,20 @@ final class KoreaBoxOfficeListCell: UICollectionViewListCell, Convertible, Confi
         configureOfAllUIComponents()
     }
     
-    //MARK: - Public Method
-    func configure(_ item: KoreaBoxOfficeList, at indexPath: IndexPath) {
-        configureOfCellRegistration(with: item)
-    }
-    
     //MARK: - Private Property
     private let selector = Selector()
     private let converter = Converter()
 }
 
-//MARK: - Private Method
+//MARK: - [Public Method] Configure of UI Components
+extension KoreaBoxOfficeListCell {
+    
+    func configure(_ item: KoreaBoxOfficeList, at indexPath: IndexPath) {
+        configureOfCellRegistration(with: item)
+    }
+}
+
+//MARK: - [Private Method] Configure of UI Compoenents
 extension KoreaBoxOfficeListCell {
     private func configureOfCellRegistration(with dailyBoxOffice: KoreaBoxOfficeList) {
             
@@ -86,7 +89,7 @@ extension KoreaBoxOfficeListCell {
     }
 }
 
-//MARK: - Configure of Layout
+//MARK: - [Private Method] Configure of Layout
 extension KoreaBoxOfficeListCell {
     private func configureOfAllUIComponents() {
 

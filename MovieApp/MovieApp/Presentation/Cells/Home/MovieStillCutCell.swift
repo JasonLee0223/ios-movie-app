@@ -20,14 +20,6 @@ final class MovieStillCutCell: UICollectionViewCell, ConfigurableCell {
         configureOfLayout()
     }
     
-    //MARK: - Public Method
-    func configure(_ item: StillCut, at indexPath: IndexPath) {
-        let imageData = item.genreImagePath
-        guard let image = UIImage(data: imageData) else { return }
-        
-        setGenrePoster(with: image)
-    }
-    
     //MARK: - Private Property
     
     private let stillCutStack: UIStackView = {
@@ -47,7 +39,18 @@ final class MovieStillCutCell: UICollectionViewCell, ConfigurableCell {
     }()
 }
 
-//MARK: - Private Method
+//MARK: - Public Method
+extension MovieStillCutCell {
+    
+    func configure(_ item: StillCut, at indexPath: IndexPath) {
+        let imageData = item.genreImagePath
+        guard let image = UIImage(data: imageData) else { return }
+        
+        setGenrePoster(with: image)
+    }
+}
+
+//MARK: - [Private Method] Configure of UI Components
 extension MovieStillCutCell {
     
     private func setGenrePoster(with image: UIImage) {
@@ -55,7 +58,7 @@ extension MovieStillCutCell {
     }
 }
 
-//MARK: - Configure of Layout
+//MARK: - [Private Method] Configure of Layout
 extension MovieStillCutCell {
     
     private func configureOfLayout() {
