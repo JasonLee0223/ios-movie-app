@@ -506,8 +506,7 @@
 		5B3F1C7B2A14EE040062BE99 /* CellLayout */ = {
 			isa = PBXGroup;
 			children = (
-				5BC16D702A1CA37E00B7F3BA /* HomeSectionList.swift */,
-				5B74F0842A236FC800AD4A73 /* DetailSectionList.swift */,
+				5B74F0862A23701A00AD4A73 /* SectionList */,
 				5B3F1C7C2A14EE140062BE99 /* HomeViewLayout.swift */,
 				5BCAA1102A23219A00189C9D /* MovieDetailViewLayout.swift */,
 			);
@@ -549,6 +548,15 @@
 				5BCAA1552A2354DD00189C9D /* MovieSummaryInfo.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		5B74F0862A23701A00AD4A73 /* SectionList */ = {
+			isa = PBXGroup;
+			children = (
+				5BC16D702A1CA37E00B7F3BA /* HomeSectionList.swift */,
+				5B74F0842A236FC800AD4A73 /* DetailSectionList.swift */,
+			);
+			path = SectionList;
 			sourceTree = "<group>";
 		};
 		5B98C61E2A174011004C099F /* RawValues */ = {
