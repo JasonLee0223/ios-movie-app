@@ -14,6 +14,7 @@ final class AudienceCountCell: UICollectionViewCell, ReusableCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = .brown
     }
     
     required init?(coder: NSCoder) {

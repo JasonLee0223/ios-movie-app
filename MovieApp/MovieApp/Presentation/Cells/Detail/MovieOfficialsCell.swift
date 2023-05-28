@@ -13,6 +13,8 @@ final class MovieOfficialsCell: UICollectionViewCell, ConfigurableCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.backgroundColor = .blue
         configureOfLayout()
     }
     
