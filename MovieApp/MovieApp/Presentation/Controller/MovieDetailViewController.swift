@@ -40,7 +40,9 @@ extension MovieDetailViewController {
     private func configureOfmovieDetailCollectionView() {
         movieDetailCollectionView.isScrollEnabled = true
         movieDetailCollectionView.clipsToBounds = false
-        movieDetailCollectionView.backgroundColor = .black
+        movieDetailCollectionView.backgroundColor = .white
+        movieDetailCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
+        
     }
 }
 
