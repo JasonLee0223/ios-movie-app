@@ -22,7 +22,7 @@ final class MovieDetailViewController: UIViewController {
     )
 }
 
-//MARK: - [Private Methdo] Configure of UI Components
+//MARK: - [Private Method] Configure of UI Components
 extension MovieDetailViewController {
     
     private func configureOfUI() {
@@ -44,7 +44,7 @@ extension MovieDetailViewController {
     }
 }
 
-//MARK: - [Private Methdo] Configure of Layout
+//MARK: - [Private Method] Configure of Layout
 extension MovieDetailViewController {
     
     private func configureHierarchy() {
