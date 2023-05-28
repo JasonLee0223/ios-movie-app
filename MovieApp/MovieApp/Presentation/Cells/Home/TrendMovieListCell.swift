@@ -21,17 +21,6 @@ final class TrendMovieListCell: UICollectionViewCell, ConfigurableCell {
         configureOfLayout()
     }
     
-    //MARK: - Public Method
-    
-    func configure(_ item: TrendMovie, at indexPath: IndexPath) {
-        guard let movieImage = UIImage(data: item.posterImage) else {
-            return
-        }
-        
-        setPoster(with: item.posterName)
-        setPoster(with: movieImage)
-    }
-    
     //MARK: - Private Property
     
     private let posterStack: UIStackView = {
@@ -61,7 +50,20 @@ final class TrendMovieListCell: UICollectionViewCell, ConfigurableCell {
     }()
 }
 
-//MARK: - Private Method
+//MARK: - Public Method
+extension TrendMovieListCell {
+    
+    func configure(_ item: TrendMovie, at indexPath: IndexPath) {
+        guard let movieImage = UIImage(data: item.posterImage) else {
+            return
+        }
+        
+        setPoster(with: item.posterName)
+        setPoster(with: movieImage)
+    }
+}
+
+//MARK: - [Private Method] Configure of UI Components
 extension TrendMovieListCell {
     
     private func setPoster(with image: UIImage) {
@@ -73,7 +75,7 @@ extension TrendMovieListCell {
     }
 }
 
-//MARK: - Configure of Layout
+//MARK: - [Private Method] Configure of Layout
 extension TrendMovieListCell {
     
     private func configureOfLayout() {
