@@ -9,7 +9,7 @@ import Foundation
 
 struct TVDBAPIEndPoint {
     
-    static func receiveWeakTrendingList(with weakMovieListRequestDTO: PopularQueryParameters) -> EndPoint<TVDBPopular> {
+    static func receiveWeakTrendingList(with weakMovieListRequestDTO: PopularQueryParameters) -> EndPoint<TMDBPopular> {
         return EndPoint(baseURL: TVDBBasic.baseURL,
                         firstPath: TVDBBasic.pathQueryOfWeak,
                         queryParameters: weakMovieListRequestDTO)
