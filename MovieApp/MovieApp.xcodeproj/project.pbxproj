@@ -276,10 +276,8 @@
 		5B3F1C1C2A1472EE0062BE99 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5BC16D652A1B5EF600B7F3BA /* RankView.swift */,
-				5BC16D672A1B5F3400B7F3BA /* SummaryInfromationView.swift */,
-				5B3F1BF22A146EAC0062BE99 /* Main.storyboard */,
-				5B3F1BF72A146EAE0062BE99 /* LaunchScreen.storyboard */,
+				5BCAA1152A23257300189C9D /* Storyboard */,
+				5BCAA1162A23257E00189C9D /* Home */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -587,6 +585,24 @@
 				5B3F1C752A14C8DD0062BE99 /* TrendMovieListCell.swift */,
 				5B3F1C772A14C9010062BE99 /* MovieStillCutCell.swift */,
 				5BC16D5B2A1B5D3200B7F3BA /* KoreaBoxOfficeListCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5BCAA1152A23257300189C9D /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1BF22A146EAC0062BE99 /* Main.storyboard */,
+				5B3F1BF72A146EAE0062BE99 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		5BCAA1162A23257E00189C9D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5BC16D652A1B5EF600B7F3BA /* RankView.swift */,
+				5BC16D672A1B5F3400B7F3BA /* SummaryInfromationView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
