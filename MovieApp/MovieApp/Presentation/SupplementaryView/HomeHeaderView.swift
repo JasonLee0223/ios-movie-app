@@ -19,74 +19,6 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         super.init(coder: coder)
     }
     
-    //MARK: - Method
-    func configureOfSortStackLayout() {
-        let safeArea = self.safeAreaLayoutGuide
-        
-        self.addSubview(sortStack)
-        sortStack.addArrangedSubview(sortedByMovieRelease)
-        sortStack.addArrangedSubview(sortedByTicketing)
-        
-        sortStack.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            sortStack.topAnchor.constraint(
-                equalTo: safeArea.topAnchor
-            ),
-            sortStack.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
-            ),
-//            sortStack.trailingAnchor.constraint(
-//                equalTo: safeArea.trailingAnchor
-//            ),
-            sortStack.bottomAnchor.constraint(
-                equalTo: safeArea.bottomAnchor
-            ),
-            sortStack.widthAnchor.constraint(
-                equalTo: safeArea.widthAnchor,
-                multiplier: 0.5
-            )
-        ])
-    }
-    
-    func configureOfStillCutLayout() {
-        let safeArea = self.safeAreaLayoutGuide
-        
-        self.addSubview(stillCutTitle)
-        stillCutTitle.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stillCutTitle.topAnchor.constraint(
-                equalTo: safeArea.topAnchor
-            ),
-            stillCutTitle.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
-            ),
-            stillCutTitle.trailingAnchor.constraint(
-                equalTo: safeArea.trailingAnchor
-            ),
-            stillCutTitle.bottomAnchor.constraint(
-                equalTo: safeArea.bottomAnchor
-            )
-        ])
-    }
-    
-    func configureOfKoreaMovieLayout() {
-        let safeArea = self.safeAreaLayoutGuide
-        
-        self.addSubview(koreaMovieListTitle)
-        koreaMovieListTitle.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            koreaMovieListTitle.topAnchor.constraint(
-                equalTo: safeArea.topAnchor
-            ),
-            koreaMovieListTitle.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
-            ),
-            koreaMovieListTitle.bottomAnchor.constraint(
-                equalTo: safeArea.bottomAnchor
-            )
-        ])
-    }
-    
     //MARK: - Private Property
     
     private let sortStack: UIStackView = {
@@ -154,4 +86,75 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         koreaMovieListTitle.textColor = UIColor.white
         return koreaMovieListTitle
     }()
+}
+
+//MARK: - [Public Method] Configure of Layout
+extension HomeHeaderView {
+    
+    func configureOfSortStackLayout() {
+        let safeArea = self.safeAreaLayoutGuide
+        
+        self.addSubview(sortStack)
+        sortStack.addArrangedSubview(sortedByMovieRelease)
+        sortStack.addArrangedSubview(sortedByTicketing)
+        
+        sortStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sortStack.topAnchor.constraint(
+                equalTo: safeArea.topAnchor
+            ),
+            sortStack.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor
+            ),
+//            sortStack.trailingAnchor.constraint(
+//                equalTo: safeArea.trailingAnchor
+//            ),
+            sortStack.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
+            ),
+            sortStack.widthAnchor.constraint(
+                equalTo: safeArea.widthAnchor,
+                multiplier: 0.5
+            )
+        ])
+    }
+    
+    func configureOfStillCutLayout() {
+        let safeArea = self.safeAreaLayoutGuide
+        
+        self.addSubview(stillCutTitle)
+        stillCutTitle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stillCutTitle.topAnchor.constraint(
+                equalTo: safeArea.topAnchor
+            ),
+            stillCutTitle.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor
+            ),
+            stillCutTitle.trailingAnchor.constraint(
+                equalTo: safeArea.trailingAnchor
+            ),
+            stillCutTitle.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
+            )
+        ])
+    }
+    
+    func configureOfKoreaMovieLayout() {
+        let safeArea = self.safeAreaLayoutGuide
+        
+        self.addSubview(koreaMovieListTitle)
+        koreaMovieListTitle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            koreaMovieListTitle.topAnchor.constraint(
+                equalTo: safeArea.topAnchor
+            ),
+            koreaMovieListTitle.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor
+            ),
+            koreaMovieListTitle.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
+            )
+        ])
+    }
 }
