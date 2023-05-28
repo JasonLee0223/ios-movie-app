@@ -25,7 +25,7 @@ extension NetworkService {
     
     /// TrendMovieList
     func loadTrendMovieList() async throws -> [Result] {
-        let popularMovieListQueryParameters = PopularQueryParameters()
+        let popularMovieListQueryParameters = TMDBQueryParameters()
         
         
         guard let networkResult = try? await request(
@@ -106,7 +106,7 @@ extension NetworkService {
     func loadTrendingMovieListData(completion: @escaping ([Result]) -> Void) {
         
         Task {
-            let popularMovieListQueryParameters = PopularQueryParameters()
+            let popularMovieListQueryParameters = TMDBQueryParameters()
             let networkResult = try await request(
                 with: TVDBAPIEndPoint.receiveWeakTrendingList(
                     with: popularMovieListQueryParameters)
