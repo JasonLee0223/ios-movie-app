@@ -230,12 +230,13 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("나 눌렸어!")
         
-        guard let businessModel = diffableDataSource?.itemIdentifier(
+        guard let businessModelWrapper = diffableDataSource?.itemIdentifier(
             for: indexPath) else {
             return
         }
         
         let movieDetailViewController = MovieDetailViewController()
+        movieDetailViewController.movieDetailData = businessModelWrapper
         navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
 }
