@@ -15,6 +15,8 @@ final class MovieDetailViewController: UIViewController {
         configureOfUI()
     }
     
+    var movieDetailData: BusinessModelWrapper?
+    
     private let movieDetailCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()
     )
