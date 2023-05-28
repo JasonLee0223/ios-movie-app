@@ -328,10 +328,7 @@
 		5B3F1C202A14772A0062BE99 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				5B9D27052A1F545C00E9C9C0 /* BusinessModelWrapper.swift */,
-				5BC16D692A1C90D200B7F3BA /* TrendMovie.swift */,
-				5BC16D6B2A1C913700B7F3BA /* StillCut.swift */,
-				5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */,
+				5B74F0882A23809000AD4A73 /* HomeEntity */,
 				5B3F1C6A2A1497700062BE99 /* Interface */,
 				5B3F1C6F2A1497F50062BE99 /* Helper */,
 				5B98C61E2A174011004C099F /* RawValues */,
@@ -565,6 +562,17 @@
 				5BCAA1102A23219A00189C9D /* MovieDetailViewLayout.swift */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		5B74F0882A23809000AD4A73 /* HomeEntity */ = {
+			isa = PBXGroup;
+			children = (
+				5B9D27052A1F545C00E9C9C0 /* BusinessModelWrapper.swift */,
+				5BC16D692A1C90D200B7F3BA /* TrendMovie.swift */,
+				5BC16D6B2A1C913700B7F3BA /* StillCut.swift */,
+				5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */,
+			);
+			path = HomeEntity;
 			sourceTree = "<group>";
 		};
 		5B98C61E2A174011004C099F /* RawValues */ = {
