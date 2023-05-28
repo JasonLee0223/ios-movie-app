@@ -20,7 +20,7 @@ final class HomeViewController: UIViewController {
     }
     
     private let viewModel = ViewModel()
-    private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>?
 }
 
@@ -80,15 +80,15 @@ extension HomeViewController {
     }
     
     private func configureOfCollectionView() {
-        collectionView.isScrollEnabled = true
-        collectionView.clipsToBounds = false
-        collectionView.backgroundColor = .black
-        collectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
+        homeCollectionView.isScrollEnabled = true
+        homeCollectionView.clipsToBounds = false
+        homeCollectionView.backgroundColor = .black
+        homeCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
     }
     
     private func configureColletionViewDelegate() {
         Task {
-            collectionView.delegate = self
+            homeCollectionView.delegate = self
         }
     }
 }
@@ -99,14 +99,14 @@ extension HomeViewController {
     private func configureHierarchy() {
         let safeArea = self.view.safeAreaLayoutGuide
         
-        self.view.addSubview(collectionView)
+        self.view.addSubview(homeCollectionView)
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        homeCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            homeCollectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            homeCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            homeCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            homeCollectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
     }
     
@@ -198,7 +198,7 @@ extension HomeViewController {
         }
 
         
-        diffableDataSource = UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>(collectionView: collectionView)
+        diffableDataSource = UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>(collectionView: homeCollectionView)
         { (collectionView, indexPath, businessModelWrapper) in
             
             switch businessModelWrapper {
@@ -218,7 +218,7 @@ extension HomeViewController {
         }
         
         diffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
-            return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
+            return self.homeCollectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
         }
         
     }
