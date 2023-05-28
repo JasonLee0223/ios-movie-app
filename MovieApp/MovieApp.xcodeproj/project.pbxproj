@@ -284,8 +284,7 @@
 			children = (
 				5BCAA1152A23257300189C9D /* Storyboard */,
 				5BCAA1162A23257E00189C9D /* Home */,
-				5BCAA1532A23549200189C9D /* MovieDetailInformationView.swift */,
-				5BCAA1552A2354DD00189C9D /* MovieSummaryInfo.swift */,
+				5B74F07F2A2364E300AD4A73 /* Detail */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -535,6 +534,15 @@
 				5BDA15C32A2260CF00F95347 /* MovieDetailViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		5B74F07F2A2364E300AD4A73 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5BCAA1532A23549200189C9D /* MovieDetailInformationView.swift */,
+				5BCAA1552A2354DD00189C9D /* MovieSummaryInfo.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		5B98C61E2A174011004C099F /* RawValues */ = {
