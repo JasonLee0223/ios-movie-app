@@ -38,25 +38,4 @@ final class MovieDetailViewController: UIViewController {
         movieDetailCollectionView.clipsToBounds = false
         movieDetailCollectionView.backgroundColor = .black
     }
-    
-    private func add() {
-        let movieDetailInformationView = MovieDetailInformationView(
-            frame: self.view.frame
-        )
-        self.view.addSubview(movieDetailInformationView)
-        NSLayoutConstraint.activate([
-            movieDetailInformationView.topAnchor.constraint(
-                equalTo: self.view.safeAreaLayoutGuide.topAnchor
-            ),
-            movieDetailInformationView.leadingAnchor.constraint(
-                equalTo: self.view.safeAreaLayoutGuide.leadingAnchor
-            ),
-            movieDetailInformationView.trailingAnchor.constraint(
-                equalTo: self.view.safeAreaLayoutGuide.trailingAnchor
-            ),
-            movieDetailInformationView.bottomAnchor.constraint(
-                equalTo: self.view.safeAreaLayoutGuide.bottomAnchor
-            )
-        ])
-    }
 }

@@ -310,9 +310,7 @@
 		5B3F1C1F2A14731D0062BE99 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				5B3F1BF02A146EAC0062BE99 /* HomeViewController.swift */,
-				5BDA15C32A2260CF00F95347 /* MovieDetailViewController.swift */,
-				5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */,
+				5B74F07C2A235FD500AD4A73 /* Controller */,
 				5B9D270B2A20AF7200E9C9C0 /* SupplementaryView */,
 				5B3F1C7B2A14EE040062BE99 /* CellLayout */,
 				5B3F1C722A14C82F0062BE99 /* Cells */,
@@ -492,9 +490,10 @@
 		5B3F1C722A14C82F0062BE99 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */,
 				5B591BD22A1D064B0079CAC0 /* Interface */,
 				5BCAA1122A23241200189C9D /* Home */,
-				5BCAA1132A23245400189C9D /* MovieDetailInformationCell.swift */,
+				5B74F07B2A235FC200AD4A73 /* Detail */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -517,6 +516,23 @@
 				5B591BD52A1D07460079CAC0 /* CollectionDataProvider.swift */,
 			);
 			path = Interface;
+			sourceTree = "<group>";
+		};
+		5B74F07B2A235FC200AD4A73 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5BCAA1132A23245400189C9D /* MovieDetailInformationCell.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		5B74F07C2A235FD500AD4A73 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1BF02A146EAC0062BE99 /* HomeViewController.swift */,
+				5BDA15C32A2260CF00F95347 /* MovieDetailViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		5B98C61E2A174011004C099F /* RawValues */ = {
