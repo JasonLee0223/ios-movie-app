@@ -496,8 +496,7 @@
 		5B3F1C722A14C82F0062BE99 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */,
-				5B74F08B2A24B9DD00AD4A73 /* MovieDetailDataSource.swift */,
+				5B74F08D2A24BA0E00AD4A73 /* DataSource */,
 				5B591BD22A1D064B0079CAC0 /* Interface */,
 				5BCAA1122A23241200189C9D /* Home */,
 				5B74F07B2A235FC200AD4A73 /* Detail */,
@@ -578,6 +577,15 @@
 				5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */,
 			);
 			path = HomeEntity;
+			sourceTree = "<group>";
+		};
+		5B74F08D2A24BA0E00AD4A73 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */,
+				5B74F08B2A24B9DD00AD4A73 /* MovieDetailDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		5B98C61E2A174011004C099F /* RawValues */ = {
