@@ -64,7 +64,7 @@ extension Requestable {
     }
     
     private func decide<E: RequestAndResponsable>(toType endPoint: E) throws -> String? {
-        if endPoint is EndPoint<TMDBPopular> {
+        if endPoint is EndPoint<TMDBTrendMovieList> {
             return "\(baseURL)\(firstPath)"
         }
         

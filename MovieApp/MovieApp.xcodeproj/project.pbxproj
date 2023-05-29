@@ -72,7 +72,7 @@
 		5B9D270F2A20C18200E9C9C0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D270E2A20C18200E9C9C0 /* Error.swift */; };
 		5B9FA2F82A18D8D10045BE35 /* TBDBBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2F72A18D8D10045BE35 /* TBDBBasic.swift */; };
 		5B9FA2FA2A18DB150045BE35 /* TVDBAPIMagicLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */; };
-		5B9FA2FC2A18DCF50045BE35 /* TVDBAPIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */; };
+		5B9FA2FC2A18DCF50045BE35 /* TMDBAPIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FA2FB2A18DCF50045BE35 /* TMDBAPIEndPoint.swift */; };
 		5BC16D5C2A1B5D3200B7F3BA /* KoreaBoxOfficeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC16D5B2A1B5D3200B7F3BA /* KoreaBoxOfficeListCell.swift */; };
 		5BC16D5E2A1B5D6400B7F3BA /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC16D5D2A1B5D6400B7F3BA /* Selector.swift */; };
 		5BC16D602A1B5D7D00B7F3BA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC16D5F2A1B5D7D00B7F3BA /* Converter.swift */; };
@@ -95,7 +95,7 @@
 		5BCE28A82A1B41830076F189 /* MoviePosterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE28A72A1B41830076F189 /* MoviePosterImage.swift */; };
 		5BCE28AA2A1B41FD0076F189 /* KakaoEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE28A92A1B41FD0076F189 /* KakaoEndPoint.swift */; };
 		5BDA15C42A2260CF00F95347 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA15C32A2260CF00F95347 /* MovieDetailViewController.swift */; };
-		5BED9EED2A18C36200C66386 /* TMDBPopular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EEC2A18C36200C66386 /* TMDBPopular.swift */; };
+		5BED9EED2A18C36200C66386 /* TMDBTrendMovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EEC2A18C36200C66386 /* TMDBTrendMovieList.swift */; };
 		5BED9EF12A18C6BD00C66386 /* TMDBQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EF02A18C6BD00C66386 /* TMDBQueryParameters.swift */; };
 /* End PBXBuildFile section */
 
@@ -185,7 +185,7 @@
 		5B9D270E2A20C18200E9C9C0 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		5B9FA2F72A18D8D10045BE35 /* TBDBBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBDBBasic.swift; sourceTree = "<group>"; };
 		5B9FA2F92A18DB150045BE35 /* TVDBAPIMagicLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIMagicLiteral.swift; sourceTree = "<group>"; };
-		5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBAPIEndPoint.swift; sourceTree = "<group>"; };
+		5B9FA2FB2A18DCF50045BE35 /* TMDBAPIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIEndPoint.swift; sourceTree = "<group>"; };
 		5BC16D5B2A1B5D3200B7F3BA /* KoreaBoxOfficeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreaBoxOfficeListCell.swift; sourceTree = "<group>"; };
 		5BC16D5D2A1B5D6400B7F3BA /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		5BC16D5F2A1B5D7D00B7F3BA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 		5BCE28A72A1B41830076F189 /* MoviePosterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePosterImage.swift; sourceTree = "<group>"; };
 		5BCE28A92A1B41FD0076F189 /* KakaoEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoEndPoint.swift; sourceTree = "<group>"; };
 		5BDA15C32A2260CF00F95347 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
-		5BED9EEC2A18C36200C66386 /* TMDBPopular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBPopular.swift; sourceTree = "<group>"; };
+		5BED9EEC2A18C36200C66386 /* TMDBTrendMovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBTrendMovieList.swift; sourceTree = "<group>"; };
 		5BED9EF02A18C6BD00C66386 /* TMDBQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBQueryParameters.swift; sourceTree = "<group>"; };
 		5BF21BA22A1A07A0006B0EA4 /* APIKEYS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIKEYS.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -603,7 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				5BCE28A92A1B41FD0076F189 /* KakaoEndPoint.swift */,
-				5B9FA2FB2A18DCF50045BE35 /* TVDBAPIEndPoint.swift */,
+				5B9FA2FB2A18DCF50045BE35 /* TMDBAPIEndPoint.swift */,
 				5B3F1C632A148DB60062BE99 /* KOFICAPIEndPoint.swift */,
 			);
 			path = APIEndponit;
@@ -714,8 +714,8 @@
 		5BED9EEB2A18C32E00C66386 /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				5BED9EEC2A18C36200C66386 /* TMDBTrendMovieList.swift */,
 				5B74F0892A23913800AD4A73 /* TMDBMovieDetail.swift */,
-				5BED9EEC2A18C36200C66386 /* TMDBPopular.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -933,7 +933,7 @@
 				5B74F0852A236FC800AD4A73 /* DetailSectionList.swift in Sources */,
 				5BCE28A32A1B3CF30076F189 /* KoreaMovieListImageQueryParameters.swift in Sources */,
 				5B3F1C452A148B810062BE99 /* Company.swift in Sources */,
-				5B9FA2FC2A18DCF50045BE35 /* TVDBAPIEndPoint.swift in Sources */,
+				5B9FA2FC2A18DCF50045BE35 /* TMDBAPIEndPoint.swift in Sources */,
 				5BDA15C42A2260CF00F95347 /* MovieDetailViewController.swift in Sources */,
 				5B3F1C7D2A14EE140062BE99 /* HomeViewLayout.swift in Sources */,
 				5B3F1C492A148B8E0062BE99 /* Genre.swift in Sources */,
@@ -942,7 +942,7 @@
 				5B3F1C742A14C8730062BE99 /* HomeHeaderView.swift in Sources */,
 				5B3F1C532A148C040062BE99 /* MovieInfoResult.swift in Sources */,
 				5B3F1C362A1489A10062BE99 /* MovieDetailQueryParameters.swift in Sources */,
-				5BED9EED2A18C36200C66386 /* TMDBPopular.swift in Sources */,
+				5BED9EED2A18C36200C66386 /* TMDBTrendMovieList.swift in Sources */,
 				5BCAA1112A23219A00189C9D /* MovieDetailViewLayout.swift in Sources */,
 				5B3F1BED2A146EAC0062BE99 /* AppDelegate.swift in Sources */,
 				5BCAA1562A2354DD00189C9D /* MovieSummaryInfo.swift in Sources */,

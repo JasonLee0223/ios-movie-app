@@ -1,5 +1,5 @@
 //
-//  TMDBPopular.swift
+//  TMDBTrendMovieList.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/05/20.
@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - TVDBPopular
 
-struct TMDBPopular: Decodable {
+struct TMDBTrendMovieList: Decodable {
     let page: Int
     let results: [Result]
     let totalPages: Int
