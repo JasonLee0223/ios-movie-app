@@ -17,6 +17,11 @@ final class MovieDetailInformationCell: UICollectionViewCell, ConfigurableCell {
         configureOfLayout()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureMoviePosterImageView()
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureOfLayout()
@@ -42,7 +47,7 @@ final class MovieDetailInformationCell: UICollectionViewCell, ConfigurableCell {
         ]
         layer.locations = [0.25, 0.7]
         layer.colors = colors
-
+        
         return layer
     }()
     
@@ -51,6 +56,8 @@ final class MovieDetailInformationCell: UICollectionViewCell, ConfigurableCell {
         overView.textAlignment = .left
         overView.numberOfLines = 3
         overView.sizeToFit()
+        overView.backgroundColor = .orange
+        overView.isHidden = false
         return overView
     }()
 }
@@ -107,67 +114,65 @@ extension MovieDetailInformationCell {
     
     private func configureOfLayout() {
         
-        private func configureOfLayout() {
-            let safeArea = self.contentView.safeAreaLayoutGuide
-            
-            self.contentView.translatesAutoresizingMaskIntoConstraints = false
-            self.contentView.addSubview(posterImage)
-            posterImage.layer.addSublayer(gradientLayer)
-            self.contentView.addSubview(movieSummaryInfo)
-            self.contentView.addSubview(overView)
-            
-            posterImage.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                posterImage.topAnchor.constraint(
-                    equalTo: topAnchor
-                ),
-                posterImage.leadingAnchor.constraint(
-                    equalTo: leadingAnchor
-                ),
-                posterImage.trailingAnchor.constraint(
-                    equalTo: trailingAnchor
-                ),
-                posterImage.heightAnchor.constraint(
-                    equalTo: heightAnchor
-    //                multiplier: 0.6
-                )
-            ])
-            
-            movieSummaryInfo.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                movieSummaryInfo.leadingAnchor.constraint(
-                    equalTo: posterImage.leadingAnchor,
-                    constant: 20
-                ),
-                movieSummaryInfo.trailingAnchor.constraint(
-                    equalTo: posterImage.trailingAnchor,
-                    constant: -20
-                ),
-                movieSummaryInfo.centerYAnchor.constraint(
-                    equalTo: posterImage.centerYAnchor,
-                    constant: 90
-                ),
-                movieSummaryInfo.heightAnchor.constraint(
-                    equalTo: posterImage.heightAnchor, multiplier: 1 / 4
-                )
-            ])
-            
-            overView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                overView.topAnchor.constraint(
-                    equalTo: movieSummaryInfo.bottomAnchor,
-                    constant: 30
-                ),
-                overView.leadingAnchor.constraint(
-                    equalTo: movieSummaryInfo.leadingAnchor
-                ),
-                overView.trailingAnchor.constraint(
-                    equalTo: movieSummaryInfo.trailingAnchor
-                ),
-                overView.bottomAnchor.constraint(
-                    equalTo: safeArea.bottomAnchor
-                )
-            ])
-        }
+        let safeArea = self.contentView.safeAreaLayoutGuide
+        
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(posterImage)
+        posterImage.layer.addSublayer(gradientLayer)
+        self.contentView.addSubview(movieSummaryInfo)
+        self.contentView.addSubview(overView)
+        
+        posterImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            posterImage.topAnchor.constraint(
+                equalTo: topAnchor
+            ),
+            posterImage.leadingAnchor.constraint(
+                equalTo: leadingAnchor
+            ),
+            posterImage.trailingAnchor.constraint(
+                equalTo: trailingAnchor
+            ),
+            posterImage.heightAnchor.constraint(
+                equalTo: heightAnchor
+                //                multiplier: 0.6
+            )
+        ])
+        
+        movieSummaryInfo.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            movieSummaryInfo.leadingAnchor.constraint(
+                equalTo: posterImage.leadingAnchor,
+                constant: 20
+            ),
+            movieSummaryInfo.trailingAnchor.constraint(
+                equalTo: posterImage.trailingAnchor,
+                constant: -20
+            ),
+            movieSummaryInfo.centerYAnchor.constraint(
+                equalTo: posterImage.centerYAnchor,
+                constant: 40
+            ),
+            movieSummaryInfo.heightAnchor.constraint(
+                equalTo: posterImage.heightAnchor, multiplier: 1 / 5
+            )
+        ])
+        
+        overView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            overView.topAnchor.constraint(
+                equalTo: movieSummaryInfo.bottomAnchor,
+                constant: 30
+            ),
+            overView.leadingAnchor.constraint(
+                equalTo: movieSummaryInfo.leadingAnchor
+            ),
+            overView.trailingAnchor.constraint(
+                equalTo: movieSummaryInfo.trailingAnchor
+            ),
+            overView.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
+            )
+        ])
     }
 }
