@@ -37,19 +37,19 @@ extension MovieDetailViewLayout {
     private func createMovieDetailCellCompositionalLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(1.5)
+            heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+            heightDimension: .fractionalHeight(0.7)
         )
-        let group = NSCollectionLayoutGroup(layoutSize: groupSize)
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize, subitems: [item]
+        )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .paging
-        
         return section
     }
     
@@ -66,17 +66,22 @@ extension MovieDetailViewLayout {
         
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(1.0 / 2.0)
+            heightDimension: .fractionalWidth(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+            widthDimension: .fractionalWidth(1.0 / 2.2),
+            heightDimension: .fractionalWidth(0.5)
         )
-        let group = NSCollectionLayoutGroup(layoutSize: groupSize)
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitem: item,
+            count: 2
+        )
         
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [header]
         section.orthogonalScrollingBehavior = .continuous
         
         return section
@@ -103,9 +108,13 @@ extension MovieDetailViewLayout {
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)
         )
-        let group = NSCollectionLayoutGroup(layoutSize: groupSize)
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
         
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [header]
         
         return section
     }
