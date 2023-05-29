@@ -46,6 +46,7 @@ final class MovieSummaryInfo: UIStackView {
         let movieKoreanName = UILabel()
         movieKoreanName.font = .boldSystemFont(ofSize: 26)
         movieKoreanName.textColor = .black
+        movieKoreanName.sizeToFit()
         return movieKoreanName
     }()
     
@@ -53,6 +54,7 @@ final class MovieSummaryInfo: UIStackView {
         let movieEnglishName = UILabel()
         movieEnglishName.font = .systemFont(ofSize: 14)
         movieEnglishName.textColor = .black
+        movieEnglishName.sizeToFit()
         return movieEnglishName
     }()
     
@@ -60,6 +62,7 @@ final class MovieSummaryInfo: UIStackView {
         let screeningInformation = UILabel()
         screeningInformation.font = .systemFont(ofSize: 14)
         screeningInformation.textColor = .black
+        screeningInformation.sizeToFit()
         return screeningInformation
     }()
 }
@@ -87,7 +90,7 @@ extension MovieSummaryInfo {
     private func configureOfStackView() {
         axis = .vertical
         alignment = .leading
-        distribution = .fillProportionally
+        distribution = .fillEqually
     }
     
     private func setWatchGrade(by text: String) {
