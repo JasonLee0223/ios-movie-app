@@ -21,8 +21,9 @@ final class MovieDetailViewController: UIViewController {
     private let movieDetailCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()
     )
+    private let dataSource = MovieDetailDataSource()
     
-    private let detailDiffableDataSource: UICollectionViewDiffableDataSource<DetailSectionList, MovieInfo>?
+//    private let detailDiffableDataSource: UICollectionViewDiffableDataSource<DetailSectionList, MovieInfo>?
 }
 
 //MARK: - [Private Method] Configure of UI Components
@@ -42,10 +43,29 @@ extension MovieDetailViewController {
     
     private func configureOfmovieDetailCollectionView() {
         movieDetailCollectionView.isScrollEnabled = true
-        movieDetailCollectionView.clipsToBounds = false
+        movieDetailCollectionView.clipsToBounds = true
         movieDetailCollectionView.backgroundColor = .white
         movieDetailCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
+        movieDetailCollectionView.dataSource = dataSource
         
+        
+        movieDetailCollectionView.register(
+            DetailHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: DetailHeaderView.reuseIdentifier
+        )
+        movieDetailCollectionView.register(
+            MovieDetailInformationCell.self,
+            forCellWithReuseIdentifier: MovieDetailInformationCell.reuseIdentifier
+        )
+        movieDetailCollectionView.register(
+            MovieCreditCell.self,
+            forCellWithReuseIdentifier: MovieCreditCell.reuseIdentifier
+        )
+        movieDetailCollectionView.register(
+            AudienceCountCell.self,
+            forCellWithReuseIdentifier: AudienceCountCell.reuseIdentifier
+        )
     }
 }
 
@@ -84,7 +104,7 @@ extension MovieDetailViewController {
             cell.configure(movieInfo, at: indexPath)
         }
         
-        let moiveOfficialsRegistration = UICollectionView.CellRegistration<MovieOfficialsCell, MovieInfo> {
+        let moiveOfficialsRegistration = UICollectionView.CellRegistration<MovieCreditCell, MovieInfo> {
             (cell, indexPath, moiveInfo) in
             
             // MockData to test
