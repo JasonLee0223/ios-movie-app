@@ -97,8 +97,8 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
             return cell
         case let .movieOfficial(items):
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MovieOfficialsCell.reuseIdentifier,
-                for: indexPath) as? MovieOfficialsCell else {
+                withReuseIdentifier: MovieCreditCell.reuseIdentifier,
+                for: indexPath) as? MovieCreditCell else {
                 return UICollectionViewCell()
             }
             let item = items[indexPath.item]
