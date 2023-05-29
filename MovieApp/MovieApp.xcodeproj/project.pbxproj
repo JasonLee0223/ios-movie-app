@@ -63,6 +63,7 @@
 		5B74F0832A236EDB00AD4A73 /* AudienceCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F0822A236EDB00AD4A73 /* AudienceCountCell.swift */; };
 		5B74F0852A236FC800AD4A73 /* DetailSectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F0842A236FC800AD4A73 /* DetailSectionList.swift */; };
 		5B74F08A2A23913800AD4A73 /* TMDBMovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F0892A23913800AD4A73 /* TMDBMovieDetail.swift */; };
+		5B74F08C2A24B9DD00AD4A73 /* MovieDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F08B2A24B9DD00AD4A73 /* MovieDetailDataSource.swift */; };
 		5B98C61D2A174001004C099F /* KoreaBoxOfficeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */; };
 		5B9D27062A1F545C00E9C9C0 /* BusinessModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D27052A1F545C00E9C9C0 /* BusinessModelWrapper.swift */; };
 		5B9D270A2A20ADCA00E9C9C0 /* DataLoadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D27092A20ADCA00E9C9C0 /* DataLoadError.swift */; };
@@ -174,6 +175,7 @@
 		5B74F0822A236EDB00AD4A73 /* AudienceCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudienceCountCell.swift; sourceTree = "<group>"; };
 		5B74F0842A236FC800AD4A73 /* DetailSectionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionList.swift; sourceTree = "<group>"; };
 		5B74F0892A23913800AD4A73 /* TMDBMovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBMovieDetail.swift; sourceTree = "<group>"; };
+		5B74F08B2A24B9DD00AD4A73 /* MovieDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailDataSource.swift; sourceTree = "<group>"; };
 		5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreaBoxOfficeList.swift; sourceTree = "<group>"; };
 		5B9D27052A1F545C00E9C9C0 /* BusinessModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModelWrapper.swift; sourceTree = "<group>"; };
 		5B9D27092A20ADCA00E9C9C0 /* DataLoadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadError.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3F1C7E2A15DC480062BE99 /* HomeViewDataSource.swift */,
+				5B74F08B2A24B9DD00AD4A73 /* MovieDetailDataSource.swift */,
 				5B591BD22A1D064B0079CAC0 /* Interface */,
 				5BCAA1122A23241200189C9D /* Home */,
 				5B74F07B2A235FC200AD4A73 /* Detail */,
@@ -899,6 +902,7 @@
 				5B3F1C4D2A148B9B0062BE99 /* ShowType.swift in Sources */,
 				5BC16D622A1B5E0600B7F3BA /* Decidable.swift in Sources */,
 				5B3F1C6E2A1497A00062BE99 /* MagicLiteral.swift in Sources */,
+				5B74F08C2A24B9DD00AD4A73 /* MovieDetailDataSource.swift in Sources */,
 				5BCE28A02A1B3BDB0076F189 /* KakaoBasic.swift in Sources */,
 				5B0C81342A1CD044004BF2D6 /* Observable.swift in Sources */,
 				5B591BD12A1D052C0079CAC0 /* ReusableCell.swift in Sources */,
