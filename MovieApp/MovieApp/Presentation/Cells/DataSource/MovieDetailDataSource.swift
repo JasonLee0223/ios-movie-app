@@ -46,16 +46,16 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
                         viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath
     ) -> UICollectionReusableView {
         
+        let sectionType = DetailSectionList.allCases[indexPath.section]
+        
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             guard let headerView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: DetailHeaderView.reuseIdentifier,
-                for: indexPath) as? DetailHeaderView else {
+                ofKind: kind, withReuseIdentifier: DetailHeaderView.reuseIdentifier, for: indexPath
+            ) as? DetailHeaderView else {
                 return UICollectionReusableView()
             }
             
-            let sectionType = DetailSectionList.allCases[indexPath.section]
             switch sectionType {
             case .movieDetailInformationSection:
                 print("첫번째 Section은 HeaderView 없음")
@@ -66,6 +66,19 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
             }
             
             return headerView
+            
+        case UICollectionView.elementKindSectionFooter:
+            guard let footerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind, withReuseIdentifier: DetailFooterView.reuseIdentifier, for: indexPath
+            ) as? DetailFooterView else {
+                return UICollectionReusableView()
+            }
+            
+            if sectionType == .movieDetailInformationSection {
+                //TODO: - footer Handler
+                footerView.didSelectedButton()
+            }
+            return footerView
         default:
             return UICollectionReusableView()
         }
@@ -76,8 +89,7 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
         switch mockData[indexPath.section] {
         case let .movieDetail(items):
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MovieDetailInformationCell.reuseIdentifier,
-                for: indexPath
+                withReuseIdentifier: MovieDetailInformationCell.reuseIdentifier, for: indexPath
             ) as? MovieDetailInformationCell else {
                 return UICollectionViewCell()
             }
@@ -97,10 +109,11 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
             return cell
         case let .movieOfficial(items):
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MovieCreditCell.reuseIdentifier,
-                for: indexPath) as? MovieCreditCell else {
+                withReuseIdentifier: MovieCreditCell.reuseIdentifier, for: indexPath
+            ) as? MovieCreditCell else {
                 return UICollectionViewCell()
             }
+            
             let item = items[indexPath.item]
             cell.setPeopleName(by: item.title)
             cell.setRole(by: item.distance)
@@ -108,8 +121,8 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
             return cell
         case .audienceCount(_):
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: AudienceCountCell.reuseIdentifier,
-                for: indexPath) as? AudienceCountCell else {
+                withReuseIdentifier: AudienceCountCell.reuseIdentifier, for: indexPath
+            ) as? AudienceCountCell else {
                 return UICollectionViewCell()
             }
             
