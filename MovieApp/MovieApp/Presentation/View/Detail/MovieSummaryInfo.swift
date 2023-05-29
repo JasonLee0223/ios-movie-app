@@ -17,47 +17,49 @@ final class MovieSummaryInfo: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .systemBlue
+        self.backgroundColor = .white
         
         configureOfStackView()
-        configureOfComponents(by: mockData)
+        configureOfLayout()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
         configureOfStackView()
-        configureOfComponents(by: mockData)
+        configureOfLayout()
     }
     
     //MARK: - Private Property
 
     private let watchGrade: UILabel = {
         let watchGrade = UILabel()
-        watchGrade.font = .systemFont(ofSize: 12)
+        watchGrade.font = .systemFont(ofSize: 15)
         watchGrade.textColor = .green
-        watchGrade.layer.borderWidth = 10
-        watchGrade.layer.cornerRadius = 10
+        watchGrade.layer.borderWidth = 1
+        watchGrade.layer.borderColor = UIColor.green.cgColor
+        watchGrade.layer.cornerRadius = 5
+        watchGrade.sizeToFit()
         return watchGrade
     }()
     
     private let movieKoreanName: UILabel = {
         let movieKoreanName = UILabel()
-        movieKoreanName.font = .boldSystemFont(ofSize: 24)
-        movieKoreanName.textColor = .white
+        movieKoreanName.font = .boldSystemFont(ofSize: 26)
+        movieKoreanName.textColor = .black
         return movieKoreanName
     }()
     
     private let movieEnglishName: UILabel = {
         let movieEnglishName = UILabel()
-        movieEnglishName.font = .systemFont(ofSize: 12)
-        movieEnglishName.textColor = .white
+        movieEnglishName.font = .systemFont(ofSize: 14)
+        movieEnglishName.textColor = .black
         return movieEnglishName
     }()
     
     private let screeningInformation: UILabel = {
         let screeningInformation = UILabel()
-        screeningInformation.font = .systemFont(ofSize: 12)
-        screeningInformation.textColor = .white
+        screeningInformation.font = .systemFont(ofSize: 14)
+        screeningInformation.textColor = .black
         return screeningInformation
     }()
 }
@@ -76,9 +78,6 @@ extension MovieSummaryInfo {
 extension MovieSummaryInfo {
     
     private func configureOfLayout() {
-//        let safeArea = self.safeAreaLayoutGuide
-        
-        //TODO: - addSubView를 사용하여 constraint 고민필요
         self.addArrangedSubview(watchGrade)
         self.addArrangedSubview(movieKoreanName)
         self.addArrangedSubview(movieEnglishName)
@@ -86,9 +85,9 @@ extension MovieSummaryInfo {
     }
     
     private func configureOfStackView() {
-        axis = .horizontal
+        axis = .vertical
         alignment = .leading
-        distribution = .fillEqually
+        distribution = .fillProportionally
     }
     
     private func setWatchGrade(by text: String) {
