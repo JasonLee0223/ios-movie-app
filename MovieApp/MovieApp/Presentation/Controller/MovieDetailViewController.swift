@@ -19,7 +19,7 @@ final class MovieDetailViewController: UIViewController {
     var movieDetailData: BusinessModelWrapper?
     
     private let movieDetailCollectionView = UICollectionView(
-        frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()
+        frame: .zero, collectionViewLayout: UICollectionViewLayout()
     )
     private let dataSource = MovieDetailDataSource()
     
@@ -53,6 +53,11 @@ extension MovieDetailViewController {
             DetailHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: DetailHeaderView.reuseIdentifier
+        )
+        movieDetailCollectionView.register(
+            DetailFooterView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: DetailFooterView.reuseIdentifier
         )
         movieDetailCollectionView.register(
             MovieDetailInformationCell.self,
@@ -136,9 +141,9 @@ extension MovieDetailViewController {
             }
         }
         
-        detailDiffableDataSource = UICollectionViewDiffableDataSource<DetailSectionList, MovieInfo>(collectionView: movieDetailCollectionView) {
-            (collectionView, indexPath, businessModelWrapper) in
-            
-        }
+//        detailDiffableDataSource = UICollectionViewDiffableDataSource<DetailSectionList, MovieInfo>(collectionView: movieDetailCollectionView) {
+//            (collectionView, indexPath, businessModelWrapper) in
+//
+//        }
     }
 }
