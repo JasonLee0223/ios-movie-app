@@ -22,6 +22,14 @@ final class MovieDetailInformationCell: UICollectionViewCell, ConfigurableCell {
         configureMoviePosterImageView()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if !seeMore.isHidden {
+            seeMore.isHidden = true
+        } else {
+            seeMore.isHidden = false
+        }
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureOfLayout()
@@ -51,14 +59,30 @@ final class MovieDetailInformationCell: UICollectionViewCell, ConfigurableCell {
         return layer
     }()
     
+    private let movieDescription: UIStackView = {
+        let movieDescription = UIStackView()
+        movieDescription.axis = .vertical
+        movieDescription.spacing = 16
+        movieDescription.alignment = .leading
+        movieDescription.distribution = .fillEqually
+        return movieDescription
+    }()
+    
     private let overView: UILabel = {
         let overView = UILabel()
         overView.textAlignment = .left
-        overView.numberOfLines = 3
-        overView.sizeToFit()
-        overView.backgroundColor = .orange
-        overView.isHidden = false
         return overView
+    }()
+    
+    private let seeMore: UIButton = {
+        let seeMore = UIButton()
+        seeMore.setTitle("더보기 ↓", for: .normal)
+        seeMore.tintColor = .systemGray5
+        seeMore.backgroundColor = .darkGray
+        seeMore.layer.cornerRadius = 10
+        seeMore.layer.borderWidth = 1
+        seeMore.isHidden = false
+        return seeMore
     }()
 }
 
@@ -118,9 +142,13 @@ extension MovieDetailInformationCell {
         
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(posterImage)
+        
         posterImage.layer.addSublayer(gradientLayer)
         self.contentView.addSubview(movieSummaryInfo)
-        self.contentView.addSubview(overView)
+        
+        self.contentView.addSubview(movieDescription)
+        movieDescription.addArrangedSubview(overView)
+        movieDescription.addArrangedSubview(seeMore)
         
         posterImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -135,7 +163,6 @@ extension MovieDetailInformationCell {
             ),
             posterImage.heightAnchor.constraint(
                 equalTo: heightAnchor
-                //                multiplier: 0.6
             )
         ])
         
@@ -158,21 +185,38 @@ extension MovieDetailInformationCell {
             )
         ])
         
-        overView.translatesAutoresizingMaskIntoConstraints = false
+        movieDescription.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            overView.topAnchor.constraint(
+            movieDescription.topAnchor.constraint(
                 equalTo: movieSummaryInfo.bottomAnchor,
                 constant: 30
             ),
-            overView.leadingAnchor.constraint(
+            movieDescription.leadingAnchor.constraint(
                 equalTo: movieSummaryInfo.leadingAnchor
             ),
-            overView.trailingAnchor.constraint(
+            movieDescription.trailingAnchor.constraint(
                 equalTo: movieSummaryInfo.trailingAnchor
             ),
-            overView.bottomAnchor.constraint(
+            movieDescription.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
+            ),
+            movieDescription.heightAnchor.constraint(
+                equalTo: movieSummaryInfo.heightAnchor
             )
         ])
+        
+        seeMore.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            movieDescription.leadingAnchor.constraint(
+                equalTo: seeMore.leadingAnchor
+            ),
+            movieDescription.trailingAnchor.constraint(
+                equalTo: seeMore .trailingAnchor
+            ),
+            movieDescription.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor
+            ),
+        ])
+        
     }
 }
