@@ -72,11 +72,14 @@ final class MovieCreditCell: UICollectionViewCell, ConfigurableCell {
 //MARK: - [Public Method] Configure of UI Components
 extension MovieCreditCell {
     
-    func configure(_ item: [String], at indexPath: IndexPath) {
+    func configure(_ item: MovieCast, at indexPath: IndexPath) {
+        setPeopleImage(by: item.peopleImage)
+        setPeopleName(by: item.castInformation.originalName)
         
-        //TODO: - Need to setUp the UI Componenets
-        setPeopleName(by: item[0])
-        setRole(by: item[1])
+        if item.castInformation.job == "Director" {
+            setRole(by: item.castInformation.job ?? "")
+        }
+        setRole(by: item.castInformation.character ?? "")
     }
 }
 
@@ -101,7 +104,6 @@ extension MovieCreditCell {
 
 //MARK: - [Private Method] Configure of Layout
 extension MovieCreditCell {
-    
     
     private func configureOfLayout() {
         let safeArea = self.safeAreaLayoutGuide
@@ -146,5 +148,4 @@ extension MovieCreditCell {
             )
         ])
     }
-    
 }
