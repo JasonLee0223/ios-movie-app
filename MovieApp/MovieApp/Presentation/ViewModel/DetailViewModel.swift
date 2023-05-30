@@ -133,6 +133,8 @@ extension DetailViewModel {
         
         let movieCastGroup = usableCastGroup.map { cast in
             MovieCast(
+                identifier: UUID(),
+                
                 castInformation: CastInformation(
                     originalName: cast.name,
                     profilePPath: cast.profilePath,

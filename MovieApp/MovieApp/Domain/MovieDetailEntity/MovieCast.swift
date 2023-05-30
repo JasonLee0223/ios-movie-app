@@ -8,6 +8,7 @@
 import Foundation
 
 struct MovieCast {
+    let identifier: UUID
     let castInformation: CastInformation
     let job: String?
 }
