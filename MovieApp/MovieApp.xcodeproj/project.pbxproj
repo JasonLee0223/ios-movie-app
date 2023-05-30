@@ -65,6 +65,7 @@
 		5B591BD62A1D07460079CAC0 /* CollectionDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B591BD52A1D07460079CAC0 /* CollectionDataProvider.swift */; };
 		5B66209A2A26065000107022 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6620992A26065000107022 /* DetailViewModel.swift */; };
 		5B66209D2A260A0700107022 /* DetailViewModelInError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B66209C2A260A0700107022 /* DetailViewModelInError.swift */; };
+		5B6620A02A2619E300107022 /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B66209F2A2619E300107022 /* BusinessModel.swift */; };
 		5B74F07E2A23602400AD4A73 /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F07D2A23602400AD4A73 /* DetailHeaderView.swift */; };
 		5B74F0812A23680500AD4A73 /* MovieCreditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F0802A23680500AD4A73 /* MovieCreditCell.swift */; };
 		5B74F0832A236EDB00AD4A73 /* AudienceCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F0822A236EDB00AD4A73 /* AudienceCountCell.swift */; };
@@ -185,6 +186,7 @@
 		5B591BD52A1D07460079CAC0 /* CollectionDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataProvider.swift; sourceTree = "<group>"; };
 		5B6620992A26065000107022 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		5B66209C2A260A0700107022 /* DetailViewModelInError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelInError.swift; sourceTree = "<group>"; };
+		5B66209F2A2619E300107022 /* BusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
 		5B74F07D2A23602400AD4A73 /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		5B74F0802A23680500AD4A73 /* MovieCreditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditCell.swift; sourceTree = "<group>"; };
 		5B74F0822A236EDB00AD4A73 /* AudienceCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudienceCountCell.swift; sourceTree = "<group>"; };
@@ -512,6 +514,8 @@
 		5B3F1C6A2A1497700062BE99 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				5B9D27052A1F545C00E9C9C0 /* BusinessModelWrapper.swift */,
+				5B66209F2A2619E300107022 /* BusinessModel.swift */,
 				5B3F1C6B2A14977D0062BE99 /* Gettable.swift */,
 				5BC16D612A1B5E0600B7F3BA /* Decidable.swift */,
 				5BC16D632A1B5E2200B7F3BA /* Convertible.swift */,
@@ -616,7 +620,6 @@
 		5B74F0882A23809000AD4A73 /* HomeEntity */ = {
 			isa = PBXGroup;
 			children = (
-				5B9D27052A1F545C00E9C9C0 /* BusinessModelWrapper.swift */,
 				5BC16D692A1C90D200B7F3BA /* TrendMovie.swift */,
 				5BC16D6B2A1C913700B7F3BA /* StillCut.swift */,
 				5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */,
@@ -936,6 +939,7 @@
 				5BC16D662A1B5EF600B7F3BA /* RankView.swift in Sources */,
 				5B3F1C2A2A1488930062BE99 /* KOFICBasic.swift in Sources */,
 				5B3F1C432A148B750062BE99 /* Audit.swift in Sources */,
+				5B6620A02A2619E300107022 /* BusinessModel.swift in Sources */,
 				5B3F1C3E2A148B140062BE99 /* DailyBoxOfficeList.swift in Sources */,
 				5B09DA002A25C96B001121D6 /* MovieCast.swift in Sources */,
 				5BCE28A52A1B3E020076F189 /* KakaoMagicLiteral.swift in Sources */,

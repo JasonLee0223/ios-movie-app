@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol BusinessModel: Hashable {
-    var identifier: UUID { get }
-}
-
 struct TrendMovie: BusinessModel {
     var identifier: UUID
     
