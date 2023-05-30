@@ -10,7 +10,7 @@ import Foundation
 struct MovieCast: BusinessModel {
     let identifier: UUID
     let castInformation: CastInformation
-    let job: String?
+    let peopleImage: Data
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
@@ -19,6 +19,6 @@ struct MovieCast: BusinessModel {
 
 internal struct CastInformation: Hashable {
     let originalName: String
-    let profilePPath: String?
     let character: String?
+    let job: String?
 }
