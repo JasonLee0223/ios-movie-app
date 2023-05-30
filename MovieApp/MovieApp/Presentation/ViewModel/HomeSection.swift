@@ -9,5 +9,5 @@ import Foundation
 
 struct HomeSection: Hashable {
     var type: HomeSectionList
-    var items: [BusinessModelWrapper]
+    var items: [HomeEntityWrapper]
 }

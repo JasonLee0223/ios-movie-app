@@ -1,5 +1,5 @@
 //
-//  BusinessModelWrapper.swift
+//  HomeEntityWrapper.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/05/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BusinessModelWrapper: Hashable {
+enum HomeEntityWrapper: Hashable {
     case trendMovie(TrendMovie)
     case stillCut(StillCut)
     case koreaBoxOfficeList(KoreaBoxOfficeList)
@@ -25,7 +25,7 @@ enum BusinessModelWrapper: Hashable {
         }
     }
     
-    static func ==(lhs: BusinessModelWrapper, rhs: BusinessModelWrapper) -> Bool {
+    static func ==(lhs: HomeEntityWrapper, rhs: HomeEntityWrapper) -> Bool {
         switch (lhs, rhs) {
         case (
             .trendMovie(let lhsItem), .trendMovie(let rhsItem)

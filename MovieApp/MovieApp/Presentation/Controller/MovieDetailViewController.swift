@@ -39,7 +39,7 @@ final class MovieDetailViewController: UIViewController {
         configureOfDetailDiffableDataSource()
     }
     
-    var movieDetailData: BusinessModelWrapper?
+    var movieDetailData: HomeEntityWrapper?
     
     private let movieDetailCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewLayout()

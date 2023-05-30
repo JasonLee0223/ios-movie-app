@@ -21,7 +21,7 @@ final class HomeViewController: UIViewController {
     
     private let homeViewModel = HomeViewModel()
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, BusinessModelWrapper>?
+    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
 }
 
 //MARK: - Configure of UI Components
@@ -121,7 +121,7 @@ extension HomeViewController {
 extension HomeViewController {
     
     private func homeSnapShot() {
-        var snapshot = NSDiffableDataSourceSnapshot<HomeSection, BusinessModelWrapper>()
+        var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
         
         HomeSectionList.allCases.forEach { sectionList in
             
@@ -197,7 +197,7 @@ extension HomeViewController {
             }
         }
         
-        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, BusinessModelWrapper>(collectionView: homeCollectionView)
+        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>(collectionView: homeCollectionView)
         { (collectionView, indexPath, businessModelWrapper) in
             
             switch businessModelWrapper {

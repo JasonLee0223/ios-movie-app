@@ -9,14 +9,14 @@ import Foundation
 
 final class HomeViewModel {
     
-    var sectionStorage: [HomeSectionList: Observable<BusinessModelWrapper>]
+    var sectionStorage: [HomeSectionList: Observable<HomeEntityWrapper>]
     
     init() {
         self.homeLoader = HomeLoader()
         
-        self.sectionStorage = [.trendMoviePosterSection: Observable<BusinessModelWrapper>(),
-                               .stillCutSection: Observable<BusinessModelWrapper>(),
-                               .koreaMovieListSection: Observable<BusinessModelWrapper>()
+        self.sectionStorage = [.trendMoviePosterSection: Observable<HomeEntityWrapper>(),
+                               .stillCutSection: Observable<HomeEntityWrapper>(),
+                               .koreaMovieListSection: Observable<HomeEntityWrapper>()
                             ]
     }
     
@@ -27,7 +27,7 @@ final class HomeViewModel {
 extension HomeViewModel {
     
     func testTaskGroup(section: HomeSectionList) async {
-        await withTaskGroup(of: [BusinessModelWrapper].self) { taskGroup in
+        await withTaskGroup(of: [HomeEntityWrapper].self) { taskGroup in
             
             taskGroup.addTask { [self] in
                 
@@ -36,7 +36,7 @@ extension HomeViewModel {
                     let movieList = await self.loadTrendOfWeekMovieListFromTMDB()
                     
                     let businessModelToTrendMovie = movieList.map { trendMovie in
-                        BusinessModelWrapper.trendMovie(trendMovie)
+                        HomeEntityWrapper.trendMovie(trendMovie)
                     }
                     sectionStorage[section]?.value = businessModelToTrendMovie
                     return businessModelToTrendMovie
@@ -46,7 +46,7 @@ extension HomeViewModel {
                     let imageDatas = await kakaoPosterImageTest(movieNameGroup: moiveNames)
                     
                     let businessModelToStillCut = imageDatas.map { data in
-                        BusinessModelWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
+                        HomeEntityWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
                     }
                     sectionStorage[section]?.value = businessModelToStillCut
                     return businessModelToStillCut
@@ -55,7 +55,7 @@ extension HomeViewModel {
                     let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
                     
                     let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
-                        BusinessModelWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
+                        HomeEntityWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
                     }
                     sectionStorage[section]?.value = businessModelToKoreaBoxOfficeMovieList
                     return businessModelToKoreaBoxOfficeMovieList
@@ -75,7 +75,7 @@ extension HomeViewModel {
         case .trendMoviePosterSection:
             Task {
                 let businessModelToTrendMovie = await loadTrendOfWeekMovieListFromTMDB().map { trendMovie in
-                    BusinessModelWrapper.trendMovie(trendMovie)
+                    HomeEntityWrapper.trendMovie(trendMovie)
                 }
                 self.sectionStorage[section]?.value = businessModelToTrendMovie
             }
@@ -83,7 +83,7 @@ extension HomeViewModel {
             Task {
                 let stillCutPosterImageData = await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
                 let businessModelToStillCut = stillCutPosterImageData.map { data in
-                    BusinessModelWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
+                    HomeEntityWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
                 }
                 self.sectionStorage[section]?.value = businessModelToStillCut
             }
@@ -93,7 +93,7 @@ extension HomeViewModel {
                 
                 let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
                 let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
-                    BusinessModelWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
+                    HomeEntityWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
                 }
                 self.sectionStorage[section]?.value = businessModelToKoreaBoxOfficeMovieList
             }
