@@ -20,7 +20,7 @@ final class NetworkService {
     private let session: URLSession
 }
 
-//MARK: - [Public Method] Use of CompletionHandler
+//MARK: - [Public Method] Use of async & await
 extension NetworkService {
     
     /// TrendMovieList
@@ -165,7 +165,7 @@ extension NetworkService {
     }
 }
 
-//MARK: - Private Method
+//MARK: - [Private Method] Configure of Service (URLResponse, Decoding)
 extension NetworkService {
     
     private func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
