@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct MovieCast {
+struct MovieCast: Hashable {
     let identifier: UUID
     let castInformation: CastInformation
     let job: String?
 }
 
-internal struct CastInformation {
+internal struct CastInformation: Hashable {
     let originalName: String
     let profilePPath: String?
     let character: String?

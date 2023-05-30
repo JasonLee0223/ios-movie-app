@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieInformation {
+struct MovieInformation: Hashable {
     var identifier: UUID
     
     let movieSummary: MovieSummary
@@ -16,13 +16,13 @@ struct MovieInformation {
     let subInformation: SubInformation
 }
 
-internal struct MovieSummary {
+internal struct MovieSummary: Hashable {
     let watchGrade: String
     let movieKoreanName: String
     let movieEnglishName: String
 }
 
-internal struct SubInformation {
+internal struct SubInformation: Hashable {
     let releaseDate: String
     let runtime: String
     let overview: String
