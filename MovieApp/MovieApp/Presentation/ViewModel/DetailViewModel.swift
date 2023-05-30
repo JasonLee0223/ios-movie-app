@@ -10,9 +10,13 @@ import Foundation
 final class DetailViewModel {
     
     //MARK: - Initializer
+    var sectionStroage: [DetailSectionList: Observable<DetailEntityWrapper>]
     
     init() {
         self.detailLoader = DetailLoader()
+        
+        sectionStroage = [.movieDetailInformationSection: Observable<DetailEntityWrapper>(),
+                          .movieOfficialsSection: Observable<DetailEntityWrapper>()]
     }
     
     //MARK: - Private Property
@@ -23,57 +27,49 @@ final class DetailViewModel {
 //MARK: - [Public Method] Use of MovieDetailViewController
 extension DetailViewModel {
     
-    func loadNeedTotMovieDetailSection(movieCode: String) async {
-        
-        await withTaskGroup(of: MovieInformation.self) { taskGroup in
-            taskGroup.addTask { [self] in
-                
-                let movieInformation = await loadSelectedMovieDetailInformation(movieCode: movieCode)
-                let movieCastGroup = await loadMovieCast(movieCode: movieCode)
-                
-            }
-        }
-        
+    func loadNeedTotMovieDetailSection(movieCode: String, section: DetailSectionList) async {
+        //TODO: - If need to switch-case sectionType make this mehtod
     }
 }
 
-//MARK: - [Private Method]
+//MARK: - [Private Method] Use at internal ViewModel
 extension DetailViewModel {
     
-    private func loadSelectedMovieDetailInformation(
-        movieCode: String) async -> MovieInformation {
-        
-        var movieInformation: MovieInformation
+    func loadSelectedMovieDetailInformation(movieCode: String) async -> MovieInformation? {
         
         do {
             let networkResult = try await self.detailLoader.loadMovieDetailInformation(movieCode: movieCode)
-            
-            movieInformation = try convertToMovieInformation(from: networkResult)
+            let movieInformation = try detailLoader.convertToMovieInformation(from: networkResult)
+            return movieInformation
         } catch {
             print(DetailViewModelInError.failOfLoadMovieInformation)
+            return nil
         }
-        
-        return movieInformation
     }
     
-    private func loadMovieCast(movieCode: String) async -> [MovieCast] {
+    func loadMovieCast(movieCode: String) async -> [MovieCast] {
         
-        var movieCastGroup: [MovieCast]
+        var movieCastGroup = [MovieCast]()
         
         do {
             let networkResult = try await detailLoader.loadMovieCredit(movieCode: movieCode)
             
             let castGroup = try convertToMovieCast(from: networkResult)
             
-            let imagePathGroup = castGroup.map { cast in
-                if let imagePath = cast.profilePath {
-                    return imagePath
+            for cast in castGroup {
+                
+                guard let imagePath = cast.profilePath else {
+                    throw DetailViewModelInError.failOfUnwrapping
                 }
-                return ""
+                let imageData = try detailLoader.fetchImage(imagePath: imagePath)
+                
+                let movieCast = MovieCast(
+                    identifier: UUID(),
+                    castInformation: CastInformation(originalName: cast.name,
+                                                     character: cast.character, job: cast.job),
+                    peopleImage: imageData)
+                movieCastGroup.append(movieCast)
             }
-            
-            
-            
         } catch {
             print(DetailViewModelInError.failOfLoadMovieCast)
         }
