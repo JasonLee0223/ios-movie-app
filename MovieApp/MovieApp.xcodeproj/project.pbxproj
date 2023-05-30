@@ -365,8 +365,8 @@
 		5B3F1C202A14772A0062BE99 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				5B09D9FC2A25C94D001121D6 /* MovieDetailEntity */,
 				5B74F0882A23809000AD4A73 /* HomeEntity */,
+				5B09D9FC2A25C94D001121D6 /* MovieDetailEntity */,
 				5B3F1C6A2A1497700062BE99 /* Interface */,
 				5B3F1C6F2A1497F50062BE99 /* Helper */,
 				5B98C61E2A174011004C099F /* RawValues */,
