@@ -23,17 +23,6 @@ final class DetailViewModel {
 //MARK: - [Public Method] Use of MovieDetailViewController
 extension DetailViewModel {
     
-    func loadAllOfMovieDetailNeedData(movieCode: String) {
-        
-        Task {
-            let aaa = await loadSelectedMovieDetailInformation(movieCode: movieCode)
-            print(aaa)
-            
-            let bbb = await loadMovieCast(movieCode: movieCode)
-            print(bbb)
-        }
-    }
-    
     func loadNeedTotMovieDetailSection(movieCode: String) async {
         
         await withTaskGroup(of: MovieInformation.self) { taskGroup in
