@@ -103,7 +103,7 @@ extension HomeViewController {
         
         homeCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            homeCollectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            homeCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
             homeCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             homeCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             homeCollectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
