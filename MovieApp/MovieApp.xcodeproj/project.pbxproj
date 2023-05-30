@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B09D9FE2A25C962001121D6 /* MovieInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09D9FD2A25C962001121D6 /* MovieInformation.swift */; };
+		5B09DA002A25C96B001121D6 /* MovieCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09D9FF2A25C96B001121D6 /* MovieCast.swift */; };
+		5B09DA022A25CC62001121D6 /* TMDBMovieCredit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09DA012A25CC62001121D6 /* TMDBMovieCredit.swift */; };
 		5B0C81342A1CD044004BF2D6 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C81332A1CD044004BF2D6 /* Observable.swift */; };
 		5B3F1BED2A146EAC0062BE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1BEC2A146EAC0062BE99 /* AppDelegate.swift */; };
 		5B3F1BEF2A146EAC0062BE99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1BEE2A146EAC0062BE99 /* SceneDelegate.swift */; };
@@ -117,6 +120,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B09D9FD2A25C962001121D6 /* MovieInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInformation.swift; sourceTree = "<group>"; };
+		5B09D9FF2A25C96B001121D6 /* MovieCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCast.swift; sourceTree = "<group>"; };
+		5B09DA012A25CC62001121D6 /* TMDBMovieCredit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBMovieCredit.swift; sourceTree = "<group>"; };
 		5B0C81332A1CD044004BF2D6 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		5B3F1BE92A146EAC0062BE99 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3F1BEC2A146EAC0062BE99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -239,6 +245,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B09D9FC2A25C94D001121D6 /* MovieDetailEntity */ = {
+			isa = PBXGroup;
+			children = (
+				5B09D9FD2A25C962001121D6 /* MovieInformation.swift */,
+				5B09D9FF2A25C96B001121D6 /* MovieCast.swift */,
+			);
+			path = MovieDetailEntity;
+			sourceTree = "<group>";
+		};
 		5B3F1BE02A146EAC0062BE99 = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +349,7 @@
 		5B3F1C202A14772A0062BE99 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				5B09D9FC2A25C94D001121D6 /* MovieDetailEntity */,
 				5B74F0882A23809000AD4A73 /* HomeEntity */,
 				5B3F1C6A2A1497700062BE99 /* Interface */,
 				5B3F1C6F2A1497F50062BE99 /* Helper */,
@@ -716,6 +732,7 @@
 			children = (
 				5BED9EEC2A18C36200C66386 /* TMDBTrendMovieList.swift */,
 				5B74F0892A23913800AD4A73 /* TMDBMovieDetail.swift */,
+				5B09DA012A25CC62001121D6 /* TMDBMovieCredit.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -891,6 +908,7 @@
 				5B3F1C2A2A1488930062BE99 /* KOFICBasic.swift in Sources */,
 				5B3F1C432A148B750062BE99 /* Audit.swift in Sources */,
 				5B3F1C3E2A148B140062BE99 /* DailyBoxOfficeList.swift in Sources */,
+				5B09DA002A25C96B001121D6 /* MovieCast.swift in Sources */,
 				5BCE28A52A1B3E020076F189 /* KakaoMagicLiteral.swift in Sources */,
 				5B74F0812A23680500AD4A73 /* MovieCreditCell.swift in Sources */,
 				5B9D270D2A20AFF100E9C9C0 /* Section.swift in Sources */,
@@ -906,6 +924,7 @@
 				5BC16D642A1B5E2200B7F3BA /* Convertible.swift in Sources */,
 				5B3F1C512A148BFC0062BE99 /* MovieInfo.swift in Sources */,
 				5B3F1C592A148C690062BE99 /* Responsable.swift in Sources */,
+				5B09DA022A25CC62001121D6 /* TMDBMovieCredit.swift in Sources */,
 				5B74F07E2A23602400AD4A73 /* DetailHeaderView.swift in Sources */,
 				5B3F1C412A148B6D0062BE99 /* Actor.swift in Sources */,
 				5B3F1C572A148C600062BE99 /* Requestable.swift in Sources */,
@@ -914,6 +933,7 @@
 				5BC16D622A1B5E0600B7F3BA /* Decidable.swift in Sources */,
 				5B3F1C6E2A1497A00062BE99 /* MagicLiteral.swift in Sources */,
 				5B74F08C2A24B9DD00AD4A73 /* MovieDetailDataSource.swift in Sources */,
+				5B09D9FE2A25C962001121D6 /* MovieInformation.swift in Sources */,
 				5BCE28A02A1B3BDB0076F189 /* KakaoBasic.swift in Sources */,
 				5B0C81342A1CD044004BF2D6 /* Observable.swift in Sources */,
 				5B591BD12A1D052C0079CAC0 /* ReusableCell.swift in Sources */,
