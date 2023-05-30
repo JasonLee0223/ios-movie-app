@@ -10,7 +10,7 @@ import Foundation
 struct TMDBAPIEndPoint {
     
     static func receiveWeakTrendingList(with weakMovieListRequestDTO: TMDBQueryParameters) -> EndPoint<TMDBTrendMovieList> {
-        return EndPoint(baseURL: TMDBBasic.baseURL,
+        return EndPoint(baseURL: TMDBBasic.trendMovieListBaseURL,
                         firstPath: TMDBBasic.pathQueryOfWeak,
                         queryParameters: weakMovieListRequestDTO
         )
@@ -21,6 +21,14 @@ struct TMDBAPIEndPoint {
         return EndPoint(baseURL: TMDBBasic.movieDetailBaseURL,
                         firstPath: movieID,
                         queryParameters: movieDetailRequestDTO
+        )
+    }
+    
+    static func receiveCreditInformation(with movieCreditRequestDTO: TMDBQueryParameters,
+                                         movieID: String) -> EndPoint<TMDBMovieCredit> {
+        return EndPoint(baseURL: TMDBBasic.movieDetailBaseURL,
+                        firstPath: movieID, secondPath: TMDBBasic.pathQueryOfCredit,
+                        queryParameters: movieCreditRequestDTO
         )
     }
 }
