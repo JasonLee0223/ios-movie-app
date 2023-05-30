@@ -10,7 +10,7 @@ import Foundation
 struct MovieInformation: BusinessModel {
     var identifier: UUID
     
-    let movieSummary: MovieSummary
+    let movieSummary: PosterHeaderArea
     let nations: [String]
     let genres: [String]
     let subInformation: SubInformation
@@ -20,7 +20,7 @@ struct MovieInformation: BusinessModel {
     }
 }
 
-internal struct MovieSummary: Hashable {
+internal struct PosterHeaderArea: Hashable {
     let watchGrade: String
     let movieKoreanName: String
     let movieEnglishName: String
