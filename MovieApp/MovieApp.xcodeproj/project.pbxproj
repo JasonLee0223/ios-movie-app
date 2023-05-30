@@ -516,12 +516,8 @@
 		5B3F1C6A2A1497700062BE99 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				5B9D27052A1F545C00E9C9C0 /* HomeEntityWrapper.swift */,
-				5B8C08D72A265143000CC4F7 /* DetailEntityWrapper.swift */,
-				5B66209F2A2619E300107022 /* BusinessModel.swift */,
-				5B3F1C6B2A14977D0062BE99 /* Gettable.swift */,
-				5BC16D612A1B5E0600B7F3BA /* Decidable.swift */,
-				5BC16D632A1B5E2200B7F3BA /* Convertible.swift */,
+				5B8C08D92A265567000CC4F7 /* Wrapper */,
+				5B8C08DA2A265584000CC4F7 /* Protocol */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -637,6 +633,26 @@
 				5B74F08B2A24B9DD00AD4A73 /* MovieDetailDataSource.swift */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		5B8C08D92A265567000CC4F7 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				5B9D27052A1F545C00E9C9C0 /* HomeEntityWrapper.swift */,
+				5B8C08D72A265143000CC4F7 /* DetailEntityWrapper.swift */,
+			);
+			path = Wrapper;
+			sourceTree = "<group>";
+		};
+		5B8C08DA2A265584000CC4F7 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				5B66209F2A2619E300107022 /* BusinessModel.swift */,
+				5B3F1C6B2A14977D0062BE99 /* Gettable.swift */,
+				5BC16D612A1B5E0600B7F3BA /* Decidable.swift */,
+				5BC16D632A1B5E2200B7F3BA /* Convertible.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		5B98C61E2A174011004C099F /* RawValues */ = {
