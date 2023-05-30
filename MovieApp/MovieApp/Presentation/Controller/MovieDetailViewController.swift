@@ -9,6 +9,23 @@ import UIKit
 
 final class MovieDetailViewController: UIViewController {
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        switch movieDetailData {
+        case let .trendMovie(movieDetailData):
+            print(movieDetailData)
+            
+            detailViewModel.loadAllOfMovieDetailNeedData(movieCode: movieDetailData.movieCode)
+        case let .stillCut(movieDetailData):
+            print(movieDetailData)
+        case let .koreaBoxOfficeList(movieDetailData):
+            print(movieDetailData)
+        case .none:
+            print("Value of Optional so value is nil")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +38,8 @@ final class MovieDetailViewController: UIViewController {
     private let movieDetailCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewLayout()
     )
+    
+    private let detailViewModel = DetailViewModel()
     private let dataSource = MovieDetailDataSource()
     
 //    private let detailDiffableDataSource: UICollectionViewDiffableDataSource<DetailSectionList, MovieInfo>?
