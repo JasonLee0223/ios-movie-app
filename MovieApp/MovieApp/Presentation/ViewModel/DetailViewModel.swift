@@ -18,13 +18,27 @@ final class DetailViewModel {
 
 extension DetailViewModel {
     
-    private func loadSelectedMovieDetailInformation(movieCode: String) async throws -> MovieInformation {
+    private func loadSelectedMovieDetailInformation(
+        movieCode: String) async throws -> MovieInformation {
         
-        var wrappingMovieInformation: MovieInformation?
+        var movieInformation: MovieInformation
         
         do {
             let networkResult = try await self.detailLoader.loadMovieDetailInformation(movieCode: movieCode)
             
+            movieInformation = try convertToMovieInformation(from: networkResult)
+        } catch {
+            throw DetailViewModelInError.failOfLoadMovieInformation
+        }
+        
+        return movieInformation
+    }
+    
+    private func convertToMovieInformation(
+        from networkResult: TMDBMovieDetail) throws -> MovieInformation {
+            
+            let wrappingMovieInformation: MovieInformation?
+        
             var watchGrade: String = ""
             
             let nations = networkResult.productionCountries.map { countriesInfo in
@@ -56,14 +70,10 @@ extension DetailViewModel {
                     overview: networkResult.overview
                 )
             )
-        } catch {
-            throw DetailViewModelInError.failOfLoadMovieInformation
-        }
-        
-        guard let movieInformation = wrappingMovieInformation else {
-            throw DetailViewModelInError.failOfUnWrapping
-        }
-        
-        return movieInformation
+            
+            guard let movieInformation = wrappingMovieInformation else {
+                throw DetailViewModelInError.failOfUnWrapping
+            }
+            return movieInformation
     }
 }
