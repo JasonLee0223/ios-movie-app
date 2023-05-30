@@ -17,8 +17,6 @@ final class MovieSummaryInfo: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
-        
         configureOfStackView()
         configureOfLayout()
     }
@@ -45,7 +43,7 @@ final class MovieSummaryInfo: UIStackView {
     private let movieKoreanName: UILabel = {
         let movieKoreanName = UILabel()
         movieKoreanName.font = .boldSystemFont(ofSize: 26)
-        movieKoreanName.textColor = .black
+        movieKoreanName.textColor = .white
         movieKoreanName.sizeToFit()
         return movieKoreanName
     }()
@@ -53,7 +51,7 @@ final class MovieSummaryInfo: UIStackView {
     private let movieEnglishName: UILabel = {
         let movieEnglishName = UILabel()
         movieEnglishName.font = .systemFont(ofSize: 14)
-        movieEnglishName.textColor = .black
+        movieEnglishName.textColor = .white
         movieEnglishName.sizeToFit()
         return movieEnglishName
     }()
@@ -61,7 +59,7 @@ final class MovieSummaryInfo: UIStackView {
     private let screeningInformation: UILabel = {
         let screeningInformation = UILabel()
         screeningInformation.font = .systemFont(ofSize: 14)
-        screeningInformation.textColor = .black
+        screeningInformation.textColor = .white
         screeningInformation.sizeToFit()
         return screeningInformation
     }()
