@@ -9,13 +9,33 @@ import Foundation
 
 final class DetailViewModel {
     
+    //MARK: - Initializer
+    
     init() {
         self.detailLoader = DetailLoader()
     }
     
+    //MARK: - Private Property
+
     private let detailLoader: DetailLoader
 }
 
+//MARK: - [Public Method] Use of MovieDetailViewController
+extension DetailViewModel {
+    
+    func loadAllOfMovieDetailNeedData(movieCode: String) {
+        
+        Task {
+            let aaa = try await loadSelectedMovieDetailInformation(movieCode: movieCode)
+            print(aaa)
+            
+            let bbb = try await loadMovieCast(movieCode: movieCode)
+            print(bbb)
+        }
+    }
+}
+
+//MARK: - [Private Method]
 extension DetailViewModel {
     
     private func loadSelectedMovieDetailInformation(
@@ -33,6 +53,26 @@ extension DetailViewModel {
         
         return movieInformation
     }
+    
+    private func loadMovieCast(movieCode: String) async throws -> [MovieCast] {
+        
+        var movieCastGroup: [MovieCast]
+        
+        do {
+            let networkResult = try await detailLoader.loadMovieCredit(movieCode: movieCode)
+            
+            movieCastGroup = try convertToMovieCast(from: networkResult)
+            
+        } catch {
+            throw DetailViewModelInError.failOfLoadMovieCast
+        }
+        
+        return movieCastGroup
+    }
+}
+
+//MARK: - [Private Method] Help Method
+extension DetailViewModel {
     
     private func convertToMovieInformation(
         from networkResult: TMDBMovieDetail) throws -> MovieInformation {
@@ -75,5 +115,32 @@ extension DetailViewModel {
                 throw DetailViewModelInError.failOfUnWrapping
             }
             return movieInformation
+    }
+    
+    private func convertToMovieCast(from networkResult: TMDBMovieCredit) throws -> [MovieCast] {
+        
+        let actorGroup = networkResult.cast
+        var director = networkResult.crew.filter {
+            $0.department == "Directing" && $0.job == "Director"
+        }
+        
+        var usableCastGroup = [Cast]()
+        
+        for index in 0..<9 {
+            usableCastGroup.append(actorGroup[index])
+        }
+        usableCastGroup.append(director.removeFirst())
+        
+        let movieCastGroup = usableCastGroup.map { cast in
+            MovieCast(
+                castInformation: CastInformation(
+                    originalName: cast.name,
+                    profilePPath: cast.profilePath,
+                    character: cast.character
+                ),
+                job: cast.job
+            )
+        }
+        return movieCastGroup
     }
 }
