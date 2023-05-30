@@ -12,7 +12,7 @@ final class ViewModel {
     var sectionStorage: [HomeSectionList: Observable<BusinessModelWrapper>]
     
     init() {
-        self.networkService = NetworkService()
+        self.homeLoader = HomeLoader()
         
         self.sectionStorage = [.trendMoviePosterSection: Observable<BusinessModelWrapper>(),
                                .stillCutSection: Observable<BusinessModelWrapper>(),
@@ -20,7 +20,7 @@ final class ViewModel {
                             ]
     }
     
-    private let networkService: NetworkService
+    private let homeLoader: HomeLoader
 }
 
 
@@ -36,7 +36,7 @@ final class ViewModel {
 //    }
 //}
 
-//MARK: - Public Method
+//MARK: - [Public Method] Use at ViewController
 extension ViewModel {
     
     func testTaskGroup(section: HomeSectionList) async {
@@ -122,7 +122,7 @@ extension ViewModel {
         var trendMovieListGroup = [TrendMovie]()
         
         do {
-            let networkResult = try await self.networkService.loadTrendMovieList()
+            let networkResult = try await self.homeLoader.loadTrendMovieList()
             
             for result in networkResult {
                 let imageData = try await fetchImage(imagePath: result.movieImageURL)
@@ -162,7 +162,7 @@ extension ViewModel {
         var dailyBoxOfficeListGroup = [DailyBoxOfficeList]()
         
         do {
-            dailyBoxOfficeListGroup = try await networkService.loadDailyBoxOfficeMovieListData()
+            dailyBoxOfficeListGroup = try await homeLoader.loadDailyBoxOfficeMovieListData()
         } catch {
             print("dailyBoxOfficeListGroup convert fail")
         }
@@ -193,7 +193,7 @@ extension ViewModel {
         var movieNames = [String]()
         
         do {
-            movieNames = try await networkService.loadDailyBoxOfficeMovieListData().map{ $0.movieName }
+            movieNames = try await homeLoader.loadDailyBoxOfficeMovieListData().map{ $0.movieName }
         } catch {
             print("ViewModelInError.failOfMakeData")
         }
@@ -201,9 +201,9 @@ extension ViewModel {
     }
     
     private func loadMovieDetailInformation() async throws -> [MovieInfo] {
-        let dailyBoxOfficeListGroup = try await networkService.loadDailyBoxOfficeMovieListData()
+        let dailyBoxOfficeListGroup = try await homeLoader.loadDailyBoxOfficeMovieListData()
         let movieCodeGroup = dailyBoxOfficeListGroup.map{ $0.movieCode }
-        let movieDetailList = try await networkService.loadMovieDetailData(movieCodeGroup: movieCodeGroup)
+        let movieDetailList = try await homeLoader.loadMovieDetailData(movieCodeGroup: movieCodeGroup)
         return movieDetailList
     }
 }
@@ -217,7 +217,7 @@ extension ViewModel {
         var imageDataStorage = [Data]()
         
         do {
-            documents = try await networkService.loadStillCut(movieNameGroup: movieNameGroup)
+            documents = try await homeLoader.loadStillCut(movieNameGroup: movieNameGroup)
         } catch {
             print(ViewModelInError.failOfMakeData)
         }
