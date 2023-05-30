@@ -9,7 +9,6 @@ import Foundation
 
 struct MovieCast {
     let castInformation: CastInformation
-    let department: String?
     let job: String?
 }
 
