@@ -140,7 +140,7 @@ extension ViewModel {
     /// Bottom Method
     private func fetchImage(imagePath: String) async throws -> Data {
         
-        let imageURLPath = "\(TVDBBasic.imageURL)\(imagePath)"
+        let imageURLPath = "\(TMDBBasic.imageURL)\(imagePath)"
         
         guard let imageURL = URL(string: imageURLPath) else {
             throw ViewModelInError.failOfMakeURL

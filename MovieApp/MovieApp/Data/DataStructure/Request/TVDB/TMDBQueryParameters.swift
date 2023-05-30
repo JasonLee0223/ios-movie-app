@@ -8,8 +8,8 @@
 import Foundation
 
 struct TMDBQueryParameters: Encodable {
-    let language = TVDBAPIMagicLiteral.language
-    let key = TVDBAPIMagicLiteral.key
+    let language = TMDBAPIMagicLiteral.language
+    let key = TMDBAPIMagicLiteral.key
     
     enum CodingKeys: String, CodingKey {
         case language = "language"

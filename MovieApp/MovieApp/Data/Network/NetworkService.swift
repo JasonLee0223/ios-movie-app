@@ -108,7 +108,7 @@ extension NetworkService {
         Task {
             let popularMovieListQueryParameters = TMDBQueryParameters()
             let networkResult = try await request(
-                with: TVDBAPIEndPoint.receiveWeakTrendingList(
+                with: TMDBAPIEndPoint.receiveWeakTrendingList(
                     with: popularMovieListQueryParameters)
             ).results
             
