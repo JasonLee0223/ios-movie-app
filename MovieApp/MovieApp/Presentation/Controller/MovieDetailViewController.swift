@@ -15,12 +15,18 @@ final class MovieDetailViewController: UIViewController {
         switch movieDetailData {
         case let .trendMovie(movieDetailData):
             print(movieDetailData)
+            // 이미지 있음
+//            movieDetailData.posterImage
             
             detailViewModel.loadAllOfMovieDetailNeedData(movieCode: movieDetailData.movieCode)
         case let .stillCut(movieDetailData):
             print(movieDetailData)
+            // 이미지 있음
+//            movieDetailData.genreImagePath
+            
         case let .koreaBoxOfficeList(movieDetailData):
             print(movieDetailData)
+            // 이미지 필요
         case .none:
             print("Value of Optional so value is nil")
         }
