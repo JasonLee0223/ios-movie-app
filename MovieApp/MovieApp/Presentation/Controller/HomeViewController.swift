@@ -19,7 +19,7 @@ final class HomeViewController: UIViewController {
         homeSnapShot()
     }
     
-    private let viewModel = ViewModel()
+    private let homeViewModel = HomeViewModel()
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>?
 }
@@ -127,13 +127,13 @@ extension HomeViewController {
             
             //MARK: - TaskGroupTest
 //            Task {
-//                await viewModel.testTaskGroup(section: sectionList)
+//                await homeViewModel.testTaskGroup(section: sectionList)
 //            }
             
             //MARK: - fetchAll
-            viewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
+            homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
             
-            let bindModel = viewModel.sectionStorage[sectionList]
+            let bindModel = homeViewModel.sectionStorage[sectionList]
             
             bindModel?.bind(listener: { businessModelWrapper in
                 

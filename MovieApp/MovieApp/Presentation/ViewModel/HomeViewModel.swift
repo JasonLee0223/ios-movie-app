@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  HomeViewModel.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/05/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ViewModel {
+final class HomeViewModel {
     
     var sectionStorage: [HomeSectionList: Observable<BusinessModelWrapper>]
     
@@ -37,7 +37,7 @@ final class ViewModel {
 //}
 
 //MARK: - [Public Method] Use at ViewController
-extension ViewModel {
+extension HomeViewModel {
     
     func testTaskGroup(section: HomeSectionList) async {
         await withTaskGroup(of: [BusinessModelWrapper].self) { taskGroup in
@@ -115,7 +115,7 @@ extension ViewModel {
 }
 
 //MARK: - [private] Use at TMDB
-extension ViewModel {
+extension HomeViewModel {
     /// Top Method
     private func loadTrendOfWeekMovieListFromTMDB() async -> [TrendMovie] {
         
@@ -155,7 +155,7 @@ extension ViewModel {
 }
 
 //MARK: - [private] Use at KOFIC
-extension ViewModel {
+extension HomeViewModel {
     
     /// KOFIC
     private func loadKoreaBoxOfficeMovieList() async -> [KoreaBoxOfficeList] {
@@ -209,7 +209,7 @@ extension ViewModel {
 }
 
 //MARK: - [private] Use at Kakao
-extension ViewModel {
+extension HomeViewModel {
     
     private func kakaoPosterImageTest(movieNameGroup: [String]) async -> [Data] {
         

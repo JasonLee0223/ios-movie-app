@@ -10,7 +10,7 @@ import UIKit
 final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     
     override init() {
-        self.viewModel = ViewModel()
+        self.viewModel = HomeViewModel()
         super.init()
     }
     
@@ -20,7 +20,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        viewModel.countItem(section: section)
+//        homeViewModel.countItem(section: section)
         return 0
     }
     
@@ -70,11 +70,11 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-//            viewModel.loadTrendOfWeekMovieListFromTVDB { trendMovieListStorage in
+//            homeViewModel.loadTrendOfWeekMovieListFromTVDB { trendMovieListStorage in
 //
 //                trendMovieListStorage.forEach { trendMovieList in
 //
-//                    self.viewModel.fetchImage(imagePath: trendMovieList.posterImagePath) { imageData in
+//                    self.homeViewModel.fetchImage(imagePath: trendMovieList.posterImagePath) { imageData in
 //
 //                        DispatchQueue.main.async {
 //                            guard let image = UIImage(data: imageData) else {
@@ -128,5 +128,5 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
         }
     }
     
-    private let viewModel: ViewModel
+    private let viewModel: HomeViewModel
 }
