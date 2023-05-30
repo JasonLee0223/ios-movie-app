@@ -26,12 +26,25 @@ extension DetailViewModel {
     func loadAllOfMovieDetailNeedData(movieCode: String) {
         
         Task {
-            let aaa = try await loadSelectedMovieDetailInformation(movieCode: movieCode)
+            let aaa = await loadSelectedMovieDetailInformation(movieCode: movieCode)
             print(aaa)
             
-            let bbb = try await loadMovieCast(movieCode: movieCode)
+            let bbb = await loadMovieCast(movieCode: movieCode)
             print(bbb)
         }
+    }
+    
+    func loadNeedTotMovieDetailSection(movieCode: String) async {
+        
+        await withTaskGroup(of: MovieInformation.self) { taskGroup in
+            taskGroup.addTask { [self] in
+                
+                let movieInformation = await loadSelectedMovieDetailInformation(movieCode: movieCode)
+                let movieCastGroup = await loadMovieCast(movieCode: movieCode)
+                
+            }
+        }
+        
     }
 }
 
@@ -39,7 +52,7 @@ extension DetailViewModel {
 extension DetailViewModel {
     
     private func loadSelectedMovieDetailInformation(
-        movieCode: String) async throws -> MovieInformation {
+        movieCode: String) async -> MovieInformation {
         
         var movieInformation: MovieInformation
         
@@ -48,26 +61,51 @@ extension DetailViewModel {
             
             movieInformation = try convertToMovieInformation(from: networkResult)
         } catch {
-            throw DetailViewModelInError.failOfLoadMovieInformation
+            print(DetailViewModelInError.failOfLoadMovieInformation)
         }
         
         return movieInformation
     }
     
-    private func loadMovieCast(movieCode: String) async throws -> [MovieCast] {
+    private func loadMovieCast(movieCode: String) async -> [MovieCast] {
         
         var movieCastGroup: [MovieCast]
         
         do {
             let networkResult = try await detailLoader.loadMovieCredit(movieCode: movieCode)
             
-            movieCastGroup = try convertToMovieCast(from: networkResult)
+            let castGroup = try convertToMovieCast(from: networkResult)
+            
+            let imagePathGroup = castGroup.map { cast in
+                if let imagePath = cast.profilePath {
+                    return imagePath
+                }
+                return ""
+            }
+            
+            
             
         } catch {
-            throw DetailViewModelInError.failOfLoadMovieCast
+            print(DetailViewModelInError.failOfLoadMovieCast)
         }
         
         return movieCastGroup
+    }
+    
+    //TODO: - HomeViewModel과 동일한 메서드로 중복 제거 요망
+    private func fetchImage(imagePath: String) async throws -> Data {
+        
+        let imageURLPath = "\(TMDBBasic.imageURL)\(imagePath)"
+        
+        guard let imageURL = URL(string: imageURLPath) else {
+            throw HomeViewModelInError.failOfMakeURL
+        }
+            
+        guard let imageData = try? Data(contentsOf: imageURL) else {
+            throw HomeViewModelInError.failOfMakeData
+        }
+        
+        return imageData
     }
 }
 
@@ -117,7 +155,7 @@ extension DetailViewModel {
             return movieInformation
     }
     
-    private func convertToMovieCast(from networkResult: TMDBMovieCredit) throws -> [MovieCast] {
+    private func convertToMovieCast(from networkResult: TMDBMovieCredit) throws -> [Cast] {
         
         let actorGroup = networkResult.cast
         var director = networkResult.crew.filter {
@@ -131,18 +169,6 @@ extension DetailViewModel {
         }
         usableCastGroup.append(director.removeFirst())
         
-        let movieCastGroup = usableCastGroup.map { cast in
-            MovieCast(
-                identifier: UUID(),
-                
-                castInformation: CastInformation(
-                    originalName: cast.name,
-                    profilePPath: cast.profilePath,
-                    character: cast.character
-                ),
-                job: cast.job
-            )
-        }
-        return movieCastGroup
+        return usableCastGroup
     }
 }
