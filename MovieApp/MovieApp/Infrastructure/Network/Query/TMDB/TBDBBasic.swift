@@ -13,7 +13,7 @@ enum TMDBBasic {
     
     static let pathQueryOfWeak: String = "week"
     static let pathQueryOfDay: String = "day"
-    static let pathQueryOfCredit: String = "credits"
+    static let pathQueryOfCredit: String = "/credits"
     
     static let imageURL: String = "https://image.tmdb.org/t/p/original"
 }
