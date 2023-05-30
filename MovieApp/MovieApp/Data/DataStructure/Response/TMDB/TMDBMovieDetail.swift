@@ -8,6 +8,7 @@
 import Foundation
 
 struct TMDBMovieDetail: Decodable {
+    let adult: Bool
     let genres: [Genre]
     let movieIdentifier: Int
     let movieEnglishTitle: String
@@ -20,6 +21,7 @@ struct TMDBMovieDetail: Decodable {
     let voteAverage: Double
     
     enum CodingKeys: String, CodingKey {
+        case adult
         case genres
         case movieIdentifier = "id"
         case movieEnglishTitle = "originalTitle"
