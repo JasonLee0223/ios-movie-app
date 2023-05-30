@@ -36,6 +36,8 @@ extension DetailViewModel {
             }
             let movieInformationWrapper = DetailEntityWrapper.movieDetailInformation(movieInformation)
             
+            print("========= movieInformationWrapper Loading... =============")
+            print(movieInformationWrapper)
             sectionStroage[.movieDetailInformationSection]?.value = [movieInformationWrapper]
         }
         
@@ -44,6 +46,9 @@ extension DetailViewModel {
             let moiveCastWrapper = moiveCastGroup.map { movieCast in
                 DetailEntityWrapper.movieCast(movieCast)
             }
+            
+            print("========= moiveCastWrapper Loading... =============")
+            print(moiveCastWrapper)
             sectionStroage[.movieOfficialsSection]?.value = moiveCastWrapper
         }
     }
