@@ -41,6 +41,8 @@ final class MovieDetailViewController: UIViewController {
         
         configureOfUI()
         configureOfDetailDiffableDataSource()
+        
+        detailSnapShot()
     }
     
     //MARK: - Private Property
@@ -104,8 +106,45 @@ extension MovieDetailViewController {
     
 }
 
-//MARK: - [Private Method]
+//MARK: - [Private Method] Configure of DiffableDataSource
 extension MovieDetailViewController {
+    
+    private func detailSnapShot() {
+        var snapshot = NSDiffableDataSourceSnapshot<DetailSectionList, DetailEntityWrapper>()
+        
+        DetailSectionList.allCases.forEach { sectionList in
+            
+            //MARK: - fetchAll
+//            Task {
+//                detailViewModel.loadMovieCast(movieCode: movieDetailData)
+//                detailViewModel.loadNeedTotMovieDetailSection(movieCode: <#T##String#>)
+//            }
+//            homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
+            
+            let bindModel = detailViewModel.sectionStroage[sectionList]
+            
+            bindModel?.bind(listener: { businessModelWrapper in
+                
+                guard let bindModels = businessModelWrapper else {
+                    print("bindModels Unwrapping Fail...")
+                    return
+                }
+                
+                print("✅ 현재 SectionList의 위치")
+                print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
+                
+                let section = DetailSection(type: sectionList, items: bindModels)
+                
+//                print("✅ 현재 Section 확인중...")
+//                print(section.items.isEmpty)
+                
+                // 섹션 추가
+                snapshot.appendSections([section.type])
+                snapshot.appendItems(bindModels)
+                self.detailDiffableDataSource?.apply(snapshot)
+            })
+        }
+    }
     
     private func configureOfDetailDiffableDataSource() {
         let movieDetailInformationRegistration = UICollectionView.CellRegistration<MovieDetailInformationCell, MovieInformation> {
