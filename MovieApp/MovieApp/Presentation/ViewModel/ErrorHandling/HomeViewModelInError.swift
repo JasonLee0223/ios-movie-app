@@ -1,5 +1,5 @@
 //
-//  Error.swift
+//  ViewModelInError.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/05/26.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ViewModelInError: LocalizedError {
+enum HomeViewModelInError: LocalizedError {
     case failOfMakeURL
     case failOfMakeData
     

@@ -143,11 +143,11 @@ extension HomeViewModel {
         let imageURLPath = "\(TMDBBasic.imageURL)\(imagePath)"
         
         guard let imageURL = URL(string: imageURLPath) else {
-            throw ViewModelInError.failOfMakeURL
+            throw HomeViewModelInError.failOfMakeURL
         }
             
         guard let imageData = try? Data(contentsOf: imageURL) else {
-            throw ViewModelInError.failOfMakeData
+            throw HomeViewModelInError.failOfMakeData
         }
         
         return imageData
@@ -219,16 +219,16 @@ extension HomeViewModel {
         do {
             documents = try await homeLoader.loadStillCut(movieNameGroup: movieNameGroup)
         } catch {
-            print(ViewModelInError.failOfMakeData)
+            print(HomeViewModelInError.failOfMakeData)
         }
         
         for document in documents {
             do {
                 guard let imageURL = URL(string: document.imageURL) else {
-                    throw ViewModelInError.failOfMakeURL
+                    throw HomeViewModelInError.failOfMakeURL
                 }
                 guard let imageData = try? Data(contentsOf: imageURL) else {
-                    throw ViewModelInError.failOfMakeData
+                    throw HomeViewModelInError.failOfMakeData
                 }
                 imageDataStorage.append(imageData)
             } catch {
