@@ -24,14 +24,14 @@ struct TMDBMovieDetail: Decodable {
         case adult
         case genres
         case movieIdentifier = "id"
-        case movieEnglishTitle = "originalTitle"
+        case movieEnglishTitle = "original_title"
         case overview
-        case productionCountries
-        case releaseDate
+        case productionCountries = "production_countries"
+        case releaseDate = "release_date"
         case runtime
         case summary = "tagline"
         case koreanTitle = "title"
-        case voteAverage
+        case voteAverage = "vote_average"
     }
     
     // MARK: - Genre
@@ -42,6 +42,7 @@ struct TMDBMovieDetail: Decodable {
 
     // MARK: - ProductionCountry
     internal struct ProductionCountry: Decodable {
-        let iso3166_1, name: String
+        let iso_3166_1: String
+        let name: String
     }
 }
