@@ -18,11 +18,13 @@ struct Cast: Decodable {
     let profilePath: String?
     let department: String?
     let character: String?
+    let job: String?
     
     enum CodingKeys: String, CodingKey {
         case name = "name"
         case profilePath = "profile_path"
         case department = "known_for_department"
         case character = "character"
+        case job
     }
 }
