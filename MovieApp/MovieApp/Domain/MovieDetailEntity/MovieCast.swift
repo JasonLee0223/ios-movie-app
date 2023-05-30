@@ -9,12 +9,12 @@ import Foundation
 
 struct MovieCast {
     let castInformation: CastInformation
-    let department: Department?
+    let department: String?
     let job: String?
 }
 
 internal struct CastInformation {
     let originalName: String
-    let profilePath: String?
+    let profilePPath: String?
     let character: String?
 }
