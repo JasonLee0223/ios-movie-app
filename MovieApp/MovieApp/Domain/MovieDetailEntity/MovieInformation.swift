@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieInformation: Hashable {
+struct MovieInformation: BusinessModel {
     var identifier: UUID
     
     let movieSummary: MovieSummary

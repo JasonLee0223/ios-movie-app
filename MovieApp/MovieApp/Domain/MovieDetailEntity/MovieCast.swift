@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieCast: Hashable {
+struct MovieCast: BusinessModel {
     let identifier: UUID
     let castInformation: CastInformation
     let job: String?
