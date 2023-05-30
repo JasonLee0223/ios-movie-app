@@ -23,19 +23,6 @@ final class HomeViewModel {
     private let homeLoader: HomeLoader
 }
 
-
-//func test() async {
-//    // starts a new scope that can contain a dynamic number of child task
-//    await withTaskGroup(of: Data.self) { taskGroup in                         // TaskGroup을 생성함, await은 위 함수가 비동기로 실행되기위함
-//        let photoNames = await listPhotos(inGallery: "Summer Vacation")       // 이미지 다운로드를 위한 기본 준비 (내 상황에서는 movieNames)
-//        for name in photoNames {                                              // movieName을 돌면서 addTask를 통해 일을 수행
-//            taskGroup.addTask {
-//                await self.downloadPhotos(name: name).data(using: .utf8)!
-//            }
-//        }
-//    }
-//}
-
 //MARK: - [Public Method] Use at ViewController
 extension HomeViewModel {
     
