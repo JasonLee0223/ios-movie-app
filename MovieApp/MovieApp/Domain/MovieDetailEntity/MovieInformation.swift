@@ -14,6 +14,10 @@ struct MovieInformation: Hashable {
     let nations: [String]
     let genres: [String]
     let subInformation: SubInformation
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
 }
 
 internal struct MovieSummary: Hashable {

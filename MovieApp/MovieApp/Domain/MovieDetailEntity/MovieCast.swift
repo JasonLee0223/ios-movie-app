@@ -11,6 +11,10 @@ struct MovieCast: Hashable {
     let identifier: UUID
     let castInformation: CastInformation
     let job: String?
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
 }
 
 internal struct CastInformation: Hashable {
