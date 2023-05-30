@@ -104,7 +104,8 @@ extension HomeHeaderView {
                 equalTo: safeArea.topAnchor
             ),
             sortStack.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
+                equalTo: safeArea.leadingAnchor,
+                constant: 20
             ),
 //            sortStack.trailingAnchor.constraint(
 //                equalTo: safeArea.trailingAnchor
@@ -129,7 +130,8 @@ extension HomeHeaderView {
                 equalTo: safeArea.topAnchor
             ),
             stillCutTitle.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
+                equalTo: safeArea.leadingAnchor,
+                constant: 20
             ),
             stillCutTitle.trailingAnchor.constraint(
                 equalTo: safeArea.trailingAnchor
@@ -150,7 +152,8 @@ extension HomeHeaderView {
                 equalTo: safeArea.topAnchor
             ),
             koreaMovieListTitle.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
+                equalTo: safeArea.leadingAnchor,
+                constant: 20
             ),
             koreaMovieListTitle.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor

@@ -13,6 +13,7 @@ final class DetailHeaderView: UICollectionReusableView, ReusableCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .black
     }
     
     required init?(coder: NSCoder) {
@@ -56,7 +57,8 @@ extension DetailHeaderView {
                 equalTo: safeArea.topAnchor
             ),
             movieOfficialsTitle.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
+                equalTo: safeArea.leadingAnchor,
+                constant: 20
             ),
             movieOfficialsTitle.trailingAnchor.constraint(
                 equalTo: safeArea.trailingAnchor
@@ -78,7 +80,8 @@ extension DetailHeaderView {
                 equalTo: safeArea.topAnchor
             ),
             audienceCountTitle.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
+                equalTo: safeArea.leadingAnchor,
+                constant: 20
             ),
             audienceCountTitle.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
