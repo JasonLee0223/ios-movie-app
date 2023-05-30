@@ -113,9 +113,9 @@ extension HomeViewModel {
             
             for result in networkResult {
                 let imageData = try await fetchImage(imagePath: result.movieImageURL)
-                let trendMovie = TrendMovie(identifier: UUID(),
-                                            posterImage: imageData,
-                                            posterName: result.movieKoreaTitle
+                let trendMovie = TrendMovie(
+                    identifier: UUID(), movieCode: String(result.movieID),
+                    posterImage: imageData, posterName: result.movieKoreaTitle
                 )
                 trendMovieListGroup.append(trendMovie)
             }
