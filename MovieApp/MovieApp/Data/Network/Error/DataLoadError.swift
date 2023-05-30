@@ -12,6 +12,7 @@ enum DataLoadError: LocalizedError {
     case failOfMovieDetailInfromationData
     case failOfStillCutData
     case failOfTrendMovieListData
+    case failOfMovieCreditsData
     
     var errorDescription: String? {
         switch self {
@@ -19,6 +20,7 @@ enum DataLoadError: LocalizedError {
         case .failOfMovieDetailInfromationData: return "❌ Fail Of MovieDetailInfromationData"
         case .failOfStillCutData: return "❌ Fail Of StillCutData"
         case .failOfTrendMovieListData: return "❌ Fail Of TrendMovieListData"
+        case .failOfMovieCreditsData: return "❌ Fail Of MovieCreditsData"
         }
     }
 }
