@@ -67,11 +67,12 @@ final class MovieSummaryInfo: UIStackView {
 
 //MARK: - Public Methdo
 extension MovieSummaryInfo {
-    func configureOfComponents(by textGroup: [String]) {
-        setWatchGrade(by: textGroup[0])
-        setMovieKoreanName(by: textGroup[1])
-        setMovieEnglishName(by: textGroup[2])
-        setScreeninigInformation(by: textGroup[3])
+    
+    func configureOfComponents(by textGroup: PosterHeaderArea, summary: String) {
+        setWatchGrade(by: textGroup.watchGrade)
+        setMovieKoreanName(by: textGroup.movieKoreanName)
+        setMovieEnglishName(by: textGroup.movieEnglishName)
+        setScreeninigInformation(by: summary)
     }
 }
 
