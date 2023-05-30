@@ -70,6 +70,7 @@ final class MovieDetailInformationCell: UICollectionViewCell, ConfigurableCell {
     
     private let overView: UILabel = {
         let overView = UILabel()
+        overView.numberOfLines = 0
         overView.textAlignment = .left
         return overView
     }()
