@@ -48,6 +48,3 @@ extension DetailLoader {
         return networkResult
     }
 }
-
-
-//https://api.themoviedb.org/3/movie/603692/credits?language=ko-KR&api_key=f24ca5e74fea9387e34b77fc5e0cda23
