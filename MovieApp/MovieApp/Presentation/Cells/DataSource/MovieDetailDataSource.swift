@@ -95,16 +95,16 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
             }
             let item = items[indexPath.item]
             
-            cell.setPosterImage(by: item.image)
-            
-            let mockTexts = [item.grade,
-                             item.moiveName,
-                             item.movieEnName,
-                             item.movieSummary]
-            
-            cell.setMovieSummaryInfo(by: mockTexts)
-            
-            cell.setOverView(by: item.overview)
+//            cell.setPosterImage(by: item.image)
+//
+//            let mockTexts = [item.grade,
+//                             item.moiveName,
+//                             item.movieEnName,
+//                             item.movieSummary]
+//
+//            cell.setMovieSummaryInfo(by: mockTexts)
+//
+//            cell.setOverView(by: item.overview)
             
             return cell
         case let .movieOfficial(items):
