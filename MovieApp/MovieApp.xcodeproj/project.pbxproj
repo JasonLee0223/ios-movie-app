@@ -256,6 +256,15 @@
 			path = MovieDetailEntity;
 			sourceTree = "<group>";
 		};
+		5B09DA052A25D652001121D6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5B09DA032A25D473001121D6 /* HomeLoader.swift */,
+				5B3F1C652A148DE40062BE99 /* NetworkService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		5B3F1BE02A146EAC0062BE99 = {
 			isa = PBXGroup;
 			children = (
@@ -383,8 +392,7 @@
 			children = (
 				5B9D27082A20AD9700E9C9C0 /* Error */,
 				5B9D27072A20AD8700E9C9C0 /* APIEndponit */,
-				5B3F1C652A148DE40062BE99 /* NetworkService.swift */,
-				5B09DA032A25D473001121D6 /* HomeLoader.swift */,
+				5B09DA052A25D652001121D6 /* Service */,
 			);
 			path = Network;
 			sourceTree = "<group>";
