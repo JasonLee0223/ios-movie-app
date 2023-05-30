@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieDetailInformationCell: UICollectionViewCell, ConfigurableCell {
+final class MovieDetailInformationCell: UICollectionViewCell, ReusableCell {
     
     //MARK: - Initializer
     
@@ -89,10 +89,27 @@ final class MovieDetailInformationCell: UICollectionViewCell, ConfigurableCell {
 
 //MARK: - [Public Method] Configure of UI Components
 extension MovieDetailInformationCell {
-    func configure(_ item: MovieInfo, at indexPath: IndexPath) {
-        //TODO: - Model & Cell Components Mapping
+    func configure(_ item: MovieInformation,
+                   at indexPath: IndexPath, posterImageData: Data
+    ) {
+        var nationSentence: String = ""
+        var genreSentence: String = ""
         
-        setOverView(by: "줄거리")
+        for nation in item.nations {
+            nationSentence += nation
+        }
+        
+        for genre in item.genres {
+            genreSentence += genre
+        }
+        
+        let summary = "\(item.subInformation.runtime) | \(nationSentence) | \(genreSentence) | \(item.subInformation.releaseDate)"
+        
+        setPosterImage(by: posterImageData)
+        
+        movieSummaryInfo.configureOfComponents(by: item.posterHeaderArea, summary: summary)
+        
+        setOverView(by: item.subInformation.overview)
     }
 }
 
@@ -110,12 +127,7 @@ extension MovieDetailInformationCell {
         posterImage.image = image
     }
     
-    //MARK: - Only Test (추후 private 변경)
-    func setPosterImage(by image: UIImage) {
-        posterImage.image = image
-    }
-    
-    func setOverView(by text: String) {
+    private func setOverView(by text: String) {
         
         let attributedString = NSMutableAttributedString(string: text)
         let length = attributedString.length
@@ -127,10 +139,6 @@ extension MovieDetailInformationCell {
         )
         overView.attributedText = attributedString
         overView.text = text
-    }
-    
-    func setMovieSummaryInfo(by texts: [String]) {
-        movieSummaryInfo.configureOfComponents(by: texts)
     }
 }
 
