@@ -10,7 +10,7 @@ import Foundation
 struct MovieInformation: BusinessModel {
     var identifier: UUID
     
-    let movieSummary: PosterHeaderArea
+    let posterHeaderArea: PosterHeaderArea
     let nations: [String]
     let genres: [String]
     let subInformation: SubInformation

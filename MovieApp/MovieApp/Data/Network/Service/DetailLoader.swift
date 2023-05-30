@@ -86,7 +86,7 @@ extension DetailLoader {
             
             wrappingMovieInformation = MovieInformation(
                 identifier: UUID(),
-                movieSummary: PosterHeaderArea(
+                posterHeaderArea: PosterHeaderArea(
                     watchGrade: watchGrade,
                     movieKoreanName: networkResult.koreanTitle,
                     movieEnglishName: networkResult.movieEnglishTitle
