@@ -28,19 +28,11 @@ struct TMDBTrendMovieList: Decodable {
 internal struct Result: Decodable {
     let movieID: Int
     let movieKoreaTitle: String
-    let movieOriginTitle: String
-    let overview: String
     let movieImageURL: String
-    let releaseDate: String
-    let voteAverage: Double
 
     enum CodingKeys: String, CodingKey {
         case movieID = "id"
         case movieKoreaTitle = "title"
-        case movieOriginTitle = "original_title"
-        case overview
         case movieImageURL = "poster_path"
-        case releaseDate = "release_date"
-        case voteAverage = "vote_average"
     }
 }
