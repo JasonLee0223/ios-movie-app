@@ -21,7 +21,7 @@ final class HomeViewController: UIViewController {
     
     private let homeViewModel = HomeViewModel()
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    private var diffableDataSource: UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>?
+    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, BusinessModelWrapper>?
 }
 
 //MARK: - Configure of UI Components
@@ -121,7 +121,7 @@ extension HomeViewController {
 extension HomeViewController {
     
     private func homeSnapShot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, BusinessModelWrapper>()
+        var snapshot = NSDiffableDataSourceSnapshot<HomeSection, BusinessModelWrapper>()
         
         HomeSectionList.allCases.forEach { sectionList in
             
@@ -145,7 +145,7 @@ extension HomeViewController {
                 print("✅ 현재 SectionList의 위치")
                 print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
                 
-                let section = Section(type: sectionList, items: bindModels)
+                let section = HomeSection(type: sectionList, items: bindModels)
                 
 //                print("✅ 현재 Section 확인중...")
 //                print(section.items.isEmpty)
@@ -197,7 +197,7 @@ extension HomeViewController {
             }
         }
         
-        diffableDataSource = UICollectionViewDiffableDataSource<Section, BusinessModelWrapper>(collectionView: homeCollectionView)
+        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, BusinessModelWrapper>(collectionView: homeCollectionView)
         { (collectionView, indexPath, businessModelWrapper) in
             
             switch businessModelWrapper {

@@ -32,7 +32,7 @@ struct HomeViewLayout {
     private let sectionIndex: Int
 }
 
-//MARK: - [Private Method] Configure of Section Layout
+//MARK: - [Private Method] Configure of HomeSection Layout
 extension HomeViewLayout {
     
     private func createIntroduceCellCompositionalLayout() -> NSCollectionLayoutSection? {

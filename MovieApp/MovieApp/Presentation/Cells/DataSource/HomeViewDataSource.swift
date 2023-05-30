@@ -14,7 +14,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
         super.init()
     }
     
-    //MARK: - Number Of Section and Item
+    //MARK: - Number Of HomeSection and Item
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return HomeSectionList.allCases.count
     }

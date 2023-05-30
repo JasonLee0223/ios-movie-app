@@ -1,5 +1,5 @@
 //
-//  Section.swift
+//  HomeSection.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/05/26.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Section: Hashable {
+struct HomeSection: Hashable {
     var type: HomeSectionList
     var items: [BusinessModelWrapper]
 }
