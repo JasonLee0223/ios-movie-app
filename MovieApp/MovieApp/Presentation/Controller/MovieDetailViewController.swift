@@ -9,20 +9,24 @@ import UIKit
 
 final class MovieDetailViewController: UIViewController {
     
+    //MARK: - Property
+    
+    var movieDetailData: HomeEntityWrapper?
+    var posterImageDataReceivedFromHomeView: Data?
+    
+    //MARK: - Override Method
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         switch movieDetailData {
         case let .trendMovie(movieDetailData):
-            print(movieDetailData)
-            // 이미지 있음
-//            movieDetailData.posterImage
-            
-            detailViewModel.loadAllOfMovieDetailNeedData(movieCode: movieDetailData.movieCode)
+            posterImageDataReceivedFromHomeView = movieDetailData.posterImage
+            Task {
+                await detailViewModel.loadNeedTotMovieDetailSection(movieCode: movieDetailData.movieCode)
+            }
         case let .stillCut(movieDetailData):
-            print(movieDetailData)
-            // 이미지 있음
-//            movieDetailData.genreImagePath
+            posterImageDataReceivedFromHomeView = movieDetailData.genreImagePath
             
         case let .koreaBoxOfficeList(movieDetailData):
             print(movieDetailData)
@@ -39,8 +43,7 @@ final class MovieDetailViewController: UIViewController {
         configureOfDetailDiffableDataSource()
     }
     
-    var movieDetailData: HomeEntityWrapper?
-    
+    //MARK: - Private Property
     private let movieDetailCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewLayout()
     )
@@ -48,7 +51,7 @@ final class MovieDetailViewController: UIViewController {
     private let detailViewModel = DetailViewModel()
     private let dataSource = MovieDetailDataSource()
     
-//    private let detailDiffableDataSource: UICollectionViewDiffableDataSource<DetailSectionList, MovieInfo>?
+    private var detailDiffableDataSource: UICollectionViewDiffableDataSource<DetailSectionList, DetailEntityWrapper>?
 }
 
 //MARK: - [Private Method] Configure of UI Components
@@ -73,24 +76,6 @@ extension MovieDetailViewController {
         movieDetailCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
         movieDetailCollectionView.dataSource = dataSource
         movieDetailCollectionView.contentInsetAdjustmentBehavior = .never
-        
-        movieDetailCollectionView.register(
-            DetailHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: DetailHeaderView.reuseIdentifier
-        )
-        movieDetailCollectionView.register(
-            MovieDetailInformationCell.self,
-            forCellWithReuseIdentifier: MovieDetailInformationCell.reuseIdentifier
-        )
-        movieDetailCollectionView.register(
-            MovieCreditCell.self,
-            forCellWithReuseIdentifier: MovieCreditCell.reuseIdentifier
-        )
-        movieDetailCollectionView.register(
-            AudienceCountCell.self,
-            forCellWithReuseIdentifier: AudienceCountCell.reuseIdentifier
-        )
     }
 }
 
@@ -123,19 +108,24 @@ extension MovieDetailViewController {
 extension MovieDetailViewController {
     
     private func configureOfDetailDiffableDataSource() {
-        let movieDetailInformationRegistration = UICollectionView.CellRegistration<MovieDetailInformationCell, MovieInfo> {
-            (cell, indexPath, movieInfo) in
+        let movieDetailInformationRegistration = UICollectionView.CellRegistration<MovieDetailInformationCell, MovieInformation> {
+            (cell, indexPath, movieInformation) in
             
-            cell.configure(movieInfo, at: indexPath)
+            guard let unwarppingposterImageDataReceivedFromHomeView = self.posterImageDataReceivedFromHomeView else {
+                print(DetailViewModelInError.failOfUnwrapping)
+                return
+            }
+            
+            cell.configure(movieInformation,
+                           at: indexPath,
+                           posterImageData: unwarppingposterImageDataReceivedFromHomeView
+            )
         }
         
-        let moiveOfficialsRegistration = UICollectionView.CellRegistration<MovieCreditCell, MovieInfo> {
-            (cell, indexPath, moiveInfo) in
+        let moiveOfficialsRegistration = UICollectionView.CellRegistration<MovieCreditCell, MovieCast> {
+            (cell, indexPath, moiveCast) in
             
-            // MockData to test
-            let mockData = ["스즈메", "문단속", "스즈메", "문단속", "스즈메", "문단속", "스즈메", "문단속",]
-            
-            cell.configure(mockData, at: indexPath)
+            cell.configure(moiveCast, at: indexPath)
         }
         
         let koreaBoxOfficeListCellRegistration = UICollectionView.CellRegistration<KoreaBoxOfficeListCell, MovieInfo> {
@@ -161,9 +151,23 @@ extension MovieDetailViewController {
             }
         }
         
-//        detailDiffableDataSource = UICollectionViewDiffableDataSource<DetailSectionList, MovieInfo>(collectionView: movieDetailCollectionView) {
-//            (collectionView, indexPath, businessModelWrapper) in
-//
-//        }
+        detailDiffableDataSource = UICollectionViewDiffableDataSource<DetailSectionList, DetailEntityWrapper>(collectionView: movieDetailCollectionView) {
+            (collectionView, indexPath, detailEntityWrapper) in
+            
+            switch detailEntityWrapper {
+            case let .movieDetailInformation(movieInformationItem):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: movieDetailInformationRegistration, for: indexPath, item: movieInformationItem
+                )
+            case let .movieCast(movieCastItem):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: moiveOfficialsRegistration, for: indexPath, item: movieCastItem
+                )
+            }
+        }
+        
+        detailDiffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
+            return self.movieDetailCollectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
+        }
     }
 }
