@@ -47,7 +47,7 @@ extension MovieDetailViewController {
         movieDetailCollectionView.backgroundColor = .white
         movieDetailCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
         movieDetailCollectionView.dataSource = dataSource
-        
+        movieDetailCollectionView.contentInsetAdjustmentBehavior = .never
         
         movieDetailCollectionView.register(
             DetailHeaderView.self,
@@ -79,7 +79,7 @@ extension MovieDetailViewController {
         
         movieDetailCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            movieDetailCollectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            movieDetailCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
             movieDetailCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             movieDetailCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             movieDetailCollectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
