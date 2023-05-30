@@ -27,8 +27,25 @@ final class DetailViewModel {
 //MARK: - [Public Method] Use of MovieDetailViewController
 extension DetailViewModel {
     
-    func loadNeedTotMovieDetailSection(movieCode: String, section: DetailSectionList) async {
+    func loadNeedTotMovieDetailSection(movieCode: String) async {
         //TODO: - If need to switch-case sectionType make this mehtod
+        
+        Task {
+            guard let movieInformation = await self.loadSelectedMovieDetailInformation(movieCode: movieCode) else {
+                return
+            }
+            let movieInformationWrapper = DetailEntityWrapper.movieDetailInformation(movieInformation)
+            
+            sectionStroage[.movieDetailInformationSection]?.value = [movieInformationWrapper]
+        }
+        
+        Task {
+            let moiveCastGroup = await loadMovieCast(movieCode: movieCode)
+            let moiveCastWrapper = moiveCastGroup.map { movieCast in
+                DetailEntityWrapper.movieCast(movieCast)
+            }
+            sectionStroage[.movieOfficialsSection]?.value = moiveCastWrapper
+        }
     }
 }
 
