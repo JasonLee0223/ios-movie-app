@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Welcome2
-struct TMDBMovieCredit {
+struct TMDBMovieCredit: Decodable {
     let id: Int
     let cast: [Cast]
     let crew: [Cast]
@@ -16,7 +16,7 @@ struct TMDBMovieCredit {
 
 // MARK: - Cast
 /// department의 directing을 찾아서 Job을 director 찾기
-struct Cast {
+struct Cast: Decodable {
     let originalName: String
     let profilePath: String?
     let character: String?
@@ -24,7 +24,7 @@ struct Cast {
     let job: String?
 }
 
-enum Department {
+enum Department: Decodable {
     case acting
     case art
     case camera
