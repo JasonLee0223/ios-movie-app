@@ -67,18 +67,18 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
             
             return headerView
             
-        case UICollectionView.elementKindSectionFooter:
-            guard let footerView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind, withReuseIdentifier: DetailFooterView.reuseIdentifier, for: indexPath
-            ) as? DetailFooterView else {
-                return UICollectionReusableView()
-            }
-            
-            if sectionType == .movieDetailInformationSection {
-                //TODO: - footer Handler
-                footerView.didSelectedButton()
-            }
-            return footerView
+//        case UICollectionView.elementKindSectionFooter:
+//            guard let footerView = collectionView.dequeueReusableSupplementaryView(
+//                ofKind: kind, withReuseIdentifier: DetailFooterView.reuseIdentifier, for: indexPath
+//            ) as? DetailFooterView else {
+//                return UICollectionReusableView()
+//            }
+//
+//            if sectionType == .movieDetailInformationSection {
+//                //TODO: - footer Handler
+//                footerView.didSelectedButton()
+//            }
+//            return footerView
         default:
             return UICollectionReusableView()
         }

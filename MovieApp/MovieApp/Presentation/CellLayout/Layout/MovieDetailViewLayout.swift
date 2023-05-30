@@ -35,16 +35,16 @@ struct MovieDetailViewLayout {
 extension MovieDetailViewLayout {
     
     private func createMovieDetailCellCompositionalLayout() -> NSCollectionLayoutSection {
-        let footerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(0.1)
-        )
-        let footer = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: footerSize,
-            elementKind: UICollectionView.elementKindSectionFooter,
-            alignment: .leading
-        )
-        footer.contentInsets = .init(top: 250, leading: 20, bottom: -150, trailing: 20)
+//        let footerSize = NSCollectionLayoutSize(
+//            widthDimension: .fractionalWidth(1.0),
+//            heightDimension: .fractionalWidth(0.1)
+//        )
+//        let footer = NSCollectionLayoutBoundarySupplementaryItem(
+//            layoutSize: footerSize,
+//            elementKind: UICollectionView.elementKindSectionFooter,
+//            alignment: .leading
+//        )
+//        footer.contentInsets = .init(top: 250, leading: 20, bottom: -150, trailing: 20)
         
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -61,7 +61,7 @@ extension MovieDetailViewLayout {
         )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [footer]
+//        section.boundarySupplementaryItems = [footer]
         return section
     }
     

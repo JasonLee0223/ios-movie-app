@@ -55,11 +55,6 @@ extension MovieDetailViewController {
             withReuseIdentifier: DetailHeaderView.reuseIdentifier
         )
         movieDetailCollectionView.register(
-            DetailFooterView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-            withReuseIdentifier: DetailFooterView.reuseIdentifier
-        )
-        movieDetailCollectionView.register(
             MovieDetailInformationCell.self,
             forCellWithReuseIdentifier: MovieDetailInformationCell.reuseIdentifier
         )
