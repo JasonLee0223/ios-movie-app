@@ -44,10 +44,10 @@ final class MovieCreditCell: UICollectionViewCell, ConfigurableCell {
     private let peopleImage: UIImageView = {
         let peopleImage = UIImageView()
         peopleImage.image = UIImage(named: "Suzume")
-        peopleImage.contentMode = .scaleAspectFill
+        peopleImage.contentMode = .scaleToFill
         
         peopleImage.layer.masksToBounds = true
-        peopleImage.layer.cornerRadius = 48
+        peopleImage.layer.cornerRadius = 20
         peopleImage.layer.borderWidth = 1.0
         peopleImage.layer.borderColor = UIColor.clear.cgColor
         peopleImage.clipsToBounds = true
@@ -141,10 +141,12 @@ extension MovieCreditCell {
         peopleImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             peopleImage.widthAnchor.constraint(
-                equalTo: horizontalTotalUIStack.heightAnchor
+                equalTo: horizontalTotalUIStack.heightAnchor,
+                multiplier: 0.5
             ),
             peopleImage.heightAnchor.constraint(
-                equalTo: horizontalTotalUIStack.heightAnchor
+                equalTo: horizontalTotalUIStack.heightAnchor,
+                multiplier: 0.5
             )
         ])
     }
