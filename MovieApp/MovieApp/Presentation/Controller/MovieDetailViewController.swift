@@ -94,7 +94,7 @@ extension MovieDetailViewController {
             movieDetailCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
             movieDetailCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             movieDetailCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            movieDetailCollectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            movieDetailCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
     
