@@ -20,9 +20,16 @@ final class HomeViewController: UIViewController {
     }
     
     private let homeViewModel = HomeViewModel()
+    
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    
     private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
+    
     private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
+    
+    private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(
+        frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 100))
+    )
     
     private lazy var refresh: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -50,9 +57,15 @@ final class HomeViewController: UIViewController {
 extension HomeViewController {
     
     private func configureOfUI() {
-        configureOfNavigationBar()
+        
         configureOfSuperView()
+        configureOfNavigationBar()
+        
+        configureOfActivityIndicator()
+        checkOfAnimatingActivityIndicator(isAnimated: true)
+        
         configureOfCollectionView()
+        
         configureColletionViewDelegate()
     }
     
@@ -111,6 +124,24 @@ extension HomeViewController {
         homeCollectionView.refreshControl = refresh
     }
     
+    private func checkOfAnimatingActivityIndicator(isAnimated: Bool) {
+        
+        guard isAnimated != activityIndicator.isAnimating else { return }
+                
+        if isAnimated {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func configureOfActivityIndicator() {
+        activityIndicator.center = self.view.center
+        activityIndicator.color = .white
+        activityIndicator.style = .large
+        activityIndicator.isHidden = false
+    }
+    
     private func configureColletionViewDelegate() {
         Task {
             homeCollectionView.delegate = self
@@ -125,6 +156,7 @@ extension HomeViewController {
         let safeArea = self.view.safeAreaLayoutGuide
         
         self.view.addSubview(homeCollectionView)
+        self.view.addSubview(activityIndicator)
         
         homeCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -148,7 +180,10 @@ extension HomeViewController {
     private func homeSnapShot() {
         
         HomeSectionList.allCases.forEach { sectionList in
-            
+            Task {
+                try await Task.sleep(nanoseconds: 2_000_000_000)
+                self.checkOfAnimatingActivityIndicator(isAnimated: false)
+            }
             //MARK: - TaskGroupTest
 //            Task {
 //                await homeViewModel.testTaskGroup(section: sectionList)
