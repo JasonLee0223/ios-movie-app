@@ -28,7 +28,7 @@ enum MagicNumber {
         static let navigationBarButtonFont: CGFloat = 25
         static let headerTitleFont: CGFloat = 23
         static let spcing: CGFloat = 12
-        static let fontSize: CGFloat = 15
+        static let fontSize: CGFloat = 16
         static let imageCornerRadius: CGFloat = 10
     }
     
