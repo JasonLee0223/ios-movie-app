@@ -30,32 +30,34 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         return sortStack
     }()
     
-    private let sortedByTrendWeek: UIButton = {
+    private lazy var sortedByTrendWeek: UIButton = {
         let sortedByTrendWeek = UIButton()
         
         sortedByTrendWeek.layer.cornerRadius = MagicNumber.cornerRadius
-        sortedByTrendWeek.setTitle(MagicLiteral.Title.movieRealese,
+        sortedByTrendWeek.layer.borderWidth = MagicNumber.borderWidth
+        sortedByTrendWeek.layer.borderColor = UIColor.systemGray5.cgColor
+        
+        sortedByTrendWeek.setTitle(MagicLiteral.Title.weekTrendList,
                                       for: .normal)
         sortedByTrendWeek.titleLabel?.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
         sortedByTrendWeek.tintColor = .white
-        
-        //TODO: - push했을 때 pink 컬러로 변환되도록 설정
         sortedByTrendWeek.backgroundColor = .systemPink
         
         //TODO: - Button Configuration으로 변경하여 Edge 넣기 -> iOS 버전이 높아서 inset을 다른 방법으로 진행
         return sortedByTrendWeek
     }()
 
-    private let sortedByTrendDay: UIButton = {
+    private lazy var sortedByTrendDay: UIButton = {
         let sortedByTrendDay = UIButton()
         
         sortedByTrendDay.layer.borderColor = UIColor.systemGray5.cgColor
         sortedByTrendDay.layer.borderWidth = MagicNumber.borderWidth
         sortedByTrendDay.layer.cornerRadius = MagicNumber.cornerRadius
+        
         sortedByTrendDay.setTitle(
-            MagicLiteral.Title.ticketing,
+            MagicLiteral.Title.todayTrendList,
             for: .normal
         )
         sortedByTrendDay.titleLabel?.font = .boldSystemFont(
@@ -88,6 +90,34 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
     }()
 }
 
+//MARK: - [Public Method] Configure of Button Action
+extension HomeHeaderView {
+    
+    func selectedTrendWeekButton() async {
+        sortedByTrendWeek.addTarget(
+            self, action: #selector(selectSortedByTrendWeek),
+            for: .touchUpInside
+        )
+    }
+    
+    func selectedTrendDayButton() async {
+        sortedByTrendDay.addTarget(
+            self, action: #selector(selectSortedByTrendDay),
+            for: .touchUpInside
+        )
+    }
+    
+    @objc private func selectSortedByTrendWeek() {
+        sortedByTrendWeek.backgroundColor = .systemPink
+        sortedByTrendDay.backgroundColor = .black
+    }
+    
+    @objc private func selectSortedByTrendDay() {
+        sortedByTrendWeek.backgroundColor = .black
+        sortedByTrendDay.backgroundColor = .systemPink
+    }
+}
+
 //MARK: - [Public Method] Configure of Layout
 extension HomeHeaderView {
     
@@ -112,7 +142,7 @@ extension HomeHeaderView {
             ),
             sortStack.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
-                multiplier: 0.5
+                multiplier: 0.8
             )
         ])
     }

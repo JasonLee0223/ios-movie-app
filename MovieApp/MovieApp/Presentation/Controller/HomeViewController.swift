@@ -182,6 +182,11 @@ extension HomeViewController {
                 switch sectionType.type {
                 case .trendMoviePosterSection:
                     headerView.configureOfSortStackLayout()
+                    
+                    Task {
+                        await headerView.selectedTrendWeekButton()
+                        await headerView.selectedTrendDayButton()
+                    }
                 case .stillCutSection:
                     headerView.configureOfStillCutLayout()
                 case .koreaMovieListSection:
