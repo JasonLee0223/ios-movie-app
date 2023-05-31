@@ -30,39 +30,39 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         return sortStack
     }()
     
-    private let sortedByMovieRelease: UIButton = {
-        let sortedByMovieRelease = UIButton()
+    private let sortedByTrendWeek: UIButton = {
+        let sortedByTrendWeek = UIButton()
         
-        sortedByMovieRelease.layer.cornerRadius = MagicNumber.cornerRadius
-        sortedByMovieRelease.setTitle(MagicLiteral.Title.movieRealese,
+        sortedByTrendWeek.layer.cornerRadius = MagicNumber.cornerRadius
+        sortedByTrendWeek.setTitle(MagicLiteral.Title.movieRealese,
                                       for: .normal)
-        sortedByMovieRelease.titleLabel?.font = .boldSystemFont(
+        sortedByTrendWeek.titleLabel?.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
-        sortedByMovieRelease.tintColor = .white
+        sortedByTrendWeek.tintColor = .white
         
         //TODO: - push했을 때 pink 컬러로 변환되도록 설정
-        sortedByMovieRelease.backgroundColor = .systemPink
+        sortedByTrendWeek.backgroundColor = .systemPink
         
-        //TODO: - Button Configuration으로 변경하여 Edge 넣기
-        return sortedByMovieRelease
+        //TODO: - Button Configuration으로 변경하여 Edge 넣기 -> iOS 버전이 높아서 inset을 다른 방법으로 진행
+        return sortedByTrendWeek
     }()
 
-    private let sortedByTicketing: UIButton = {
-        let sortedByTicketing = UIButton()
+    private let sortedByTrendDay: UIButton = {
+        let sortedByTrendDay = UIButton()
         
-        sortedByTicketing.layer.borderColor = UIColor.systemGray5.cgColor
-        sortedByTicketing.layer.borderWidth = MagicNumber.borderWidth
-        sortedByTicketing.layer.cornerRadius = MagicNumber.cornerRadius
-        sortedByTicketing.setTitle(
+        sortedByTrendDay.layer.borderColor = UIColor.systemGray5.cgColor
+        sortedByTrendDay.layer.borderWidth = MagicNumber.borderWidth
+        sortedByTrendDay.layer.cornerRadius = MagicNumber.cornerRadius
+        sortedByTrendDay.setTitle(
             MagicLiteral.Title.ticketing,
             for: .normal
         )
-        sortedByTicketing.titleLabel?.font = .boldSystemFont(
+        sortedByTrendDay.titleLabel?.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
-        sortedByTicketing.tintColor = UIColor.white
-        return sortedByTicketing
+        sortedByTrendDay.tintColor = UIColor.white
+        return sortedByTrendDay
     }()
     
     private let stillCutTitle: UILabel = {
@@ -95,8 +95,8 @@ extension HomeHeaderView {
         let safeArea = self.safeAreaLayoutGuide
         
         self.addSubview(sortStack)
-        sortStack.addArrangedSubview(sortedByMovieRelease)
-        sortStack.addArrangedSubview(sortedByTicketing)
+        sortStack.addArrangedSubview(sortedByTrendWeek)
+        sortStack.addArrangedSubview(sortedByTrendDay)
         
         sortStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -107,9 +107,6 @@ extension HomeHeaderView {
                 equalTo: safeArea.leadingAnchor,
                 constant: 20
             ),
-//            sortStack.trailingAnchor.constraint(
-//                equalTo: safeArea.trailingAnchor
-//            ),
             sortStack.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
             ),
