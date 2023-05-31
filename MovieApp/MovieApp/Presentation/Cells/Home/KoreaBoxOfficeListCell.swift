@@ -103,10 +103,18 @@ extension KoreaBoxOfficeListCell {
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            contentStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            contentStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            contentStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            contentStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+            contentStackView.topAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.topAnchor
+            ),
+            contentStackView.leadingAnchor.constraint(
+                equalTo: self.leadingAnchor
+            ),
+            contentStackView.trailingAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.trailingAnchor
+            ),
+            contentStackView.bottomAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.bottomAnchor
+            )
         ])
 
         contentStackView.addSubview(rankView)
@@ -116,17 +124,33 @@ extension KoreaBoxOfficeListCell {
         summaryInformationView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            rankView.topAnchor.constraint(equalTo: contentStackView.topAnchor),
-            rankView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor),
-            rankView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
-            rankView.widthAnchor.constraint(equalTo: contentStackView.widthAnchor,
-                                            multiplier: MagicNumber.Cell.widthAnchorMultiplier),
+            rankView.topAnchor.constraint(
+                equalTo: contentStackView.topAnchor
+            ),
+            rankView.leadingAnchor.constraint(
+                equalTo: contentStackView.leadingAnchor
+            ),
+            rankView.bottomAnchor.constraint(
+                equalTo: contentStackView.bottomAnchor
+            ),
+            rankView.widthAnchor.constraint(
+                equalTo: contentStackView.widthAnchor,
+                multiplier: MagicNumber.Cell.widthAnchorMultiplier
+            ),
 
-            summaryInformationView.topAnchor.constraint(equalTo: contentStackView.topAnchor),
-            summaryInformationView.leadingAnchor.constraint(equalTo: rankView.trailingAnchor,
-                                                            constant: MagicNumber.Cell.leadingAnchorConstraint),
-            summaryInformationView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor),
-            summaryInformationView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor)
+            summaryInformationView.topAnchor.constraint(
+                equalTo: contentStackView.topAnchor
+            ),
+            summaryInformationView.leadingAnchor.constraint(
+                equalTo: rankView.trailingAnchor,
+                constant: MagicNumber.Cell.leadingAnchorConstraint
+            ),
+            summaryInformationView.trailingAnchor.constraint(
+                equalTo: contentStackView.trailingAnchor
+            ),
+            summaryInformationView.bottomAnchor.constraint(
+                equalTo: contentStackView.bottomAnchor
+            )
         ])
     }
 }
