@@ -77,6 +77,8 @@ extension HomeViewController {
         
         self.navigationItem.leftBarButtonItem = .init(customView: title)
         self.navigationItem.rightBarButtonItems = [hamberg, map, ticket]
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = .white
     }
     
     private func configureOfCollectionView() {
