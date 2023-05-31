@@ -96,14 +96,16 @@ extension MovieDetailInformationCell {
         var genreSentence: String = ""
         
         for nation in item.nations {
-            nationSentence += nation
+            let plusComma = nation + ", "
+            nationSentence += plusComma
         }
         
         for genre in item.genres {
+            let plusComma = genre + ", "
             genreSentence += genre
         }
         
-        let summary = "\(item.subInformation.runtime) | \(nationSentence) | \(genreSentence) | \(item.subInformation.releaseDate)"
+        let summary = "\(item.subInformation.releaseDate) | \(nationSentence) |\n \(genreSentence) | \(item.subInformation.runtime)"
         
         setPosterImage(by: posterImageData)
         

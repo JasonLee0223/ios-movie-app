@@ -60,6 +60,7 @@ final class MovieSummaryInfo: UIStackView {
         let screeningInformation = UILabel()
         screeningInformation.font = .systemFont(ofSize: 14)
         screeningInformation.textColor = .white
+        screeningInformation.numberOfLines = 2
         screeningInformation.sizeToFit()
         return screeningInformation
     }()
