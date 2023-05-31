@@ -36,7 +36,7 @@ extension Decidable {
         case .new:
             return UIColor.red
         case .old:
-            return UIColor.black
+            return UIColor.white
         }
     }
 
