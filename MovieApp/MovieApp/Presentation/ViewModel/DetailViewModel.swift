@@ -107,7 +107,7 @@ extension DetailViewModel {
         
         let actorGroup = networkResult.cast
         var director = networkResult.crew.filter {
-            $0.department == "Directing" && $0.job == "Director"
+            $0.job == "Director"
         }
         
         var usableCastGroup = [Cast]()
