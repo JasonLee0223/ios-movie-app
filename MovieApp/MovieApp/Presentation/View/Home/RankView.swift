@@ -33,7 +33,7 @@ final class RankView: UIStackView {
 
         information.axis = .horizontal
         information.alignment = .center
-        information.distribution = .equalSpacing
+        information.distribution = .fillEqually
     }
 
     private func configureOfComponents() {
@@ -52,7 +52,7 @@ final class RankView: UIStackView {
 
     private let rank: UILabel = {
         let rankLabel = UILabel()
-        rankLabel.font = .boldSystemFont(ofSize: MagicNumber.Attributes.fontSize)
+        rankLabel.font = .boldSystemFont(ofSize: 25)
         rankLabel.textColor = .white
         return rankLabel
     }()
