@@ -22,6 +22,28 @@ final class HomeViewController: UIViewController {
     private let homeViewModel = HomeViewModel()
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
+    private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
+    
+    private lazy var refresh: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(handleRefreshControl) , for: .valueChanged)
+        return refreshControl
+    }()
+    
+    @objc func handleRefreshControl() {
+        
+        HomeSectionList.allCases.forEach { sectionList in
+            snapshot = .init()
+            self.homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
+        }
+        
+        Task {
+            try await Task.sleep(nanoseconds: 5_000_000_000)
+            self.refresh.endRefreshing()
+        }
+        
+    }
 }
 
 //MARK: - Configure of UI Components
@@ -86,6 +108,7 @@ extension HomeViewController {
         homeCollectionView.clipsToBounds = false
         homeCollectionView.backgroundColor = .black
         homeCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
+        homeCollectionView.refreshControl = refresh
     }
     
     private func configureColletionViewDelegate() {
@@ -123,7 +146,6 @@ extension HomeViewController {
 extension HomeViewController {
     
     private func homeSnapShot() {
-        var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
         
         HomeSectionList.allCases.forEach { sectionList in
             
@@ -137,7 +159,7 @@ extension HomeViewController {
             
             let bindModel = homeViewModel.sectionStorage[sectionList]
             
-            bindModel?.bind(listener: { businessModelWrapper in
+            bindModel?.bind(listener: { [self] businessModelWrapper in
                 
                 guard let bindModels = businessModelWrapper else {
                     print("bindModels Unwrapping Fail...")
@@ -149,7 +171,7 @@ extension HomeViewController {
                 // 섹션 추가
                 snapshot.appendSections([section])
                 snapshot.appendItems(bindModels)
-                self.diffableDataSource?.apply(snapshot)
+                diffableDataSource?.apply(snapshot)
             })
         }
     }
