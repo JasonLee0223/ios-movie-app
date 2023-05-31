@@ -43,7 +43,11 @@ extension Requestable {
         var urlQueryItems = [URLQueryItem]()
         
         if let queryParameters = try queryParameters?.toDictionary() {
-            queryParameters.forEach {
+            let sortedQueryParameters = queryParameters.sorted { (first, second) in
+                return first.key < second.key
+            }
+
+            sortedQueryParameters.forEach {
                 urlQueryItems.append(URLQueryItem(name: $0.key, value: "\($0.value)"))
             }
         }
