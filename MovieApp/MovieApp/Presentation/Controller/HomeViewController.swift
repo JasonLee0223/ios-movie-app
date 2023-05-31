@@ -144,13 +144,7 @@ extension HomeViewController {
                     return
                 }
                 
-                print("✅ 현재 SectionList의 위치")
-                print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
-                
                 let section = HomeSection(type: sectionList, items: bindModels)
-                
-//                print("✅ 현재 Section 확인중...")
-//                print(section.items.isEmpty)
                 
                 // 섹션 추가
                 snapshot.appendSections([section])
@@ -184,9 +178,6 @@ extension HomeViewController {
             
             if let sectionType = self.diffableDataSource?.sectionIdentifier(
                 for: indexPath.section) {
-                
-                print("✅ [In HeaderRegistration] 현재 Section 확인중...")
-                print(sectionType.type)
                 
                 switch sectionType.type {
                 case .trendMoviePosterSection:
@@ -229,8 +220,6 @@ extension HomeViewController {
 //MARK: - Configure of Delegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("✅ Current Home ViewController❗️")
-        print(#function)
         
         guard let businessModelWrapper = diffableDataSource?.itemIdentifier(
             for: indexPath) else {
