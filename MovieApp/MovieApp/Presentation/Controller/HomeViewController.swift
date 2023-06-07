@@ -181,14 +181,6 @@ extension HomeViewController {
     private func homeSnapShot() {
         
         HomeSectionList.allCases.forEach { sectionList in
-            Task {
-                try await Task.sleep(nanoseconds: 2_000_000_000)
-                self.checkOfAnimatingActivityIndicator(isAnimated: false)
-            }
-            //MARK: - TaskGroupTest
-//            Task {
-//                await homeViewModel.testTaskGroup(section: sectionList)
-//            }
             
             //MARK: - fetchAll
             homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
