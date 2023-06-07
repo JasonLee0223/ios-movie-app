@@ -45,17 +45,15 @@ final class HomeViewController: UIViewController {
     
     @objc func handleRefreshControl() {
         
-        HomeSectionList.allCases.forEach { sectionList in
-            snapshot = .init()
-            self.homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
-        }
+        snapshot = .init()
         
-        Task {
-            try await Task.sleep(nanoseconds: 5_000_000_000)
-            self.refresh.endRefreshing()
+        homeSnapShot { _ in
+            Task {
+                self.refresh.endRefreshing()
+            }
         }
-        
     }
+    
 }
 
 //MARK: - Configure of UI Components
