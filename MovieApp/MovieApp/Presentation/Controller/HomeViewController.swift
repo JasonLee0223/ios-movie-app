@@ -9,6 +9,11 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
+    override func viewWillAppear(_ animated: Bool) {
+        configureOfActivityIndicator()
+        checkOfAnimatingActivityIndicator(isAnimated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,11 +66,7 @@ extension HomeViewController {
         configureOfSuperView()
         configureOfNavigationBar()
         
-        configureOfActivityIndicator()
-        checkOfAnimatingActivityIndicator(isAnimated: true)
-        
         configureOfCollectionView()
-        
         configureColletionViewDelegate()
     }
     
