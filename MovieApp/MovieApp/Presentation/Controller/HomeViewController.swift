@@ -21,7 +21,7 @@ final class HomeViewController: UIViewController {
         configureHierarchy()
         configureOfDiffableDataSource()
         
-        homeSnapShot()
+        checkOfBindCompleted()
     }
     
     private let homeViewModel = HomeViewModel()
@@ -178,7 +178,7 @@ extension HomeViewController {
 //MARK: - Configure of DiffableDataSource
 extension HomeViewController {
     
-    private func homeSnapShot() {
+    private func homeSnapShot(completion: @escaping (Bool) -> Void) {
         
         HomeSectionList.allCases.forEach { sectionList in
             
@@ -196,11 +196,22 @@ extension HomeViewController {
                 
                 let section = HomeSection(type: sectionList, items: bindModels)
                 
-                // 섹션 추가
                 snapshot.appendSections([section])
                 snapshot.appendItems(bindModels)
-                diffableDataSource?.apply(snapshot)
+                diffableDataSource?.apply(snapshot, animatingDifferences: true)
+                completion(true)
             })
+        }
+    }
+    
+    private func checkOfBindCompleted() {
+        homeSnapShot { isCompleted in
+            Task {
+                if isCompleted {
+                    let activityIndicatorAnimatedState = !isCompleted
+                    self.checkOfAnimatingActivityIndicator(isAnimated: activityIndicatorAnimatedState)
+                }
+            }
         }
     }
     
