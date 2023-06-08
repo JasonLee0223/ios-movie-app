@@ -1,5 +1,5 @@
 //
-//  BusinessModel.swift
+//  Uniquable.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/05/30.
@@ -7,11 +7,13 @@
 
 import Foundation
 
-protocol BusinessModel: Hashable {
+protocol BusinessModel: Uniquable, Hashable { }
+
+protocol Uniquable {
     var identifier: UUID { get }
 }
 
-extension BusinessModel {
+extension Uniquable {
     var identifier: UUID {
         return UUID()
     }
