@@ -180,7 +180,6 @@ extension HomeViewController {
         
         HomeSectionList.allCases.forEach { sectionList in
             
-            //MARK: - fetchAll
             homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
             
             let bindModel = homeViewModel.sectionStorage[sectionList]
@@ -188,8 +187,7 @@ extension HomeViewController {
             bindModel?.bind(listener: { [self] businessModelWrapper in
                 
                 guard let bindModels = businessModelWrapper else {
-                    print("bindModels Unwrapping Fail...")
-                    return
+                    throw HomeViewModelInError.failOfOptionalUnwrapping
                 }
                 
                 let section = HomeSection(type: sectionList, items: bindModels)
