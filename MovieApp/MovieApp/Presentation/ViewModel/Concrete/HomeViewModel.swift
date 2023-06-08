@@ -9,7 +9,7 @@ import Foundation
 
 final class HomeViewModel {
     
-    var sectionStorage: [HomeSectionList: Observable<HomeEntityWrapper>]
+    var sectionStorage: [HomeSection: Observable<HomeEntityWrapper>]
     
     init() {
         self.homeLoader = HomeLoader()
@@ -26,7 +26,7 @@ final class HomeViewModel {
 //MARK: - [Public Method] Use at ViewController
 extension HomeViewModel {
     
-    func testTaskGroup(section: HomeSectionList) async {
+    func testTaskGroup(section: HomeSection) async {
         await withTaskGroup(of: [HomeEntityWrapper].self) { taskGroup in
             
             taskGroup.addTask { [self] in
@@ -65,7 +65,7 @@ extension HomeViewModel {
         }
     }
     
-    func fetchHomeCollectionViewSectionItemsRelated(be section: HomeSectionList) {
+    func fetchHomeCollectionViewSectionItemsRelated(be section: HomeSection) {
         /// Notice: Need HomeCollectionView Data
         /// 1. Array of TrendMovie
         /// 2. Array of StillCut

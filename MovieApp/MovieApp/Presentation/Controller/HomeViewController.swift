@@ -23,9 +23,9 @@ final class HomeViewController: UIViewController {
     
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     
-    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSectionList, HomeEntityWrapper>?
+    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
     
-    private var snapshot = NSDiffableDataSourceSnapshot<HomeSectionList, HomeEntityWrapper>()
+    private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
     
     private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(
         frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 100))
@@ -174,7 +174,7 @@ extension HomeViewController {
     
     private func homeSnapShot(completion: @escaping (Bool) -> Void) {
         
-        HomeSectionList.allCases.forEach { sectionList in
+        HomeSection.allCases.forEach { sectionList in
             
             homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
             
@@ -246,7 +246,7 @@ extension HomeViewController {
             }
         }
         
-        diffableDataSource = UICollectionViewDiffableDataSource<HomeSectionList, HomeEntityWrapper>(collectionView: homeCollectionView)
+        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>(collectionView: homeCollectionView)
         { (collectionView, indexPath, businessModelWrapper) in
             
             switch businessModelWrapper {

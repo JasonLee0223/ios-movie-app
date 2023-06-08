@@ -133,13 +133,13 @@ extension MovieDetailViewController {
                 print("✅ 현재 SectionList의 위치")
                 print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
                 
-                let section = DetailSection(type: sectionList, items: bindModels)
+//                let section = DetailSection(type: sectionList, items: bindModels)
                 
 //                print("✅ 현재 Section 확인중...")
 //                print(section.items.isEmpty)
                 
                 // 섹션 추가
-                snapshot.appendSections([section.type])
+//                snapshot.appendSections([section.type])
                 snapshot.appendItems(bindModels)
                 self.detailDiffableDataSource?.apply(snapshot)
             })
