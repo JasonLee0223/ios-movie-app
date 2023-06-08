@@ -25,11 +25,11 @@ enum DetailEntityWrapper: Hashable {
         switch (lhs, rhs) {
         case (
             .movieDetailInformation(let lhsItem), .movieDetailInformation(let rhsItem)
-        ): return lhsItem == rhsItem
+        ): return lhsItem.identifier == rhsItem.identifier
             
         case (
             .movieCast(let lhsItem), .movieCast(let rhsItem)
-        ): return lhsItem == rhsItem
+        ): return lhsItem.identifier == rhsItem.identifier
         
         default:
             return false

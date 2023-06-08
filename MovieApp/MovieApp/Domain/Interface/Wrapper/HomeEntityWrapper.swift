@@ -29,15 +29,15 @@ enum HomeEntityWrapper: Hashable {
         switch (lhs, rhs) {
         case (
             .trendMovie(let lhsItem), .trendMovie(let rhsItem)
-        ): return lhsItem == rhsItem
+        ): return lhsItem.identifier == rhsItem.identifier
             
         case (
             .stillCut(let lhsItem), .stillCut(let rhsItem)
-        ): return lhsItem == rhsItem
+        ): return lhsItem.identifier == rhsItem.identifier
             
         case (
             .koreaBoxOfficeList(let lhsItem), .koreaBoxOfficeList(let rhsItem)
-        ): return lhsItem == rhsItem
+        ): return lhsItem.identifier == rhsItem.identifier
         
         default:
             return false
