@@ -23,9 +23,9 @@ final class HomeViewController: UIViewController {
     
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     
-    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
+    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSectionList, HomeEntityWrapper>?
     
-    private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
+    private var snapshot = NSDiffableDataSourceSnapshot<HomeSectionList, HomeEntityWrapper>()
     
     private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(
         frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 100))
@@ -186,9 +186,7 @@ extension HomeViewController {
                     throw HomeViewModelInError.failOfOptionalUnwrapping
                 }
                 
-                let section = HomeSection(type: sectionList, items: bindModels)
-                
-                snapshot.appendSections([section])
+                snapshot.appendSections([sectionList])
                 snapshot.appendItems(bindModels)
                 diffableDataSource?.apply(snapshot, animatingDifferences: true)
                 completion(true)
@@ -232,7 +230,7 @@ extension HomeViewController {
             if let sectionType = self.diffableDataSource?.sectionIdentifier(
                 for: indexPath.section) {
                 
-                switch sectionType.type {
+                switch sectionType {
                 case .trendMoviePosterSection:
                     headerView.configureOfSortStackLayout()
                     
@@ -248,7 +246,7 @@ extension HomeViewController {
             }
         }
         
-        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>(collectionView: homeCollectionView)
+        diffableDataSource = UICollectionViewDiffableDataSource<HomeSectionList, HomeEntityWrapper>(collectionView: homeCollectionView)
         { (collectionView, indexPath, businessModelWrapper) in
             
             switch businessModelWrapper {
