@@ -19,11 +19,11 @@ struct HomeViewLayout {
     func create() -> NSCollectionLayoutSection? {
         let index = HomeSection.allCases[sectionIndex]
         switch index {
-        case .trendMoviePosterSection:
+        case .trendMoviePoster:
             return createIntroduceCellCompositionalLayout()
-        case .stillCutSection:
+        case .stillCut:
             return createstillCutCellCompositionalLayout()
-        case .koreaMovieListSection:
+        case .koreaMovieList:
             return createKoreaMovieListCellCompositionalLayout()
         }
     }

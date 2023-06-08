@@ -231,16 +231,16 @@ extension HomeViewController {
                 for: indexPath.section) {
                 
                 switch sectionType {
-                case .trendMoviePosterSection:
+                case .trendMoviePoster:
                     headerView.configureOfSortStackLayout()
                     
                     Task {
                         await headerView.selectedTrendWeekButton()
                         await headerView.selectedTrendDayButton()
                     }
-                case .stillCutSection:
+                case .stillCut:
                     headerView.configureOfStillCutLayout()
-                case .koreaMovieListSection:
+                case .koreaMovieList:
                     headerView.configureOfKoreaMovieLayout()
                 }
             }

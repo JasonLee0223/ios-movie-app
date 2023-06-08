@@ -42,11 +42,11 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             let sectionType = HomeSection.allCases[indexPath.section]
             
             switch sectionType {
-            case .trendMoviePosterSection:
+            case .trendMoviePoster:
                 headerView.configureOfSortStackLayout()
-            case .stillCutSection:
+            case .stillCut:
                 headerView.configureOfStillCutLayout()
-            case .koreaMovieListSection:
+            case .koreaMovieList:
                 headerView.configureOfKoreaMovieLayout()
             }
             return headerView
@@ -63,7 +63,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
         
         switch HomeSection(rawValue: indexPath.section) {
             
-        case .trendMoviePosterSection:
+        case .trendMoviePoster:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: TrendMovieListCell.reuseIdentifier,
                 for: indexPath) as? TrendMovieListCell else {
@@ -93,7 +93,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
             
             return cell
             
-        case .stillCutSection:
+        case .stillCut:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: MovieStillCutCell.reuseIdentifier,
                 for: indexPath) as? MovieStillCutCell else {
@@ -104,7 +104,7 @@ final class HomeViewDataSource: NSObject, UICollectionViewDataSource {
 //            cell.setGenrePoster(with: item.genreImage)
             return  cell
             
-        case .koreaMovieListSection:
+        case .koreaMovieList:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: KoreaBoxOfficeListCell.reuseIdentifier,
                 for: indexPath) as? KoreaBoxOfficeListCell else {

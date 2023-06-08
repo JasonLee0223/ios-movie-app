@@ -14,9 +14,9 @@ final class HomeViewModel {
     init() {
         self.homeLoader = HomeLoader()
         
-        self.sectionStorage = [.trendMoviePosterSection: Observable<HomeEntityWrapper>(),
-                               .stillCutSection: Observable<HomeEntityWrapper>(),
-                               .koreaMovieListSection: Observable<HomeEntityWrapper>()
+        self.sectionStorage = [.trendMoviePoster: Observable<HomeEntityWrapper>(),
+                               .stillCut: Observable<HomeEntityWrapper>(),
+                               .koreaMovieList: Observable<HomeEntityWrapper>()
                             ]
     }
     
@@ -32,7 +32,7 @@ extension HomeViewModel {
             taskGroup.addTask { [self] in
                 
                 switch section {
-                case .trendMoviePosterSection:
+                case .trendMoviePoster:
                     let movieList = await self.loadTrendOfWeekMovieListFromTMDB()
                     
                     let businessModelToTrendMovie = movieList.map { trendMovie in
@@ -41,7 +41,7 @@ extension HomeViewModel {
                     sectionStorage[section]?.value = businessModelToTrendMovie
                     return businessModelToTrendMovie
                     
-                case .stillCutSection:
+                case .stillCut:
                     let moiveNames = await loadMovieNameGroup()
                     let imageDatas = await kakaoPosterImageTest(movieNameGroup: moiveNames)
                     
@@ -51,7 +51,7 @@ extension HomeViewModel {
                     sectionStorage[section]?.value = businessModelToStillCut
                     return businessModelToStillCut
                     
-                case .koreaMovieListSection:
+                case .koreaMovieList:
                     let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
                     
                     let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
@@ -72,14 +72,14 @@ extension HomeViewModel {
         /// 3. Array of KoreaBoxOfficeList
         
         switch section {
-        case .trendMoviePosterSection:
+        case .trendMoviePoster:
             Task {
                 let businessModelToTrendMovie = await loadTrendOfWeekMovieListFromTMDB().map { trendMovie in
                     HomeEntityWrapper.trendMovie(trendMovie)
                 }
                 self.sectionStorage[section]?.value = businessModelToTrendMovie
             }
-        case .stillCutSection:
+        case .stillCut:
             Task {
                 let stillCutPosterImageData = await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
                 let businessModelToStillCut = stillCutPosterImageData.map { data in
@@ -87,7 +87,7 @@ extension HomeViewModel {
                 }
                 self.sectionStorage[section]?.value = businessModelToStillCut
             }
-        case .koreaMovieListSection:
+        case .koreaMovieList:
             Task {
                 try await Task.sleep(nanoseconds: 5_000_000_000)  // 5초 딜레이
                 
