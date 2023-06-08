@@ -9,11 +9,6 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    override func viewWillAppear(_ animated: Bool) {
-        configureOfActivityIndicator()
-        checkOfAnimatingActivityIndicator(isAnimated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,13 +48,14 @@ final class HomeViewController: UIViewController {
             }
         }
     }
-    
 }
 
 //MARK: - Configure of UI Components
 extension HomeViewController {
     
     private func configureOfUI() {
+        configureOfActivityIndicator()
+        checkOfAnimatingActivityIndicator(isAnimated: true)
         
         configureOfSuperView()
         configureOfNavigationBar()
