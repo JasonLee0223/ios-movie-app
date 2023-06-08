@@ -9,13 +9,17 @@ import Foundation
 
 final class Observable<T> {
     
-    typealias Listener = ([T]?) -> Void
+    typealias Listener = ([T]?) throws -> Void
     
     var listener: Listener?
     
     var value: [T]? {
         didSet {
-            listener?(value)
+            do {
+                try listener?(value)
+            } catch {
+                print(HomeViewModelInError.dataIsEmpty)
+            }
         }
     }
     
