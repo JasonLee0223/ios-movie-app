@@ -89,7 +89,7 @@ extension HomeViewModel {
             }
         case .koreaMovieListSection:
             Task {
-                try await Task.sleep(nanoseconds: 7_000_000_000)  // 5초 딜레이
+                try await Task.sleep(nanoseconds: 5_000_000_000)  // 5초 딜레이
                 
                 let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
                 let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
