@@ -259,6 +259,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B06AEA52A31C7AF00EEEEAC /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				5B0C81332A1CD044004BF2D6 /* Observable.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		5B06AEA62A31C7EC00EEEEAC /* Concrete */ = {
+			isa = PBXGroup;
+			children = (
+				5BC16D6E2A1C923000B7F3BA /* HomeViewModel.swift */,
+				5B6620992A26065000107022 /* DetailViewModel.swift */,
+			);
+			path = Concrete;
+			sourceTree = "<group>";
+		};
 		5B09D9FC2A25C94D001121D6 /* MovieDetailEntity */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +392,7 @@
 			children = (
 				5B74F0882A23809000AD4A73 /* HomeEntity */,
 				5B09D9FC2A25C94D001121D6 /* MovieDetailEntity */,
+				5B8C08DD2A265642000CC4F7 /* Concrete */,
 				5B3F1C6A2A1497700062BE99 /* Interface */,
 				5B3F1C6F2A1497F50062BE99 /* Helper */,
 				5B98C61E2A174011004C099F /* RawValues */,
@@ -727,10 +745,8 @@
 			isa = PBXGroup;
 			children = (
 				5B66209B2A2609E300107022 /* ErrorHandling */,
-				5B8C08DD2A265642000CC4F7 /* Concrete */,
-				5B0C81332A1CD044004BF2D6 /* Observable.swift */,
-				5BC16D6E2A1C923000B7F3BA /* HomeViewModel.swift */,
-				5B6620992A26065000107022 /* DetailViewModel.swift */,
+				5B06AEA52A31C7AF00EEEEAC /* Interface */,
+				5B06AEA62A31C7EC00EEEEAC /* Concrete */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
