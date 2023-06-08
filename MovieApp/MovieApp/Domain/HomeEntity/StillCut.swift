@@ -10,8 +10,4 @@ import Foundation
 struct StillCut: BusinessModel {
     
     let genreImagePath: Data
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
 }

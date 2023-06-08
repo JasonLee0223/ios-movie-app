@@ -12,8 +12,4 @@ struct TrendMovie: BusinessModel {
     let movieCode: String
     let posterImage: Data
     let posterName: String
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
 }

@@ -12,10 +12,6 @@ struct KoreaBoxOfficeList: BusinessModel {
     let openDate: String
     let rank: Rank
     let movieSummaryInformation: MovieSummaryInformation
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
 }
 
 internal struct Rank: BusinessModel {
@@ -23,10 +19,6 @@ internal struct Rank: BusinessModel {
     let rank: String
     let rankOldAndNew: RankOldAndNew
     let rankVariation: String
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
 }
 
 internal struct MovieSummaryInformation: BusinessModel {
@@ -34,8 +26,4 @@ internal struct MovieSummaryInformation: BusinessModel {
     let movieName: String
     let audienceCount: String
     let audienceAccumulated: String
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
 }
