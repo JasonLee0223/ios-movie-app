@@ -46,7 +46,7 @@ extension HomeViewModel {
                     let imageDatas = await kakaoPosterImageTest(movieNameGroup: moiveNames)
                     
                     let businessModelToStillCut = imageDatas.map { data in
-                        HomeEntityWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
+                        HomeEntityWrapper.stillCut(StillCut(genreImagePath: data))
                     }
                     sectionStorage[section]?.value = businessModelToStillCut
                     return businessModelToStillCut
@@ -83,7 +83,7 @@ extension HomeViewModel {
             Task {
                 let stillCutPosterImageData = await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
                 let businessModelToStillCut = stillCutPosterImageData.map { data in
-                    HomeEntityWrapper.stillCut(StillCut(identifier: UUID(), genreImagePath: data))
+                    HomeEntityWrapper.stillCut(StillCut(genreImagePath: data))
                 }
                 self.sectionStorage[section]?.value = businessModelToStillCut
             }
@@ -113,8 +113,7 @@ extension HomeViewModel {
             
             for result in networkResult {
                 let imageData = try await fetchImage(imagePath: result.movieImageURL)
-                let trendMovie = TrendMovie(
-                    identifier: UUID(), movieCode: String(result.movieID),
+                let trendMovie = TrendMovie(movieCode: String(result.movieID),
                     posterImage: imageData, posterName: result.movieKoreaTitle
                 )
                 trendMovieListGroup.append(trendMovie)
@@ -156,16 +155,13 @@ extension HomeViewModel {
         
         let koreaBoxOfficeMovieListGroup = dailyBoxOfficeListGroup.map { dailyBoxOfficeList in
             KoreaBoxOfficeList(
-                identifier: UUID(),
                 openDate: dailyBoxOfficeList.openDate,
                 rank: Rank(
-                    identifier: UUID(),
                     rank: dailyBoxOfficeList.rank,
                     rankOldAndNew: dailyBoxOfficeList.rankOldAndNew,
                     rankVariation: dailyBoxOfficeList.rankVariation
                 ),
                 movieSummaryInformation: MovieSummaryInformation(
-                    identifier: UUID(),
                     movieName: dailyBoxOfficeList.movieName,
                     audienceCount: dailyBoxOfficeList.audienceCount,
                     audienceAccumulated: dailyBoxOfficeList.audienceAccumulate

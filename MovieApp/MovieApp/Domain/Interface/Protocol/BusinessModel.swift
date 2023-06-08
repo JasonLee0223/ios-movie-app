@@ -10,3 +10,9 @@ import Foundation
 protocol BusinessModel: Hashable {
     var identifier: UUID { get }
 }
+
+extension BusinessModel {
+    var identifier: UUID {
+        return UUID()
+    }
+}

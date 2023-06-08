@@ -8,7 +8,7 @@
 import Foundation
 
 struct KoreaBoxOfficeList: BusinessModel {
-    let identifier: UUID
+    
     let openDate: String
     let rank: Rank
     let movieSummaryInformation: MovieSummaryInformation
@@ -19,7 +19,6 @@ struct KoreaBoxOfficeList: BusinessModel {
 }
 
 internal struct Rank: BusinessModel {
-    var identifier: UUID
     
     let rank: String
     let rankOldAndNew: RankOldAndNew
@@ -31,7 +30,6 @@ internal struct Rank: BusinessModel {
 }
 
 internal struct MovieSummaryInformation: BusinessModel {
-    var identifier: UUID
     
     let movieName: String
     let audienceCount: String

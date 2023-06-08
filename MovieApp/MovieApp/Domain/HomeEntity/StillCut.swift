@@ -8,7 +8,6 @@
 import Foundation
 
 struct StillCut: BusinessModel {
-    var identifier: UUID
     
     let genreImagePath: Data
     

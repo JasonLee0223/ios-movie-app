@@ -8,7 +8,6 @@
 import Foundation
 
 struct TrendMovie: BusinessModel {
-    var identifier: UUID
     
     let movieCode: String
     let posterImage: Data
