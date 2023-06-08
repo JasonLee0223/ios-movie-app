@@ -174,11 +174,11 @@ extension HomeViewController {
     
     private func homeSnapShot(completion: @escaping (Bool) -> Void) {
         
-        HomeSection.allCases.forEach { sectionList in
+        HomeSection.allCases.forEach { section in
             
-            homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
+            homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
             
-            let bindModel = homeViewModel.sectionStorage[sectionList]
+            let bindModel = homeViewModel.sectionStorage[section]
             
             bindModel?.bind(listener: { [self] businessModelWrapper in
                 
@@ -186,7 +186,7 @@ extension HomeViewController {
                     throw HomeViewModelInError.failOfOptionalUnwrapping
                 }
                 
-                snapshot.appendSections([sectionList])
+                snapshot.appendSections([section])
                 snapshot.appendItems(bindModels)
                 diffableDataSource?.apply(snapshot, animatingDifferences: true)
                 completion(true)
