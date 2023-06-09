@@ -89,7 +89,7 @@ extension HomeViewModel {
             }
         case .koreaMovieList:
             Task {
-                try await Task.sleep(nanoseconds: 5_000_000_000)  // 5초 딜레이
+                try await Task.sleep(nanoseconds: 10_000_000_000)  // 5초 딜레이
                 
                 let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
                 let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
@@ -139,7 +139,7 @@ extension HomeViewModel {
         return imageData
     }
 }
-
+ 
 //MARK: - [private] Use at KOFIC
 extension HomeViewModel {
     
@@ -147,11 +147,7 @@ extension HomeViewModel {
     private func loadKoreaBoxOfficeMovieList() async -> [KoreaBoxOfficeList] {
         var dailyBoxOfficeListGroup = [DailyBoxOfficeList]()
         
-        do {
-            dailyBoxOfficeListGroup = try await homeLoader.loadDailyBoxOfficeMovieListData()
-        } catch {
-            print("dailyBoxOfficeListGroup convert fail")
-        }
+        dailyBoxOfficeListGroup = await homeLoader.loadDailyBoxOfficeMovieListData()
         
         let koreaBoxOfficeMovieListGroup = dailyBoxOfficeListGroup.map { dailyBoxOfficeList in
             KoreaBoxOfficeList(
@@ -175,16 +171,12 @@ extension HomeViewModel {
     private func loadMovieNameGroup() async -> [String] {
         var movieNames = [String]()
         
-        do {
-            movieNames = try await homeLoader.loadDailyBoxOfficeMovieListData().map{ $0.movieName }
-        } catch {
-            print("ViewModelInError.failOfMakeData")
-        }
+        movieNames = await homeLoader.loadDailyBoxOfficeMovieListData().map{ $0.movieName }
         return movieNames
     }
     
     private func loadMovieDetailInformation() async throws -> [MovieInfo] {
-        let dailyBoxOfficeListGroup = try await homeLoader.loadDailyBoxOfficeMovieListData()
+        let dailyBoxOfficeListGroup = await homeLoader.loadDailyBoxOfficeMovieListData()
         let movieCodeGroup = dailyBoxOfficeListGroup.map{ $0.movieCode }
         let movieDetailList = try await homeLoader.loadMovieDetailData(movieCodeGroup: movieCodeGroup)
         return movieDetailList
@@ -220,5 +212,71 @@ extension HomeViewModel {
         }
         
         return imageDataStorage
+    }
+}
+
+//MARK: - [T.E.S.T]
+extension HomeViewModel {
+    
+    func makeSynchronousAPIData(with section: HomeSection) async {
+        
+        await withTaskGroup(of: [HomeEntityWrapper].self, body: { taskGroup in
+            
+            let dailyBoxOfficeMovieList = await homeLoader.loadDailyBoxOfficeMovieListData()
+            
+            switch section {
+            case .trendMoviePoster:
+                taskGroup.addTask(priority: .high) {
+                    async let trendMovieList = await self.loadTrendOfWeekMovieListFromTMDB().map{ trendMovie in
+                        HomeEntityWrapper.trendMovie(trendMovie)
+                    }
+                    self.sectionStorage[section]?.value = await trendMovieList
+                    return await trendMovieList
+                }
+            case .stillCut:
+                taskGroup.addTask(priority: .high) {
+                    let movieNameGroup = dailyBoxOfficeMovieList.map{ $0.movieName }
+                    
+                    async let stillCuts = self.kakaoPosterImageTest(movieNameGroup: movieNameGroup).map { posterImageData in
+                        HomeEntityWrapper.stillCut(StillCut(genreImagePath: posterImageData))
+                    }
+                    self.sectionStorage[section]?.value = await stillCuts
+                    return await stillCuts
+                }
+                
+            case .koreaMovieList:
+                taskGroup.addTask(priority: .background) {
+                    var aaa = [HomeEntityWrapper]()
+                    do {
+                        try await Task.sleep(nanoseconds: 10_000_000_000)
+                        
+                        let koreaBoxOfficeMovieList = dailyBoxOfficeMovieList.map { dailyBoxOfficeList in
+                            KoreaBoxOfficeList(
+                                openDate: dailyBoxOfficeList.openDate,
+                                rank: Rank(
+                                    rank: dailyBoxOfficeList.rank,
+                                    rankOldAndNew: dailyBoxOfficeList.rankOldAndNew,
+                                    rankVariation: dailyBoxOfficeList.rankVariation
+                                ),
+                                movieSummaryInformation: MovieSummaryInformation(
+                                    movieName: dailyBoxOfficeList.movieName,
+                                    audienceCount: dailyBoxOfficeList.audienceCount,
+                                    audienceAccumulated: dailyBoxOfficeList.audienceAccumulate
+                                )
+                            )
+                        }
+                        async let koreaBoxOfficeMovieListWrapper = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
+                            HomeEntityWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
+                        }
+                        self.sectionStorage[section]?.value = await koreaBoxOfficeMovieListWrapper
+//                        return await koreaBoxOfficeMovieListWrapper
+                        aaa = await koreaBoxOfficeMovieListWrapper
+                    } catch {
+                        print("delay Error")
+                    }
+                    return aaa
+                }
+            }
+        })
     }
 }
