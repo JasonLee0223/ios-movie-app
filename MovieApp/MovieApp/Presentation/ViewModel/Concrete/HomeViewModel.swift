@@ -26,45 +26,6 @@ final class HomeViewModel {
 //MARK: - [Public Method] Use at ViewController
 extension HomeViewModel {
     
-    func testTaskGroup(section: HomeSection) async {
-        await withTaskGroup(of: [HomeEntityWrapper].self) { taskGroup in
-            
-            taskGroup.addTask { [self] in
-                
-                switch section {
-                case .trendMoviePoster:
-                    let movieList = await self.loadTrendOfWeekMovieListFromTMDB()
-                    
-                    let businessModelToTrendMovie = movieList.map { trendMovie in
-                        HomeEntityWrapper.trendMovie(trendMovie)
-                    }
-                    sectionStorage[section]?.value = businessModelToTrendMovie
-                    return businessModelToTrendMovie
-                    
-                case .stillCut:
-                    let moiveNames = await loadMovieNameGroup()
-                    let imageDatas = await kakaoPosterImageTest(movieNameGroup: moiveNames)
-                    
-                    let businessModelToStillCut = imageDatas.map { data in
-                        HomeEntityWrapper.stillCut(StillCut(genreImagePath: data))
-                    }
-                    sectionStorage[section]?.value = businessModelToStillCut
-                    return businessModelToStillCut
-                    
-                case .koreaMovieList:
-                    let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
-                    
-                    let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
-                        HomeEntityWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
-                    }
-                    sectionStorage[section]?.value = businessModelToKoreaBoxOfficeMovieList
-                    return businessModelToKoreaBoxOfficeMovieList
-                }
-            }
-            
-        }
-    }
-    
     func fetchHomeCollectionViewSectionItemsRelated(be section: HomeSection) {
         /// Notice: Need HomeCollectionView Data
         /// 1. Array of TrendMovie
@@ -125,6 +86,7 @@ extension HomeViewModel {
         }
         return trendMovieListGroup
     }
+    
     /// Bottom Method
     private func fetchImage(imagePath: String) async throws -> Data {
         
