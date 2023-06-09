@@ -61,15 +61,18 @@ extension HomeLoader {
     }
     
     /// KoreaBoxOfficeMovieList
-    func loadDailyBoxOfficeMovieListData() async throws -> [DailyBoxOfficeList] {
+    func loadDailyBoxOfficeMovieListData() async -> [DailyBoxOfficeList] {
         let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
         let boxOfficeQueryParameters = BoxOfficeQueryParameters(targetDate: yesterdayDate)
         
-        guard let networkResult = try? await networkService.request(
-            with: KOFICAPIEndPoint.receiveBoxOffice(
-                with: boxOfficeQueryParameters)
-        ).boxOfficeResult.dailyBoxOfficeList else {
-            throw DataLoadError.failOfkoreaBoxOfficeMovieListData
+        var networkResult = [DailyBoxOfficeList]()
+        do {
+            networkResult = try await networkService.request(
+                with: KOFICAPIEndPoint.receiveBoxOffice(
+                    with: boxOfficeQueryParameters)
+            ).boxOfficeResult.dailyBoxOfficeList
+        } catch {
+            print(DataLoadError.failOfkoreaBoxOfficeMovieListData)
         }
         
         return networkResult
