@@ -177,9 +177,6 @@ extension HomeViewController {
         HomeSection.allCases.forEach { section in
             
             homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
-//            Task {
-//                await homeViewModel.makeSynchronousAPIData(with: section)
-//            }
             
             let bindModel = homeViewModel.sectionStorage[section]
             
