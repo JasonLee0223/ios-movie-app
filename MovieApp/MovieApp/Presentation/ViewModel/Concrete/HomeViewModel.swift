@@ -81,20 +81,22 @@ extension HomeViewModel {
             }
         case .stillCut:
             Task {
+                
                 let stillCutPosterImageData = await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
                 let businessModelToStillCut = stillCutPosterImageData.map { data in
                     HomeEntityWrapper.stillCut(StillCut(genreImagePath: data))
                 }
+                try await Task.sleep(nanoseconds: 7_000_000_000)
                 self.sectionStorage[section]?.value = businessModelToStillCut
             }
         case .koreaMovieList:
             Task {
-                try await Task.sleep(nanoseconds: 10_000_000_000)  // 5초 딜레이
                 
                 let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
                 let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
                     HomeEntityWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
                 }
+                try await Task.sleep(nanoseconds: 10_000_000_000)  // 5초 딜레이
                 self.sectionStorage[section]?.value = businessModelToKoreaBoxOfficeMovieList
             }
         }
