@@ -177,6 +177,9 @@ extension HomeViewController {
         HomeSection.allCases.forEach { section in
             
             homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
+//            Task {
+//                await homeViewModel.makeSynchronousAPIData(with: section)
+//            }
             
             let bindModel = homeViewModel.sectionStorage[section]
             
@@ -185,6 +188,9 @@ extension HomeViewController {
                 guard let bindModels = businessModelWrapper else {
                     throw HomeViewModelInError.failOfOptionalUnwrapping
                 }
+                
+                print("viewModel을 통한 section 확인")
+                print(section)
                 
                 snapshot.appendSections([section])
                 snapshot.appendItems(bindModels)
