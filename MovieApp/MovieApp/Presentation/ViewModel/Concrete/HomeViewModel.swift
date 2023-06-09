@@ -82,7 +82,7 @@ extension HomeViewModel {
                 trendMovieListGroup.append(trendMovie)
             }
         } catch {
-            print("MovieList Fail")
+            print(HomeViewModelInError.failOfLoadToTrendMovieList)
         }
         return trendMovieListGroup
     }
@@ -171,7 +171,7 @@ extension HomeViewModel {
                 }
                 imageDataStorage.append(imageData)
             } catch {
-                print("Image 변환 실패")
+                print(HomeViewModelInError.failOfImageConverting)
             }
         }
         
