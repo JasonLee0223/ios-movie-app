@@ -27,10 +27,6 @@ final class HomeViewModel {
 extension HomeViewModel {
     
     func fetchHomeCollectionViewSectionItemsRelated(be section: HomeSection) {
-        /// Notice: Need HomeCollectionView Data
-        /// 1. Array of TrendMovie
-        /// 2. Array of StillCut
-        /// 3. Array of KoreaBoxOfficeList
         
         switch section {
         case .trendMoviePoster:
@@ -42,22 +38,20 @@ extension HomeViewModel {
             }
         case .stillCut:
             Task {
-                
-                let stillCutPosterImageData = await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
-                let businessModelToStillCut = stillCutPosterImageData.map { data in
+                try await Task.sleep(nanoseconds: 7_000_000_000)
+                async let stillCutPosterImageData = await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
+                let businessModelToStillCut = await stillCutPosterImageData.map { data in
                     HomeEntityWrapper.stillCut(StillCut(genreImagePath: data))
                 }
-                try await Task.sleep(nanoseconds: 7_000_000_000)
                 self.sectionStorage[section]?.value = businessModelToStillCut
             }
         case .koreaMovieList:
             Task {
-                
-                let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
-                let businessModelToKoreaBoxOfficeMovieList = koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
+                try await Task.sleep(nanoseconds: 10_000_000_000)
+                async let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
+                let businessModelToKoreaBoxOfficeMovieList = await koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
                     HomeEntityWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
                 }
-                try await Task.sleep(nanoseconds: 10_000_000_000)  // 5초 딜레이
                 self.sectionStorage[section]?.value = businessModelToKoreaBoxOfficeMovieList
             }
         }
