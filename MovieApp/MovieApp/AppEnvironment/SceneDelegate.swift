@@ -16,10 +16,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
             
+        
         let homeViewController = HomeViewController()
+        let boxOfficeController = BoxOfficeViewController()
+        let profileController = ProfileViewController()
+        
+        let tabbarController = UITabBarController()
         let rootViewController = UINavigationController(rootViewController: homeViewController)
         
-        window?.rootViewController = rootViewController
+        tabbarController.setViewControllers(
+            [rootViewController, boxOfficeController, profileController], animated: true
+        )
+        
+        if let tabItem = tabbarController.tabBar.items {            
+            tabItem[0].image = UIImage(systemName: "house")
+            tabItem[1].image = UIImage(systemName: "film.stack")
+            tabItem[2].image = UIImage(systemName: "person.crop.circle")
+        }
+        
+        window?.rootViewController = tabbarController
         window?.makeKeyAndVisible()
     }
 
