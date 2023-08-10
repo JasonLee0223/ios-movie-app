@@ -28,9 +28,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             [rootViewController, boxOfficeController, profileController], animated: true
         )
         
-        if let tabItem = tabbarController.tabBar.items {            
+        if let tabItem = tabbarController.tabBar.items {
             tabItem[0].image = UIImage(systemName: "house")
-            tabItem[1].image = UIImage(systemName: "film.stack")
+            tabItem[1].image = UIImage(systemName: "film")
             tabItem[2].image = UIImage(systemName: "person.crop.circle")
         }
         
