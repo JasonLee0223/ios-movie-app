@@ -59,6 +59,7 @@ extension HomeViewController {
         
         configureOfSuperView()
         configureOfNavigationBar()
+//        configureOfTabBar()
         
         configureOfCollectionView()
         configureColletionViewDelegate()
@@ -107,8 +108,6 @@ extension HomeViewController {
         
         self.navigationItem.leftBarButtonItem = .init(customView: title)
         self.navigationItem.rightBarButtonItems = [hamberg, map, ticket]
-        self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationController?.navigationBar.tintColor = .white
     }
     
     private func configureOfCollectionView() {
@@ -158,7 +157,7 @@ extension HomeViewController {
             homeCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
             homeCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             homeCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            homeCollectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            homeCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
     
