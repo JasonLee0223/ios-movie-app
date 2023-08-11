@@ -37,6 +37,7 @@ extension BoxOfficeViewController {
         collectionView.isScrollEnabled = true
         collectionView.clipsToBounds = false
         collectionView.backgroundColor = .orange
+        collectionView.collectionViewLayout = configureOfCollectionViewLayout()
     }
 }
 
@@ -55,5 +56,55 @@ extension BoxOfficeViewController {
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
+    }
+    
+    private func configureOfCollectionViewLayout() -> UICollectionViewCompositionalLayout {
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalWidth),
+            heightDimension: .fractionalHeight(MagicNumber.HeaderView.fractionalHeight)
+        )
+        
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(
+                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
+            ),
+            heightDimension: .fractionalWidth(
+                MagicNumber.RelatedToCompositionalLayout.ItemSize.koreaMovieListHeight
+            )
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(
+            top: MagicNumber.RelatedToCompositionalLayout.ContentInset.koreaMovieListTopOrBottom,
+            leading: MagicNumber.zero,
+            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.koreaMovieListTopOrBottom,
+            trailing: MagicNumber.zero
+        )
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(
+                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
+            ),
+            heightDimension: .fractionalHeight(
+                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
+            )
+        )
+        
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [header]
+        section.orthogonalScrollingBehavior = .continuous
+        
+        return UICollectionViewCompositionalLayout(section: section)
     }
 }
