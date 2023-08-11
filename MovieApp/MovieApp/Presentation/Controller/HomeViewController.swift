@@ -59,7 +59,6 @@ extension HomeViewController {
         
         configureOfSuperView()
         configureOfNavigationBar()
-//        configureOfTabBar()
         
         configureOfCollectionView()
         configureColletionViewDelegate()
