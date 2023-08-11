@@ -108,3 +108,45 @@ extension BoxOfficeViewController {
         return UICollectionViewCompositionalLayout(section: section)
     }
 }
+
+//MARK: - Configure of DataSource
+extension BoxOfficeViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind, withReuseIdentifier: BoxOfficeHeaderView.reuseIdentifier,
+                for: indexPath) as? BoxOfficeHeaderView else {
+                return UICollectionReusableView()
+            }
+            
+            headerView.configureOfBoxOfficeLayout()
+            return headerView
+            
+        default:
+            print("해당되는 Header SectionType이 없습니다.")
+            return UICollectionReusableView()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: KoreaBoxOfficeListCell.reuseIdentifier,
+            for: indexPath) as? KoreaBoxOfficeListCell else {
+            return UICollectionViewCell()
+        }
+        
+        return cell
+    }
+}
