@@ -12,9 +12,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().topItem?.title = ""
-        
         UITabBar.appearance().backgroundColor = .black
         UITabBar.appearance().tintColor = .white
         

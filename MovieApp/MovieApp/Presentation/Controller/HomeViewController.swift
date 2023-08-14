@@ -83,30 +83,12 @@ extension HomeViewController {
             return title
         }()
         
-        //TODO: - Button에 대한 Action이 필요하면 UIImageView를 클로저 형태로 변경
-        let hamberg: UIBarButtonItem = {
-            let hambergImage = UIImage(named: MagicLiteral.RelatedToNavigationController.hambergImageName)
-            let hambergImageView = UIImageView(image: hambergImage)
-            let hamberg = UIBarButtonItem(customView: hambergImageView)
-            return hamberg
-        }()
-        
-        let ticket: UIBarButtonItem = {
-            let ticketImage = UIImage(named: MagicLiteral.RelatedToNavigationController.ticketImageName)
-            let ticketImageView = UIImageView(image: ticketImage)
-            let ticket = UIBarButtonItem(customView: ticketImageView)
-            return ticket
-        }()
-        
-        let map: UIBarButtonItem = {
-            let map = UIBarButtonItem()
-            map.image = UIImage(systemName: MagicLiteral.RelatedToNavigationController.mapImageName)
-            map.tintColor = .white
-            return map
-        }()
+        let navigationAppearance = UINavigationBarAppearance()
+        navigationAppearance.backgroundColor = .black
+        navigationAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.standardAppearance = navigationAppearance
         
         self.navigationItem.leftBarButtonItem = .init(customView: title)
-        self.navigationItem.rightBarButtonItems = [hamberg, map, ticket]
     }
     
     private func configureOfCollectionView() {
