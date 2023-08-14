@@ -47,8 +47,6 @@ extension BoxOfficeViewController {
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: BoxOfficeHeaderView.reuseIdentifier)
     }
-    
-    }
 }
 
 //MARK: - Configure of Layout
