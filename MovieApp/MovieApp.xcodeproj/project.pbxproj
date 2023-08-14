@@ -77,6 +77,7 @@
 		5B94966C2A85FF00002ED2A2 /* BoxOfficeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B94966B2A85FF00002ED2A2 /* BoxOfficeLoader.swift */; };
 		5B94966E2A860EAF002ED2A2 /* BoxOfficeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B94966D2A860EAF002ED2A2 /* BoxOfficeViewModel.swift */; };
 		5B9496702A89EBB6002ED2A2 /* KoreaBoxOfficeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B94966F2A89EBB6002ED2A2 /* KoreaBoxOfficeListCell.swift */; };
+		5B9496722A89F98F002ED2A2 /* BoxOfficeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9496712A89F98F002ED2A2 /* BoxOfficeSection.swift */; };
 		5B98C61D2A174001004C099F /* KoreaBoxOfficeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */; };
 		5B9D270A2A20ADCA00E9C9C0 /* DataLoadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D27092A20ADCA00E9C9C0 /* DataLoadError.swift */; };
 		5B9D270F2A20C18200E9C9C0 /* HomeViewModelInError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D270E2A20C18200E9C9C0 /* HomeViewModelInError.swift */; };
@@ -193,6 +194,7 @@
 		5B94966B2A85FF00002ED2A2 /* BoxOfficeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeLoader.swift; sourceTree = "<group>"; };
 		5B94966D2A860EAF002ED2A2 /* BoxOfficeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeViewModel.swift; sourceTree = "<group>"; };
 		5B94966F2A89EBB6002ED2A2 /* KoreaBoxOfficeListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreaBoxOfficeListCell.swift; sourceTree = "<group>"; };
+		5B9496712A89F98F002ED2A2 /* BoxOfficeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeSection.swift; sourceTree = "<group>"; };
 		5B98C61C2A174001004C099F /* KoreaBoxOfficeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreaBoxOfficeList.swift; sourceTree = "<group>"; };
 		5B9D27092A20ADCA00E9C9C0 /* DataLoadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadError.swift; sourceTree = "<group>"; };
 		5B9D270E2A20C18200E9C9C0 /* HomeViewModelInError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelInError.swift; sourceTree = "<group>"; };
@@ -601,6 +603,7 @@
 			children = (
 				5BC16D702A1CA37E00B7F3BA /* HomeSection.swift */,
 				5B74F0842A236FC800AD4A73 /* DetailSectionList.swift */,
+				5B9496712A89F98F002ED2A2 /* BoxOfficeSection.swift */,
 			);
 			path = SectionList;
 			sourceTree = "<group>";
@@ -957,6 +960,7 @@
 				5B3F1C2E2A1488D80062BE99 /* Movie.swift in Sources */,
 				5B74F08A2A23913800AD4A73 /* TMDBMovieDetail.swift in Sources */,
 				5B3F1C4F2A148BA20062BE99 /* Staff.swift in Sources */,
+				5B9496722A89F98F002ED2A2 /* BoxOfficeSection.swift in Sources */,
 				5B3F1C6C2A14977D0062BE99 /* Gettable.swift in Sources */,
 				5B09DA072A25D675001121D6 /* DetailLoader.swift in Sources */,
 				5B3F1BF12A146EAC0062BE99 /* HomeViewController.swift in Sources */,
