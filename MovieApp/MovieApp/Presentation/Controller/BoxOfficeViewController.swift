@@ -13,13 +13,20 @@ final class BoxOfficeViewController: UIViewController {
         super.viewDidLoad()
         configureOfUI()
         configureHierarchy()
+        
+        configureOfDiffableDataSource()
+        boxOfficeSnapshot()
     }
+    
+    private let boxOfficeViewModel = BoxOfficeViewModel()
     
     private let collectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewLayout()
     )
     
-    private let boxOfficeViewModel = BoxOfficeViewModel()
+    private var diffableDataSource: UICollectionViewDiffableDataSource<BoxOfficeSection, KoreaBoxOfficeList>?
+    
+    private var snapshot = NSDiffableDataSourceSnapshot<BoxOfficeSection, KoreaBoxOfficeList>()
 }
 
 
@@ -40,12 +47,13 @@ extension BoxOfficeViewController {
         collectionView.clipsToBounds = false
         collectionView.backgroundColor = .black
         collectionView.collectionViewLayout = configureOfCollectionViewLayout()
-        collectionView.dataSource = self
-        collectionView.register(KoreaBoxOfficeListCell.self
-                                , forCellWithReuseIdentifier: KoreaBoxOfficeListCell.reuseIdentifier)
-        collectionView.register(BoxOfficeHeaderView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: BoxOfficeHeaderView.reuseIdentifier)
+        collectionView.register(
+            KoreaBoxOfficeListCell.self, forCellWithReuseIdentifier: KoreaBoxOfficeListCell.reuseIdentifier
+        )
+        collectionView.register(
+            BoxOfficeHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: BoxOfficeHeaderView.reuseIdentifier
+        )
     }
 }
 
@@ -77,7 +85,7 @@ extension BoxOfficeViewController {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .topLeading
         )
-
+        
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(
                 MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
@@ -117,44 +125,48 @@ extension BoxOfficeViewController {
     }
 }
 
-//MARK: - Configure of DataSource
-extension BoxOfficeViewController: UICollectionViewDataSource {
+//MARK: - Configure of DiffableDataSource
+extension BoxOfficeViewController {
     
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
+    private func boxOfficeSnapshot() {
         
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind, withReuseIdentifier: BoxOfficeHeaderView.reuseIdentifier,
-                for: indexPath) as? BoxOfficeHeaderView else {
-                return UICollectionReusableView()
+        BoxOfficeSection.allCases.forEach { section in
+            
+            Task {
+                let apiData = await boxOfficeViewModel.fetchBoxOfficeMovieList()
+                
+                snapshot.appendSections([section])
+                snapshot.appendItems(apiData)
+                await diffableDataSource?.apply(snapshot, animatingDifferences: true)
             }
-            
-            headerView.configureOfBoxOfficeLayout()
-            return headerView
-            
-        default:
-            print("해당되는 Header SectionType이 없습니다.")
-            return UICollectionReusableView()
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: KoreaBoxOfficeListCell.reuseIdentifier,
-            for: indexPath) as? KoreaBoxOfficeListCell else {
-            return UICollectionViewCell()
+    private func configureOfDiffableDataSource() {
+        let boxOfficeCellRegistration = UICollectionView.CellRegistration<KoreaBoxOfficeListCell, KoreaBoxOfficeList> {
+            (cell, indexPath, boxOffice) in
+            cell.configure(boxOffice, at: indexPath)
         }
         
-        return cell
+        let headerRegistration = UICollectionView.SupplementaryRegistration<BoxOfficeHeaderView>(
+            elementKind: UICollectionView.elementKindSectionHeader
+        ) { headerView, elementKind, indexPath in
+            headerView.configureOfBoxOfficeLayout()
+        }
+        
+        diffableDataSource = UICollectionViewDiffableDataSource<BoxOfficeSection, KoreaBoxOfficeList>(
+            collectionView: collectionView,
+            cellProvider: { (collectionView, indexPath, itemOfBoxOffice) in
+                collectionView.dequeueConfiguredReusableCell(
+                    using: boxOfficeCellRegistration, for: indexPath, item: itemOfBoxOffice
+                )
+            }
+        )
+        
+        diffableDataSource?.supplementaryViewProvider = { (view, kind, indexPath) in
+            return self.collectionView.dequeueConfiguredReusableSupplementary(
+                using: headerRegistration, for: indexPath
+            )
+        }
     }
 }
