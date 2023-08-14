@@ -217,14 +217,11 @@ extension HomeViewController {
 //MARK: - Configure of Delegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-//        guard let businessModelWrapper = diffableDataSource?.itemIdentifier(
-//            for: indexPath) else {
-//            return
-//        }
+         
+        guard let selectedItem = diffableDataSource?.itemIdentifier(for: indexPath) else { return }
         
         let movieDetailViewController = MovieDetailViewController()
-//        movieDetailViewController.movieDetailData = businessModelWrapper
+        movieDetailViewController.movieDetailData = selectedItem
         navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
 }
