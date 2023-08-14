@@ -23,9 +23,9 @@ final class HomeViewController: UIViewController {
     
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     
-    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
+//    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
     
-    private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
+//    private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
     
     private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(
         frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 100))
@@ -40,7 +40,7 @@ final class HomeViewController: UIViewController {
     
     @objc func handleRefreshControl() {
         
-        snapshot = .init()
+//        snapshot = .init()
         
         homeSnapShot { _ in
             Task {
@@ -158,22 +158,19 @@ extension HomeViewController {
             
             homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
             
-            let bindModel = homeViewModel.sectionStorage[section]
+//            let bindModel = homeViewModel.sectionStorage[section]
             
-            bindModel?.bind(listener: { [self] businessModelWrapper in
+//            bindModel?.bind(listener: { [self] businessModelWrapper in
+//
+//                guard let bindModels = businessModelWrapper else {
+//                    throw HomeViewModelInError.failOfOptionalUnwrapping
+//                }
                 
-                guard let bindModels = businessModelWrapper else {
-                    throw HomeViewModelInError.failOfOptionalUnwrapping
-                }
-                
-                print("viewModel을 통한 section 확인")
-                print(section)
-                
-                snapshot.appendSections([section])
-                snapshot.appendItems(bindModels)
-                diffableDataSource?.apply(snapshot, animatingDifferences: true)
-                completion(true)
-            })
+//                snapshot.appendSections([section])
+//                snapshot.appendItems(bindModels)
+//                diffableDataSource?.apply(snapshot, animatingDifferences: true)
+//                completion(true)
+//            })
         }
     }
     
@@ -195,62 +192,41 @@ extension HomeViewController {
             cell.configure(trendMovie, at: indexPath)
         }
         
-        let stillCusRegistration = UICollectionView.CellRegistration<MovieStillCutCell, StillCut> {
-            (cell, indexPath, stillCut) in
-            cell.configure(stillCut, at: indexPath)
-        }
-        
-        let koreaBoxOfficeListCellRegistration = UICollectionView.CellRegistration<KoreaBoxOfficeListCell, KoreaBoxOfficeList> {
-            (cell, indexPath, koreaBoxOfficeList) in
-            cell.configure(koreaBoxOfficeList, at: indexPath)
-        }
-        
         let headerRegistration = UICollectionView.SupplementaryRegistration<HomeHeaderView>(
             elementKind: UICollectionView.elementKindSectionHeader
         ) {
             (headerView, elementKind, indexPath) in
             
-            if let sectionType = self.diffableDataSource?.sectionIdentifier(
-                for: indexPath.section) {
-                
-                switch sectionType {
-                case .trendMoviePoster:
-                    headerView.configureOfSortStackLayout()
-                    
-                    Task {
-                        await headerView.selectedTrendWeekButton()
-                        await headerView.selectedTrendDayButton()
-                    }
-                case .stillCut:
-                    headerView.configureOfStillCutLayout()
-                case .koreaMovieList:
-                    headerView.configureOfKoreaMovieLayout()
-                }
-            }
-        }
-        
-        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>(collectionView: homeCollectionView)
-        { (collectionView, indexPath, businessModelWrapper) in
+            headerView.configureOfSortStackLayout()
             
-            switch businessModelWrapper {
-            case let .trendMovie(trendMovieItem):
-                return collectionView.dequeueConfiguredReusableCell(
-                    using: trendCellRegistration, for: indexPath, item: trendMovieItem
-                )
-            case let .stillCut(stillCutItem):
-                return collectionView.dequeueConfiguredReusableCell(
-                    using: stillCusRegistration, for: indexPath, item: stillCutItem
-                )
-            case let .koreaBoxOfficeList(koreaBoxOfficeListItem):
-                return collectionView.dequeueConfiguredReusableCell(
-                    using: koreaBoxOfficeListCellRegistration, for: indexPath, item: koreaBoxOfficeListItem
-                )
+            Task {
+                await headerView.selectedTrendWeekButton()
+                await headerView.selectedTrendDayButton()
             }
         }
         
-        diffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
-            return self.homeCollectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
-        }
+//        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>(collectionView: homeCollectionView)
+//        { (collectionView, indexPath, businessModelWrapper) in
+//
+//            switch businessModelWrapper {
+//            case let .trendMovie(trendMovieItem):
+//                return collectionView.dequeueConfiguredReusableCell(
+//                    using: trendCellRegistration, for: indexPath, item: trendMovieItem
+//                )
+//            case let .stillCut(stillCutItem):
+//                return collectionView.dequeueConfiguredReusableCell(
+//                    using: stillCusRegistration, for: indexPath, item: stillCutItem
+//                )
+//            case let .koreaBoxOfficeList(koreaBoxOfficeListItem):
+//                return collectionView.dequeueConfiguredReusableCell(
+//                    using: koreaBoxOfficeListCellRegistration, for: indexPath, item: koreaBoxOfficeListItem
+//                )
+//            }
+//        }
+//
+//        diffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
+//            return self.homeCollectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
+//        }
         
     }
     
@@ -260,13 +236,13 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let businessModelWrapper = diffableDataSource?.itemIdentifier(
-            for: indexPath) else {
-            return
-        }
+//        guard let businessModelWrapper = diffableDataSource?.itemIdentifier(
+//            for: indexPath) else {
+//            return
+//        }
         
         let movieDetailViewController = MovieDetailViewController()
-        movieDetailViewController.movieDetailData = businessModelWrapper
+//        movieDetailViewController.movieDetailData = businessModelWrapper
         navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
 }

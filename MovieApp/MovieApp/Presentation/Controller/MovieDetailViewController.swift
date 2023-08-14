@@ -11,29 +11,12 @@ final class MovieDetailViewController: UIViewController {
     
     //MARK: - Property
     
-    var movieDetailData: HomeEntityWrapper?
     var posterImageDataReceivedFromHomeView: Data?
     
     //MARK: - Override Method
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        switch movieDetailData {
-        case let .trendMovie(movieDetailData):
-            posterImageDataReceivedFromHomeView = movieDetailData.posterImage
-            Task {
-                await detailViewModel.loadNeedTotMovieDetailSection(movieCode: movieDetailData.movieCode)
-            }
-        case let .stillCut(movieDetailData):
-            posterImageDataReceivedFromHomeView = movieDetailData.genreImagePath
-            
-        case let .koreaBoxOfficeList(movieDetailData):
-            print(movieDetailData)
-            // 이미지 필요
-        case .none:
-            print("Value of Optional so value is nil")
-        }
     }
     
     override func viewDidLoad() {
@@ -165,12 +148,6 @@ extension MovieDetailViewController {
             (cell, indexPath, moiveCast) in
             
             cell.configure(moiveCast, at: indexPath)
-        }
-        
-        let koreaBoxOfficeListCellRegistration = UICollectionView.CellRegistration<KoreaBoxOfficeListCell, MovieInfo> {
-            (cell, indexPath, movieInfo) in
-            
-            //TODO: - Core Graphic을 사용한 관객수 그래프화 or Label로 보여주기
         }
         
         let headerRegistration = UICollectionView.SupplementaryRegistration<DetailHeaderView>(

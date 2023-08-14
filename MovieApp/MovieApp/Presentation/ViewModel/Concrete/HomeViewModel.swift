@@ -9,15 +9,8 @@ import Foundation
 
 final class HomeViewModel {
     
-    var sectionStorage: [HomeSection: Observable<HomeEntityWrapper>]
-    
     init() {
         self.homeLoader = HomeLoader()
-        
-        self.sectionStorage = [.trendMoviePoster: Observable<HomeEntityWrapper>(),
-                               .stillCut: Observable<HomeEntityWrapper>(),
-                               .koreaMovieList: Observable<HomeEntityWrapper>()
-                            ]
     }
     
     private let homeLoader: HomeLoader
@@ -28,32 +21,11 @@ extension HomeViewModel {
     
     func fetchHomeCollectionViewSectionItemsRelated(be section: HomeSection) {
         
-        switch section {
-        case .trendMoviePoster:
-            Task {
-                let businessModelToTrendMovie = await loadTrendOfWeekMovieListFromTMDB().map { trendMovie in
-                    HomeEntityWrapper.trendMovie(trendMovie)
-                }
-                self.sectionStorage[section]?.value = businessModelToTrendMovie
+        Task {
+            let businessModelToTrendMovie = await loadTrendOfWeekMovieListFromTMDB().map { trendMovie in
+//                HomeEntityWrapper.trendMovie(trendMovie)
             }
-        case .stillCut:
-            Task {
-                try await Task.sleep(nanoseconds: 7_000_000_000)
-                async let stillCutPosterImageData = await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
-                let businessModelToStillCut = await stillCutPosterImageData.map { data in
-                    HomeEntityWrapper.stillCut(StillCut(genreImagePath: data))
-                }
-                self.sectionStorage[section]?.value = businessModelToStillCut
-            }
-        case .koreaMovieList:
-            Task {
-                try await Task.sleep(nanoseconds: 10_000_000_000)
-                async let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
-                let businessModelToKoreaBoxOfficeMovieList = await koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
-                    HomeEntityWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
-                }
-                self.sectionStorage[section]?.value = businessModelToKoreaBoxOfficeMovieList
-            }
+//            self.sectionStorage[section]?.value = businessModelToTrendMovie
         }
     }
 }
@@ -95,80 +67,5 @@ extension HomeViewModel {
         }
         
         return imageData
-    }
-}
- 
-//MARK: - [private] Use at KOFIC
-extension HomeViewModel {
-    
-    /// KOFIC
-    private func loadKoreaBoxOfficeMovieList() async -> [KoreaBoxOfficeList] {
-        var dailyBoxOfficeListGroup = [DailyBoxOfficeList]()
-        
-        dailyBoxOfficeListGroup = await homeLoader.loadDailyBoxOfficeMovieListData()
-        
-        let koreaBoxOfficeMovieListGroup = dailyBoxOfficeListGroup.map { dailyBoxOfficeList in
-            KoreaBoxOfficeList(
-                openDate: dailyBoxOfficeList.openDate,
-                rank: Rank(
-                    rank: dailyBoxOfficeList.rank,
-                    rankOldAndNew: dailyBoxOfficeList.rankOldAndNew,
-                    rankVariation: dailyBoxOfficeList.rankVariation
-                ),
-                movieSummaryInformation: MovieSummaryInformation(
-                    movieName: dailyBoxOfficeList.movieName,
-                    audienceCount: dailyBoxOfficeList.audienceCount,
-                    audienceAccumulated: dailyBoxOfficeList.audienceAccumulate
-                )
-            )
-        }
-        
-        return koreaBoxOfficeMovieListGroup
-    }
-    
-    private func loadMovieNameGroup() async -> [String] {
-        var movieNames = [String]()
-        
-        movieNames = await homeLoader.loadDailyBoxOfficeMovieListData().map{ $0.movieName }
-        return movieNames
-    }
-    
-    private func loadMovieDetailInformation() async throws -> [MovieInfo] {
-        let dailyBoxOfficeListGroup = await homeLoader.loadDailyBoxOfficeMovieListData()
-        let movieCodeGroup = dailyBoxOfficeListGroup.map{ $0.movieCode }
-        let movieDetailList = try await homeLoader.loadMovieDetailData(movieCodeGroup: movieCodeGroup)
-        return movieDetailList
-    }
-}
-
-//MARK: - [private] Use at Kakao
-extension HomeViewModel {
-    
-    private func kakaoPosterImageTest(movieNameGroup: [String]) async -> [Data] {
-        
-        var documents = [Document]()
-        var imageDataStorage = [Data]()
-        
-        do {
-            documents = try await homeLoader.loadStillCut(movieNameGroup: movieNameGroup)
-        } catch {
-            print(HomeViewModelInError.failOfMakeData)
-        }
-        
-        for document in documents {
-            do {
-                guard let imageURL = URL(string: document.imageURL) else {
-                    throw HomeViewModelInError.failOfMakeURL
-                }
-                guard let imageData = try? Data(contentsOf: imageURL) else {
-                    throw HomeViewModelInError.failOfMakeData
-                }
-                imageDataStorage.append(imageData)
-            } catch {
-                print(HomeViewModelInError.failOfImageConverting)
-            }
-        }
-        
-        return imageDataStorage
     }
 }

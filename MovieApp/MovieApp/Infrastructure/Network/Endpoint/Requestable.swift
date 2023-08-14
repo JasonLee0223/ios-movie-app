@@ -77,10 +77,6 @@ extension Requestable {
             return "\(baseURL)\(firstPath)\(secondPath ?? "")\(KOFICBasic.format)"
         }
         
-        if endPoint is EndPoint<MoviePosterImage> {
-            return "\(baseURL)\(firstPath)"
-        }
-        
         if endPoint is EndPoint<TMDBMovieDetail> {
             return "\(baseURL)\(firstPath)"
         }

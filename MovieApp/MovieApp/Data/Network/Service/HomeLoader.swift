@@ -37,29 +37,6 @@ extension HomeLoader {
         return networkResult
     }
     
-    /// StillCut
-    func loadStillCut(movieNameGroup: [String]) async throws -> [Document] {
-        let moviePosterImageParametersGroup = movieNameGroup.map { movieName in
-            KoreaMovieListImageQueryParameters(query: movieName)
-        }
-        
-        var networkResult = [Document]()
-        
-        for moviePosterImageParameters in moviePosterImageParametersGroup {
-            
-            do {
-                var result = try await networkService.request(
-                    with: KakaoEndPoint.receiveMoviePosterImage(
-                        with: moviePosterImageParameters)).documents
-                let bestResult = result.removeFirst()
-                networkResult.append(bestResult)
-            } catch {
-                throw DataLoadError.failOfStillCutData
-            }
-        }
-        return networkResult
-    }
-    
     /// KoreaBoxOfficeMovieList
     func loadDailyBoxOfficeMovieListData() async -> [DailyBoxOfficeList] {
         let yesterdayDate = Getter.receiveCurrentDate.split(separator: "-").joined()
@@ -116,23 +93,6 @@ extension HomeLoader {
             ).results
             
             completion(networkResult)
-        }
-    }
-    
-    /// StillCut
-    func loadMoviePosterImage(movieNameGroup: [String], completion: @escaping (Document) -> Void) {
-        
-        movieNameGroup.forEach { movieName in
-            
-            Task {
-                let moviePosterImageParameters = KoreaMovieListImageQueryParameters(query: movieName)
-                var networkResult = try await networkService.request(
-                    with: KakaoEndPoint.receiveMoviePosterImage(
-                        with: moviePosterImageParameters)
-                ).documents
-                
-                completion(networkResult.removeFirst())
-            }
         }
     }
     

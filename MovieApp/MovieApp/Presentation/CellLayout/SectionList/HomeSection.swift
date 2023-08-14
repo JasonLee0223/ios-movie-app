@@ -9,6 +9,4 @@ import Foundation
 
 enum HomeSection: Int, CaseIterable {
     case trendMoviePoster = 0
-    case stillCut
-    case koreaMovieList
 }
