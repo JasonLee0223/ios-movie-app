@@ -23,9 +23,9 @@ final class HomeViewController: UIViewController {
     
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     
-//    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
+    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, TrendMovie>?
     
-//    private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
+    private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, TrendMovie>()
     
     private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(
         frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 100))
@@ -40,7 +40,7 @@ final class HomeViewController: UIViewController {
     
     @objc func handleRefreshControl() {
         
-//        snapshot = .init()
+        snapshot = .init()
         
         homeSnapShot { _ in
             Task {
@@ -156,21 +156,14 @@ extension HomeViewController {
         
         HomeSection.allCases.forEach { section in
             
-            homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
-            
-//            let bindModel = homeViewModel.sectionStorage[section]
-            
-//            bindModel?.bind(listener: { [self] businessModelWrapper in
-//
-//                guard let bindModels = businessModelWrapper else {
-//                    throw HomeViewModelInError.failOfOptionalUnwrapping
-//                }
+            Task {
+                let apiData = await homeViewModel.loadTrendOfWeekMovieListFromTMDB()
                 
-//                snapshot.appendSections([section])
-//                snapshot.appendItems(bindModels)
-//                diffableDataSource?.apply(snapshot, animatingDifferences: true)
-//                completion(true)
-//            })
+                snapshot.appendSections([section])
+                snapshot.appendItems(apiData)
+                await diffableDataSource?.apply(snapshot, animatingDifferences: true)
+                completion(true)
+            }
         }
     }
     
@@ -205,29 +198,18 @@ extension HomeViewController {
             }
         }
         
-//        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>(collectionView: homeCollectionView)
-//        { (collectionView, indexPath, businessModelWrapper) in
-//
-//            switch businessModelWrapper {
-//            case let .trendMovie(trendMovieItem):
-//                return collectionView.dequeueConfiguredReusableCell(
-//                    using: trendCellRegistration, for: indexPath, item: trendMovieItem
-//                )
-//            case let .stillCut(stillCutItem):
-//                return collectionView.dequeueConfiguredReusableCell(
-//                    using: stillCusRegistration, for: indexPath, item: stillCutItem
-//                )
-//            case let .koreaBoxOfficeList(koreaBoxOfficeListItem):
-//                return collectionView.dequeueConfiguredReusableCell(
-//                    using: koreaBoxOfficeListCellRegistration, for: indexPath, item: koreaBoxOfficeListItem
-//                )
-//            }
-//        }
-//
-//        diffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
-//            return self.homeCollectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
-//        }
-        
+        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, TrendMovie>(
+            collectionView: homeCollectionView, cellProvider: { (collectionView, indexPath, itemOfTrendMovie) in
+                collectionView.dequeueConfiguredReusableCell(
+                    using: trendCellRegistration, for: indexPath, item: itemOfTrendMovie
+                )
+            }
+        )
+        diffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
+            return self.homeCollectionView.dequeueConfiguredReusableSupplementary(
+                using: headerRegistration, for: index
+            )
+        }
     }
     
 }

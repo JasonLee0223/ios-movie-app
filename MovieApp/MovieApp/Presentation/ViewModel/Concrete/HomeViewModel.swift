@@ -16,24 +16,10 @@ final class HomeViewModel {
     private let homeLoader: HomeLoader
 }
 
-//MARK: - [Public Method] Use at ViewController
-extension HomeViewModel {
-    
-    func fetchHomeCollectionViewSectionItemsRelated(be section: HomeSection) {
-        
-        Task {
-            let businessModelToTrendMovie = await loadTrendOfWeekMovieListFromTMDB().map { trendMovie in
-//                HomeEntityWrapper.trendMovie(trendMovie)
-            }
-//            self.sectionStorage[section]?.value = businessModelToTrendMovie
-        }
-    }
-}
-
-//MARK: - [private] Use at TMDB
+//MARK: - Use at TMDB
 extension HomeViewModel {
     /// Top Method
-    private func loadTrendOfWeekMovieListFromTMDB() async -> [TrendMovie] {
+    func loadTrendOfWeekMovieListFromTMDB() async -> [TrendMovie] {
         
         var trendMovieListGroup = [TrendMovie]()
         
