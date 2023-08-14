@@ -62,29 +62,17 @@ extension HomeViewLayout {
             heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceHeight)
         )
         
-        let group: NSCollectionLayoutGroup?
-        if #available(iOS 16.0, *) {
-            group = NSCollectionLayoutGroup.vertical(
-                layoutSize: groupSize,
-                repeatingSubitem: item,
-                count: 2
-            )
-        } else {
-            group = NSCollectionLayoutGroup.vertical(
-                layoutSize: groupSize,
-                subitem: item,
-                count: 2
-            )
-        }
+        let group: NSCollectionLayoutGroup
+        group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
-        group?.contentInsets = .init(
+        group.contentInsets = .init(
             top: 20,
             leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceLeading,
             bottom: MagicNumber.zero,
             trailing: MagicNumber.zero
         )
         
-        let section = NSCollectionLayoutSection(group: group ?? NSCollectionLayoutGroup(layoutSize: groupSize))
+        let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         section.contentInsets = .init(
