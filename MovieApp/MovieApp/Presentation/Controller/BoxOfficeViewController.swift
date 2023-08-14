@@ -18,6 +18,8 @@ final class BoxOfficeViewController: UIViewController {
     private let collectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewLayout()
     )
+    
+    private let boxOfficeViewModel = BoxOfficeViewModel()
 }
 
 
@@ -36,8 +38,16 @@ extension BoxOfficeViewController {
     private func configureOfCollectionView() {
         collectionView.isScrollEnabled = true
         collectionView.clipsToBounds = false
-        collectionView.backgroundColor = .orange
+        collectionView.backgroundColor = .black
         collectionView.collectionViewLayout = configureOfCollectionViewLayout()
+        collectionView.dataSource = self
+        collectionView.register(KoreaBoxOfficeListCell.self
+                                , forCellWithReuseIdentifier: KoreaBoxOfficeListCell.reuseIdentifier)
+        collectionView.register(BoxOfficeHeaderView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: BoxOfficeHeaderView.reuseIdentifier)
+    }
+    
     }
 }
 
