@@ -59,6 +59,7 @@ extension HomeViewController {
         
         configureOfSuperView()
         configureOfNavigationBar()
+        configureOfTabBar()
         
         configureOfCollectionView()
         configureColletionViewDelegate()
@@ -89,6 +90,13 @@ extension HomeViewController {
         navigationController?.navigationBar.standardAppearance = navigationAppearance
         
         self.navigationItem.leftBarButtonItem = .init(customView: title)
+    }
+    
+    private func configureOfTabBar() {
+        let tabbarAppearance = UITabBarAppearance()
+        tabbarAppearance.backgroundColor = .black
+        tabbarAppearance.selectionIndicatorTintColor = .white
+        tabBarController?.tabBar.standardAppearance = tabbarAppearance
     }
     
     private func configureOfCollectionView() {
