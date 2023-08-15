@@ -17,19 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let homeViewController = HomeViewController()
         let boxOfficeController = BoxOfficeViewController()
-        let profileController = ProfileViewController()
         
         let tabbarController = UITabBarController()
         let rootViewController = UINavigationController(rootViewController: homeViewController)
         
         tabbarController.setViewControllers(
-            [rootViewController, boxOfficeController, profileController], animated: true
+            [rootViewController, boxOfficeController], animated: true
         )
         
         if let tabItem = tabbarController.tabBar.items {
             tabItem[0].image = UIImage(systemName: "house")
             tabItem[1].image = UIImage(systemName: "film")
-            tabItem[2].image = UIImage(systemName: "person.crop.circle")
         }
         
         window?.rootViewController = tabbarController
