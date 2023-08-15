@@ -73,15 +73,15 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         return sortedByTrendWeek
     }()
     
-    private let stillCutTitle: UILabel = {
-       let stillCutTitle = UILabel()
+    private let trailer: UILabel = {
+       let trailer = UILabel()
         
-        stillCutTitle.text = MagicLiteral.Title.stillCut
-        stillCutTitle.font = .boldSystemFont(
+        trailer.text = MagicLiteral.Title.trailer
+        trailer.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.headerTitleFont
         )
-        stillCutTitle.textColor = UIColor.white
-        return stillCutTitle
+        trailer.textColor = UIColor.white
+        return trailer
     }()
     
     private let koreaMovieListTitle: UILabel = {
@@ -160,20 +160,20 @@ extension HomeHeaderView {
     func configureOfStillCutLayout() {
         let safeArea = self.safeAreaLayoutGuide
         
-        self.addSubview(stillCutTitle)
-        stillCutTitle.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(trailer)
+        trailer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stillCutTitle.topAnchor.constraint(
+            trailer.topAnchor.constraint(
                 equalTo: safeArea.topAnchor
             ),
-            stillCutTitle.leadingAnchor.constraint(
+            trailer.leadingAnchor.constraint(
                 equalTo: safeArea.leadingAnchor,
                 constant: 20
             ),
-            stillCutTitle.trailingAnchor.constraint(
+            trailer.trailingAnchor.constraint(
                 equalTo: safeArea.trailingAnchor
             ),
-            stillCutTitle.bottomAnchor.constraint(
+            trailer.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
             )
         ])
