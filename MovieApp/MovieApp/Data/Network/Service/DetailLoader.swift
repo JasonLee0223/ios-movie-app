@@ -57,7 +57,7 @@ extension DetailLoader {
         guard let imageURL = URL(string: imageURLPath) else {
             throw HomeViewModelInError.failOfMakeURL
         }
-            
+        
         guard let imageData = try? Data(contentsOf: imageURL) else {
             throw HomeViewModelInError.failOfMakeData
         }
@@ -65,46 +65,50 @@ extension DetailLoader {
         return imageData
     }
     
-    func convertToMovieInformation(
-        from networkResult: TMDBMovieDetail) throws -> MovieInformation {
-            
-            let wrappingMovieInformation: MovieInformation?
+    func convertToMovieInformation(from networkResult: TMDBMovieDetail) throws -> MovieInformation {
         
-            var watchGrade: String = ""
+        let wrappingMovieInformation: MovieInformation?
+        
+        var watchGrade: String = ""
+        
+        let nations = try networkResult.productionCountries.compactMap { countriesInfo in
             
-            let nations = networkResult.productionCountries.map { countriesInfo in
-                countriesInfo.name
+            guard let country = StandardNationList(rawValue: countriesInfo.iso_3166_1) else {
+                throw DetailViewModelInError.failedToFindCountryCode
             }
+            let countryName = country.countryName
+            return countryName
+        }
+        
+        let genres = networkResult.genres.map { genre in
+            genre.name
+        }
+        
+        if !networkResult.adult {
+            watchGrade = "전체 이용가"
+        }
+        
+        wrappingMovieInformation = MovieInformation(
+            identifier: UUID(),
+            posterHeaderArea: PosterHeaderArea(
+                watchGrade: watchGrade,
+                movieKoreanName: networkResult.koreanTitle,
+                movieEnglishName: networkResult.movieEnglishTitle
+            ),
             
-            let genres = networkResult.genres.map { genre in
-                genre.name
-            }
+            nations: nations,
+            genres: genres,
             
-            if !networkResult.adult {
-                watchGrade = "전체 이용가"
-            }
-            
-            wrappingMovieInformation = MovieInformation(
-                identifier: UUID(),
-                posterHeaderArea: PosterHeaderArea(
-                    watchGrade: watchGrade,
-                    movieKoreanName: networkResult.koreanTitle,
-                    movieEnglishName: networkResult.movieEnglishTitle
-                ),
-                
-                nations: nations,
-                genres: genres,
-                
-                subInformation: SubInformation(
-                    releaseDate: networkResult.releaseDate,
-                    runtime: String(networkResult.runtime),
-                    overview: networkResult.overview
-                )
+            subInformation: SubInformation(
+                releaseDate: networkResult.releaseDate,
+                runtime: String(networkResult.runtime),
+                overview: networkResult.overview
             )
-            
-            guard let movieInformation = wrappingMovieInformation else {
-                throw DetailViewModelInError.failOfUnWrapping
-            }
-            return movieInformation
+        )
+        
+        guard let movieInformation = wrappingMovieInformation else {
+            throw DetailViewModelInError.failOfUnwrapping
+        }
+        return movieInformation
     }
 }
