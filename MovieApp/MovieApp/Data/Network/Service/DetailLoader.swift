@@ -101,7 +101,7 @@ extension DetailLoader {
             
             subInformation: SubInformation(
                 releaseDate: networkResult.releaseDate,
-                runtime: String(networkResult.runtime),
+                runtime: String(networkResult.runtime) + " 분",
                 overview: networkResult.overview
             )
         )
