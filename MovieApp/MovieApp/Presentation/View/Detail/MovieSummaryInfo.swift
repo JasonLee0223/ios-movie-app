@@ -26,14 +26,14 @@ final class MovieSummaryInfo: UIStackView {
     
     //MARK: - Private Property
 
-    private let watchGrade: UILabel = {
-        let watchGrade = UILabel()
-        watchGrade.font = .systemFont(ofSize: 15)
-        watchGrade.textColor = .green
+    private let watchGrade: UIButton = {
+        let watchGrade = UIButton()
+        watchGrade.titleLabel?.font = .systemFont(ofSize: 15)
+        watchGrade.setTitleColor(.green, for: .normal)
         watchGrade.layer.borderWidth = 1
         watchGrade.layer.borderColor = UIColor.green.cgColor
         watchGrade.layer.cornerRadius = 5
-        watchGrade.sizeToFit()
+        watchGrade.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return watchGrade
     }()
     
@@ -87,11 +87,12 @@ extension MovieSummaryInfo {
     private func configureOfStackView() {
         axis = .vertical
         alignment = .leading
-        distribution = .fillEqually
+        distribution = .equalSpacing
     }
     
     private func setWatchGrade(by text: String) {
-        watchGrade.text = text
+        watchGrade.setTitle(text, for: .normal)
+//        watchGrade.text = text
     }
     
     private func setMovieKoreanName(by text: String) {
