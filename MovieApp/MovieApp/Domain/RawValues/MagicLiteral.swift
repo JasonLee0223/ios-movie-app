@@ -17,7 +17,7 @@ enum MagicLiteral {
     static let totalAudience = " / 총 "
     
     enum RelatedToNavigationController {
-        static let navigationTitle = "야곰 시네마 🐻‍❄️"
+        static let navigationTitle = "WhaYouWant"
         static let hambergImageName = "Hamberger"
         static let ticketImageName = "Ticket"
         static let mapImageName = "map"
