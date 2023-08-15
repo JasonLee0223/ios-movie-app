@@ -95,9 +95,13 @@ extension MovieDetailInformationCell {
         var nationSentence: String = ""
         var genreSentence: String = ""
         
-        for nation in item.nations {
-            let plusComma = nation + ", "
-            nationSentence += plusComma
+        if item.nations.count == 1 {
+            nationSentence = item.nations.first ?? ""
+        } else {
+            for nation in item.nations {
+                let plusComma = nation + ", "
+                nationSentence += plusComma
+            }
         }
         
         for genre in item.genres {
