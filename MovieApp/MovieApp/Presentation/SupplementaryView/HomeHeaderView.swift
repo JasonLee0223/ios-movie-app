@@ -30,37 +30,47 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         return sortStack
     }()
     
+    private let trendTitle: UILabel = {
+        let trendTitle = UILabel()
+        trendTitle.text = MagicLiteral.Title.title
+        trendTitle.font = .boldSystemFont(ofSize: 24)
+        trendTitle.textColor = .white
+        return trendTitle
+    }()
+    
+    private lazy var sortedByTrendDay: UIButton = {
+        let sortedByTrendDay = UIButton()
+        
+        sortedByTrendDay.layer.borderWidth = MagicNumber.borderWidth
+        sortedByTrendDay.layer.cornerRadius = MagicNumber.cornerRadius
+        sortedByTrendDay.layer.borderColor = UIColor.systemGray5.cgColor
+        
+        sortedByTrendDay.setTitle(MagicLiteral.Title.todayTrendList, for: .normal)
+        sortedByTrendDay.titleLabel?.font = .boldSystemFont(
+            ofSize: MagicNumber.Attributes.fontSize
+        )
+        
+        sortedByTrendDay.setTitleColor(.systemMint, for: .normal)
+        sortedByTrendDay.backgroundColor = .systemIndigo
+        
+        return sortedByTrendDay
+    }()
+    
     private lazy var sortedByTrendWeek: UIButton = {
         let sortedByTrendWeek = UIButton()
         
-        sortedByTrendWeek.layer.cornerRadius = MagicNumber.cornerRadius
         sortedByTrendWeek.layer.borderWidth = MagicNumber.borderWidth
+        sortedByTrendWeek.layer.cornerRadius = MagicNumber.cornerRadius
         sortedByTrendWeek.layer.borderColor = UIColor.systemGray5.cgColor
         
         sortedByTrendWeek.setTitle(MagicLiteral.Title.weekTrendList, for: .normal)
         sortedByTrendWeek.titleLabel?.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
-        sortedByTrendWeek.tintColor = .white
-        sortedByTrendWeek.backgroundColor = .systemPink
+        sortedByTrendWeek.setTitleColor(.systemMint, for: .normal)
         
         //TODO: - Button Configuration으로 변경하여 Edge 넣기 -> iOS 버전이 높아서 inset을 다른 방법으로 진행
         return sortedByTrendWeek
-    }()
-
-    private lazy var sortedByTrendDay: UIButton = {
-        let sortedByTrendDay = UIButton()
-        
-        sortedByTrendDay.layer.borderColor = UIColor.systemGray5.cgColor
-        sortedByTrendDay.layer.borderWidth = MagicNumber.borderWidth
-        sortedByTrendDay.layer.cornerRadius = MagicNumber.cornerRadius
-        
-        sortedByTrendDay.setTitle(MagicLiteral.Title.todayTrendList, for: .normal)
-        sortedByTrendDay.titleLabel?.font = .boldSystemFont(
-            ofSize: MagicNumber.Attributes.fontSize
-        )
-        sortedByTrendDay.tintColor = UIColor.white
-        return sortedByTrendDay
     }()
     
     private let stillCutTitle: UILabel = {
@@ -104,13 +114,15 @@ extension HomeHeaderView {
     }
     
     @objc private func selectSortedByTrendWeek() {
-        sortedByTrendWeek.backgroundColor = .systemPink
         sortedByTrendDay.backgroundColor = .black
+        sortedByTrendWeek.backgroundColor = .systemIndigo
+        sortedByTrendWeek.setTitleColor(.systemMint, for: .normal)
     }
     
     @objc private func selectSortedByTrendDay() {
         sortedByTrendWeek.backgroundColor = .black
-        sortedByTrendDay.backgroundColor = .systemPink
+        sortedByTrendDay.backgroundColor = .systemIndigo
+        sortedByTrendDay.setTitleColor(.systemMint, for: .normal)
     }
 }
 
@@ -121,8 +133,9 @@ extension HomeHeaderView {
         let safeArea = self.safeAreaLayoutGuide
         
         self.addSubview(sortStack)
-        sortStack.addArrangedSubview(sortedByTrendWeek)
+        sortStack.addArrangedSubview(trendTitle)
         sortStack.addArrangedSubview(sortedByTrendDay)
+        sortStack.addArrangedSubview(sortedByTrendWeek)
         
         sortStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -139,7 +152,7 @@ extension HomeHeaderView {
             ),
             sortStack.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
-                multiplier: 0.8
+                multiplier: 0.6
             )
         ])
     }
