@@ -10,52 +10,34 @@ import Foundation
 final class DetailViewModel {
     
     //MARK: - Initializer
-    var sectionStroage: [DetailSectionList: Observable<DetailEntityWrapper>]
     
     init() {
         self.detailLoader = DetailLoader()
-        
-        sectionStroage = [.movieDetailInformationSection: Observable<DetailEntityWrapper>(),
-                          .movieOfficialsSection: Observable<DetailEntityWrapper>()]
     }
     
     //MARK: - Private Property
-
-    private let detailLoader: DetailLoader
-}
-
-//MARK: - [Public Method] Use of MovieDetailViewController
-extension DetailViewModel {
     
-    func loadNeedTotMovieDetailSection(movieCode: String) async {
-        //TODO: - If need to switch-case sectionType make this mehtod
-        
-        Task {
-            guard let movieInformation = await self.loadSelectedMovieDetailInformation(movieCode: movieCode) else {
-                return
-            }
-            let movieInformationWrapper = DetailEntityWrapper.movieDetailInformation(movieInformation)
-            
-            print("========= movieInformationWrapper Loading... =============")
-            print(movieInformationWrapper)
-            sectionStroage[.movieDetailInformationSection]?.value = [movieInformationWrapper]
-        }
-        
-        Task {
-            let moiveCastGroup = await loadMovieCast(movieCode: movieCode)
-            let moiveCastWrapper = moiveCastGroup.map { movieCast in
-                DetailEntityWrapper.movieCast(movieCast)
-            }
-            
-            print("========= moiveCastWrapper Loading... =============")
-            print(moiveCastWrapper)
-            sectionStroage[.movieOfficialsSection]?.value = moiveCastWrapper
-        }
-    }
+    private let detailLoader: DetailLoader
 }
 
 //MARK: - [Private Method] Use at internal ViewModel
 extension DetailViewModel {
+    
+    func fetchDataAccording(to sectionType: DetailSectionList, and movieCode: String) async -> [DetailEntityWrapper]? {
+        switch sectionType {
+        case .movieDetailInformationSection:
+            guard let information = await loadSelectedMovieDetailInformation(
+                movieCode: movieCode) else { return  nil }
+            return [DetailEntityWrapper.movieDetailInformation(information)]
+        case .movieOfficialsSection:
+            let credits = await loadMovieCast(movieCode: movieCode)
+            return credits.map { cast in
+                DetailEntityWrapper.movieCast(cast)
+            }
+        case .audienceCountSection:
+            return nil
+        }
+    }
     
     func loadSelectedMovieDetailInformation(movieCode: String) async -> MovieInformation? {
         
@@ -87,8 +69,9 @@ extension DetailViewModel {
                 
                 let movieCast = MovieCast(
                     identifier: UUID(),
-                    castInformation: CastInformation(originalName: cast.name,
-                                                     character: cast.character, job: cast.job),
+                    castInformation: CastInformation(
+                        originalName: cast.name, character: cast.character, job: cast.job
+                    ),
                     peopleImage: imageData)
                 movieCastGroup.append(movieCast)
             }

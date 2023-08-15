@@ -102,7 +102,7 @@ extension MovieDetailInformationCell {
         
         for genre in item.genres {
             let plusComma = genre + ", "
-            genreSentence += genre
+            genreSentence += plusComma
         }
         
         let summary = "\(item.subInformation.releaseDate) | \(nationSentence) |\n \(genreSentence) | \(item.subInformation.runtime)"

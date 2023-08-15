@@ -11,12 +11,16 @@ final class MovieDetailViewController: UIViewController {
     
     //MARK: - Property
     
+    var movieDetailData: TrendMovie?
+    
     var posterImageDataReceivedFromHomeView: Data?
     
     //MARK: - Override Method
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        posterImageDataReceivedFromHomeView = movieDetailData?.posterImage
     }
     
     override func viewDidLoad() {
@@ -34,9 +38,10 @@ final class MovieDetailViewController: UIViewController {
     )
     
     private let detailViewModel = DetailViewModel()
-    private let dataSource = MovieDetailDataSource()
     
     private var detailDiffableDataSource: UICollectionViewDiffableDataSource<DetailSectionList, DetailEntityWrapper>?
+    
+    private var snapshot = NSDiffableDataSourceSnapshot<DetailSectionList, DetailEntityWrapper>()
 }
 
 //MARK: - [Private Method] Configure of UI Components
@@ -59,7 +64,6 @@ extension MovieDetailViewController {
         movieDetailCollectionView.clipsToBounds = true
         movieDetailCollectionView.backgroundColor = .white
         movieDetailCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
-        movieDetailCollectionView.dataSource = dataSource
         movieDetailCollectionView.contentInsetAdjustmentBehavior = .never
     }
 }
@@ -77,7 +81,7 @@ extension MovieDetailViewController {
             movieDetailCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
             movieDetailCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             movieDetailCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            movieDetailCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            movieDetailCollectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
     }
     
@@ -93,39 +97,19 @@ extension MovieDetailViewController {
 extension MovieDetailViewController {
     
     private func detailSnapShot() {
-        var snapshot = NSDiffableDataSourceSnapshot<DetailSectionList, DetailEntityWrapper>()
         
         DetailSectionList.allCases.forEach { sectionList in
             
-            //MARK: - fetchAll
-//            Task {
-//                detailViewModel.loadMovieCast(movieCode: movieDetailData)
-//                detailViewModel.loadNeedTotMovieDetailSection(movieCode: <#T##String#>)
-//            }
-//            homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: sectionList)
-            
-            let bindModel = detailViewModel.sectionStroage[sectionList]
-            
-            bindModel?.bind(listener: { businessModelWrapper in
+            if let movieCode = movieDetailData?.movieCode {
                 
-                guard let bindModels = businessModelWrapper else {
-                    print("bindModels Unwrapping Fail...")
-                    return
+                Task {
+                    guard let storage = await detailViewModel.fetchDataAccording(to: sectionList, and:movieCode) else { return }
+                    
+                    snapshot.appendSections([sectionList])
+                    snapshot.appendItems(storage)
+                    await detailDiffableDataSource?.apply(snapshot, animatingDifferences: true)
                 }
-                
-                print("✅ 현재 SectionList의 위치")
-                print("\(sectionList), keyRawValue = \(sectionList.rawValue)")
-                
-//                let section = DetailSection(type: sectionList, items: bindModels)
-                
-//                print("✅ 현재 Section 확인중...")
-//                print(section.items.isEmpty)
-                
-                // 섹션 추가
-//                snapshot.appendSections([section.type])
-                snapshot.appendItems(bindModels)
-                self.detailDiffableDataSource?.apply(snapshot)
-            })
+            }
         }
     }
     
@@ -138,9 +122,8 @@ extension MovieDetailViewController {
                 return
             }
             
-            cell.configure(movieInformation,
-                           at: indexPath,
-                           posterImageData: unwarppingposterImageDataReceivedFromHomeView
+            cell.configure(movieInformation, at: indexPath,
+                posterImageData: unwarppingposterImageDataReceivedFromHomeView
             )
         }
         
@@ -167,9 +150,10 @@ extension MovieDetailViewController {
             }
         }
         
-        detailDiffableDataSource = UICollectionViewDiffableDataSource<DetailSectionList, DetailEntityWrapper>(collectionView: movieDetailCollectionView) {
+        detailDiffableDataSource = UICollectionViewDiffableDataSource<DetailSectionList, DetailEntityWrapper>(
+            collectionView: movieDetailCollectionView) {
             (collectionView, indexPath, detailEntityWrapper) in
-            
+
             switch detailEntityWrapper {
             case let .movieDetailInformation(movieInformationItem):
                 return collectionView.dequeueConfiguredReusableCell(
@@ -181,9 +165,12 @@ extension MovieDetailViewController {
                 )
             }
         }
-        
-        detailDiffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
-            return self.movieDetailCollectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
+
+        detailDiffableDataSource?.supplementaryViewProvider = {
+            (view, kind, index) in
+            return self.movieDetailCollectionView.dequeueConfiguredReusableSupplementary(
+                using: headerRegistration,for: index
+            )
         }
     }
 }
