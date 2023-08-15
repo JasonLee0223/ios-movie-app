@@ -24,8 +24,9 @@ enum MagicLiteral {
     }
 
     enum Title {
-        static let weekTrendList = "이번 주 영화 트렌드"
-        static let todayTrendList = "오늘 영화 트렌드"
+        static let title = "트렌딩"
+        static let weekTrendList = "이번 주"
+        static let todayTrendList = "오늘"
         static let stillCut = "영화 스틸 컷"
         static let koreaBoxOfficeMovieList = "한국 박스오피스 영화 순위"
         
