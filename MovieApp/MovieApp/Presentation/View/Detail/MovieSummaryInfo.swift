@@ -11,9 +11,6 @@ import UIKit
 final class MovieSummaryInfo: UIStackView {
     
     //MARK: - Initializer
-    let mockData = ["전체 관람가", "슈퍼 마리오 브라더스",
-                    "The Super Mario Bros", "2023.04.26",
-                    "미국", "애니메이션", "92분"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
