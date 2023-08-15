@@ -70,25 +70,17 @@ extension HomeViewController {
     }
     
     private func configureOfNavigationBar() {
-        let title: UIButton = {
-            let title = UIButton()
-            title.setTitle(
-                MagicLiteral.RelatedToNavigationController.navigationTitle,
-                for: .normal
-            )
-            title.titleLabel?.font = UIFont.systemFont(
-                ofSize: MagicNumber.Attributes.navigationBarButtonFont,
-                weight: .bold
-            )
-            title.tintColor = .white
+        let title: UILabel = {
+            let title = UILabel()
+            title.text = MagicLiteral.RelatedToNavigationController.navigationTitle
+            title.textColor = .systemGreen
+            title.font = .boldSystemFont(ofSize: MagicNumber.Attributes.navigationBarButtonFont)
             return title
         }()
         
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.backgroundColor = .black
-        navigationAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.standardAppearance = navigationAppearance
-        
         self.navigationItem.leftBarButtonItem = .init(customView: title)
     }
     
