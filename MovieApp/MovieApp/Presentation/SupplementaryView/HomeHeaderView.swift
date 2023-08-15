@@ -37,8 +37,7 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         sortedByTrendWeek.layer.borderWidth = MagicNumber.borderWidth
         sortedByTrendWeek.layer.borderColor = UIColor.systemGray5.cgColor
         
-        sortedByTrendWeek.setTitle(MagicLiteral.Title.weekTrendList,
-                                      for: .normal)
+        sortedByTrendWeek.setTitle(MagicLiteral.Title.weekTrendList, for: .normal)
         sortedByTrendWeek.titleLabel?.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
@@ -56,10 +55,7 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         sortedByTrendDay.layer.borderWidth = MagicNumber.borderWidth
         sortedByTrendDay.layer.cornerRadius = MagicNumber.cornerRadius
         
-        sortedByTrendDay.setTitle(
-            MagicLiteral.Title.todayTrendList,
-            for: .normal
-        )
+        sortedByTrendDay.setTitle(MagicLiteral.Title.todayTrendList, for: .normal)
         sortedByTrendDay.titleLabel?.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
@@ -131,11 +127,12 @@ extension HomeHeaderView {
         sortStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             sortStack.topAnchor.constraint(
-                equalTo: safeArea.topAnchor
+                equalTo: safeArea.topAnchor,
+                constant: 10
             ),
             sortStack.leadingAnchor.constraint(
                 equalTo: safeArea.leadingAnchor,
-                constant: 20
+                constant: 15
             ),
             sortStack.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
