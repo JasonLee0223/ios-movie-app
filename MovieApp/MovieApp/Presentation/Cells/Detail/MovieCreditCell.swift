@@ -120,10 +120,10 @@ extension MovieCreditCell {
                 equalTo: safeArea.topAnchor
             ),
             horizontalTotalUIStack.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
+                equalTo: safeArea.leadingAnchor, constant: 20
             ),
             horizontalTotalUIStack.trailingAnchor.constraint(
-                equalTo: safeArea.trailingAnchor
+                equalTo: safeArea.trailingAnchor, constant: -20
             ),
             horizontalTotalUIStack.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
