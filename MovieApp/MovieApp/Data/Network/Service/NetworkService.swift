@@ -16,25 +16,56 @@ final class NetworkService: Gettable {
         self.session = URLSession(configuration: .default)
         
         DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
-            self.loadBoxOffice { result in
+            self.loadTrendMovieList { result in
                 print(result)
             }
+            
+//            self.loadBoxOffice { result in
+//                print(result)
+//            }
         }
     }
-    
-    //MARK: - Private Property
 
     private let session: URLSession
 }
 
-//MARK: - [Private Method] Configure of Service (URLResponse, Decoding)
+//MARK: - Apply Alamofire
 extension NetworkService {
     
+    func loadTrendMovieList(completionHandler: @escaping ([Result]) -> Void) {
+        guard let url = URL(string: TMDBBasic.trendMovieListBaseURL + TMDBBasic.pathQueryOfWeak) else { return }
+        let parameters = TMDBQueryParameters(language: TMDBAPIMagicLiteral.language, key: getAPIKEY(type: .TMDB))
+        
+        AF.request(url, method: .get, parameters: parameters)
+            .responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let result = try JSONDecoder().decode(TMDBTrendMovieList.self, from: data)
+                    completionHandler(result.results)
+                } catch {
+                    print(DataLoadError.failOfTrendMovieListData)
+                }
+            case .failure(let error):
+                switch error {
+                case .sessionTaskFailed(let sessionError):
+                    print("Session Error: \(sessionError)")
+                case .createURLRequestFailed(let urlRequestError):
+                    print("URLRequest Error: \(urlRequestError)")
+                default:
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    /// BoxOffice
     func loadBoxOffice(completionHandler: @escaping ([DailyBoxOfficeList]) -> Void) {
         guard let url = URL(string: KOFICBasic.baseURL + Show.boxOffice + Show.searchDailyList + KOFICBasic.format) else { return }
         let parameters = BoxOfficeQueryParameters(key: getAPIKEY(type: .KOFIC), targetDate: getCurrentDate().split(separator: "-").joined())
         
-        AF.request(url, method: .get, parameters: parameters).responseData { response in
+        AF.request(url, method: .get, parameters: parameters)
+            .responseData { response in
             switch response.result {
             case .success(let data):
                 do {
@@ -55,6 +86,10 @@ extension NetworkService {
             }
         }
     }
+}
+
+//MARK: - [Private Method] Configure of Service (URLResponse, Decoding)
+extension NetworkService {
     
     func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
         

@@ -37,7 +37,7 @@ enum APIKEYType {
     var keyName: String {
         switch self {
         case .TMDB: return "TVDBAPIKEY"
-        case .KOFIC:return "BoxOfficeAPIKEY"
+        case .KOFIC: return "BoxOfficeAPIKEY"
         }
     }
     

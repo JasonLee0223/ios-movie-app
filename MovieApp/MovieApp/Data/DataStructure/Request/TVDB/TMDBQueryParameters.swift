@@ -8,7 +8,6 @@
 import Foundation
 
 struct TMDBQueryParameters: Encodable {
-    /// TMDBAPIMagicLiteral.language, TMDBAPIMagicLiteral.key
     let language: String
     let key: String
     
