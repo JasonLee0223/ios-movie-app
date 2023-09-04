@@ -23,31 +23,31 @@ final class DetailLoader {
 //MARK: - [Public Method] Use at DetailViewModel
 extension DetailLoader {
     
-    func loadMovieDetailInformation(movieCode: String) async throws -> TMDBMovieDetail {
-        
-        let movieDetailInformationQuryParameters = TMDBQueryParameters()
-        
-        guard let networkResult = try? await networkService.request(
-            with: TMDBAPIEndPoint.receiveMovieDetail(
-                with: movieDetailInformationQuryParameters, movieID: movieCode)
-        ) else {
-            throw DataLoadError.failOfMovieDetailInfromationData
-        }
-        return networkResult
-    }
+//    func loadMovieDetailInformation(movieCode: String) async throws -> TMDBMovieDetail {
+//
+//        let movieDetailInformationQuryParameters = TMDBQueryParameters()
+//
+//        guard let networkResult = try? await networkService.request(
+//            with: TMDBAPIEndPoint.receiveMovieDetail(
+//                with: movieDetailInformationQuryParameters, movieID: movieCode)
+//        ) else {
+//            throw DataLoadError.failOfMovieDetailInfromationData
+//        }
+//        return networkResult
+//    }
     
-    func loadMovieCredit(movieCode: String) async throws -> TMDBMovieCredit {
-        
-        let movieCreditQueryParameters = TMDBQueryParameters()
-        
-        guard let networkResult = try? await networkService.request(
-            with: TMDBAPIEndPoint.receiveCreditInformation(
-                with: movieCreditQueryParameters, movieID: movieCode)
-        ) else {
-            throw DataLoadError.failOfMovieDetailInfromationData
-        }
-        return networkResult
-    }
+//    func loadMovieCredit(movieCode: String) async throws -> TMDBMovieCredit {
+//
+//        let movieCreditQueryParameters = TMDBQueryParameters()
+//
+//        guard let networkResult = try? await networkService.request(
+//            with: TMDBAPIEndPoint.receiveCreditInformation(
+//                with: movieCreditQueryParameters, movieID: movieCode)
+//        ) else {
+//            throw DataLoadError.failOfMovieDetailInfromationData
+//        }
+//        return networkResult
+//    }
     
     //TODO: - HomeViewModel과 동일한 메서드로 중복 제거 요망
     func fetchImage(imagePath: String) throws -> Data {

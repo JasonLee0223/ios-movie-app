@@ -6,13 +6,20 @@
 //
 
 import Foundation
+import Alamofire
 
-final class NetworkService {
+final class NetworkService: Gettable {
 
     //MARK: - Initializer
     
     init() {
         self.session = URLSession(configuration: .default)
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
+            self.loadBoxOffice { result in
+                print(result)
+            }
+        }
     }
     
     //MARK: - Private Property
@@ -22,6 +29,32 @@ final class NetworkService {
 
 //MARK: - [Private Method] Configure of Service (URLResponse, Decoding)
 extension NetworkService {
+    
+    func loadBoxOffice(completionHandler: @escaping ([DailyBoxOfficeList]) -> Void) {
+        guard let url = URL(string: KOFICBasic.baseURL + Show.boxOffice + Show.searchDailyList + KOFICBasic.format) else { return }
+        let parameters = BoxOfficeQueryParameters(key: getAPIKEY(type: .KOFIC), targetDate: getCurrentDate().split(separator: "-").joined())
+        
+        AF.request(url, method: .get, parameters: parameters).responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let result = try JSONDecoder().decode(BoxOffice.self, from: data)
+                    completionHandler(result.boxOfficeResult.dailyBoxOfficeList)
+                } catch {
+                    print(DataLoadError.loadFailOfBoxOfficeList)
+                }
+            case .failure(let error):
+                switch error {
+                case .sessionTaskFailed(let sessionError):
+                    print("Session Error: \(sessionError)")
+                case .createURLRequestFailed(let urlRequestError):
+                    print("URLRequest Error: \(urlRequestError)")
+                default:
+                    print(error)
+                }
+            }
+        }
+    }
     
     func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
         

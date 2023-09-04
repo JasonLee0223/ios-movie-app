@@ -8,7 +8,7 @@
 import Foundation
 
 struct MovieDetailQueryParameters: Encodable {
-    let key = KOFICAPIMagicLiteral.key
+    let key: String
     var movieCode: String
     
     enum CodingKeys: String, CodingKey {

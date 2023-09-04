@@ -169,12 +169,12 @@ extension HomeViewController {
         HomeSection.allCases.forEach { section in
             
             Task {
-                let apiData = await homeViewModel.loadTrendOfWeekMovieListFromTMDB()
+//                let apiData = await homeViewModel.loadTrendOfWeekMovieListFromTMDB()
                 
-                snapshot.appendSections([section])
-                snapshot.appendItems(apiData)
-                await diffableDataSource?.apply(snapshot, animatingDifferences: true)
-                completion(true)
+//                snapshot.appendSections([section])
+//                snapshot.appendItems(apiData)
+//                await diffableDataSource?.apply(snapshot, animatingDifferences: true)
+//                completion(true)
             }
         }
     }

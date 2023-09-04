@@ -19,25 +19,25 @@ final class HomeViewModel {
 //MARK: - Use at TMDB
 extension HomeViewModel {
     /// Top Method
-    func loadTrendOfWeekMovieListFromTMDB() async -> [TrendMovie] {
-        
-        var trendMovieListGroup = [TrendMovie]()
-        
-        do {
-            let networkResult = try await self.homeLoader.loadTrendMovieList()
-            
-            for result in networkResult {
-                let imageData = try await fetchImage(imagePath: result.movieImageURL)
-                let trendMovie = TrendMovie(movieCode: String(result.movieID),
-                    posterImage: imageData, posterName: result.movieKoreaTitle
-                )
-                trendMovieListGroup.append(trendMovie)
-            }
-        } catch {
-            print(HomeViewModelInError.failOfLoadToTrendMovieList)
-        }
-        return trendMovieListGroup
-    }
+//    func loadTrendOfWeekMovieListFromTMDB() async -> [TrendMovie] {
+//        
+//        var trendMovieListGroup = [TrendMovie]()
+//        
+//        do {
+//            let networkResult = try await self.homeLoader.loadTrendMovieList()
+//            
+//            for result in networkResult {
+//                let imageData = try await fetchImage(imagePath: result.movieImageURL)
+//                let trendMovie = TrendMovie(movieCode: String(result.movieID),
+//                    posterImage: imageData, posterName: result.movieKoreaTitle
+//                )
+//                trendMovieListGroup.append(trendMovie)
+//            }
+//        } catch {
+//            print(HomeViewModelInError.failOfLoadToTrendMovieList)
+//        }
+//        return trendMovieListGroup
+//    }
     
     /// Bottom Method
     private func fetchImage(imagePath: String) async throws -> Data {

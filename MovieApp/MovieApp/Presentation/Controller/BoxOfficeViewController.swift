@@ -133,11 +133,11 @@ extension BoxOfficeViewController {
         BoxOfficeSection.allCases.forEach { section in
             
             Task {
-                let apiData = await boxOfficeViewModel.fetchBoxOfficeMovieList()
+//                let apiData = await boxOfficeViewModel.fetchBoxOfficeMovieList()
                 
-                snapshot.appendSections([section])
-                snapshot.appendItems(apiData)
-                await diffableDataSource?.apply(snapshot, animatingDifferences: true)
+//                snapshot.appendSections([section])
+//                snapshot.appendItems(apiData)
+//                await diffableDataSource?.apply(snapshot, animatingDifferences: true)
             }
         }
     }

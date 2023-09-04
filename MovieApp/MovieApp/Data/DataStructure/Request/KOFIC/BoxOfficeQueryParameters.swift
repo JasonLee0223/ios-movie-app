@@ -8,8 +8,9 @@
 import Foundation
 
 struct BoxOfficeQueryParameters: Encodable {
-    let key = KOFICAPIMagicLiteral.key
-    var targetDate: String
+    
+    let key: String
+    let targetDate: String
     
     enum CodingKeys: String, CodingKey {
         case key = "key"

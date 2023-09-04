@@ -103,11 +103,11 @@ extension MovieDetailViewController {
             if let movieCode = movieDetailData?.movieCode {
                 
                 Task {
-                    guard let storage = await detailViewModel.fetchDataAccording(to: sectionList, and:movieCode) else { return }
+//                    guard let storage = await detailViewModel.fetchDataAccording(to: sectionList, and:movieCode) else { return }
                     
-                    snapshot.appendSections([sectionList])
-                    snapshot.appendItems(storage)
-                    await detailDiffableDataSource?.apply(snapshot, animatingDifferences: true)
+//                    snapshot.appendSections([sectionList])
+//                    snapshot.appendItems(storage)
+//                    await detailDiffableDataSource?.apply(snapshot, animatingDifferences: true)
                 }
             }
         }
