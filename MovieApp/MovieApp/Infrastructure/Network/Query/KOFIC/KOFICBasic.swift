@@ -10,4 +10,5 @@ import Foundation
 enum KOFICBasic {
     static let baseURL: String = "https://www.kobis.or.kr/kobisopenapi/webservice/rest"
     static let format: String = ".json"
+    static let movieCode = "movieCd"
 }

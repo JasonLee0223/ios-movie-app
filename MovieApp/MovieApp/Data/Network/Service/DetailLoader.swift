@@ -31,7 +31,7 @@ extension DetailLoader {
 //            with: TMDBAPIEndPoint.receiveMovieDetail(
 //                with: movieDetailInformationQuryParameters, movieID: movieCode)
 //        ) else {
-//            throw DataLoadError.failOfMovieDetailInfromationData
+//            throw DataLoadError.loadFailOfMovieDetailInfromationData
 //        }
 //        return networkResult
 //    }
@@ -44,7 +44,7 @@ extension DetailLoader {
 //            with: TMDBAPIEndPoint.receiveCreditInformation(
 //                with: movieCreditQueryParameters, movieID: movieCode)
 //        ) else {
-//            throw DataLoadError.failOfMovieDetailInfromationData
+//            throw DataLoadError.loadFailOfMovieDetailInfromationData
 //        }
 //        return networkResult
 //    }

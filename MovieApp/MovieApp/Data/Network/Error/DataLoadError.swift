@@ -8,16 +8,16 @@
 import Foundation
 
 enum DataLoadError: LocalizedError {
-    case failOfMovieDetailInfromationData
-    case failOfTrendMovieListData
-    case failOfMovieCreditsData
+    case loadFailOfTrendMovieListData
+    case loadFailOfMovieDetailInfromationData
+    case loadFailOfMovieCreditsData
     case loadFailOfBoxOfficeList
     
     var errorDescription: String? {
         switch self {
-        case .failOfMovieDetailInfromationData: return "❌ Fail Of MovieDetailInfromationData"
-        case .failOfTrendMovieListData: return "❌ Fail Of TrendMovieListData"
-        case .failOfMovieCreditsData: return "❌ Fail Of MovieCreditsData"
+        case .loadFailOfTrendMovieListData: return "❌ Fail Of TrendMovieListData"
+        case .loadFailOfMovieDetailInfromationData: return "❌ Fail Of MovieDetailInfromationData"
+        case .loadFailOfMovieCreditsData: return "❌ Fail Of MovieCreditsData"
         case .loadFailOfBoxOfficeList: return "❌ Fail Of KoreaBoxOfficeMovieListData"
         }
     }

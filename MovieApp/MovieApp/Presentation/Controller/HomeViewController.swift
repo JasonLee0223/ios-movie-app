@@ -78,22 +78,22 @@ extension HomeViewController {
             return title
         }()
         
-        let profile: UIButton = {
-            var config = UIButton.Configuration.bordered()
-            config.buttonSize = .medium
-            config.baseBackgroundColor = .black
-            config.baseForegroundColor = .systemGray5
-            
-            let profile = UIButton(configuration: config)
-            profile.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
-            return profile
-        }()
+//        let profile: UIButton = {
+//            var config = UIButton.Configuration.bordered()
+//            config.buttonSize = .medium
+//            config.baseBackgroundColor = .black
+//            config.baseForegroundColor = .systemGray5
+//            
+//            let profile = UIButton(configuration: config)
+//            profile.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
+//            return profile
+//        }()
         
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.backgroundColor = .black
         navigationController?.navigationBar.standardAppearance = navigationAppearance
         self.navigationItem.leftBarButtonItem = .init(customView: title)
-        self.navigationItem.rightBarButtonItem = .init(customView: profile)
+//        self.navigationItem.rightBarButtonItem = .init(customView: profile)
     }
     
     private func configureOfTabBar() {

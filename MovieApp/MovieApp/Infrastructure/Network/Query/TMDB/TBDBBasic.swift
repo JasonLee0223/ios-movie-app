@@ -16,4 +16,5 @@ enum TMDBBasic {
     static let pathQueryOfCredit: String = "/credits"
     
     static let imageURL: String = "https://image.tmdb.org/t/p/original"
+    static let language = "ko-KR"
 }

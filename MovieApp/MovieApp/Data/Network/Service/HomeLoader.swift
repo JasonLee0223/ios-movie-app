@@ -32,7 +32,7 @@ extension HomeLoader {
 //            with: TMDBAPIEndPoint.receiveWeakTrendingList(
 //                with: popularMovieListQueryParameters)
 //        ).results else {
-//            throw DataLoadError.failOfTrendMovieListData
+//            throw DataLoadError.loadFailOfTrendMovieListData
 //        }
 //        return networkResult
 //    }
@@ -71,7 +71,7 @@ extension HomeLoader {
 //                ).movieInfoResult.movieInfo
 //                networkResult.append(result)
 //            } catch {
-//                throw DataLoadError.failOfMovieDetailInfromationData
+//                throw DataLoadError.loadFailOfMovieDetailInfromationData
 //            }
 //        }
 //

@@ -15,14 +15,10 @@ final class NetworkService: Gettable {
     init() {
         self.session = URLSession(configuration: .default)
         
-        DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
-            self.loadTrendMovieList { result in
-                print(result)
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+            self.loadMovieDetailInformation(movieCode: "603692") { detailResult in
+                print(detailResult)
             }
-            
-//            self.loadBoxOffice { result in
-//                print(result)
-//            }
         }
     }
 
@@ -32,9 +28,10 @@ final class NetworkService: Gettable {
 //MARK: - Apply Alamofire
 extension NetworkService {
     
+    /// TMDB
     func loadTrendMovieList(completionHandler: @escaping ([Result]) -> Void) {
         guard let url = URL(string: TMDBBasic.trendMovieListBaseURL + TMDBBasic.pathQueryOfWeak) else { return }
-        let parameters = TMDBQueryParameters(language: TMDBAPIMagicLiteral.language, key: getAPIKEY(type: .TMDB))
+        let parameters = TMDBQueryParameters(language: TMDBBasic.language, key: getAPIKEY(type: .TMDB))
         
         AF.request(url, method: .get, parameters: parameters)
             .responseData { response in
@@ -44,7 +41,7 @@ extension NetworkService {
                     let result = try JSONDecoder().decode(TMDBTrendMovieList.self, from: data)
                     completionHandler(result.results)
                 } catch {
-                    print(DataLoadError.failOfTrendMovieListData)
+                    print(DataLoadError.loadFailOfTrendMovieListData)
                 }
             case .failure(let error):
                 switch error {
@@ -57,6 +54,48 @@ extension NetworkService {
                 }
             }
         }
+    }
+    
+    func loadMovieDetailInformation(movieCode: String, completionHandler: @escaping (TMDBMovieDetail) -> Void) {
+        let detailURLString = TMDBBasic.movieDetailBaseURL + movieCode
+        let creditURLString = TMDBBasic.movieDetailBaseURL + movieCode + TMDBBasic.pathQueryOfCredit
+        
+        guard let detailURL = URL(string: detailURLString) else { return }
+        guard let creditURL = URL(string: creditURLString) else { return }
+        
+        let parameters = TMDBQueryParameters(language: TMDBBasic.language, key: getAPIKEY(type: .TMDB))
+        
+        AF.request(detailURL, method: .get, parameters: parameters)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let result = try JSONDecoder().decode(TMDBMovieDetail.self, from: data)
+                        completionHandler(result)
+                    } catch {
+                        print(DataLoadError.loadFailOfMovieDetailInfromationData)
+                    }
+                case .failure(let error):
+                    print(error)
+                    break
+                }
+            }
+        
+        AF.request(creditURL, method: .get, parameters: parameters)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let result = try JSONDecoder().decode(TMDBMovieCredit.self, from: data)
+                        print(result)
+                    } catch {
+                        print(DataLoadError.loadFailOfMovieCreditsData)
+                    }
+                case .failure(let error):
+                    print(error)
+                    break
+                }
+            }
     }
     
     /// BoxOffice
@@ -88,7 +127,7 @@ extension NetworkService {
     }
 }
 
-//MARK: - [Private Method] Configure of Service (URLResponse, Decoding)
+//MARK: - [Private Method] Custom Configure of Service (URLResponse, Decoding)
 extension NetworkService {
     
     func request<R: Decodable, E: RequestAndResponsable>(with endPoint: E) async throws -> R where E.Responese == R {
