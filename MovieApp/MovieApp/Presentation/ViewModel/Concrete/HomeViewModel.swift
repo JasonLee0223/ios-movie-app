@@ -7,10 +7,26 @@
 
 import Foundation
 
-final class HomeViewModel {
+extension HomeViewModel {
+    
+    struct Action {
+        
+    }
+    
+    struct State {
+        
+    }
+}
+
+final class HomeViewModel: ViewModel {
+    let action: Action
+    let state: State
     
     init() {
         self.networkManager = NetworkManager()
+        
+        self.action = Action()
+        self.state = State()
     }
 
     private let networkManager: NetworkManager
