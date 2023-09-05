@@ -9,11 +9,11 @@ import Foundation
 
 final class BoxOfficeViewModel {
     
-    init() {
-        self.boxOfficeLoader = BoxOfficeLoader()
-    }
-    
-    private let boxOfficeLoader: BoxOfficeLoader
+//    init() {
+//        self.boxOfficeLoader = BoxOfficeLoader()
+//    }
+//
+//    private let boxOfficeLoader: BoxOfficeLoader
 }
 
 //MARK: - [Public] Use at BoxOfficeViewController

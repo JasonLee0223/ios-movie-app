@@ -9,11 +9,11 @@ import Foundation
 
 final class HomeViewModel {
     
-    init() {
-        self.homeLoader = HomeLoader()
-    }
-    
-    private let homeLoader: HomeLoader
+//    init() {
+//        self.homeLoader = HomeLoader()
+//    }
+//
+//    private let homeLoader: HomeLoader
 }
 
 //MARK: - Use at TMDB
@@ -53,5 +53,52 @@ extension HomeViewModel {
         }
         
         return imageData
+    }
+    
+    func convertToMovieInformation(from networkResult: TMDBMovieDetail) throws -> MovieInformation {
+        
+        let wrappingMovieInformation: MovieInformation?
+        
+        var watchGrade: String = ""
+        
+        let nations = try networkResult.productionCountries.compactMap { countriesInfo in
+            
+            guard let country = StandardNationList(rawValue: countriesInfo.iso_3166_1) else {
+                throw DetailViewModelInError.failedToFindCountryCode
+            }
+            let countryName = country.countryName
+            return countryName
+        }
+        
+        let genres = networkResult.genres.map { genre in
+            genre.name
+        }
+        
+        if !networkResult.adult {
+            watchGrade = "전체 이용가"
+        }
+        
+        wrappingMovieInformation = MovieInformation(
+            identifier: UUID(),
+            posterHeaderArea: PosterHeaderArea(
+                watchGrade: watchGrade,
+                movieKoreanName: networkResult.koreanTitle,
+                movieEnglishName: networkResult.movieEnglishTitle
+            ),
+            
+            nations: nations,
+            genres: genres,
+            
+            subInformation: SubInformation(
+                releaseDate: networkResult.releaseDate,
+                runtime: String(networkResult.runtime) + " 분",
+                overview: networkResult.overview
+            )
+        )
+        
+        guard let movieInformation = wrappingMovieInformation else {
+            throw DetailViewModelInError.failOfUnwrapping
+        }
+        return movieInformation
     }
 }

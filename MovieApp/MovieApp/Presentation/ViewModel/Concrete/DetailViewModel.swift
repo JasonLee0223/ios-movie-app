@@ -11,13 +11,13 @@ final class DetailViewModel {
     
     //MARK: - Initializer
     
-    init() {
-        self.detailLoader = DetailLoader()
-    }
-    
-    //MARK: - Private Property
-    
-    private let detailLoader: DetailLoader
+//    init() {
+//        self.detailLoader = DetailLoader()
+//    }
+//    
+//    //MARK: - Private Property
+//    
+//    private let detailLoader: DetailLoader
 }
 
 //MARK: - [Private Method] Use at internal ViewModel
