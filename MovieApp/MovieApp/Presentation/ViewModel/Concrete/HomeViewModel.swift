@@ -9,11 +9,11 @@ import Foundation
 
 final class HomeViewModel {
     
-//    init() {
-//        self.homeLoader = HomeLoader()
-//    }
-//
-//    private let homeLoader: HomeLoader
+    init() {
+        self.networkManager = NetworkManager()
+    }
+
+    private let networkManager: NetworkManager
 }
 
 //MARK: - Use at TMDB
@@ -42,11 +42,7 @@ extension HomeViewModel {
     /// Bottom Method
     private func fetchImage(imagePath: String) async throws -> Data {
         
-        let imageURLPath = "\(TMDBBasic.imageURL)\(imagePath)"
-        
-        guard let imageURL = URL(string: imageURLPath) else {
-            throw HomeViewModelInError.failOfMakeURL
-        }
+        let imageURL = MakeQueryItem.posterImage(imagePath).url
             
         guard let imageData = try? Data(contentsOf: imageURL) else {
             throw HomeViewModelInError.failOfMakeData

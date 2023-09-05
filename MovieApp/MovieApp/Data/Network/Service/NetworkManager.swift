@@ -7,35 +7,34 @@
 
 import Foundation
 import Alamofire
+import RxSwift
 
 final class NetworkManager: Gettable {
-
+    
+    
     /// TMDB
-    func loadTrendMovieList(path: MakeQueryItem.SubPath , completionHandler: @escaping ([Result]) -> Void) {
+    func loadTrendMovieList(path: MakeQueryItem.SubPath) -> Single<[Result]> {
         
         let url = MakeQueryItem.trendMovie(path).url
         let parameters = TMDBQueryParameters(language: getLangauge, key: getAPIKEY(type: .TMDB))
         
-        AF.request(url, method: .get, parameters: parameters)
-            .responseData { response in
-            switch response.result {
-            case .success(let data):
-                do {
-                    let result = try JSONDecoder().decode(TMDBTrendMovieList.self, from: data)
-                    completionHandler(result.results)
-                } catch {
-                    print(DataLoadError.loadFailOfTrendMovieListData)
-                }
-            case .failure(let error):
-                switch error {
-                case .sessionTaskFailed(let sessionError):
-                    print("Session Error: \(sessionError)")
-                case .createURLRequestFailed(let urlRequestError):
-                    print("URLRequest Error: \(urlRequestError)")
-                default:
+        return Single<[Result]>.create { single in
+            AF.request(url, method: .get, parameters: parameters)
+                .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let result = try self.decoder.decode(TMDBTrendMovieList.self, from: data)
+                        single(.success(result.results))
+                    } catch {
+                        print(DataLoadError.loadFailOfTrendMovieListData)
+                    }
+                case .failure(let error):
                     print(error)
+                    break
                 }
             }
+            return Disposables.create()
         }
     }
     
@@ -53,8 +52,7 @@ final class NetworkManager: Gettable {
                     switch response.result {
                     case .success(let data):
                         do {
-                            //TODO: - Detail, Credit 어떤 타입인지 체크하는 로직으로 변경
-                            let result = try JSONDecoder().decode(TMDBMovieDetail.self, from: data)
+                            let result = try self.decoder.decode(TMDBMovieDetail.self, from: data)
                             completionHandler(result)
                         } catch {
                             print(DataLoadError.loadFailOfMovieDetailInfromationData)
@@ -73,30 +71,32 @@ final class NetworkManager: Gettable {
     }
     
     /// BoxOffice
-    func loadBoxOffice(completionHandler: @escaping ([DailyBoxOfficeList]) -> Void) {
+    func loadBoxOffice() -> Single<[DailyBoxOfficeList]> {
         let url = MakeQueryItem.boxOffice.url
-        let parameters = BoxOfficeQueryParameters(key: getAPIKEY(type: .KOFIC), targetDate: getCurrentDate().split(separator: "-").joined())
+        let parameters = BoxOfficeQueryParameters(
+            key: getAPIKEY(type: .KOFIC),
+            targetDate: getCurrentDate().split(separator: "-").joined()
+        )
         
-        AF.request(url, method: .get, parameters: parameters)
-            .responseData { response in
-            switch response.result {
-            case .success(let data):
-                do {
-                    let result = try JSONDecoder().decode(BoxOffice.self, from: data)
-                    completionHandler(result.boxOfficeResult.dailyBoxOfficeList)
-                } catch {
-                    print(DataLoadError.loadFailOfBoxOfficeList)
-                }
-            case .failure(let error):
-                switch error {
-                case .sessionTaskFailed(let sessionError):
-                    print("Session Error: \(sessionError)")
-                case .createURLRequestFailed(let urlRequestError):
-                    print("URLRequest Error: \(urlRequestError)")
-                default:
+        return Single<[DailyBoxOfficeList]>.create { single in
+            AF.request(url, method: .get, parameters: parameters)
+                .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let result = try self.decoder.decode(BoxOffice.self, from: data)
+                        single(.success(result.boxOfficeResult.dailyBoxOfficeList))
+                    } catch {
+                        print(DataLoadError.loadFailOfBoxOfficeList)
+                    }
+                case .failure(let error):
                     print(error)
+                    break
                 }
             }
+            return Disposables.create()
         }
     }
+    
+    private let decoder = JSONDecoder()
 }
