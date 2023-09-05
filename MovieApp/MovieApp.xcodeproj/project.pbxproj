@@ -12,6 +12,10 @@
 		5B09DA022A25CC62001121D6 /* TMDBMovieCredit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09DA012A25CC62001121D6 /* TMDBMovieCredit.swift */; };
 		5B09DA042A25D473001121D6 /* HomeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09DA032A25D473001121D6 /* HomeLoader.swift */; };
 		5B09DA072A25D675001121D6 /* DetailLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09DA062A25D675001121D6 /* DetailLoader.swift */; };
+		5B208E732AA7008900E3A09F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5B208E722AA7008900E3A09F /* SnapKit */; };
+		5B208E762AA700B400E3A09F /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5B208E752AA700B400E3A09F /* RxCocoa */; };
+		5B208E782AA700B400E3A09F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 5B208E772AA700B400E3A09F /* RxRelay */; };
+		5B208E7A2AA700B400E3A09F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B208E792AA700B400E3A09F /* RxSwift */; };
 		5B3F1BED2A146EAC0062BE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1BEC2A146EAC0062BE99 /* AppDelegate.swift */; };
 		5B3F1BEF2A146EAC0062BE99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1BEE2A146EAC0062BE99 /* SceneDelegate.swift */; };
 		5B3F1BF12A146EAC0062BE99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1BF02A146EAC0062BE99 /* HomeViewController.swift */; };
@@ -28,8 +32,6 @@
 		5B3F1C342A1489710062BE99 /* BoxOfficeQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C332A1489710062BE99 /* BoxOfficeQueryParameters.swift */; };
 		5B3F1C362A1489A10062BE99 /* MovieDetailQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C352A1489A10062BE99 /* MovieDetailQueryParameters.swift */; };
 		5B3F1C3A2A148AFF0062BE99 /* BoxOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C392A148AFF0062BE99 /* BoxOffice.swift */; };
-		5B3F1C3C2A148B0B0062BE99 /* BoxOfficeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C3B2A148B0B0062BE99 /* BoxOfficeResult.swift */; };
-		5B3F1C3E2A148B140062BE99 /* DailyBoxOfficeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C3D2A148B140062BE99 /* DailyBoxOfficeList.swift */; };
 		5B3F1C412A148B6D0062BE99 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C402A148B6D0062BE99 /* Actor.swift */; };
 		5B3F1C432A148B750062BE99 /* Audit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C422A148B750062BE99 /* Audit.swift */; };
 		5B3F1C452A148B810062BE99 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F1C442A148B810062BE99 /* Company.swift */; };
@@ -95,8 +97,6 @@
 		5BCAA1112A23219A00189C9D /* MovieDetailViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCAA1102A23219A00189C9D /* MovieDetailViewLayout.swift */; };
 		5BCAA1142A23245400189C9D /* MovieDetailInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCAA1132A23245400189C9D /* MovieDetailInformationCell.swift */; };
 		5BCAA1562A2354DD00189C9D /* MovieSummaryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCAA1552A2354DD00189C9D /* MovieSummaryInfo.swift */; };
-		5BCE289B2A1B367E0076F189 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289A2A1B367E0076F189 /* KakaoSDK */; };
-		5BCE289D2A1B367E0076F189 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCE289C2A1B367E0076F189 /* KakaoSDKAuth */; };
 		5BDA15C42A2260CF00F95347 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA15C32A2260CF00F95347 /* MovieDetailViewController.swift */; };
 		5BED9EED2A18C36200C66386 /* TMDBTrendMovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EEC2A18C36200C66386 /* TMDBTrendMovieList.swift */; };
 		5BED9EF12A18C6BD00C66386 /* TMDBQueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9EF02A18C6BD00C66386 /* TMDBQueryParameters.swift */; };
@@ -145,8 +145,6 @@
 		5B3F1C332A1489710062BE99 /* BoxOfficeQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeQueryParameters.swift; sourceTree = "<group>"; };
 		5B3F1C352A1489A10062BE99 /* MovieDetailQueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailQueryParameters.swift; sourceTree = "<group>"; };
 		5B3F1C392A148AFF0062BE99 /* BoxOffice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOffice.swift; sourceTree = "<group>"; };
-		5B3F1C3B2A148B0B0062BE99 /* BoxOfficeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeResult.swift; sourceTree = "<group>"; };
-		5B3F1C3D2A148B140062BE99 /* DailyBoxOfficeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBoxOfficeList.swift; sourceTree = "<group>"; };
 		5B3F1C402A148B6D0062BE99 /* Actor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
 		5B3F1C422A148B750062BE99 /* Audit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audit.swift; sourceTree = "<group>"; };
 		5B3F1C442A148B810062BE99 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
@@ -222,9 +220,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B208E762AA700B400E3A09F /* RxCocoa in Frameworks */,
 				5B3F1C692A1495100062BE99 /* Alamofire in Frameworks */,
-				5BCE289B2A1B367E0076F189 /* KakaoSDK in Frameworks */,
-				5BCE289D2A1B367E0076F189 /* KakaoSDKAuth in Frameworks */,
+				5B208E7A2AA700B400E3A09F /* RxSwift in Frameworks */,
+				5B208E782AA700B400E3A09F /* RxRelay in Frameworks */,
+				5B208E732AA7008900E3A09F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,8 +467,6 @@
 			isa = PBXGroup;
 			children = (
 				5B3F1C392A148AFF0062BE99 /* BoxOffice.swift */,
-				5B3F1C3B2A148B0B0062BE99 /* BoxOfficeResult.swift */,
-				5B3F1C3D2A148B140062BE99 /* DailyBoxOfficeList.swift */,
 			);
 			path = BoxOffice;
 			sourceTree = "<group>";
@@ -788,8 +786,10 @@
 			name = MovieApp;
 			packageProductDependencies = (
 				5B3F1C682A1495100062BE99 /* Alamofire */,
-				5BCE289A2A1B367E0076F189 /* KakaoSDK */,
-				5BCE289C2A1B367E0076F189 /* KakaoSDKAuth */,
+				5B208E722AA7008900E3A09F /* SnapKit */,
+				5B208E752AA700B400E3A09F /* RxCocoa */,
+				5B208E772AA700B400E3A09F /* RxRelay */,
+				5B208E792AA700B400E3A09F /* RxSwift */,
 			);
 			productName = MovieApp;
 			productReference = 5B3F1BE92A146EAC0062BE99 /* MovieApp.app */;
@@ -865,7 +865,8 @@
 			mainGroup = 5B3F1BE02A146EAC0062BE99;
 			packageReferences = (
 				5B3F1C672A1495100062BE99 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				5BCE28992A1B367E0076F189 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				5B208E712AA7008900E3A09F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5B208E742AA700B400E3A09F /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 5B3F1BEA2A146EAC0062BE99 /* Products */;
 			projectDirPath = "";
@@ -927,7 +928,6 @@
 				5B3F1C2A2A1488930062BE99 /* KOFICBasic.swift in Sources */,
 				5B3F1C432A148B750062BE99 /* Audit.swift in Sources */,
 				5B6620A02A2619E300107022 /* Uniquable.swift in Sources */,
-				5B3F1C3E2A148B140062BE99 /* DailyBoxOfficeList.swift in Sources */,
 				5B09DA002A25C96B001121D6 /* MovieCast.swift in Sources */,
 				5B74F0812A23680500AD4A73 /* MovieCreditCell.swift in Sources */,
 				5BC16D5E2A1B5D6400B7F3BA /* Selector.swift in Sources */,
@@ -992,7 +992,6 @@
 				5B98C61D2A174001004C099F /* KoreaBoxOfficeList.swift in Sources */,
 				5B9D270F2A20C18200E9C9C0 /* HomeViewModelInError.swift in Sources */,
 				5B9496642A84AD1D002ED2A2 /* ProfileViewController.swift in Sources */,
-				5B3F1C3C2A148B0B0062BE99 /* BoxOfficeResult.swift in Sources */,
 				5B66209D2A260A0700107022 /* DetailViewModelInError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1341,6 +1340,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5B208E712AA7008900E3A09F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		5B208E742AA700B400E3A09F /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		5B3F1C672A1495100062BE99 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1349,31 +1364,33 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		5BCE28992A1B367E0076F189 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5B208E722AA7008900E3A09F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B208E712AA7008900E3A09F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		5B208E752AA700B400E3A09F /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B208E742AA700B400E3A09F /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		5B208E772AA700B400E3A09F /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B208E742AA700B400E3A09F /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		5B208E792AA700B400E3A09F /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B208E742AA700B400E3A09F /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		5B3F1C682A1495100062BE99 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5B3F1C672A1495100062BE99 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		5BCE289A2A1B367E0076F189 /* KakaoSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5BCE28992A1B367E0076F189 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
-			productName = KakaoSDK;
-		};
-		5BCE289C2A1B367E0076F189 /* KakaoSDKAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5BCE28992A1B367E0076F189 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
-			productName = KakaoSDKAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
