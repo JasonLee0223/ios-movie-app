@@ -11,7 +11,7 @@ import RxSwift
 
 final class NetworkManager: Gettable {
     
-    func loadAPIData<M: Decodable, P: Encodable>(_ url: URL, parameters: P) -> Single<M> {
+    func loadAPIData<M: Decodable, P: Encodable>(url: URL, parameters: P) -> Single<M> {
         
         return Single<M>.create { single in
             AF.request(url, method: .get, parameters: parameters)
@@ -22,7 +22,7 @@ final class NetworkManager: Gettable {
                         let result: M = try self.decoder.decode(M.self, from: data)
                         single(.success(result))
                     } catch {
-                        single(.failure(error))
+                        print(DataLoadError.loadFailOfAPIData)
                     }
                 case .failure(let error):
                     single(.failure(error))
