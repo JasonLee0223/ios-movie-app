@@ -1,5 +1,5 @@
 //
-//  MakeQueryItem.swift
+//  MakeURL.swift
 //  MovieApp
 //
 //  Created by Jason on 2023/09/05.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MakeQueryItem {
+enum MakeURL {
     case trendMovie(SubPath)
     case detail(String)
     case credit(String, SubPath)
