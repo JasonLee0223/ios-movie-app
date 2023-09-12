@@ -9,7 +9,7 @@ import Foundation
 
 struct TrendMovie: BusinessModel {
     
-    let movieCode: String
-    let posterImage: Data
+    let movieCode: Int
+    let posterImage: String
     let posterName: String
 }
