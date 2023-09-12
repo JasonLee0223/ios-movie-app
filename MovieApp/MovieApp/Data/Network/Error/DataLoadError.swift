@@ -8,6 +8,7 @@
 import Foundation
 
 enum DataLoadError: LocalizedError {
+    case loadFailOfAPIData
     case loadFailOfTrendMovieListData
     case loadFailOfMovieDetailInfromationData
     case loadFailOfMovieCreditsData
@@ -15,6 +16,7 @@ enum DataLoadError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
+        case .loadFailOfAPIData: return "❌ Fail Of Load API Data"
         case .loadFailOfTrendMovieListData: return "❌ Fail Of TrendMovieListData"
         case .loadFailOfMovieDetailInfromationData: return "❌ Fail Of MovieDetailInfromationData"
         case .loadFailOfMovieCreditsData: return "❌ Fail Of MovieCreditsData"
