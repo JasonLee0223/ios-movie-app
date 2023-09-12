@@ -20,7 +20,7 @@ final class MovieDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        posterImageDataReceivedFromHomeView = movieDetailData?.posterImage
+//        posterImageDataReceivedFromHomeView = movieDetailData?.posterImage
     }
     
     override func viewDidLoad() {

@@ -12,24 +12,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        
+
         let homeViewController = HomeViewController()
-        let boxOfficeController = BoxOfficeViewController()
-        
         let tabbarController = UITabBarController()
-        let rootViewController = UINavigationController(rootViewController: homeViewController)
         
-        tabbarController.setViewControllers(
-            [rootViewController, boxOfficeController], animated: true
-        )
-        
+        tabbarController.setViewControllers([homeViewController], animated: true)
+
         if let tabItem = tabbarController.tabBar.items {
             tabItem[0].image = UIImage(systemName: "house")
-            tabItem[1].image = UIImage(systemName: "film")
         }
-        
+
         window?.rootViewController = tabbarController
         window?.makeKeyAndVisible()
     }
@@ -48,7 +43,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {
     }
-
-
 }
-

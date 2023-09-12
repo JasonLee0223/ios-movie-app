@@ -54,12 +54,12 @@ final class TrendMovieListCell: UICollectionViewCell, ConfigurableCell {
 extension TrendMovieListCell {
     
     func configure(_ item: TrendMovie, at indexPath: IndexPath) {
-        guard let movieImage = UIImage(data: item.posterImage) else {
-            return
-        }
+//        guard let movieImage = UIImage(data: item.posterImage) else {
+//            return
+//        }
         
         setPoster(with: item.posterName)
-        setPoster(with: movieImage)
+//        setPoster(with: movieImage)
     }
 }
 

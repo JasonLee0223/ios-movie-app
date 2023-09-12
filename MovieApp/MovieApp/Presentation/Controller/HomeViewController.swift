@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import SnapKit
+
 final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -14,11 +17,12 @@ final class HomeViewController: UIViewController {
         
         configureOfUI()
         configureHierarchy()
-        configureOfDiffableDataSource()
-        
-        checkOfBindCompleted()
+//        configureOfDiffableDataSource()
+//
+//        checkOfBindCompleted()
     }
     
+    private let navigaionView = NavigationView(rightBarItems: [.boxOffice, .profile])
     private let homeViewModel = HomeViewModel()
     
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
@@ -37,6 +41,8 @@ final class HomeViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(handleRefreshControl) , for: .valueChanged)
         return refreshControl
     }()
+    
+    private let disposeBag = DisposeBag()
     
     @objc func handleRefreshControl() {
         
@@ -58,7 +64,7 @@ extension HomeViewController {
         checkOfAnimatingActivityIndicator(isAnimated: true)
         
         configureOfSuperView()
-        configureOfNavigationBar()
+//        configureOfNavigationBar()
         configureOfTabBar()
         
         configureOfCollectionView()
@@ -78,22 +84,22 @@ extension HomeViewController {
             return title
         }()
         
-//        let profile: UIButton = {
-//            var config = UIButton.Configuration.bordered()
-//            config.buttonSize = .medium
-//            config.baseBackgroundColor = .black
-//            config.baseForegroundColor = .systemGray5
-//            
-//            let profile = UIButton(configuration: config)
-//            profile.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
-//            return profile
-//        }()
+        //        let profile: UIButton = {
+        //            var config = UIButton.Configuration.bordered()
+        //            config.buttonSize = .medium
+        //            config.baseBackgroundColor = .black
+        //            config.baseForegroundColor = .systemGray5
+        //
+        //            let profile = UIButton(configuration: config)
+        //            profile.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
+        //            return profile
+        //        }()
         
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.backgroundColor = .black
         navigationController?.navigationBar.standardAppearance = navigationAppearance
         self.navigationItem.leftBarButtonItem = .init(customView: title)
-//        self.navigationItem.rightBarButtonItem = .init(customView: profile)
+        //        self.navigationItem.rightBarButtonItem = .init(customView: profile)
     }
     
     private func configureOfTabBar() {
@@ -114,7 +120,7 @@ extension HomeViewController {
     private func checkOfAnimatingActivityIndicator(isAnimated: Bool) {
         
         guard isAnimated != activityIndicator.isAnimating else { return }
-                
+        
         if isAnimated {
             activityIndicator.startAnimating()
         } else {
@@ -140,18 +146,21 @@ extension HomeViewController {
 extension HomeViewController {
     
     private func configureHierarchy() {
-        let safeArea = self.view.safeAreaLayoutGuide
         
-        self.view.addSubview(homeCollectionView)
-        self.view.addSubview(activityIndicator)
+        self.view.addSubview(self.navigaionView)
+        self.view.addSubview(self.homeCollectionView)
+        self.view.addSubview(self.activityIndicator)
         
-        homeCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            homeCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            homeCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            homeCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            homeCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
+        self.navigaionView.snp.makeConstraints { make in
+            let safeArea = self.view.safeAreaLayoutGuide
+            make.top.leading.trailing.equalTo(safeArea)
+        }
+        
+        self.homeCollectionView.snp.makeConstraints { make in
+            let safeArea = self.view.safeAreaLayoutGuide
+            make.top.equalTo(self.navigaionView.snp.bottom)
+            make.leading.trailing.bottom.equalTo(safeArea)
+        }
     }
     
     private func configureOfCollectionViewCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -166,17 +175,21 @@ extension HomeViewController {
     
     private func homeSnapShot(completion: @escaping (Bool) -> Void) {
         
-        HomeSection.allCases.forEach { section in
-            
-            Task {
-//                let apiData = await homeViewModel.loadTrendOfWeekMovieListFromTMDB()
-                
-//                snapshot.appendSections([section])
-//                snapshot.appendItems(apiData)
-//                await diffableDataSource?.apply(snapshot, animatingDifferences: true)
-//                completion(true)
-            }
-        }
+        homeViewModel.action.loadData.onNext(.week)
+        homeViewModel.state.trendMovieList
+            .withUnretained(self)
+            .subscribe(onNext: { owner, trendMovieList in
+                trendMovieList.forEach { trendMovie in
+                    print(trendMovie.posterName)
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+
+//        snapshot.appendSections([section])
+//        snapshot.appendItems(apiData)
+//        await diffableDataSource?.apply(snapshot, animatingDifferences: true)
+//        completion(true)
     }
     
     private func checkOfBindCompleted() {
@@ -229,7 +242,7 @@ extension HomeViewController {
 //MARK: - Configure of Delegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-         
+        
         guard let selectedItem = diffableDataSource?.itemIdentifier(for: indexPath) else { return }
         
         let movieDetailViewController = MovieDetailViewController()
