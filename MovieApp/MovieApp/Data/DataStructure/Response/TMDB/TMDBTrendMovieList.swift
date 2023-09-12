@@ -11,28 +11,28 @@ import Foundation
 
 struct TMDBTrendMovieList: Decodable {
     let page: Int
-    let results: [Result]
+    let trendMovieItems: [MovieItem]
     let totalPages: Int
     let totalResults: Int
     
+    // MARK: - Result
+
+    struct MovieItem: Decodable {
+        let movieID: Int
+        let movieKoreaTitle: String
+        let movieImageURL: String
+
+        enum CodingKeys: String, CodingKey {
+            case movieID = "id"
+            case movieKoreaTitle = "title"
+            case movieImageURL = "poster_path"
+        }
+    }
+    
     enum CodingKeys: String, CodingKey {
         case page
-        case results
+        case trendMovieItems = "results"
         case totalPages = "total_pages"
         case totalResults = "total_results"
-    }
-}
-
-// MARK: - Result
-
-internal struct Result: Decodable {
-    let movieID: Int
-    let movieKoreaTitle: String
-    let movieImageURL: String
-
-    enum CodingKeys: String, CodingKey {
-        case movieID = "id"
-        case movieKoreaTitle = "title"
-        case movieImageURL = "poster_path"
     }
 }
