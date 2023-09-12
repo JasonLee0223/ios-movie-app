@@ -6,59 +6,78 @@
 //
 
 import Foundation
+import RxSwift
 
-extension HomeViewModel {
+extension HomeViewModel: ViewModel {
     
-    struct Action {
-        
+    // 화면에 렌더링 될 속성들을 가지는 불변 객체 - Subject
+    struct State {
+        // 프로퍼티
+        let trendMovieList = BehaviorSubject<[TrendMovie]>(value: [])
+        let imagePath = PublishSubject<String>()
     }
     
-    struct State {
-        
+    // 상태를 바꾸는 명령 - AnyObserver
+    struct Action {
+        let loadData: AnyObserver<MakeURL.SubPath>
     }
 }
 
-final class HomeViewModel: ViewModel {
-    let action: Action
-    let state: State
+//loadData.onNext()
+final class HomeViewModel: Gettable {
+    
+    var state: State
+    var action: Action
     
     init() {
-        self.networkManager = NetworkManager()
+        self.loadDataSubject = PublishSubject<MakeURL.SubPath>()
         
-        self.action = Action()
         self.state = State()
+        self.action = Action(loadData: loadDataSubject.asObserver())
+        
+        self.networkManager = NetworkManager()
+        self.disposeBag = DisposeBag()
+        
+        self.loadTrendMovieData()
     }
-
+    
+    private let loadDataSubject: PublishSubject<MakeURL.SubPath>
     private let networkManager: NetworkManager
+    private let disposeBag: DisposeBag
+    
+    private func loadTrendMovieData() {
+        /// 이번 주, 오늘 버튼에 따라 요청하는 Path가 다름으로 subPath를 받아온다.
+        loadDataSubject.subscribe(onNext: { subPath in
+            let url = MakeURL.trendMovie(subPath).url
+            let parameters = TMDBQueryParameters(language: self.getLangauge, key: self.getAPIKEY(type: .TMDB))
+            let result = self.networkManager.loadAPIData(url: url, parameters: parameters) as Single<TMDBTrendMovieList>
+            
+            result.subscribe { event in
+                switch event {
+                case .success(let apiData):
+                    let trendMovieList = apiData.trendMovieItems.map { movieItem in
+                        TrendMovie(movieCode: movieItem.movieID,
+                                   posterImage: movieItem.movieImageURL,
+                                   posterName: movieItem.movieKoreaTitle)
+                    }
+                    self.state.trendMovieList.onNext(trendMovieList)
+                case .failure(let error):
+                    print(error)
+                }
+            }.disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
+    }
+    
 }
 
 //MARK: - Use at TMDB
+/*
 extension HomeViewModel {
-    /// Top Method
-//    func loadTrendOfWeekMovieListFromTMDB() async -> [TrendMovie] {
-//        
-//        var trendMovieListGroup = [TrendMovie]()
-//        
-//        do {
-//            let networkResult = try await self.homeLoader.loadTrendMovieList()
-//            
-//            for result in networkResult {
-//                let imageData = try await fetchImage(imagePath: result.movieImageURL)
-//                let trendMovie = TrendMovie(movieCode: String(result.movieID),
-//                    posterImage: imageData, posterName: result.movieKoreaTitle
-//                )
-//                trendMovieListGroup.append(trendMovie)
-//            }
-//        } catch {
-//            print(HomeViewModelInError.failOfLoadToTrendMovieList)
-//        }
-//        return trendMovieListGroup
-//    }
     
     /// Bottom Method
     private func fetchImage(imagePath: String) async throws -> Data {
         
-        let imageURL = MakeQueryItem.posterImage(imagePath).url
+        let imageURL = MakeURL.posterImage(imagePath).url
             
         guard let imageData = try? Data(contentsOf: imageURL) else {
             throw HomeViewModelInError.failOfMakeData
@@ -114,3 +133,4 @@ extension HomeViewModel {
         return movieInformation
     }
 }
+*/
