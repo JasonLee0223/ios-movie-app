@@ -13,14 +13,15 @@ import SnapKit
 
 final class NavigationView: UIView {
     
+    weak var delegate: NavigationViewDelegate?
+    
     init(rightBarItems: [RightBarItem]) {
         self.titleLabel = UILabel()
         self.rightBarItems = rightBarItems
         
         super.init(frame: .zero)
         self.backgroundColor = .black
-        self.configureUI()
-        self.setupLayout()
+        self.setupUI()
         self.bindAction()
     }
 
@@ -31,20 +32,23 @@ final class NavigationView: UIView {
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 375, height: 60)
     }
-    
-    weak var delegate: NavigationViewDelegate?
 
     private let titleLabel: UILabel
     private let rightBarItems: [RightBarItem]
     private var boxOfficeButton: UIButton?
     private var profileButton: UIButton?
 
-    private func configureUI() {
-        titleLabel.text = MagicLiteral.RelatedToNavigationController.navigationTitle
-        titleLabel.textColor = .systemGreen
-        titleLabel.font = .boldSystemFont(ofSize: MagicNumber.Attributes.navigationBarButtonFont)
+    private func setupUI() {
+        self.setupAttribute()
+        self.setupLayout()
+    }
+    
+    private func setupAttribute() {
+        self.titleLabel.text = MagicLiteral.RelatedToNavigationController.navigationTitle
+        self.titleLabel.textColor = .systemGreen
+        self.titleLabel.font = .boldSystemFont(ofSize: MagicNumber.Attributes.navigationBarButtonFont)
         
-        rightBarItems.forEach { barItem in
+        self.rightBarItems.forEach { barItem in
             switch barItem {
             case .boxOffice:
                 self.boxOfficeButton = barItem.makeButton()
@@ -98,23 +102,6 @@ final class NavigationView: UIView {
                 owner.delegate?.navigationView(owner, didTapRightBarItem: .profile)
             })
             .disposed(by: disposeBag)
-    }
-}
-
-protocol NavigationViewDelegate: AnyObject {
-    func navigationView(_ navigationView: NavigationView, didTapRightBarItem rightBarItem: NavigationView.RightBarItem)
-}
-
-protocol BarItem {
-    var image: UIImage? { get }
-    func makeButton() -> UIButton
-}
-
-extension BarItem {
-    func makeButton() -> UIButton {
-        let button = UIButton()
-        button.setImage(self.image, for: .normal)
-        return button
     }
 }
 
