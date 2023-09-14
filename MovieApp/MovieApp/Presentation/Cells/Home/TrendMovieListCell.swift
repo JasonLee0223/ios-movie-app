@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TrendMovieListCell: UICollectionViewCell, ConfigurableCell {
+final class TrendMovieListCell: UICollectionViewCell, ReusableCell {
     
     //MARK: - Initializer
     
@@ -53,13 +53,14 @@ final class TrendMovieListCell: UICollectionViewCell, ConfigurableCell {
 //MARK: - Public Method
 extension TrendMovieListCell {
     
-    func configure(_ item: TrendMovie, at indexPath: IndexPath) {
-//        guard let movieImage = UIImage(data: item.posterImage) else {
-//            return
-//        }
+    func configure(_ item: TrendMovie) {
+        
+        let imageURL = MakeURL.posterImage(item.posterImage).url
+        guard let data = try? Data(contentsOf: imageURL) else { return }
+        guard let movieImage = UIImage(data: data) else { return }
         
         setPoster(with: item.posterName)
-//        setPoster(with: movieImage)
+        setPoster(with: movieImage)
     }
 }
 
