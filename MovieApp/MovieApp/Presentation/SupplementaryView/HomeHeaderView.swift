@@ -49,8 +49,6 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         sortedByTrendDay.titleLabel?.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
-        
-//        sortedByTrendDay.setTitleColor(.systemMint, for: .normal)
         sortedByTrendDay.backgroundColor = .systemIndigo
         
         return sortedByTrendDay
@@ -67,7 +65,6 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         sortedByTrendWeek.titleLabel?.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.fontSize
         )
-//        sortedByTrendWeek.setTitleColor(.systemMint, for: .normal)
         
         //TODO: - Button Configuration으로 변경하여 Edge 넣기 -> iOS 버전이 높아서 inset을 다른 방법으로 진행
         return sortedByTrendWeek
@@ -116,13 +113,11 @@ extension HomeHeaderView {
     @objc private func selectSortedByTrendWeek() {
         sortedByTrendDay.backgroundColor = .black
         sortedByTrendWeek.backgroundColor = .systemIndigo
-//        sortedByTrendWeek.setTitleColor(.systemMint, for: .normal)
     }
     
     @objc private func selectSortedByTrendDay() {
         sortedByTrendWeek.backgroundColor = .black
         sortedByTrendDay.backgroundColor = .systemIndigo
-//        sortedByTrendDay.setTitleColor(.systemMint, for: .normal)
     }
 }
 
