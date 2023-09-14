@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import RxCocoa
 import SnapKit
 
 final class HomeViewController: UIViewController {
@@ -15,91 +16,34 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureOfUI()
-        configureHierarchy()
-//        configureOfDiffableDataSource()
-//
-//        checkOfBindCompleted()
+        self.setupUI()
+        self.homeViewModel.action.loadData.onNext(.week)
+        self.bindState()
+        self.bindCollectionView()
     }
-    
-    private let navigaionView = NavigationView(rightBarItems: [.boxOffice, .profile])
-    private let homeViewModel = HomeViewModel()
     
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    
-    private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, TrendMovie>?
-    
-    private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, TrendMovie>()
-    
-    private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(
-        frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 100))
-    )
-    
-    private lazy var refresh: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = .white
-        refreshControl.addTarget(self, action: #selector(handleRefreshControl) , for: .valueChanged)
-        return refreshControl
-    }()
-    
+    private let navigaionView = NavigationView(rightBarItems: [.boxOffice, .profile])
+    private let homeViewModel = HomeViewModel()
     private let disposeBag = DisposeBag()
-    
-    @objc func handleRefreshControl() {
-        
-        snapshot = .init()
-        
-        homeSnapShot { _ in
-            Task {
-                self.refresh.endRefreshing()
-            }
-        }
-    }
 }
 
 //MARK: - Configure of UI Components
 extension HomeViewController {
     
-    private func configureOfUI() {
-        configureOfActivityIndicator()
-        checkOfAnimatingActivityIndicator(isAnimated: true)
-        
-        configureOfSuperView()
-//        configureOfNavigationBar()
-        configureOfTabBar()
-        
-        configureOfCollectionView()
-        configureColletionViewDelegate()
+    private func setupUI() {
+        self.setupAttribute()
+        self.setupLayout()
+    }
+    
+    private func setupAttribute() {
+        self.configureOfSuperView()
+        self.configureOfTabBar()
+        self.configureOfCollectionView()
     }
     
     private func configureOfSuperView() {
         self.view.backgroundColor = .black
-    }
-    
-    private func configureOfNavigationBar() {
-        let title: UILabel = {
-            let title = UILabel()
-            title.text = MagicLiteral.RelatedToNavigationController.navigationTitle
-            title.textColor = .systemGreen
-            title.font = .boldSystemFont(ofSize: MagicNumber.Attributes.navigationBarButtonFont)
-            return title
-        }()
-        
-        //        let profile: UIButton = {
-        //            var config = UIButton.Configuration.bordered()
-        //            config.buttonSize = .medium
-        //            config.baseBackgroundColor = .black
-        //            config.baseForegroundColor = .systemGray5
-        //
-        //            let profile = UIButton(configuration: config)
-        //            profile.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
-        //            return profile
-        //        }()
-        
-        let navigationAppearance = UINavigationBarAppearance()
-        navigationAppearance.backgroundColor = .black
-        navigationController?.navigationBar.standardAppearance = navigationAppearance
-        self.navigationItem.leftBarButtonItem = .init(customView: title)
-        //        self.navigationItem.rightBarButtonItem = .init(customView: profile)
     }
     
     private func configureOfTabBar() {
@@ -110,46 +54,29 @@ extension HomeViewController {
     }
     
     private func configureOfCollectionView() {
-        homeCollectionView.isScrollEnabled = true
-        homeCollectionView.clipsToBounds = false
-        homeCollectionView.backgroundColor = .black
-        homeCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
-        homeCollectionView.refreshControl = refresh
-    }
-    
-    private func checkOfAnimatingActivityIndicator(isAnimated: Bool) {
-        
-        guard isAnimated != activityIndicator.isAnimating else { return }
-        
-        if isAnimated {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
-    }
-    
-    private func configureOfActivityIndicator() {
-        activityIndicator.center = self.view.center
-        activityIndicator.color = .white
-        activityIndicator.style = .large
-        activityIndicator.isHidden = false
-    }
-    
-    private func configureColletionViewDelegate() {
-        Task {
-            homeCollectionView.delegate = self
-        }
+        self.homeCollectionView.isScrollEnabled = true
+        self.homeCollectionView.clipsToBounds = false
+        self.homeCollectionView.backgroundColor = .black
+        self.homeCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
+        self.homeCollectionView.delegate = self
+        self.homeCollectionView.register(
+            TrendMovieListCell.self, forCellWithReuseIdentifier: TrendMovieListCell.reuseIdentifier
+        )
+        self.homeCollectionView.register(
+            HomeHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HomeHeaderView.reuseIdentifier
+        )
     }
 }
 
 //MARK: - Configure of Layout
 extension HomeViewController {
     
-    private func configureHierarchy() {
+    private func setupLayout() {
         
         self.view.addSubview(self.navigaionView)
         self.view.addSubview(self.homeCollectionView)
-        self.view.addSubview(self.activityIndicator)
         
         self.navigaionView.snp.makeConstraints { make in
             let safeArea = self.view.safeAreaLayoutGuide
@@ -173,68 +100,44 @@ extension HomeViewController {
 //MARK: - Configure of DiffableDataSource
 extension HomeViewController {
     
-    private func homeSnapShot(completion: @escaping (Bool) -> Void) {
-        
-        homeViewModel.action.loadData.onNext(.week)
-        homeViewModel.state.trendMovieList
+    private func bindState() {
+        /// Header의 버튼으로 부터 받아온 subPath를 onNext로 줘야함
+        /// bind 하는 코드가 필요 이미지 Path에 할당
+        self.homeViewModel.state.trendMovieList
             .withUnretained(self)
             .subscribe(onNext: { owner, trendMovieList in
                 trendMovieList.forEach { trendMovie in
-                    print(trendMovie.posterName)
+                    owner.homeViewModel.state.imagePath.onNext(trendMovie.posterImage)
                 }
             })
             .disposed(by: self.disposeBag)
-        
-
-//        snapshot.appendSections([section])
-//        snapshot.appendItems(apiData)
-//        await diffableDataSource?.apply(snapshot, animatingDifferences: true)
-//        completion(true)
     }
     
-    private func checkOfBindCompleted() {
-        homeSnapShot { isCompleted in
-            Task {
-                if isCompleted {
-                    let activityIndicatorAnimatedState = !isCompleted
-                    self.checkOfAnimatingActivityIndicator(isAnimated: activityIndicatorAnimatedState)
-                }
-            }
-        }
-    }
-    
-    private func configureOfDiffableDataSource() {
+    private func bindCollectionView() {
         
-        let trendCellRegistration = UICollectionView.CellRegistration<TrendMovieListCell, TrendMovie> {
-            (cell, indexPath, trendMovie) in
-            cell.configure(trendMovie, at: indexPath)
-        }
-        
-        let headerRegistration = UICollectionView.SupplementaryRegistration<HomeHeaderView>(
-            elementKind: UICollectionView.elementKindSectionHeader
-        ) {
-            (headerView, elementKind, indexPath) in
-            
-            headerView.configureOfSortStackLayout()
-            
-            Task {
-                await headerView.selectedTrendWeekButton()
-                await headerView.selectedTrendDayButton()
+        self.homeViewModel.state.trendMovieList
+            .bind(to: self.homeCollectionView.rx.items(
+                cellIdentifier: TrendMovieListCell.reuseIdentifier,
+                cellType: TrendMovieListCell.self)
+            ) { (row, trendMovie, cell) in
+                cell.configure(trendMovie)
             }
-        }
+            .disposed(by: self.disposeBag)
         
-        diffableDataSource = UICollectionViewDiffableDataSource<HomeSection, TrendMovie>(
-            collectionView: homeCollectionView, cellProvider: { (collectionView, indexPath, itemOfTrendMovie) in
-                collectionView.dequeueConfiguredReusableCell(
-                    using: trendCellRegistration, for: indexPath, item: itemOfTrendMovie
-                )
-            }
-        )
-        diffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
-            return self.homeCollectionView.dequeueConfiguredReusableSupplementary(
-                using: headerRegistration, for: index
-            )
-        }
+//        homeViewModel.state.userRequestTrendType
+//            .bind { [weak self] subPath in
+//                guard let self = self else { return }
+//                guard let headerView = self.homeCollectionView.dequeueReusableSupplementaryView(
+//                    ofKind: UICollectionView.elementKindSectionHeader,
+//                    withReuseIdentifier: HomeHeaderView.reuseIdentifier,
+//                    for: IndexPath(row: 0, section: 0)
+//                ) as? HomeHeaderView else { return }
+//
+//                Task {
+//                    await headerView.selectedTrendDayButton()
+//                    await headerView.selectedTrendWeekButton()
+//                }
+//            }.disposed(by: self.disposeBag)
     }
     
 }
@@ -243,10 +146,8 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let selectedItem = diffableDataSource?.itemIdentifier(for: indexPath) else { return }
-        
         let movieDetailViewController = MovieDetailViewController()
-        movieDetailViewController.movieDetailData = selectedItem
+//        movieDetailViewController.movieDetailData = selectedItem
         navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
 }

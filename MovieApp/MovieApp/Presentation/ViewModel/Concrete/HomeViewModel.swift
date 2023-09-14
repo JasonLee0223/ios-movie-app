@@ -14,6 +14,7 @@ extension HomeViewModel: ViewModel {
     struct State {
         // 프로퍼티
         let trendMovieList = BehaviorSubject<[TrendMovie]>(value: [])
+        let userRequestTrendType = PublishSubject<MakeURL.SubPath>()
         let imagePath = PublishSubject<String>()
     }
     
@@ -30,7 +31,7 @@ final class HomeViewModel: Gettable {
     var action: Action
     
     init() {
-        self.loadDataSubject = PublishSubject<MakeURL.SubPath>()
+        let loadDataSubject = PublishSubject<MakeURL.SubPath>()
         
         self.state = State()
         self.action = Action(loadData: loadDataSubject.asObserver())
@@ -38,53 +39,36 @@ final class HomeViewModel: Gettable {
         self.networkManager = NetworkManager()
         self.disposeBag = DisposeBag()
         
-        self.loadTrendMovieData()
+        self.loadTrendMovieData(subject: loadDataSubject)
     }
     
-    private let loadDataSubject: PublishSubject<MakeURL.SubPath>
     private let networkManager: NetworkManager
     private let disposeBag: DisposeBag
     
-    private func loadTrendMovieData() {
-        /// 이번 주, 오늘 버튼에 따라 요청하는 Path가 다름으로 subPath를 받아온다.
-        loadDataSubject.subscribe(onNext: { subPath in
+    // 파라미터로 던지기
+    private func loadTrendMovieData(subject: PublishSubject<MakeURL.SubPath>) {
+        
+        subject.flatMap { subPath in
             let url = MakeURL.trendMovie(subPath).url
-            let parameters = TMDBQueryParameters(language: self.getLangauge, key: self.getAPIKEY(type: .TMDB))
-            let result = self.networkManager.loadAPIData(url: url, parameters: parameters) as Single<TMDBTrendMovieList>
-            
-            result.subscribe { event in
-                switch event {
-                case .success(let apiData):
-                    let trendMovieList = apiData.trendMovieItems.map { movieItem in
-                        TrendMovie(movieCode: movieItem.movieID,
-                                   posterImage: movieItem.movieImageURL,
-                                   posterName: movieItem.movieKoreaTitle)
-                    }
-                    self.state.trendMovieList.onNext(trendMovieList)
-                case .failure(let error):
-                    print(error)
-                }
-            }.disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
+            let parameters = TMDBQueryParameters(
+                language: self.getLangauge, key: self.getAPIKEY(type: .TMDB)
+            )
+            return self.networkManager.loadAPIData(url: url, parameters: parameters) as Single<TMDBTrendMovieList>
+        }.subscribe { (response: TMDBTrendMovieList) in
+            let trendMovieList = response.trendMovieItems.map { movieItem in
+                TrendMovie(movieCode: movieItem.movieID,
+                           posterImage: movieItem.movieImageURL,
+                           posterName: movieItem.movieKoreaTitle
+                )
+            }
+            self.state.trendMovieList.onNext(trendMovieList)
+        }.disposed(by: self.disposeBag)
     }
-    
 }
 
 //MARK: - Use at TMDB
 /*
 extension HomeViewModel {
-    
-    /// Bottom Method
-    private func fetchImage(imagePath: String) async throws -> Data {
-        
-        let imageURL = MakeURL.posterImage(imagePath).url
-            
-        guard let imageData = try? Data(contentsOf: imageURL) else {
-            throw HomeViewModelInError.failOfMakeData
-        }
-        
-        return imageData
-    }
     
     func convertToMovieInformation(from networkResult: TMDBMovieDetail) throws -> MovieInformation {
         
