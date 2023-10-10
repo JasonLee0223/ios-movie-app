@@ -21,10 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tabbarController.setViewControllers([homeViewController], animated: true)
 
-        if let tabItem = tabbarController.tabBar.items {
-            tabItem[0].image = UIImage(systemName: "house")
-        }
-
         window?.rootViewController = tabbarController
         window?.makeKeyAndVisible()
     }
