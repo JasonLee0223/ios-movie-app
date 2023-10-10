@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieCreditCell: UICollectionViewCell, ConfigurableCell {
+final class MovieCreditCell: UICollectionViewCell, ReusableCell {
     
     //MARK: - Initializer
     
