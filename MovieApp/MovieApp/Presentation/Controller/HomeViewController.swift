@@ -18,14 +18,20 @@ final class HomeViewController: UIViewController {
         
         self.setupUI()
         self.viewModel.action.loadData.onNext(.week)
-        self.bindState()
-        self.bindCollectionView()
+        self.viewModel.state.trendMovieList
+            .withUnretained(self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { (owner, _) in
+                owner.collectionView.reloadData()
+            })
+            .disposed(by: self.disposeBag)
     }
     
-    private var viewModel = HomeViewModel()
     private let disposeBag = DisposeBag()
-    private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    private let viewModel = HomeViewModel()
     private let navigaionView = NavigationView(rightBarItems: [.boxOffice, .profile])
+    private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    private lazy var dataSource = HomeDataSource(viewModel: self.viewModel)
 }
 
 //MARK: - Configure of UI Components
@@ -59,6 +65,7 @@ extension HomeViewController {
         self.collectionView.backgroundColor = .black
         self.collectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
         self.collectionView.delegate = self
+        self.collectionView.dataSource = self.dataSource
         self.collectionView.register(
             TrendMovieListCell.self, forCellWithReuseIdentifier: TrendMovieListCell.reuseIdentifier
         )
@@ -94,35 +101,6 @@ extension HomeViewController {
         UICollectionViewCompositionalLayout { (sectionIndex: Int, _) -> NSCollectionLayoutSection? in
             return HomeViewLayout(sectionIndex: sectionIndex).create()
         }
-    }
-}
-
-//MARK: - Configure of DiffableDataSource
-extension HomeViewController {
-    
-    private func bindState() {
-        /// Header의 버튼으로 부터 받아온 subPath를 onNext로 줘야함
-        /// bind 하는 코드가 필요 이미지 Path에 할당
-        self.viewModel.state.trendMovieList
-            .withUnretained(self)
-            .subscribe(onNext: { owner, trendMovieList in
-                trendMovieList.forEach { trendMovie in
-                    owner.viewModel.state.imagePath.onNext(trendMovie.posterImage)
-                }
-            })
-            .disposed(by: self.disposeBag)
-    }
-    
-    private func bindCollectionView() {
-        
-        self.viewModel.state.trendMovieList
-            .bind(to: self.collectionView.rx.items(
-                cellIdentifier: TrendMovieListCell.reuseIdentifier,
-                cellType: TrendMovieListCell.self)
-            ) { (row, trendMovie, cell) in
-                cell.configure(trendMovie)
-            }
-            .disposed(by: self.disposeBag)
     }
 }
 

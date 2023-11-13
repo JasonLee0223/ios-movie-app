@@ -24,7 +24,6 @@ extension HomeViewModel: ViewModel {
     }
 }
 
-//loadData.onNext()
 final class HomeViewModel: Gettable {
     
     var state: State
