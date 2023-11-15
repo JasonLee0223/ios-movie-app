@@ -32,11 +32,12 @@
 
 ## 📱 실행 결과 (Swift - Concurrency 사용)
 
-<p float="left>
+<p float="left">
 
 <img src = "https://user-images.githubusercontent.com/92699723/283105286-f16f01e7-8c1f-45ce-ae06-e62e9844bd30.png" width = 20%>
 <img src = "https://user-images.githubusercontent.com/92699723/283096095-1d768102-f615-471f-96c2-0950daba1092.png" width = 20%>
 <img src = "https://user-images.githubusercontent.com/92699723/283096116-72098cf3-5470-4df6-a370-f695e210b7fd.jpeg" width = 20%>
+
 </p>
 
 ---
