@@ -39,7 +39,6 @@ extension HomeViewModel {
             }
         case .stillCut:
             Task {
-                try await Task.sleep(nanoseconds: 7_000_000_000)
                 async let stillCutPosterImageData = await kakaoPosterImageTest(movieNameGroup: loadMovieNameGroup())
                 let businessModelToStillCut = await stillCutPosterImageData.map { data in
                     HomeEntityWrapper.stillCut(StillCut(genreImagePath: data))
@@ -48,7 +47,6 @@ extension HomeViewModel {
             }
         case .koreaMovieList:
             Task {
-                try await Task.sleep(nanoseconds: 10_000_000_000)
                 async let koreaBoxOfficeMovieList = await loadKoreaBoxOfficeMovieList()
                 let businessModelToKoreaBoxOfficeMovieList = await koreaBoxOfficeMovieList.map { koreaBoxOfficeList in
                     HomeEntityWrapper.koreaBoxOfficeList(koreaBoxOfficeList)
@@ -59,7 +57,7 @@ extension HomeViewModel {
     }
 }
 
-//MARK: - [private] Use at TMDB
+//MARK: - [private] Use at TMDB API
 extension HomeViewModel {
     /// Top Method
     private func loadTrendOfWeekMovieListFromTMDB() async -> [TrendMovie] {
@@ -72,7 +70,7 @@ extension HomeViewModel {
             for result in networkResult {
                 let imageData = try await fetchImage(imagePath: result.movieImageURL)
                 let trendMovie = TrendMovie(movieCode: String(result.movieID),
-                    posterImage: imageData, posterName: result.movieKoreaTitle
+                                            posterImage: imageData, posterName: result.movieKoreaTitle
                 )
                 trendMovieListGroup.append(trendMovie)
             }
@@ -95,8 +93,8 @@ extension HomeViewModel {
         return imageData
     }
 }
- 
-//MARK: - [private] Use at KOFIC
+
+//MARK: - [private] Use at KOFIC API
 extension HomeViewModel {
     
     /// KOFIC
@@ -139,7 +137,7 @@ extension HomeViewModel {
     }
 }
 
-//MARK: - [private] Use at Kakao
+//MARK: - [private] Use at Kakao API
 extension HomeViewModel {
     
     private func kakaoPosterImageTest(movieNameGroup: [String]) async -> [Data] {

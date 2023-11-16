@@ -21,6 +21,14 @@ final class TrendMovieListCell: UICollectionViewCell, ConfigurableCell {
         configureOfLayout()
     }
     
+    func configure(_ item: TrendMovie, at indexPath: IndexPath) {
+        guard let movieImage = UIImage(data: item.posterImage) else {
+            return
+        }
+        setPoster(with: item.posterName)
+        setPoster(with: movieImage)
+    }
+    
     //MARK: - Private Property
     
     private let posterStack: UIStackView = {
@@ -41,26 +49,10 @@ final class TrendMovieListCell: UICollectionViewCell, ConfigurableCell {
     
     private let posterName: UILabel = {
        let posterName = UILabel()
-        //TODO: - Noto Sans KR font로 변경
-        posterName.font = .systemFont(
-            ofSize: MagicNumber.Attributes.fontSize
-        )
+        posterName.font = .systemFont(ofSize: MagicNumber.Attributes.fontSize)
         posterName.textColor = .white
         return posterName
     }()
-}
-
-//MARK: - Public Method
-extension TrendMovieListCell {
-    
-    func configure(_ item: TrendMovie, at indexPath: IndexPath) {
-        guard let movieImage = UIImage(data: item.posterImage) else {
-            return
-        }
-        
-        setPoster(with: item.posterName)
-        setPoster(with: movieImage)
-    }
 }
 
 //MARK: - [Private Method] Configure of UI Components
@@ -86,35 +78,18 @@ extension TrendMovieListCell {
         
         posterStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            posterStack.topAnchor.constraint(
-                equalTo: safeArea.topAnchor
-            ),
-            posterStack.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
-            ),
-            posterStack.trailingAnchor.constraint(
-                equalTo: safeArea.trailingAnchor
-            ),
-            posterStack.bottomAnchor.constraint(
-                equalTo: safeArea.bottomAnchor
-            )
+            posterStack.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            posterStack.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            posterStack.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            posterStack.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
         
         posterImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            posterImage.topAnchor.constraint(
-                equalTo: posterStack.topAnchor
-            ),
-            posterImage.leadingAnchor.constraint(
-                equalTo: posterStack.leadingAnchor
-            ),
-            posterImage.trailingAnchor.constraint(
-                equalTo: posterStack.trailingAnchor
-            ),
-            posterImage.bottomAnchor.constraint(
-                equalTo: posterName.bottomAnchor,
-                constant: MagicNumber.Cell.bottomAnchorConstraint
-            )
+            posterImage.topAnchor.constraint(equalTo: posterStack.topAnchor),
+            posterImage.leadingAnchor.constraint(equalTo: posterStack.leadingAnchor),
+            posterImage.trailingAnchor.constraint(equalTo: posterStack.trailingAnchor),
+            posterImage.bottomAnchor.constraint(equalTo: posterName.bottomAnchor, constant: MagicNumber.Cell.bottomAnchorConstraint)
         ])
     }
 }

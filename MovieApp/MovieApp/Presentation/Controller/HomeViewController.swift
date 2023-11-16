@@ -11,6 +11,12 @@ final class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        HomeSection.allCases.forEach { section in
+            Task {
+                homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
+            }
+        }
         configureOfActivityIndicator()
         checkOfAnimatingActivityIndicator(isAnimated: animated)
     }
@@ -27,7 +33,6 @@ final class HomeViewController: UIViewController {
     private let homeViewModel = HomeViewModel()
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
-    private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
     
     private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(
         frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 100))
@@ -41,9 +46,6 @@ final class HomeViewController: UIViewController {
     }()
     
     @objc func handleRefreshControl() {
-        
-        snapshot = .init()
-        
         homeSnapShot { _ in
             Task {
                 self.refresh.endRefreshing()
@@ -170,8 +172,6 @@ extension HomeViewController {
         
         HomeSection.allCases.forEach { section in
             
-            homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
-            
             let bindModel = homeViewModel.sectionStorage[section]
             
             bindModel?.bind(listener: { [self] businessModelWrapper in
@@ -180,11 +180,20 @@ extension HomeViewController {
                     throw HomeViewModelInError.failOfOptionalUnwrapping
                 }
                 
-                print("viewModel을 통한 section 확인")
-                print(section)
+                var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
+            
+                snapshot.appendSections([.trendMoviePoster, .stillCut, .koreaMovieList])
                 
-                snapshot.appendSections([section])
-                snapshot.appendItems(bindModels)
+                if let trendMovies = homeViewModel.sectionStorage[.trendMoviePoster]?.value {
+                    snapshot.appendItems(trendMovies, toSection: .trendMoviePoster)
+                }
+                if let stillCuts = homeViewModel.sectionStorage[.stillCut]?.value {
+                    snapshot.appendItems(stillCuts, toSection: .stillCut)
+                }
+                if let boxOfficeList = homeViewModel.sectionStorage[.koreaMovieList]?.value {
+                    snapshot.appendItems(boxOfficeList, toSection: .koreaMovieList)
+                }
+                
                 diffableDataSource?.apply(snapshot, animatingDifferences: true)
                 completion(true)
             })
@@ -271,8 +280,7 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let businessModelWrapper = diffableDataSource?.itemIdentifier(
-            for: indexPath) else {
+        guard let businessModelWrapper = diffableDataSource?.itemIdentifier(for: indexPath) else {
             return
         }
         
