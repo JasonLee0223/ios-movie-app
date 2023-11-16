@@ -19,6 +19,13 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         super.init(coder: coder)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        sortStack.subviews.forEach { view in
+            view.removeFromSuperview()
+        }
+    }
+    
     //MARK: - Private Property
     
     private let sortStack: UIStackView = {

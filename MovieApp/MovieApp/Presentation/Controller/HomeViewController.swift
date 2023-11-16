@@ -107,7 +107,7 @@ extension HomeViewController {
     
     private func configureOfCollectionView() {
         homeCollectionView.isScrollEnabled = true
-        homeCollectionView.clipsToBounds = false
+        homeCollectionView.clipsToBounds = true
         homeCollectionView.backgroundColor = .black
         homeCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
         homeCollectionView.refreshControl = refresh
@@ -228,13 +228,12 @@ extension HomeViewController {
                 for: indexPath.section) {
                 
                 switch sectionType {
-                case .trendMoviePoster:
-                    headerView.configureOfSortStackLayout()
-                    
+                case .trendMoviePoster:                    
                     Task {
                         await headerView.selectedTrendWeekButton()
                         await headerView.selectedTrendDayButton()
                     }
+                    headerView.configureOfSortStackLayout()
                 case .stillCut:
                     headerView.configureOfStillCutLayout()
                 case .koreaMovieList:
