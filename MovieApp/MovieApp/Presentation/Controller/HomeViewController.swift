@@ -9,22 +9,24 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureOfActivityIndicator()
+        checkOfAnimatingActivityIndicator(isAnimated: animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureOfUI()
         configureHierarchy()
         configureOfDiffableDataSource()
-        
-        checkOfBindCompleted()
+        bindCollectionView()
     }
     
     private let homeViewModel = HomeViewModel()
-    
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    
     private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
-    
     private var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
     
     private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(
@@ -54,18 +56,10 @@ final class HomeViewController: UIViewController {
 extension HomeViewController {
     
     private func configureOfUI() {
-        configureOfActivityIndicator()
-        checkOfAnimatingActivityIndicator(isAnimated: true)
-        
-        configureOfSuperView()
+        self.view.backgroundColor = .black
         configureOfNavigationBar()
-        
         configureOfCollectionView()
         configureColletionViewDelegate()
-    }
-    
-    private func configureOfSuperView() {
-        self.view.backgroundColor = .black
     }
     
     private func configureOfNavigationBar() {
@@ -119,6 +113,13 @@ extension HomeViewController {
         homeCollectionView.refreshControl = refresh
     }
     
+    private func configureOfActivityIndicator() {
+        activityIndicator.center = self.view.center
+        activityIndicator.color = .white
+        activityIndicator.style = .large
+        activityIndicator.isHidden = false
+    }
+    
     private func checkOfAnimatingActivityIndicator(isAnimated: Bool) {
         
         guard isAnimated != activityIndicator.isAnimating else { return }
@@ -128,13 +129,6 @@ extension HomeViewController {
         } else {
             activityIndicator.stopAnimating()
         }
-    }
-    
-    private func configureOfActivityIndicator() {
-        activityIndicator.center = self.view.center
-        activityIndicator.color = .white
-        activityIndicator.style = .large
-        activityIndicator.isHidden = false
     }
     
     private func configureColletionViewDelegate() {
@@ -197,7 +191,7 @@ extension HomeViewController {
         }
     }
     
-    private func checkOfBindCompleted() {
+    private func bindCollectionView() {
         homeSnapShot { isCompleted in
             Task {
                 if isCompleted {
@@ -271,9 +265,7 @@ extension HomeViewController {
         diffableDataSource?.supplementaryViewProvider = { (view, kind, index) in
             return self.homeCollectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,for: index)
         }
-        
     }
-    
 }
 
 //MARK: - Configure of Delegate

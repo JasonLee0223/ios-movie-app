@@ -14,10 +14,11 @@ final class HomeViewModel {
     init() {
         self.homeLoader = HomeLoader()
         
-        self.sectionStorage = [.trendMoviePoster: Observable<HomeEntityWrapper>(),
-                               .stillCut: Observable<HomeEntityWrapper>(),
-                               .koreaMovieList: Observable<HomeEntityWrapper>()
-                            ]
+        self.sectionStorage = [
+            .trendMoviePoster: Observable<HomeEntityWrapper>(),
+            .stillCut: Observable<HomeEntityWrapper>(),
+            .koreaMovieList: Observable<HomeEntityWrapper>()
+        ]
     }
     
     private let homeLoader: HomeLoader
@@ -89,11 +90,8 @@ extension HomeViewModel {
         guard let imageURL = URL(string: imageURLPath) else {
             throw HomeViewModelInError.failOfMakeURL
         }
-            
-        guard let imageData = try? Data(contentsOf: imageURL) else {
-            throw HomeViewModelInError.failOfMakeData
-        }
         
+        let (imageData, _) = try await URLSession.shared.data(from: imageURL)
         return imageData
     }
 }
