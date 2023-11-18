@@ -13,6 +13,7 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupAttributes()
     }
     
     required init?(coder: NSCoder) {
@@ -27,23 +28,21 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
     }
     
     //MARK: - Private Property
+    private let sortStack = UIStackView()
+    private let sortedByTrendWeek = UIButton()
+    private let sortedByTrendDay = UIButton()
+    private let stillCutTitle = UILabel()
+    private let koreaMovieListTitle = UILabel()
     
-    private let sortStack: UIStackView = {
-       let sortStack = UIStackView()
+    private func setupAttributes() {
         sortStack.axis = .horizontal
         sortStack.alignment = .leading
         sortStack.spacing = MagicNumber.Attributes.spcing
         sortStack.distribution = .fillEqually
-        return sortStack
-    }()
-    
-    private lazy var sortedByTrendWeek: UIButton = {
-        let sortedByTrendWeek = UIButton()
         
         sortedByTrendWeek.layer.cornerRadius = MagicNumber.cornerRadius
         sortedByTrendWeek.layer.borderWidth = MagicNumber.borderWidth
         sortedByTrendWeek.layer.borderColor = UIColor.systemGray5.cgColor
-        
         sortedByTrendWeek.setTitle(MagicLiteral.Title.weekTrendList,
                                       for: .normal)
         sortedByTrendWeek.titleLabel?.font = .boldSystemFont(
@@ -51,13 +50,6 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         )
         sortedByTrendWeek.tintColor = .white
         sortedByTrendWeek.backgroundColor = .systemPink
-        
-        //TODO: - Button Configuration으로 변경하여 Edge 넣기 -> iOS 버전이 높아서 inset을 다른 방법으로 진행
-        return sortedByTrendWeek
-    }()
-
-    private lazy var sortedByTrendDay: UIButton = {
-        let sortedByTrendDay = UIButton()
         
         sortedByTrendDay.layer.borderColor = UIColor.systemGray5.cgColor
         sortedByTrendDay.layer.borderWidth = MagicNumber.borderWidth
@@ -71,30 +63,19 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
             ofSize: MagicNumber.Attributes.fontSize
         )
         sortedByTrendDay.tintColor = UIColor.white
-        return sortedByTrendDay
-    }()
-    
-    private let stillCutTitle: UILabel = {
-       let stillCutTitle = UILabel()
         
         stillCutTitle.text = MagicLiteral.Title.stillCut
         stillCutTitle.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.headerTitleFont
         )
         stillCutTitle.textColor = UIColor.white
-        return stillCutTitle
-    }()
-    
-    private let koreaMovieListTitle: UILabel = {
-        let koreaMovieListTitle = UILabel()
         
         koreaMovieListTitle.text = MagicLiteral.Title.koreaBoxOfficeMovieList
         koreaMovieListTitle.font = .boldSystemFont(
             ofSize: MagicNumber.Attributes.headerTitleFont
         )
         koreaMovieListTitle.textColor = UIColor.white
-        return koreaMovieListTitle
-    }()
+    }
 }
 
 //MARK: - [Public Method] Configure of Button Action
