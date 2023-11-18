@@ -27,7 +27,7 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
         .audienceCount([.init()])]
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        DetailSectionList.allCases.count
+        DetailSection.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -46,7 +46,7 @@ final class MovieDetailDataSource: NSObject, UICollectionViewDataSource {
                         viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath
     ) -> UICollectionReusableView {
         
-        let sectionType = DetailSectionList.allCases[indexPath.section]
+        let sectionType = DetailSection.allCases[indexPath.section]
         
         switch kind {
         case UICollectionView.elementKindSectionHeader:

@@ -9,8 +9,7 @@ import Foundation
 
 final class DetailViewModel {
     
-    //MARK: - Initializer
-    var sectionStroage: [DetailSectionList: Observable<DetailEntityWrapper>]
+    var sectionStroage: [DetailSection: Observable<DetailEntityWrapper>]
     
     init() {
         self.detailLoader = DetailLoader()
@@ -18,8 +17,6 @@ final class DetailViewModel {
         sectionStroage = [.movieDetailInformationSection: Observable<DetailEntityWrapper>(),
                           .movieOfficialsSection: Observable<DetailEntityWrapper>()]
     }
-    
-    //MARK: - Private Property
 
     private let detailLoader: DetailLoader
 }
@@ -31,9 +28,7 @@ extension DetailViewModel {
         //TODO: - If need to switch-case sectionType make this mehtod
         
         Task {
-            guard let movieInformation = await self.loadSelectedMovieDetailInformation(movieCode: movieCode) else {
-                return
-            }
+            guard let movieInformation = await self.loadSelectedMovieDetailInformation(movieCode: movieCode) else { return }
             let movieInformationWrapper = DetailEntityWrapper.movieDetailInformation(movieInformation)
             
             print("========= movieInformationWrapper Loading... =============")

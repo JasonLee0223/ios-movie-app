@@ -16,7 +16,7 @@ struct MovieDetailViewLayout {
     
     //MARK: - [Public Method] Configure of Layout
     func create() -> NSCollectionLayoutSection? {
-        let index = DetailSectionList.allCases[sectionIndex]
+        let index = DetailSection.allCases[sectionIndex]
         switch index {
         case .movieDetailInformationSection:
             return createMovieDetailCellCompositionalLayout()

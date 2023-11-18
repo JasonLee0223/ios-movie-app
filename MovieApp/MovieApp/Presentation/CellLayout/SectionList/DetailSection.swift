@@ -1,13 +1,13 @@
 //
-//  DetailSectionList.swift
+//  DetailSection.swift
 //  MovieApp
 //
-//  Created by Jason on 2023/05/28.
+//  Created by Jason on 11/19/23.
 //
 
 import Foundation
 
-enum DetailSectionList: Int, CaseIterable, Hashable {
+enum DetailSection: Int, CaseIterable {
     case movieDetailInformationSection = 0
     case movieOfficialsSection
     case audienceCountSection
