@@ -20,9 +20,9 @@ struct HomeViewLayout {
         let index = HomeSection.allCases[sectionIndex]
         switch index {
         case .trendMoviePoster:
-            return createIntroduceCellCompositionalLayout()
+            return createTrendMoiveCellCompositionalLayout()
         case .stillCut:
-            return createstillCutCellCompositionalLayout()
+            return createStillCutCellCompositionalLayout()
         case .koreaMovieList:
             return createKoreaMovieListCellCompositionalLayout()
         }
@@ -35,7 +35,7 @@ struct HomeViewLayout {
 //MARK: - [Private Method] Configure of HomeSection Layout
 extension HomeViewLayout {
     
-    private func createIntroduceCellCompositionalLayout() -> NSCollectionLayoutSection? {
+    private func createTrendMoiveCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalWidth),
@@ -94,14 +94,14 @@ extension HomeViewLayout {
         section.contentInsets = .init(
             top: MagicNumber.zero,
             leading: MagicNumber.zero,
-            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.sectionBottomConstraint,
+            bottom: MagicNumber.zero,
             trailing: MagicNumber.zero
         )
         
         return section
     }
     
-    private func createstillCutCellCompositionalLayout() -> NSCollectionLayoutSection? {
+    private func createStillCutCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(
