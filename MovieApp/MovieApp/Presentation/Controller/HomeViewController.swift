@@ -30,6 +30,7 @@ final class HomeViewController: UIViewController {
         bindCollectionView()
     }
     
+    private var loadCount = 0
     private let homeViewModel = HomeViewModel()
     private var homeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var diffableDataSource: UICollectionViewDiffableDataSource<HomeSection, HomeEntityWrapper>?
@@ -46,7 +47,8 @@ final class HomeViewController: UIViewController {
     }()
     
     @objc func handleRefreshControl() {
-        homeSnapShot { _ in
+        homeSnapShot { isCompleted in
+            print(isCompleted)
             Task {
                 self.refresh.endRefreshing()
             }
@@ -174,34 +176,34 @@ extension HomeViewController {
             
             let bindModel = homeViewModel.sectionStorage[section]
             
-            bindModel?.bind(listener: { [self] businessModelWrapper in
+            bindModel?.bind(listener: { [weak self] businessModelWrapper in
+                guard let self = self else { return }
+                loadCount += 1
                 
-                guard let bindModels = businessModelWrapper else {
-                    throw HomeViewModelInError.failOfOptionalUnwrapping
-                }
+                if loadCount == HomeSection.allCases.count {
+                    var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
                 
-                var snapshot = NSDiffableDataSourceSnapshot<HomeSection, HomeEntityWrapper>()
-            
-                snapshot.appendSections([.trendMoviePoster, .stillCut, .koreaMovieList])
-                
-                if let trendMovies = homeViewModel.sectionStorage[.trendMoviePoster]?.value {
-                    snapshot.appendItems(trendMovies, toSection: .trendMoviePoster)
+                    snapshot.appendSections([.trendMoviePoster, .stillCut, .koreaMovieList])
+                    
+                    if let trendMovies = homeViewModel.sectionStorage[.trendMoviePoster]?.value {
+                        snapshot.appendItems(trendMovies, toSection: .trendMoviePoster)
+                    }
+                    if let stillCuts = homeViewModel.sectionStorage[.stillCut]?.value {
+                        snapshot.appendItems(stillCuts, toSection: .stillCut)
+                    }
+                    if let boxOfficeList = homeViewModel.sectionStorage[.koreaMovieList]?.value {
+                        snapshot.appendItems(boxOfficeList, toSection: .koreaMovieList)
+                    }
+                    self.diffableDataSource?.apply(snapshot, animatingDifferences: true)
+                    completion(true)
                 }
-                if let stillCuts = homeViewModel.sectionStorage[.stillCut]?.value {
-                    snapshot.appendItems(stillCuts, toSection: .stillCut)
-                }
-                if let boxOfficeList = homeViewModel.sectionStorage[.koreaMovieList]?.value {
-                    snapshot.appendItems(boxOfficeList, toSection: .koreaMovieList)
-                }
-                
-                diffableDataSource?.apply(snapshot, animatingDifferences: true)
-                completion(true)
             })
         }
     }
     
     private func bindCollectionView() {
         homeSnapShot { isCompleted in
+            
             Task {
                 if isCompleted {
                     let activityIndicatorAnimatedState = !isCompleted
