@@ -58,16 +58,15 @@ extension MovieDetailViewController {
     }
     
     private func configureOfSuperView() {
-        self.view.backgroundColor = .systemGray
+        self.view.backgroundColor = .black
     }
     
     private func configureOfmovieDetailCollectionView() {
         movieDetailCollectionView.isScrollEnabled = true
         movieDetailCollectionView.clipsToBounds = true
-        movieDetailCollectionView.backgroundColor = .white
+        movieDetailCollectionView.backgroundColor = .black
         movieDetailCollectionView.collectionViewLayout = configureOfCollectionViewCompositionalLayout()
         movieDetailCollectionView.dataSource = dataSource
-        movieDetailCollectionView.contentInsetAdjustmentBehavior = .never
     }
 }
 
