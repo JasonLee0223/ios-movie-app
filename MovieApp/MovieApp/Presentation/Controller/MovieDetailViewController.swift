@@ -9,12 +9,8 @@ import UIKit
 
 final class MovieDetailViewController: UIViewController {
     
-    //MARK: - Property
-    
     var movieDetailData: HomeEntityWrapper?
     var posterImageDataReceivedFromHomeView: Data?
-    
-    //MARK: - Override Method
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,8 +25,8 @@ final class MovieDetailViewController: UIViewController {
             posterImageDataReceivedFromHomeView = movieDetailData.genreImagePath
             
         case let .koreaBoxOfficeList(movieDetailData):
+//            이미지 필요
             print(movieDetailData)
-            // 이미지 필요
         case .none:
             print("Value of Optional so value is nil")
         }
@@ -41,11 +37,9 @@ final class MovieDetailViewController: UIViewController {
         
         configureOfUI()
         configureOfDetailDiffableDataSource()
-        
         detailSnapShot()
     }
     
-    //MARK: - Private Property
     private let detailViewModel = DetailViewModel()
     private let dataSource = MovieDetailDataSource()
     private let movieDetailCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())

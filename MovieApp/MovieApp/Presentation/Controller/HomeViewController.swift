@@ -17,8 +17,13 @@ final class HomeViewController: UIViewController {
                 homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
             }
         }
+        
         configureOfActivityIndicator()
-        checkOfAnimatingActivityIndicator(isAnimated: animated)
+        if loadCount == 0 {
+            checkOfAnimatingActivityIndicator(isAnimated: animated)
+        } else {
+            checkOfAnimatingActivityIndicator(isAnimated: !animated)
+        }        
     }
     
     override func viewDidLoad() {
@@ -106,7 +111,6 @@ extension HomeViewController {
     }
     
     private func checkOfAnimatingActivityIndicator(isAnimated: Bool) {
-        
         guard isAnimated != activityIndicator.isAnimating else { return }
                 
         if isAnimated {
