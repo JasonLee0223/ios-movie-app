@@ -13,6 +13,13 @@ struct HomeViewLayout {
     
     init(sectionIndex: Int) {
         self.sectionIndex = sectionIndex
+        
+        self.headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalWidth),
+                                                heightDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalHeight))
+        
+        self.header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                 elementKind: UICollectionView.elementKindSectionHeader,
+                                                                 alignment: .topLeading)
     }
     
     //MARK: - [Public Method] Configure of Layout
@@ -30,180 +37,88 @@ struct HomeViewLayout {
     
     //MARK: - Private Property
     private let sectionIndex: Int
+    private let headerSize: NSCollectionLayoutSize
+    private let header: NSCollectionLayoutBoundarySupplementaryItem
 }
 
 //MARK: - [Private Method] Configure of HomeSection Layout
 extension HomeViewLayout {
     
+    /// First Section Layout
     private func createTrendMoiveCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalWidth),
-            heightDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalHeight)
-        )
-        
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
-        
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction),
-            heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction)
-        )
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction),
+                                              heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(
-            top: MagicNumber.zero,
-            leading: MagicNumber.zero,
-            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceWidthConstraint,
-            trailing: MagicNumber.zero
-        )
+        item.contentInsets = .init(top: MagicNumber.zero, leading: MagicNumber.zero,
+                                   bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceWidthConstraint, trailing: MagicNumber.zero)
         
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceWidth),
-            heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceHeight)
-        )
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceWidth),
+                                               heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.GroupSize.introduceHeight))
         
         let group: NSCollectionLayoutGroup?
         if #available(iOS 16.0, *) {
-            group = NSCollectionLayoutGroup.vertical(
-                layoutSize: groupSize,
-                repeatingSubitem: item,
-                count: 2
-            )
+            group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     repeatingSubitem: item,
+                                                     count: 2)
         } else {
-            group = NSCollectionLayoutGroup.vertical(
-                layoutSize: groupSize,
-                subitem: item,
-                count: 2
-            )
+            group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitem: item,
+                                                     count: 2)
         }
         
-        group?.contentInsets = .init(
-            top: 20,
-            leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceLeading,
-            bottom: MagicNumber.zero,
-            trailing: MagicNumber.zero
-        )
+        group?.contentInsets = .init(top: 20, leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.introduceLeading,
+                                     bottom: MagicNumber.zero, trailing: MagicNumber.zero)
         
         let section = NSCollectionLayoutSection(group: group ?? NSCollectionLayoutGroup(layoutSize: groupSize))
         section.boundarySupplementaryItems = [header]
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        section.contentInsets = .init(
-            top: MagicNumber.zero,
-            leading: MagicNumber.zero,
-            bottom: MagicNumber.zero,
-            trailing: MagicNumber.zero
-        )
-        
+        section.contentInsets = .init(top: MagicNumber.zero, leading: MagicNumber.zero,
+                                      bottom: MagicNumber.zero, trailing: MagicNumber.zero)
         return section
     }
     
+    /// Second Section Layout
     private func createStillCutCellCompositionalLayout() -> NSCollectionLayoutSection? {
         
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(
-                MagicNumber.HeaderView.fractionalWidth
-            ),
-            heightDimension: .fractionalHeight(
-                MagicNumber.HeaderView.fractionalHeight
-            )
-        )
-        
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
-        
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension:.fractionalWidth(
-                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
-            ),
-            heightDimension: .fractionalHeight(
-                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
-            )
-        )
+        let itemSize = NSCollectionLayoutSize(widthDimension:.fractionalWidth(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction),
+                                              heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(
-                MagicNumber.RelatedToCompositionalLayout.GroupSize.stillCutWidth
-            ),
-            heightDimension: .fractionalWidth(
-                MagicNumber.RelatedToCompositionalLayout.GroupSize.stillCutHeight
-            )
-        )
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.stillCutWidth),
+                                               heightDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.GroupSize.stillCutHeight))
         
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
-        group.contentInsets = .init(
-            top: MagicNumber.zero,
-            leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.stillCutLeadingOrTrailing,
-            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.stillCutBottom,
-            trailing: MagicNumber.RelatedToCompositionalLayout.ContentInset.stillCutLeadingOrTrailing
-         )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: MagicNumber.zero, leading: MagicNumber.RelatedToCompositionalLayout.ContentInset.stillCutLeadingOrTrailing,
+                                    bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.stillCutBottom,
+                                    trailing: MagicNumber.RelatedToCompositionalLayout.ContentInset.stillCutLeadingOrTrailing)
         
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        
         return section
     }
     
+    /// Third Section Layout
     private func createKoreaMovieListCellCompositionalLayout() -> NSCollectionLayoutSection? {
-        
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(MagicNumber.HeaderView.fractionalWidth),
-            heightDimension: .fractionalHeight(MagicNumber.HeaderView.fractionalHeight)
-        )
-        
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
 
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(
-                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
-            ),
-            heightDimension: .fractionalWidth(
-                MagicNumber.RelatedToCompositionalLayout.ItemSize.koreaMovieListHeight
-            )
-        )
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction),
+                                              heightDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.ItemSize.koreaMovieListHeight))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(
-            top: MagicNumber.RelatedToCompositionalLayout.ContentInset.koreaMovieListTopOrBottom,
-            leading: MagicNumber.zero,
-            bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.koreaMovieListTopOrBottom,
-            trailing: MagicNumber.zero
-        )
+        item.contentInsets = .init(top: MagicNumber.RelatedToCompositionalLayout.ContentInset.koreaMovieListTopOrBottom, leading: MagicNumber.zero,
+                                   bottom: MagicNumber.RelatedToCompositionalLayout.ContentInset.koreaMovieListTopOrBottom, trailing: MagicNumber.zero)
         
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(
-                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
-            ),
-            heightDimension: .fractionalHeight(
-                MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction
-            )
-        )
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction),
+                                               heightDimension: .fractionalHeight(MagicNumber.RelatedToCompositionalLayout.fractionalDefaultFraction))
         
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]
         section.orthogonalScrollingBehavior = .continuous
-        
         return section
     }
 }

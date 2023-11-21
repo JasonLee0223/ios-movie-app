@@ -118,20 +118,10 @@ extension HomeHeaderView {
         
         sortStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            sortStack.topAnchor.constraint(
-                equalTo: safeArea.topAnchor
-            ),
-            sortStack.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor,
-                constant: 20
-            ),
-            sortStack.bottomAnchor.constraint(
-                equalTo: safeArea.bottomAnchor
-            ),
-            sortStack.widthAnchor.constraint(
-                equalTo: safeArea.widthAnchor,
-                multiplier: 0.8
-            )
+            sortStack.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 10),
+            sortStack.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            sortStack.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            sortStack.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.75)
         ])
     }
     
@@ -141,19 +131,10 @@ extension HomeHeaderView {
         self.addSubview(stillCutTitle)
         stillCutTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stillCutTitle.topAnchor.constraint(
-                equalTo: safeArea.topAnchor
-            ),
-            stillCutTitle.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor,
-                constant: 20
-            ),
-            stillCutTitle.trailingAnchor.constraint(
-                equalTo: safeArea.trailingAnchor
-            ),
-            stillCutTitle.bottomAnchor.constraint(
-                equalTo: safeArea.bottomAnchor
-            )
+            stillCutTitle.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            stillCutTitle.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            stillCutTitle.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            stillCutTitle.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
     }
     
@@ -163,16 +144,9 @@ extension HomeHeaderView {
         self.addSubview(koreaMovieListTitle)
         koreaMovieListTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            koreaMovieListTitle.topAnchor.constraint(
-                equalTo: safeArea.topAnchor
-            ),
-            koreaMovieListTitle.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor,
-                constant: 20
-            ),
-            koreaMovieListTitle.bottomAnchor.constraint(
-                equalTo: safeArea.bottomAnchor
-            )
+            koreaMovieListTitle.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            koreaMovieListTitle.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            koreaMovieListTitle.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
     }
 }

@@ -23,7 +23,7 @@ final class HomeViewController: UIViewController {
             checkOfAnimatingActivityIndicator(isAnimated: animated)
         } else {
             checkOfAnimatingActivityIndicator(isAnimated: !animated)
-        }        
+        }
     }
     
     override func viewDidLoad() {
@@ -117,6 +117,7 @@ extension HomeViewController {
             activityIndicator.startAnimating()
         } else {
             activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
         }
     }
     
