@@ -12,18 +12,9 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        HomeSection.allCases.forEach { section in
-            Task {
-                homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
-            }
-        }
-        
+        fetchAllData()
         configureOfActivityIndicator()
-        if loadCount == 0 {
-            checkOfAnimatingActivityIndicator(isAnimated: animated)
-        } else {
-            checkOfAnimatingActivityIndicator(isAnimated: !animated)
-        }
+        checkOfLoadDataCount(with: animated)
     }
     
     override func viewDidLoad() {
@@ -32,7 +23,6 @@ final class HomeViewController: UIViewController {
         configureOfUI()
         configureHierarchy()
         configureOfDiffableDataSource()
-        bindCollectionView()
     }
     
     private var loadCount = 0
@@ -52,12 +42,8 @@ final class HomeViewController: UIViewController {
     }()
     
     @objc func handleRefreshControl() {
-        homeSnapShot { isCompleted in
-            print(isCompleted)
-            Task {
-                self.refresh.endRefreshing()
-            }
-        }
+        loadCount = 0
+        fetchAllData()
     }
 }
 
@@ -103,6 +89,12 @@ extension HomeViewController {
         homeCollectionView.refreshControl = refresh
     }
     
+    private func configureColletionViewDelegate() {
+        Task {
+            homeCollectionView.delegate = self
+        }
+    }
+    
     private func configureOfActivityIndicator() {
         activityIndicator.center = self.view.center
         activityIndicator.color = .white
@@ -121,9 +113,11 @@ extension HomeViewController {
         }
     }
     
-    private func configureColletionViewDelegate() {
-        Task {
-            homeCollectionView.delegate = self
+    private func checkOfLoadDataCount(with viewState: Bool) {
+        if loadCount == 0 {
+            self.checkOfAnimatingActivityIndicator(isAnimated: viewState)
+        } else {
+            self.checkOfAnimatingActivityIndicator(isAnimated: !viewState)
         }
     }
 }
@@ -155,6 +149,15 @@ extension HomeViewController {
 
 //MARK: - Configure of DiffableDataSource
 extension HomeViewController {
+    
+    private func fetchAllData() {
+        HomeSection.allCases.forEach { section in
+            Task {
+                await homeViewModel.fetchHomeCollectionViewSectionItemsRelated(be: section)
+                self.bindCollectionView()
+            }
+        }
+    }
     
     private func homeSnapShot(completion: @escaping (Bool) -> Void) {
         
@@ -189,11 +192,14 @@ extension HomeViewController {
     
     private func bindCollectionView() {
         homeSnapShot { isCompleted in
-            
             Task {
                 if isCompleted {
                     let activityIndicatorAnimatedState = !isCompleted
                     self.checkOfAnimatingActivityIndicator(isAnimated: activityIndicatorAnimatedState)
+                    
+                    if self.refresh.isRefreshing {
+                        self.refresh.endRefreshing()
+                    }
                 }
             }
         }

@@ -27,7 +27,7 @@ final class HomeViewModel {
 //MARK: - [Public Method] Use at ViewController
 extension HomeViewModel {
     
-    func fetchHomeCollectionViewSectionItemsRelated(be section: HomeSection) {
+    func fetchHomeCollectionViewSectionItemsRelated(be section: HomeSection) async {
         
         switch section {
         case .trendMoviePoster:
