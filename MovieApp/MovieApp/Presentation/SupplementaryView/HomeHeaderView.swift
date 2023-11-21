@@ -25,6 +25,8 @@ final class HomeHeaderView: UICollectionReusableView, ReusableCell {
         sortStack.subviews.forEach { view in
             view.removeFromSuperview()
         }
+        stillCutTitle.removeFromSuperview()
+        koreaMovieListTitle.removeFromSuperview()
     }
     
     //MARK: - Private Property
