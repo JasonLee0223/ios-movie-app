@@ -19,7 +19,7 @@
     - [🖥️ 홈 화면](#️-홈-화면)
     - [🖥️ 상세 화면](#️-상세-화면)
   - [2. 트러블 슈팅](#2-트러블-슈팅)
-    - [🟡 (작성 예정) 2-1. 3가지의 다른 API를 호출하기 위한 방법](#-작성-예정-2-1-3가지의-다른-api를-호출하기-위한-방법)
+    - [🟡 2-1. 3가지의 다른 API를 호출하기 위한 방법](#-2-1-3가지의-다른-api를-호출하기-위한-방법)
     - [🔴 (작성 예정) 2-2. Swift-Concurrency(async-await)을 사용한 비동기 로직 구현](#-작성-예정-2-2-swift-concurrencyasync-await을-사용한-비동기-로직-구현)
     - [🟢 2-3. NSCache의 메모리 캐싱을 통한 이미지 관리](#-2-3-nscache의-메모리-캐싱을-통한-이미지-관리)
     - [🔴 (작성 예정) 2-4. RxSwift를 통한 리펙토링](#-작성-예정-2-4-rxswift를-통한-리펙토링)
@@ -76,10 +76,13 @@
 |중|🟡|
 |하|🟢|
 
-### 🟡 (작성 예정) 2-1. 3가지의 다른 API를 호출하기 위한 방법
+### 🟡 2-1. 3가지의 다른 API를 호출하기 위한 방법
+
+[📝 N개의 API를 사용하기 위한 Endpoint 설계](https://velog.io/@jaonlee0223/N%EA%B0%9C%EC%9D%98-API%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-Endpoint-%EC%84%A4%EA%B3%84)
+
 ### 🔴 (작성 예정) 2-2. Swift-Concurrency(async-await)을 사용한 비동기 로직 구현
 ### 🟢 2-3. NSCache의 메모리 캐싱을 통한 이미지 관리
 
-[Velog - [iOS] NSCache를 사용한 이미지 캐싱](https://velog.io/@jaonlee0223/iOS-NSCache%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%BA%90%EC%8B%B1)
+[📝 Velog - [iOS] NSCache를 사용한 이미지 캐싱](https://velog.io/@jaonlee0223/iOS-NSCache%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%BA%90%EC%8B%B1)
 
 ### 🔴 (작성 예정) 2-4. RxSwift를 통한 리펙토링
